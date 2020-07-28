@@ -1,0 +1,1051 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon_max.png#favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon_max.png#favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Medical Images,Xiammt,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Max Liu's Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="数学西北中心“数据科学与医疗健康”主题年研讨班  仅记录一些笔记&amp;amp;感想，内容并不详细！">
+<meta name="keywords" content="Medical Images,Xiammt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="西北中心研讨班——图像质量评价">
+<meta property="og:url" content="http://maxliu245.github.io/2019/12/13/西北中心研讨班——图像质量评价/index.html">
+<meta property="og:site_name" content="Max Liu&#39;s Blog">
+<meta property="og:description" content="数学西北中心“数据科学与医疗健康”主题年研讨班  仅记录一些笔记&amp;amp;感想，内容并不详细！">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2019-12-15T07:58:44.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="西北中心研讨班——图像质量评价">
+<meta name="twitter:description" content="数学西北中心“数据科学与医疗健康”主题年研讨班  仅记录一些笔记&amp;amp;感想，内容并不详细！">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://maxliu245.github.io/2019/12/13/西北中心研讨班——图像质量评价/">
+
+
+
+
+
+  <title>西北中心研讨班——图像质量评价 | Max Liu's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+<a href="https://github.com/MaxLiu245" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Max Liu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Earlier birds eat more worms</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://maxliu245.github.io/2019/12/13/西北中心研讨班——图像质量评价/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Max Liu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/icon_max.png#avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Max Liu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">西北中心研讨班——图像质量评价</h1>
+        
+
+        <div class="post-meta">
+
+          
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-13T08:58:44+08:00">
+                2019-12-13
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2019-12-15T15:58:44+08:00">
+                2019-12-15
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  1.9k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  7
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p> 数学西北中心“数据科学与医疗健康”主题年研讨班</p>
+<p> 仅记录一些笔记&amp;感想，内容并不详细！</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="开幕简介"><a href="#开幕简介" class="headerlink" title="开幕简介"></a>开幕简介</h2><p>图像模型都是老套的啦，无非是设计loss，根据task的需求设计参数，我更倾向于用MWN嘻嘻。</p>
+<p>可以举几个常用的model的例子，VAE，滤波，Baysian推断加正则项。</p>
+<p>最后提一下很重要的图像评价指标：</p>
+<ul>
+<li><strong>通用图像质量评价</strong></li>
+<li><strong>面向任务的图像质量评价</strong></li>
+</ul>
+<h2 id="Bayesian-CT图像重建"><a href="#Bayesian-CT图像重建" class="headerlink" title="Bayesian CT图像重建"></a>Bayesian CT图像重建</h2><p>由纽约石溪大学的教授Jerome Zhengrong Liang给出。由于版权问题，笔记不在此，也不发布。</p>
+<h2 id="深度纹理分析-Deep-Texture-Analysis"><a href="#深度纹理分析-Deep-Texture-Analysis" class="headerlink" title="深度纹理分析 Deep Texture Analysis"></a>深度纹理分析 Deep Texture Analysis</h2><p>由纽约石溪大学的教授Jerome Zhengrong Liang给出。由于版权问题，笔记不在此，也不发布。但是可以在这里列一篇参考文献</p>
+<ul>
+<li>Weiguo Cao, Marc J. Pomeroy, Perry J. Pickhardt, Matthew A. Barish, Samuel Stanley III, Hongbing Lu, Zhengrong Liang, “A pyramid machine learning model for polyp classification via CT colonography,” Proc. SPIE 10950, Medical Imaging 2019: Computer-Aided Diagnosis, 109502U (30 May 2019);<a href="https://doi.org/10.1117/12.2513068" target="_blank" rel="noopener">https://doi.org/10.1117/12.2513068</a></li>
+</ul>
+<h2 id="图像质量评价IQA中的问题、理论和方法"><a href="#图像质量评价IQA中的问题、理论和方法" class="headerlink" title="图像质量评价IQA中的问题、理论和方法"></a>图像质量评价IQA中的问题、理论和方法</h2><p>由张林教授给出。两种图像质量的评价标准：</p>
+<ul>
+<li>人类感知效果</li>
+<li>具体任务的评价指标</li>
+</ul>
+<h3 id="基于人类感知"><a href="#基于人类感知" class="headerlink" title="基于人类感知"></a>基于人类感知</h3><ul>
+<li>Pearson线性相关系数PLCC</li>
+<li>均方误差的平方根RMSE</li>
+</ul>
+<p>具体公式不会耶，应该是具体问题具体算客观评分和自己的评分</p>
+<h4 id="FR-IQR方法"><a href="#FR-IQR方法" class="headerlink" title="FR-IQR方法"></a>FR-IQR方法</h4><p>度量图像之间的距离使之满足人类感知。</p>
+<p>MSE不会考虑图像上点的顺序，不会考虑正负偏差，因此与人的感知可能有一些差距。</p>
+<p>相对来说SSIM（结构相似性：structural similarity）会好很多，它是个基石性的工作。它会把图像的变化分为有结构化改变和没有结构化改变两种大情况。</p>
+<p>举个例子，对原始标准图像施加Gaussian noise后，MSE对应的bias是随机模糊的noise，SSIM对应的bias有结构化的意义在里面。PPT里有图像例子，这里没有拍照。</p>
+<p>总之就是，MSE一样时，SSIM能度量结构化的error。</p>
+<h4 id="FSIM-FSIMc-Feature-Similarity-Index"><a href="#FSIM-FSIMc-Feature-Similarity-Index" class="headerlink" title="FSIM/FSIMc: Feature Similarity Index"></a>FSIM/FSIMc: Feature Similarity Index</h4><p>核心概念是相位的一致性phase congruency。这个东西可以算的，具体怎么算不写了，反正我的确不是很会QwQ。</p>
+<p>不过FSIM的计算是受到SSIM很大的启发的，计算过程比较相似。</p>
+<h4 id="GMSD-Gradient-magnitude-similarity-deviation"><a href="#GMSD-Gradient-magnitude-similarity-deviation" class="headerlink" title="GMSD: Gradient magnitude similarity deviation"></a>GMSD: Gradient magnitude similarity deviation</h4><p>梯度模相似性标准差，据说非常有效非常快。主要用的是梯度模的信息。</p>
+<h4 id="LPIPS-A-CNN-based-FR-IQA-Index"><a href="#LPIPS-A-CNN-based-FR-IQA-Index" class="headerlink" title="LPIPS: A CNN based FR-IQA Index"></a>LPIPS: A CNN based FR-IQA Index</h4><p>这都是个什么东西。Learned perceptual image patch similarity.大概是衡量两种patch图像和标准图像的相似性。但是以前的指标判断的都不符合人类感知，这里LPIPS可以衡量得很好，而不依赖于具体DeepCNN的结构。</p>
+<p>LPIPS训练的是tuple：${x,x_0,x_1,h}$，参考图像，patch0，patch1，h指示哪个patch更好。这个有点意思了。</p>
+<h4 id="NR-IQR方法"><a href="#NR-IQR方法" class="headerlink" title="NR-IQR方法"></a>NR-IQR方法</h4><p>FR似乎是指有reference，而NR似乎没啥标准，所以它要自己判断如何符合人类感知。</p>
+<p>NR似乎可以用于对抗学习。</p>
+<h3 id="基于task"><a href="#基于task" class="headerlink" title="基于task"></a>基于task</h3><p>自建数据集去研究去雾，和师姐很想但没师姐强嘻嘻。</p>
+<h2 id="下午实在是困了，没记笔记，再见"><a href="#下午实在是困了，没记笔记，再见" class="headerlink" title="下午实在是困了，没记笔记，再见"></a>下午实在是困了，没记笔记，再见</h2><p>中午被拖堂，没睡好觉。。。</p>
+<h2 id="CT系统设计及锥束CT成像方法"><a href="#CT系统设计及锥束CT成像方法" class="headerlink" title="CT系统设计及锥束CT成像方法"></a>CT系统设计及锥束CT成像方法</h2><p>由朱磊教授给出，GaTech校友，他讲的其实非常好，基本上把图像质量评价和CT面临的问题都讲清楚了！</p>
+<p>一个重点是把实际需求转化为多目标优化问题。</p>
+<p>具体内容只剩一些照片了，不展示在这里。</p>
+<h2 id="基于特定任务的医学图像质量评价"><a href="#基于特定任务的医学图像质量评价" class="headerlink" title="基于特定任务的医学图像质量评价"></a>基于特定任务的医学图像质量评价</h2><p>由卢hb教授给出。第二天下午太浪了，没记什么笔记。</p>
+<p>讲了讲图像质量评价发展、基于特征保持的CT图像重建及恢复和一些医学图像诊疗性能评价方法，一共三块。</p>
+<p>其总的方法都属于<code>影像组学</code> <code>Radiomics</code>，分割啊，特征提取啊再分析这样，影像组学的思路（或者说流程）可以为医学图像处理提供部分定量的研究手段，其实就是能算的一些指标。</p>
+<h4 id="基于特征保持的（Ld）CT图像重建及恢复"><a href="#基于特征保持的（Ld）CT图像重建及恢复" class="headerlink" title="基于特征保持的（Ld）CT图像重建及恢复"></a>基于特征保持的（Ld）CT图像重建及恢复</h4><p>举几个例子：</p>
+<ul>
+<li>针对nonstationary noise的各项异性边缘引导的TV最小化重建方法；</li>
+<li>针对photon starvation的高阶微分模型TVS最小重建方法；</li>
+<li>针对streak artifacts的基于NLM约束的迭代重建方法；</li>
+<li>针对noise/details tradeoff的基于邻域主成分的非局部均值成像算法。</li>
+</ul>
+<p>还有一个例子好像很有意思，有机会再看吧：</p>
+<ul>
+<li>Knowledge-Based Bayesian Reconstruction Using Information from Previous Full-dose CT Scan</li>
+</ul>
+<h4 id="诊疗性能评价方法"><a href="#诊疗性能评价方法" class="headerlink" title="诊疗性能评价方法"></a>诊疗性能评价方法</h4><p>我感觉就是基本的数据分析方法。。。</p>
+<ul>
+<li>ROC: receiver operating characteristic curve，真阳性率和假阳性率的曲线<ul>
+<li>用于两种或以上不同诊断方法对疾病识别能力的比较；</li>
+<li>越靠近左上角，工作越准确（纵轴是真阳性率）；</li>
+<li>离左上角垂直距离最短的一点，敏感度特异度之和最大，成为最佳临界点，点上的值称为最佳临界值</li>
+<li>ROC曲线下面积AUC，越大，诊断价值越高。一般高于80%算好。</li>
+</ul>
+</li>
+<li>C-Index</li>
+<li>LASSO</li>
+<li>Nomogram for disease risk stratification<ul>
+<li>这是用于实现个体化风险预测的诺模图，阐述不同重要特征的预测能力</li>
+<li>回归模型都可以绘制诺模图，画法不说了，感觉就是设置某种映射给特征一个特殊的重要性权重（score）</li>
+</ul>
+</li>
+</ul>
+<p>一个和我相关的例子：</p>
+<ul>
+<li>注意灰度梯度共生特征和灰度曲度共生特征这两个说法！毕竟是某种图像纹理特征，应该还是很有用的！</li>
+</ul>
+<h2 id="Low-Dose-CT-Quality-Enhancement-with-Ethical-AI"><a href="#Low-Dose-CT-Quality-Enhancement-with-Ethical-AI" class="headerlink" title="Low Dose CT Quality Enhancement with Ethical AI"></a>Low Dose CT Quality Enhancement with Ethical AI</h2><p>由Ge Wang教授，CT领域的领军学者之一给出。老师很喜欢深度方法，举了早期的一些介绍性的工作，用网络做data-image-feature的各种转换。老师的想法和我一样耶，ML与医学的结合。</p>
+<ul>
+<li>这老师好凶啊，感觉是暴力网络（网络集成）图像重建啊！？！？他喵的真的是任务&amp;实验驱动的科研啊。。。</li>
+<li>Artifacts尾影问题<ul>
+<li>老师主讲的是LdCT，这个方向还是很火的；</li>
+<li>早期会把经典的迭代方法编程到网络中，权值共享使得计算复杂度降低？</li>
+<li>他的文章里的网络怎么咔咔咔用了5-6个评价指标；</li>
+<li>ADN: disentanglement似乎非常nb；<ul>
+<li>设计了很多编码器解码器，提取尾影特征；</li>
+<li>设计了5种损失，包括对抗损失2种，重建artifacts损失1种，尾影artifacts一致性损失1种，自优化损失1种，目标函数对应minmax问题；</li>
+<li>待改进问题：如何使用先验信息？</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>分辨率和噪影问题<ul>
+<li>分辨率的一种定义方法FWHM，用的啥啥啥点扩散函数。也可以用MTF啥的；</li>
+<li>究极定义分辨率公理QwQ；</li>
+<li>GAN-Circle；</li>
+<li>Deep Resemble Learning；</li>
+</ul>
+</li>
+<li>浪了浪了看小说去了qwq</li>
+</ul>
+<h2 id="深度重建：基于深度学习的CT图像重建"><a href="#深度重建：基于深度学习的CT图像重建" class="headerlink" title="深度重建：基于深度学习的CT图像重建"></a>深度重建：基于深度学习的CT图像重建</h2><p>由四川大学的Yi Zhang老师给出。主要内容区分为single domain单域和cross domain跨域两者方法。这个域指的是image图像域或者data域，所以到底是什么域？</p>
+<p>回去复习一下池化层吧，当时学得不细现在也忘了。</p>
+<p>后面和组里的越来越像了。</p>
+<p>其中一个VGG+GAN的模型，提特征的思路，包括在target上适用性根据效果来判断，和我的一模一样。。。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    Max Liu
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="http://maxliu245.github.io/2019/12/13/西北中心研讨班——图像质量评价/" title="西北中心研讨班——图像质量评价">http://maxliu245.github.io/2019/12/13/西北中心研讨班——图像质量评价/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Medical-Images/" rel="tag"># Medical Images</a>
+          
+            <a href="/tags/Xiammt/" rel="tag"># Xiammt</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/12/12/My-Journey-in-FGO/" rel="next" title="My Journey in FGO">
+                <i class="fa fa-chevron-left"></i> My Journey in FGO
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/01/05/Windows-10-DPC-WATCHDOG-VIOLATION-问题/" rel="prev" title="Windows 10 DPC_WATCHDOG_VIOLATION 问题">
+                Windows 10 DPC_WATCHDOG_VIOLATION 问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/icon_max.png#avatar.gif" alt="Max Liu">
+            
+              <p class="site-author-name" itemprop="name">Max Liu</p>
+              <p class="site-description motion-element" itemprop="description">Max Liu's Blog</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/MaxLiu245" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:lzmlzm@stu.xjtu.edu.cn" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/9cbd69c5d573" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-book"></i>简书</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/6033196789" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.xjtu.edu.cn/" title="西安交通大学" target="_blank">西安交通大学</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://gatech.edu/" title="佐治亚理工学院" target="_blank">佐治亚理工学院</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://xiammt.xjtu.edu.cn/index.htm" title="国家天元数学西北中心" target="_blank">国家天元数学西北中心</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开幕简介"><span class="nav-number">1.</span> <span class="nav-text">开幕简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bayesian-CT图像重建"><span class="nav-number">2.</span> <span class="nav-text">Bayesian CT图像重建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深度纹理分析-Deep-Texture-Analysis"><span class="nav-number">3.</span> <span class="nav-text">深度纹理分析 Deep Texture Analysis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像质量评价IQA中的问题、理论和方法"><span class="nav-number">4.</span> <span class="nav-text">图像质量评价IQA中的问题、理论和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基于人类感知"><span class="nav-number">4.1.</span> <span class="nav-text">基于人类感知</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#FR-IQR方法"><span class="nav-number">4.1.1.</span> <span class="nav-text">FR-IQR方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FSIM-FSIMc-Feature-Similarity-Index"><span class="nav-number">4.1.2.</span> <span class="nav-text">FSIM/FSIMc: Feature Similarity Index</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GMSD-Gradient-magnitude-similarity-deviation"><span class="nav-number">4.1.3.</span> <span class="nav-text">GMSD: Gradient magnitude similarity deviation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LPIPS-A-CNN-based-FR-IQA-Index"><span class="nav-number">4.1.4.</span> <span class="nav-text">LPIPS: A CNN based FR-IQA Index</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NR-IQR方法"><span class="nav-number">4.1.5.</span> <span class="nav-text">NR-IQR方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于task"><span class="nav-number">4.2.</span> <span class="nav-text">基于task</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下午实在是困了，没记笔记，再见"><span class="nav-number">5.</span> <span class="nav-text">下午实在是困了，没记笔记，再见</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CT系统设计及锥束CT成像方法"><span class="nav-number">6.</span> <span class="nav-text">CT系统设计及锥束CT成像方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于特定任务的医学图像质量评价"><span class="nav-number">7.</span> <span class="nav-text">基于特定任务的医学图像质量评价</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基于特征保持的（Ld）CT图像重建及恢复"><span class="nav-number">7.0.1.</span> <span class="nav-text">基于特征保持的（Ld）CT图像重建及恢复</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#诊疗性能评价方法"><span class="nav-number">7.0.2.</span> <span class="nav-text">诊疗性能评价方法</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#Low-Dose-CT-Quality-Enhancement-with-Ethical-AI"><span class="nav-number">8.</span> <span class="nav-text">Low Dose CT Quality Enhancement with Ethical AI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深度重建：基于深度学习的CT图像重建"><span class="nav-number">9.</span> <span class="nav-text">深度重建：基于深度学习的CT图像重建</span></a></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Max Liu</span>
+
+
+
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">25.5k</span>
+  
+</div>
+
+
+<div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+
+<br>
+<span id="timeDate">load days...</span><span id="times">load hours...</span><!--<span id="post-couttt">load characters...</span>-->
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("10/14/2019 14:55:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "This blog has run for "+dnum+" days, "; 
+        document.getElementById("times").innerHTML = hnum + "h, " + mnum + "m, " + snum + "s"; 
+        <!-->document.getElementById("post-counttt").innerHTML = "博客全站共"+totalcount(site)+"字"-->
+    } 
+setInterval("createtime()",250);
+</script>
+<br>
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      Vistors <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      PV <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>

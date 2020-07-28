@@ -1,0 +1,923 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon_max.png#favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon_max.png#favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Paper Reading,Meta Learner,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Max Liu's Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="有缘自会开放该博客~">
+<meta name="keywords" content="Paper Reading,Meta Learner">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【论文阅读14】MFM——针对重尾分布的元特征调节器">
+<meta property="og:url" content="http://maxliu245.github.io/2020/07/23/【论文阅读14】MFM——针对重尾分布的元特征调节器/index.html">
+<meta property="og:site_name" content="Max Liu&#39;s Blog">
+<meta property="og:description" content="有缘自会开放该博客~">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-07-24T16:00:18.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【论文阅读14】MFM——针对重尾分布的元特征调节器">
+<meta name="twitter:description" content="有缘自会开放该博客~">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://maxliu245.github.io/2020/07/23/【论文阅读14】MFM——针对重尾分布的元特征调节器/">
+
+
+
+
+
+  <title>【论文阅读14】MFM——针对重尾分布的元特征调节器 | Max Liu's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+<a href="https://github.com/MaxLiu245" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Max Liu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Earlier birds eat more worms</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://maxliu245.github.io/2020/07/23/【论文阅读14】MFM——针对重尾分布的元特征调节器/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Max Liu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/icon_max.png#avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Max Liu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【论文阅读14】MFM——针对重尾分布的元特征调节器</h1>
+        
+
+        <div class="post-meta">
+
+          
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-23T17:07:56+08:00">
+                2020-07-23
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2020-07-25T00:00:18+08:00">
+                2020-07-25
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  6
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <div class="hbe-input-container">
+  <input type="password" id="hbePass" placeholder>
+    <label for="hbePass">Please input password to continue...</label>
+    <div class="bottom-line"></div>
+  </div>
+  <script id="hbeData" type="hbeData" data-hmacdigest="2d7b5b9cef4a173e9dc29c2fda836be7d45b8bd304f6cfd43c1d5b58bebd2d0c">7645007b0ae4653d225684ee43c95f334c978794f82bdcca8d52f986bd4c355fed40e753ace8787e6c67dd1fd3dbbd9edc572f0c82a6927f45447cf800b766400474b2eb5a376951984ff126e88b0636e90130d65083178a7160cb32c8b767417646e2c53adf561b9cced359b74d3620c217299ed7d9f8fbea06a1cb7714f0f9dd187e234e1c646786d4157115e9ee765cb1ae44a581093d7dcbcbc9a5af74a563463ab7622990d035bd681a25d6cac947dbd3b9982aad27544986761100819ee228926ff1bde14367c63dfede32fbd12e7e09ddaedd1b248854c9c42595f40675e409d033a444ed31909b79242b16953cea448ca6262ff5d930bfaf10e9814d0f1708aaea427a634f22f1f691da6b6454877d659b16d34445d9b93e6b2f63e5a56a9069ac2ab449becfbf64dcdecd573ea98909a078d2e49be04eaaba1a55ef489e758d10a3898215caef56ea0b4edc664e864abaedb8bad9ae537f4619429f3c4022e1744d5dbc32bb6ceadb20817bd0f0ad1188b71c41caca8ce3ec380b970c5852bb8bfa5e3ee72cf7ba062c450b4f1f5cbeab53e748b45de7cb29fc03c69c120c5aa379dd28f9253056cc06c15fc6d6045cade43f5dea14e6f686b6d8a942589c656e364caaa87ab1d85543c8841062f7850fdc93df89ea5cbeb7b69d67b838a555f64ae9d1b17ac3fde8885602e474cda303d5bef98ec0f71fd86794a4b235373deecdc87997a93fb6042f4671ea78c210a3d1da407c11b8fc8bd6c66964f45bad597826305add5248b3927b0646e40ae8c8866d05ca1696165e3bc18cac90e10de4283ab2994ce3ccb692988452f5f53d8d1d6c6b8956f323ec5051dc2f3015dad773a87ccade3c017fc22320076c8368a366ea6bffa4c7e20367aa475ecacc10b1107e57a4bd52916e45137923b444593469b94eb26868a94e71f8697b551d634ab1949eb604720f3f0fbb36f48b6e27eebb61e79ead54d9b0d2821b806effeca386e0698eadc04ed32c008a88e0645c4f9c0ca242a0cc70f906b3cbd3f81056319b4e24f1b5bcfd8bc71a161c7a345bc564962f74ed404ab2b7439ab33a6b8b3531fa75d53ce6efc9dee56fb871552bc69742479166cc213d98cff6058b3344be4a33dcbce76c34e1634ae7bf8823fe28261de3464dbd6654da44eea673a4e3384714deba1c575f0221863127ff0bd593f997cb37d97e524c26fe6aefcf61d2e932c86a83e10e4c8f7de6c349997caa35af96bb8c65fd8c8d1c37aff149b4319860a207c88719880c10b8d974c919a239789bbfef11ea25c485f4504ba51bd2934af4a96b202652cf755a5424dca9a86d9d3c4e22d037b8c07463d9aa8500d9c1e4b5628823c5221b8614b62564548b7692102ee206aae764013fe5e02bff77d40ca1562b1f3c16cf25698f9d21a6a055b0f47b613db3b94eb8cc1ccf335db02b8aad919a92afe11cdcfab98045589e9b282e4c657b6ae08f4b1c8ef3199f6aecf839c6a25f26effed0a3cb4273332538a6797463e91062d2ff05d79614a667c4727faa1862cf53abfc9810e21c0dfb316f7fe1dcc439cd0eba92706299f285cd3601767cd7828581ce6cdf375a60f872240d1ce57f767a4a69bade7af4d9ef4eabdde8f061ee1928c3545f1abcae417cc9dd42411b6172bccf35a6da003921d65ab1c37294f8e17f17f16b91d97676f31be6ae5f97883d78ec8d560926ba27bdcb4baf4e5aabf8e68c789d2616da1eba7a7a79de79899af9ba4267628f329748ab3165da9062917da8e2d93c01aab3c27f86741af3644891e4b46c60f7d2e9674dbcdb6112ff178fd51dd9a5bb1d96333700931dc958d74a5e074aadc6a5a4b45b1949ef5878fe5a2d56b16da0b5e14d125fb7baf233fb13fba9272b8a200b1cddd0becfbf97a24922c584996cecbb3cb8f245730a0b9d926a931b33bd73a2354d9feaa9010769472a111ddf8dbe57f68f983cf8f7a5df4463eab164f1d8e28832c79da71ff54e643f63e6d944c0089ab0d2e0ef8159b15bea716249a4e6cc2b3bbbb196d4a28ca8ad8d05de1100844400c673774d5f86a0e29fa08301829164939e4e9a6cc8f1599049f4b0e3c26f5e05cc2566d2cbf0f17fb92aacaab1d3099d9ce2c9147ae4659df6735aa29112e18ccceb70b248d5004d9c1dd074b40e13c438f029320f2f805153d8211d6798846bdfa852b392e7b091fc7cb9827ab8669ca99c00ee33b55720f71aa26f941bb11d5d665f0ebc0ffc6a5019f69d737015ab70db829529ac223d31868b8271af39453dbecc3ebf6c5b317eec31dca05a2ecf7f6717746ac61f56a4da8e5a1c2c2f9a2f67bcfcd5b3be501c1e87b29bfb62ac997430cb724842a3060fd840fca2de26e394747c1c08ecd9fd2ff7012154db13b34735b776bc62566460e9461c8bd14f5a438d9d0fc4d3353f1ad0c3222329ff87b618909c53b09800704564d1f9f3fbdab325b95323ed94e8d8b99afc7f8f0dc6e1151e1a97853c105d69663414c71bd78bbed44527e8e0e913d9b7af5b82cb4e311059d969a2f59a02c41a4982299a97889926f24406fba5b137f9c9174093825ddee36737121a024d1297262557c0b634105a6996eb51c9443b9877f0e80edaa2f9c0bb2fe52c09bcbc10ee81a09fce7e7dd2fe34aa7602c15805e5076ece8aa8764b28eb9b94fda5e52c053d218fb28a35004759da819fdb55e0fc252e2afddbdf64ef76de039225f602263ba269db1afe44534c63fff8e93eb6efcc1d72f66ce9385530cfeb148f6373ad073ebfc42c958d2b1c4719466d576608cf61b6a5089f0f3d3c93c044235a6a322287e0d55845c6274bf3de1a753abdc08fda197c4d04255cccd50e21667f3a1640d1b832c376cfcf8b7766e2d6a4b1ecfcabe6883341bb8b7b4387ea38757375841312cbb65aa3f3084b0edde84c557719e893e500d2196bac5b65feafc1a7f2bdac1e5a3b1436cdd5f6153d5befa14c7f808f630942023f24faaec9b1c4195e44aff1d8b418ce222a6d726b26a55d373beb07cf17dbaea1dfccb87d33c10c3fcb27c2e3fd0e00e0b27d688d97d2f12b91609f68ce2f1a3d4d2dada28f5cf374dcf04b6ecb0ff2d76cbfbe8becd2a1a2a0667290fa412098ae3c8434236a30b2ad75d7b9a9871055e3bc0131c13a76cffd515064ec39dde4b2f2fc4fdd5ccaebe7a020fa574d8964b878d5beb4aedc1907e35f45e260ac879ba181e51cc41b5e75b5efe283eaa69e51af98e2cfeb18c39163def6da56b15e4e145d707a07d46d2d6d77781356a30d8ec6d1f6686250cbd5051ae208566f73ebfd70ba982479c8e7f5438ba25d3eb5b76862d22d148c77430112eb9619b376182a67424438a695c285e4f71278bfb66718eccda2bb31c03dd121817c605b1a52f59b03e6ba3e821919a0fbe86c18c42b139b7ad121c18142add8f7ed9b5226e7e6b09c893f6d4ccae227d28962939b34baf8aeb0509f19748461f0b9ea0b1b68c5b12f7ca4cbc2bf93c2f322abf7eabd58041edf76ee9adaf483e83bc1261f76b854fba3cd57be8c1eb278a47261e4decaba1ef3f94f0989dfb0fa6fe8a375097a9cbad6bcea9098ae38a1516c3235ee977380d4b00c3ac06b5b18f285b23931bc567cdad25ff20af35a614324567678505cf649ee1e56a499f36d5e90f05051a96b2bc511ad9f113cc48ba5506771faa98c0597ddeb6aefb6cb7f4485b8970053b5878fc887a0d6b3c933c9e441071017b09bad1ba1acb1cf4a989f58614fd692ac61a10d99ebe50bfd117f3554bb3c5fded722f1e94fccba381ccd219e3114ff985cc0665418fdabcee7e151163320742ffd988f0d03a94cb8ca501fff636aefd6654ad0b7f81d08544fb60f333aeb59ac736fe0f3d3e3c028a36ec8b6e99d40055fea0afdd1cebc179c7d6bed25f2ba94c35323f776bf762bb02a83af2692570f85821b7e2a9e43dab71e2293ab77f53f2cefd1295a90cd62b02e805deb7450b7d7bcc9d4a4cebea11c3e272d3523e8267851b5e8217f165f474d29d2d35c11875bd13e146b594a2442718578e56d091e01b7a2df98882a75cf0b9bdb181c35cfee9f92bff96cf52c03542c43ec2e7fe071230acb1c17fb7c1c0383ec43db6e3c6f52f80b4e8938120bbd90d106e5c2dd69365ff0a6b144fe56b30dcfda326fd75cc259109bdb82b1aeb647fc9fc8f385d3557adfbd5b6934b105736d0cd61afb5f9e4f2b069c529c3541828ed918fca5219d9ea684ed5082e14315cfac6083125e5100e2b3761c52f067e97bfa6e4f6fca32a60b499c286abf9d795b969838b7c019333b95ecf8a390a4223a5612aeeda74fab41bb0987cb1888d558325800d565848365e63d3f906477a74173dbba45eecef09e1a0b28301c4b82f539ef5f2f8fc82e87a16b03eebd9d58470f632ed59a76385c92a617ce9d152ff65a1d0e176ab09e1b79d6a242568790bfb393ebd1587e7761de2148a9e025e7ca92d3f2f872d6a50117899cf54b3c56f6565948683642773413f1593ff3c0c268b044d75ff372</script>
+</div>
+<script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    Max Liu
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="http://maxliu245.github.io/2020/07/23/【论文阅读14】MFM——针对重尾分布的元特征调节器/" title="【论文阅读14】MFM——针对重尾分布的元特征调节器">http://maxliu245.github.io/2020/07/23/【论文阅读14】MFM——针对重尾分布的元特征调节器/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Paper-Reading/" rel="tag"># Paper Reading</a>
+          
+            <a href="/tags/Meta-Learner/" rel="tag"># Meta Learner</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/22/【论文阅读13】PDE-Net-Learning-PDEs-from-Data/" rel="next" title="【论文阅读13】PDE-Net: Learning PDEs from Data">
+                <i class="fa fa-chevron-left"></i> 【论文阅读13】PDE-Net: Learning PDEs from Data
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/icon_max.png#avatar.gif" alt="Max Liu">
+            
+              <p class="site-author-name" itemprop="name">Max Liu</p>
+              <p class="site-description motion-element" itemprop="description">Max Liu's Blog</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/MaxLiu245" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:lzmlzm@stu.xjtu.edu.cn" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/9cbd69c5d573" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-book"></i>简书</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/6033196789" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.xjtu.edu.cn/" title="西安交通大学" target="_blank">西安交通大学</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://gatech.edu/" title="佐治亚理工学院" target="_blank">佐治亚理工学院</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://xiammt.xjtu.edu.cn/index.htm" title="国家天元数学西北中心" target="_blank">国家天元数学西北中心</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Max Liu</span>
+
+
+
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">25.5k</span>
+  
+</div>
+
+
+<div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+
+<br>
+<span id="timeDate">load days...</span><span id="times">load hours...</span><!--<span id="post-couttt">load characters...</span>-->
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("10/14/2019 14:55:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "This blog has run for "+dnum+" days, "; 
+        document.getElementById("times").innerHTML = hnum + "h, " + mnum + "m, " + snum + "s"; 
+        <!-->document.getElementById("post-counttt").innerHTML = "博客全站共"+totalcount(site)+"字"-->
+    } 
+setInterval("createtime()",250);
+</script>
+<br>
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      Vistors <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      PV <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>

@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon_max.png#favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon_max.png#favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Paper Reading,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Max Liu's Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="有缘自会开放该博客~">
+<meta name="keywords" content="Paper Reading">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【论文阅读12】Meta Label Corrector——设计元学习器完成错误标签修改">
+<meta property="og:url" content="http://maxliu245.github.io/2020/07/21/【论文阅读12】Meta-Label-Corrector——设计元学习器完成错误标签修改/index.html">
+<meta property="og:site_name" content="Max Liu&#39;s Blog">
+<meta property="og:description" content="有缘自会开放该博客~">
+<meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-07-21T02:22:46.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【论文阅读12】Meta Label Corrector——设计元学习器完成错误标签修改">
+<meta name="twitter:description" content="有缘自会开放该博客~">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://maxliu245.github.io/2020/07/21/【论文阅读12】Meta-Label-Corrector——设计元学习器完成错误标签修改/">
+
+
+
+
+
+  <title>【论文阅读12】Meta Label Corrector——设计元学习器完成错误标签修改 | Max Liu's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+<a href="https://github.com/MaxLiu245" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Max Liu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Earlier birds eat more worms</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://maxliu245.github.io/2020/07/21/【论文阅读12】Meta-Label-Corrector——设计元学习器完成错误标签修改/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Max Liu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/icon_max.png#avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Max Liu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【论文阅读12】Meta Label Corrector——设计元学习器完成错误标签修改</h1>
+        
+
+        <div class="post-meta">
+
+          
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-07-21T00:15:59+08:00">
+                2020-07-21
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2020-07-21T10:22:46+08:00">
+                2020-07-21
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  6
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  1
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <div class="hbe-input-container">
+  <input type="password" id="hbePass" placeholder>
+    <label for="hbePass">Please input password to continue...</label>
+    <div class="bottom-line"></div>
+  </div>
+  <script id="hbeData" type="hbeData" data-hmacdigest="4f5be0131754f5e9a9107e0a23effd186e8fb9e20f21ea1957cdc5f2d687f060">acd06079641cef667d5ebc5c77e664bd808d11cf554c712b0e8004a28cdb8f9d713d42c8e461b0dc25a08f6a56176980487b88911efbc1b8926e6c062c2fa7bf21fc648a0f7c54d63b5f695ac06bf5e34a9eb61ccd90d99c38aa3b95a386d2359b2937dfe48b428e5a4f65a08b67fc1a7a3b75af7a7e649431d5dedb6bb74bee6f7ecf6004d46739e848bd8b6c4f3439f8a81bca0c3887e95163e289b4f16280baf480e012265bfc2391b21605b28ed0ead9ff32bd6ff61328b4cf77bb9f495894f354f87a8a38970fe0f724f0697a3a8375c2cd4d3bddee598a27844db649eff228d60617f6ecc7a69d7e1d41f9d473ae598de35133f6aa3f485a952cc6dc3173cb619824fb27025a67541eea7cde77ed9269034a9aa2c8c70b8b7997f60e833d530b1cefa1ae1a1a1a8a66939b3061768f1872bbf3530ad077b17274f19cd472dfa19d9ec87fc9595741e8a4afeb43b543e4d06d33ce0980dee0d6c8889e693dbcdc120cdc9221e74eec8a928e81820ae536d61bc1aa2a2fa1f1acaf9592b69f231df2701339729f20257f7332c244ea139e003136e7dd1c9fe3619c516b6616c6912aa65f0df6b9611518296252f881d50637794f7d6daee41623540c4416a767e47d9f64a8567d68527e7a8d4d02530d958808b9cd3b56003b40e8d252fa3f9ba40b9e5d89241d38f45d7dd1b3d697cbdf473824cebc71b971be05f443b94c428c87f526cb1bca0392ff9fbfd265664bf4e0b09571e73cad2359d8bb2fea97dfc0432890ea83778771c6d78ec8291bc7485ee0fa5643c1a38d74e69a9d260f618a8d908ecf578dc8e87e712dc94c8ee6112200cae7058eeb38e382b79bb2766f9a28b3df87c2e22e5c5f5d46e359539ecf247d23a303f9f0db1d939d875fd5e68b9ea5e6824af69715b0ee234446ac3e1c4162f9f6f5852ae22a3a1f887adbefbf3c1b93311fa50368ecc7af526f547b334793eaf2d82c61a93087d51041f34f80ff4368d35900afe5bfd0bdf06364b03ff07d195aa776d8bcb28ed56f84bf9dda735a59684e0463ebe8c6a424cdcf23bcb8cfba49fa9edb86ba1bf8b7ea5eb6f7c001cbd2b26b22a78b07eeb297322d2338b39e6901278a07ddc440290124d887825f936b4f13a3631a0bef1e5ef922402ddbb70cb2a051e55273b71ccc315033cb2dcb9d1d1451846de425c1a7e3e12151f4c9f75b3657bd0f4e779d588955956eb2b246dabf0ae34cc628a70548c288edbdb90b0a6f2f544357ed16f690ae3d887bcb48adf54a054dcea5e9e3f4cc543fb3a586e762a27c3f84cf3c37cc803f16e847d371f00137a0947815fad659855decb2bc33031daa2f7a92311649930c2f5da49dedcc9ee1464f829f81911cfc29d4998d92b2e81fb79e6e3dcda2b37ab90679fb2666845dc826f37a0d77f76ce68cfc89cea25d4a15cc7fbdd3a54e7c2b0936dced14db39b7445f3998beebd5b85c15b2bdb4da43a49a4ffc3f725200274b2ad46f36c8e9be374911c7abcfbb75a8f089ab4f61b45d50485e6708460eaa347f33f1d25920f1bd3097328125c8609113d17b3197d313298a82a5b03a92df1bc3cfe740f1147e34c40cfcd752af8b8a86e78425177ae5a1f745ea6c768cb17511eca72d052b467c2ea68f3de839f22a0ffb4c57b3f9b847739240e9677c526f405e1b61af75da9ee9f743a7493de0bd6775b8b133937527479c90922b7e1c84c143a5d4fd1d831da3a658d4f0da87b6316c2bb29a3ccadbc24be1113472283adcd7269bc1988637437939faf8b6e5c83fd00a6af09ef1f5c64bf832fbad0ddd7aed4724c437c9d26d85cc3e7af9fd6577db6f3d885a9a4e451e8a2db323af591f786285a2400db69ef4f58b395d16309b56488c2276f464001a9d20a734793c27f79d956521e3d8ac28971bb67f19bdd8d1b4abdc4c752a112fc94bec1cb3e0939afd58c26b02e84931e834cc32148b0838791a97313f02dcc1b28a32b2078f34507d0c2c19b55fd74efd1f26573bcb6647091c92be8275fa189e81dd966a51ce8a88ac8d6ea651484845ab85a07c2eaec2f6ae14248faa3e99b4e98aaf7c1d5880caa0a12943c05c39296c736d89f2e5eba49d8c38d220ba7e9d427d40f5dbb7ccefceb792e9ea5a9e79bf460d1f0d584dac386c3f73ace31b1918438bf1b3b24c0a630e446280a5f9e19c4aa59c7187484871e6fd928d2eef5b75c8ae438c9ec4e0fd599e2b6b5298938227cdb593ae0e84b442101554ba1ab77ec45f97d771bf6dd16ba30aee368ffa8692fc22d233f4d442042a3e5ba12e2b102ca37cb6eae8c01154a8e62bb939e88d17fed9086c5bb25a6eb4f9fa0700598c72bd3bfec08b2a73f655c0c2b36e292277724bb4b1455c84c4af9daae0e76e0ec045516cea86a63ab1ea6ac4f3e7237e5bc82fad6ce9d645baa8f3b470277f43f7e51e155ac09c4a3752d1f7f43cdf3bd707389251241aab1f4e3d7fa0f4925027c7b525ada33d3a6c124d5b028ca0853a3be673a7fbb4fb6e66a3d3e15fe6c7aa86fb3fde9ae69b33388149888d4dfa677c2e439f5a2daec5ba7f6b08294b6fdcf095ef74b40197ad46bff0fe0a439f2a5b97c957ce336e6283842b1badca1e292e5685cb3b1add38e2252658ea768e48eaa8629c454344b53822b9b79602710daa64d9d4e39f14590d8ae451ae22878ad3d3ad29fe220cf3a8ddc51a98c63499b0624c707da3184bc691d306d6cf0f422048587358362bdd332000d4811b3cae7ced740ef77a34b6e5b19c34ed5b162aecc2fdfe2f96fa27fe8ef7b2921378059ca6693aa6272b6124421b872a907a1b418c34078c3b76181a0644aaf407f750e4edafab1329f7edff81fb8ae465fadeb80f1218effe9dec21996ca95a71292e621b70b57a7f000d6d106fa62587e850dad84ab3399963fead6785b15471a2ee79b14c527b8c39095aa91e11ddf9bbb2f124c6fc1333f2ac055328029eaa94b2d52ff22ff1e9f1ff023d97ca5d4009c10292716bddc3d99f99580fd502c6a23b92a6cd58e3eed5c8242f7dd91717368e66fbc3b634c0bc1a1d5e3032dec62629ba101c730c36b0e9113d9d389fa2edfa03cdbe96a3371021fa22fb3ba1811ac918a3b5484f1753346da2a2320f383c660c6deacee2981e37294c9a2732997af9e1a4622584b496d5ec18ca85f9e3d78350d0a61f0ab2f72796d22d58ddfdc39645d203da887a2bc423d7fec5779dcabc527b70d65a0d90bb7a73b5680ea917164b2629206c83cd7f8807a02790be90fae84c579b8bb5d40e54700f56486baddb26c54e3328b1c65886fcc475d40d6d5f0db8a98abc9b71f94429d5c64f7e192a0d6193987e243a158b759ee990de34240942ae954a3841b094a6f881ade12b82aa30080d1445ce84a59a663d4bccd2c3505adec0f10116e61bed819b36eb38ab0a8477fae3e957e49eecfec9ae54a7f20dd96afcb99c3da712b04c8b139638ad3d0d68b14abc7726216a79f22d53a1988ca5925d4dd0cb8a5981bed2bde025675cf037004f02aa5aa0e6c9112d4c4822815770205c6f2f37328a11174d3729e386fa830459eb20808404d2c415d641c069f4d7f583398577200f13332d66c00a8b79504ce616a24f732ada836a4c1dd25c63a0492ab4fd002e68604802da33c48ef596972da837fc6477ae01ef2bdf67c1575d12c4530062f8178eadd5463951852891c0a2b440b16e9f5929a84b03f1cc0d01edda78acd866be7a416b392ee467e68a8d9d387a2ad3a3435fecbf885024315985b6e8786c62d3024ae60e16e35c6286d21db5c2afa39cb39df6dcd757e365bebef39102a35ca79ba777ed7ca27ee8b9c49f36fb09ef137e9af8fe3f5e35c2937f741604727314fd3d9410fe1f246cc6342f7120b7a7515c1afceb63f572e2a549150007d5e75f2d7fcc464304e2c0f20c67b9f4989cf99c47b451afbfeda1fe1804cbb6a5370a470b4a1a9ab7b086a3cab3f52a7cb0403549c784df4a8f07dc3e01963acbc25441a558a9d0835d4a4c27855d434c6b73772744bc2c92f1dd27994b4633d2e9b5c0b0e1d515a24b44e43830822471d9d72de88567add880ce04c38107ef3cc787a40931a576028f161a85cf9dfb135100e40ef9005bf893714e1c9f285e703e716eb1b5314dc08107ecc66ca3e31262395549072251fd5ad18552a700edb800cd00bf2ee8edf3894a7117009669c3b08b0736924f57297d3cc691eaf5e70c0708e6063d1f2f662c24dcbf74b9cd83abcc313dcdb1cd72ede006d6f71fbdd8381008f84c2aec6a58a762264fcc108692021ba95871a7e62bc32daa67f4f108da9054cabd754b687cbbf6d67de768b5255f91f3ffe92dcfdcdf780e7eeb15f11fc1055faefa1742cac1167a263e16ff043e41e2e7d4bce9d922ca4864aafdf40c74eae529cfe65e6a5e3f077231597fd7a9654b196e023ef12d98b0cb9a805430bf353a7af0cc0077ea73bf48399a669597cec046f2c0bc1f26f581404b9e7e209f72347a4ff712834ec4c3f7e0540a3a84aaa9cf3f49deb7dee60893a3c7baaf75a666ef7e4368579560ec0a777b9b0f92ca9f34cc265a97779438cf1fbe0e33953b20fdce1d7258ee93db5d247a55f245cb4a6a43f00ab40e089857a1c0bafe53395b797bdb51d604788fecedfcd603a4491b946c787cfd4c8d561827a1f7df246272acb9e214ea01f9252f12685b96d88b58afaa0326a0b3ec800adb6c19313916ba31120daf6e50e9103ae34c0c769e71778c511770f8cad839c026bc835e2a8b4afc2b3f7f9add0530cd2ddbc94b2b66804f20e527101b7fd72eb60bc1fb4e613a27f346904dc0a4505f96eb1f60e11e6f84bba379867f243075336830e2c896eda6b2b42814773d68c6ea8f5786c20610cef72f959c1e1e5cb7ede63d16284dfcd2635e2841e3c7d07cfcd14243b089793f26d5c299a9cf0e8292524f7c8dc452282516a9442c71dc448118a6a4b88a3fe1b475d69a2a21e43908faa19b6de08a2aceea5be1cc341c8926dcd751fdcf3702354b0ff3828e85643e54c783ff4cc9623ed05881cac8b232c519005ee742403100861c341c5630a0280ecfbb0831ec28ac1e7acbf9c73b61e3d5cd165bc7a1bd19122fde52508890748737fd096f082bc99f98936d52302a661e3f1a29c3f5d3abd4d1497305ba448d494770d3f2eca9eacac2331c3a868410bfbc32f9747e22a14144ca7495a1fce6a455620e5ff51f576d41b72bc9865a1d8aa633ab6351a6d06e2fe3e81cc14d7460551c51cd273cadf25408c22224ff91ac9796b3919c93f10acde35a599c3767b63e843514d876c11793523fbee48a96a3ba37bf38bd4e1295a2c9e47441df52b92156c9d5039bff0cb31a0600dfc029ec7f295f7ace116f7a2465eec6c2301370bf45c62d407d17b94347a5fcaf606efdc79bc78ce07385f7556de9f6a26c516cd1d75a2ddb11c89acdd453c824eb7b8c853bf4efc59568caa6df9b1d53b581d3c480161dc46eb9dd50c3d0a41f22d114bc92b2b990dd4f457736de884e9564bba22cc13cd36f97c2f2abd72e5de879316616c29ad205514fb9881caa222f7c6cb7347716ac01ac61af0932377a7f65b57f50118d4e975c7c34083a8208d4cb041d5ad969a3aa271d46bab702faffa9e6aa5e6caca3d6a09a3794be1c5034b0f4adaf16899e15467911f9c64299e6e00dc9c9556586ac619698980f2757ca2fc44eff1140b8132bb4746fd15a9449e78a0f0b62ea40e92b5538f0395f47e1e3d93a1a11166cc326dfadd0e7663ef7dbad36c198aa77dade21e5e31da1b864106d697727a0b26693c5dbe6dd6ebc8d94fe42a927eab8e68b269f68b6a91ef0a2c30db1f8caed9fa6c1b3044c479677eb6c3151e5a316144fd4874508020cf80536ad3b6c5ac9253c29365eeb4fc9ca69facc63537d1033e6a1c6ac1b4269c5acabfce5bd988343f7a61924a15ed43fa698bbc563fe010166eb45ad3bcac0b262084338f5c47aa14e2999bccab62d3bd78165492c808b75e31b27c4d27b81bfb4b4594c4aa73e9ecc306661ca6d00be8b66433ed1f9a17276917e8e62932f82b3c53e024d668b537a283eeaf0c27deeb2bc124355c16f7f5b779df674118b8dfa1ea7a45d0ec573a42e235af8be138f8f686e523239e7d10b251df9e2701e72beb92944499f0158ea8d0d08be56d7f9c462c37f1873c56b50d94d23c1ddcac1c97b0122dbf9a50eeb434e18dc1f86f4a3948a7ede8cb7201824890b72e8ff1bf5f9657fc618badda2c7ac8eaf79caafcbad48d648b57d0c458a6387227fbe81a00212519ffbe079cffb062966382d7b14ea6360928666907a315de3abdcb484e3113b1644712be2f6799ee0ce142a836d5005e4cab4e71c502ac5574954bb28b41f2c5fa1c57d9346a692963fa30582a7a252c2f18530ab23c75cf839974144ad61ee09551230b1b905bcd08cd67399cff4999965b41ecafc3d5fd6aa4e856be49369e2c38e0b428b00d63aed1411ea926e014748ca964a047612419616e6862a115ec8788530de408160d13a55fd67f8ff9859864147794f02398360e7bd780fffa22f620ef46ea723a918284641a896892e850c3545cbf521cbff828f6ce8163f34c9238ce3c52abdca42b87a218f2f2edb7f12a6aac99d697e2eb97668f499d0626c480b15f478dd2cd6d8505ebf1d54f0464d0cdb4ee06217afcabe1e1b0114aa7281d1d1e4d512371ef2f99015b2e65cbfcd5d18dfae094b3dd8016ce2ac314b6cf5d798969ce8d5ca56888cd8922966dea64b6e80d63134c5fdf0e08f8ae0f724aa13393a00b50897d0e43e01dfae26bd9a5633ae53b83e7a02658d801493f93bd2ca3430502273425b1d87d9487d4800f78eb9b46f771c9fc302286a5490c9c055023d27f93e85bc73c78367d362e4dc47368b11e8ecedea87548816f1bff16e484f1661dd4c5d7ef5a044ac20c5b4fc86cbe6cf29d48856a6dc0dc42386654af735b311a1b2f89191b6e54a2c272b02364a1cd9a03c043798a767d44a53563ce69c7869ac9c22d27adc7088304d01f36649156a38b6e5ae2cf969d8567384c8b9d868184fe251f1b309c6e6634e3670be0772598f7dd3d7b68bd9be69ded4ebd695204498fb234b48d665466b3c6530a7e82c24009758098dc20d90e2fe4fbc0335bdff35972f3f309fa3ac78274a38caee920ed4539d663ae9e5521e33e7a58feacb48875f3c8ac70592164c894f2b5ebd8a9edcd114393926c2388505cf94ba7bc0e37c1ec67c29ba771ca9d3892b597223d1c872bfe9c0b9ea15f6b748213eee1700ec22554760243b3447a4b4bd7c062eb21f3a415d195c63c04962753f247e7a00640a2c4c76b18869d1a71c757dbb21d4a6bf42bc31033ed657d88da97419e9a11689af1ecf7d72cb4104845b5feade43b51564d45f6c7ea8eb3358b86c30bc174824f4a3b2fefe10dd57e0f93a3c7fa979f4574069d9cd7ab38943eaa81f122d18fa36391d5edda3026fa993ff55f0df81c8689ad473cab55099006ca60add9bf06a537e99a4c9cff55855883c022b784fe79c57efac791f808835ccf2e60d97b88ec3aeef4d610b9995337623462f9b8574bfe54c9f8fa9cbeb23df46bdae071a880b5a78526a5895178e807eb35dee3a3982e7e2cb88c019f073b8b506daa61724b7011acbd26cdf8c008e19c82908907403dce36d3e7a851e81926faacbb9d6423fa7776bc233c4b65655b5c824eb13dff991caf4da3801ed91f6d43900118c1f38f7bace3532160c5c22eb47c5f58fe90ae99f5c2c9c710a70152fa121f5b6ff7cd376bffb95450f93e226612477f461a1b040c4848c63647938124544a717f4e73362572d259dde7cf75af6ee4d59003e7f37e3c256d35ef046dcd57ccea3df4500909f68ca91b08887b92929b087909e4728f00c1bf3472475b601154ab199d6be3de151e5ae50351f0229727e6f587c1218e06cc283e1dc4a0c4941243646b5ec07d86aa626d34a9923df28d35c7e02b88fdfa59f127e01793c06a75da6</script>
+</div>
+<script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    Max Liu
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="http://maxliu245.github.io/2020/07/21/【论文阅读12】Meta-Label-Corrector——设计元学习器完成错误标签修改/" title="【论文阅读12】Meta Label Corrector——设计元学习器完成错误标签修改">http://maxliu245.github.io/2020/07/21/【论文阅读12】Meta-Label-Corrector——设计元学习器完成错误标签修改/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Paper-Reading/" rel="tag"># Paper Reading</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/07/05/11-Automated-Identification-of-Chromosome-Segments-利用染色体核型图像和条带信息分析易位/" rel="next" title="11 Automated Identification of Chromosome Segments 利用染色体核型图像和条带信息分析易位">
+                <i class="fa fa-chevron-left"></i> 11 Automated Identification of Chromosome Segments 利用染色体核型图像和条带信息分析易位
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/07/22/【论文阅读13】PDE-Net-Learning-PDEs-from-Data/" rel="prev" title="【论文阅读13】PDE-Net: Learning PDEs from Data">
+                【论文阅读13】PDE-Net: Learning PDEs from Data <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/icon_max.png#avatar.gif" alt="Max Liu">
+            
+              <p class="site-author-name" itemprop="name">Max Liu</p>
+              <p class="site-description motion-element" itemprop="description">Max Liu's Blog</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/MaxLiu245" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:lzmlzm@stu.xjtu.edu.cn" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/9cbd69c5d573" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-book"></i>简书</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/6033196789" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.xjtu.edu.cn/" title="西安交通大学" target="_blank">西安交通大学</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://gatech.edu/" title="佐治亚理工学院" target="_blank">佐治亚理工学院</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://xiammt.xjtu.edu.cn/index.htm" title="国家天元数学西北中心" target="_blank">国家天元数学西北中心</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Max Liu</span>
+
+
+
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">25.5k</span>
+  
+</div>
+
+
+<div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+
+<br>
+<span id="timeDate">load days...</span><span id="times">load hours...</span><!--<span id="post-couttt">load characters...</span>-->
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("10/14/2019 14:55:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "This blog has run for "+dnum+" days, "; 
+        document.getElementById("times").innerHTML = hnum + "h, " + mnum + "m, " + snum + "s"; 
+        <!-->document.getElementById("post-counttt").innerHTML = "博客全站共"+totalcount(site)+"字"-->
+    } 
+setInterval("createtime()",250);
+</script>
+<br>
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      Vistors <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      PV <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>

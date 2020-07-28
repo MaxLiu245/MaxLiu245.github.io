@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon_max.png#favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon_max.png#favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="KL Divergence,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Max Liu's Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="推导一下两个多元高斯分布之间的KL散度公式">
+<meta name="keywords" content="KL Divergence">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多元高斯分布之间的KL散度">
+<meta property="og:url" content="http://maxliu245.github.io/2020/06/14/多元高斯分布之间的KL散度/index.html">
+<meta property="og:site_name" content="Max Liu&#39;s Blog">
+<meta property="og:description" content="推导一下两个多元高斯分布之间的KL散度公式">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://maxliu245.github.io/.io//06/14/多元高斯分布之间的KL散度/KL.png">
+<meta property="og:updated_time" content="2020-06-14T14:01:48.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="多元高斯分布之间的KL散度">
+<meta name="twitter:description" content="推导一下两个多元高斯分布之间的KL散度公式">
+<meta name="twitter:image" content="http://maxliu245.github.io/.io//06/14/多元高斯分布之间的KL散度/KL.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://maxliu245.github.io/2020/06/14/多元高斯分布之间的KL散度/">
+
+
+
+
+
+  <title>多元高斯分布之间的KL散度 | Max Liu's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+<a href="https://github.com/MaxLiu245" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Max Liu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Earlier birds eat more worms</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://maxliu245.github.io/2020/06/14/多元高斯分布之间的KL散度/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Max Liu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/icon_max.png#avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Max Liu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">多元高斯分布之间的KL散度</h1>
+        
+
+        <div class="post-meta">
+
+          
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-14T19:46:22+08:00">
+                2020-06-14
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2020-06-14T22:01:48+08:00">
+                2020-06-14
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  1.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>推导一下两个多元高斯分布之间的KL散度公式</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="完整推导过程"><a href="#完整推导过程" class="headerlink" title="完整推导过程"></a>完整推导过程</h3><p>哎，其实我是傻乎乎地想推导两个多元高斯分布之间的$\beta$和$\gamma$散度，后来发现不可行。在这个过程中顺手推导了一般的KL散度，谨记过程如下。</p>
+<p>假定两个多元高斯分布分别为$\mathcal{N}(\mu_1, \Sigma_1)$和$\mathcal{N}(\mu_2, \Sigma_2)$，其概率分布分别表示为$p(x)$和$q(x)$。其中$\mu_1$和$\mu_2$为长度$n$的向量，$\Sigma_1$和$\Sigma_2$为维度$n\times n$的协方差阵。那么$p(x)$和$q(x)$之间的差异可以用KL散度表示，定义为：</p>
+<script type="math/tex; mode=display">\displaystyle D_{KL}(p(x)||q(x)) = \int p(x)\log \dfrac{p(x)}{q(x)}dx.\tag{1}</script><p>$(1)$式的完整计算过程如下：</p>
+<script type="math/tex; mode=display">\begin{align} \displaystyle D_{KL}(p(x)||q(x)) &= \int p(x)\log \dfrac{p(x)}{q(x)}dx\\ &= \int p(x)\log \dfrac{\dfrac{1}{(2\pi)^{\frac{n}{2}}|\Sigma_1|^{\frac{1}{2}}}e^{-\frac{1}{2}(x-\mu_1)^T\Sigma_1^{-1}(x-\mu_1)}}{\dfrac{1}{(2\pi)^{\frac{n}{2}}|\Sigma_2|^{\frac{1}{2}}}e^{-\frac{1}{2}(x-\mu_2)^T\Sigma_2^{-1}(x-\mu_2)}}dx \tag{2}\\ &= \int p(x)\log \dfrac{|\Sigma_2|^{\frac{1}{2}}}{|\Sigma_1|^{\frac{1}{2}}} e^{-\frac{1}{2}(x-\mu_1)^T\Sigma_1^{-1}(x-\mu_1) + \frac{1}{2}(x-\mu_2)^T\Sigma_2^{-1}(x-\mu_2)}dx \tag{3} \\&= \dfrac{1}{2}\int p(x)\log \dfrac{|\Sigma_2|}{|\Sigma_1|}dx + \dfrac{1}{2}\int p(x)\left[ -(x-\mu_1)^T\Sigma_1^{-1}(x-\mu_1) + (x-\mu_2)^T\Sigma_2^{-1}(x-\mu_2)\right]dx \tag{4} \\ &= \dfrac{1}{2}\log \dfrac{|\Sigma_2|}{|\Sigma_1|} + \dfrac{1}{2}\int p(x)\left[ -tr\left(\Sigma_1^{-1}(x-\mu_1)(x-\mu_1)^T\right) + tr\left(\Sigma_2^{-1}(x-\mu_2)(x-\mu_2)^T\right)\right]dx \tag{5} \\ &= \dfrac{1}{2}\log \dfrac{|\Sigma_2|}{|\Sigma_1|} - \dfrac{1}{2}tr\left[\int p(x)\left[\Sigma_1^{-1}(x-\mu_1)(x-\mu_1)^T\right]dx\right] + \dfrac{1}{2}tr\left[\int p(x)\left[\Sigma_2^{-1}(x-\mu_2)(x-\mu_2)^T\right]dx\right] \tag{6}\\ &= \dfrac{1}{2}\log \dfrac{|\Sigma_2|}{|\Sigma_1|} - \dfrac{1}{2}tr\left(\Sigma_1^{-1}\int p(x)(x-\mu_1)(x-\mu_1)^T dx\right) + \dfrac{1}{2}tr\left(\Sigma_2^{-1}\int p(x)(x-\mu_2)(x-\mu_2)^T dx\right) \tag{7} \\ &= \dfrac{1}{2}\log \dfrac{|\Sigma_2|}{|\Sigma_1|} - \dfrac{1}{2}tr\left(\Sigma_1^{-1}\mathbb{E}_p\left(xx^T -x\mu_1^T - \mu_1 x^T + \mu_1\mu_1^T\right)\right) + \dfrac{1}{2}tr\left(\Sigma_2^{-1}\mathbb{E}_p\left(xx^T -x\mu_2^T - \mu_2 x^T + \mu_2\mu_2^T\right)\right) \tag{8} \\ &=  \dfrac{1}{2}\log \dfrac{|\Sigma_2|}{|\Sigma_1|} - \dfrac{1}{2}tr\left(\Sigma_1^{-1}\Sigma_1\right) + \dfrac{1}{2}tr\left(\Sigma_2^{-1}\left(\Sigma_1 - \mu_1\mu_2^T - \mu_2 \mu_1^T + \mu_2\mu_2^T\right)\right) \tag{9} \end{align}</script><p>Emmm，式子太长，编辑器渲染都卡爆了，所以接着上面再推导：</p>
+<script type="math/tex; mode=display">\begin{align} \displaystyle D_{KL}(p(x)||q(x)) &= \dfrac{1}{2}\log \dfrac{|\Sigma_2|}{|\Sigma_1|} - \dfrac{1}{2}tr\left(I\right) + \dfrac{1}{2}tr\left(\Sigma_2^{-1}\Sigma_1\right) + \dfrac{1}{2}tr\left[\Sigma_2^{-1}\left(\mu_1\mu_1^T -\mu_1\mu_2^T - \mu_2 \mu_1^T + \mu_2\mu_2^T\right)\right] \tag{10} \\ &= \dfrac{1}{2}\left[ \log \dfrac{|\Sigma_2|}{|\Sigma_1|} - n + tr\left(\Sigma_2^{-1}\Sigma_1\right) + tr\left[\Sigma_2^{-1}\left(\mu_1\mu_1^T -\mu_1\mu_2^T - \mu_2 \mu_1^T + \mu_2\mu_2^T\right)\right]\right] \tag{11}\\ &= \dfrac{1}{2}\left[ \log \dfrac{|\Sigma_2|}{|\Sigma_1|} - n + tr\left(\Sigma_2^{-1}\Sigma_1\right) + tr\left(\mu_1^T\Sigma_2^{-1}\mu_1^T\right) - tr\left(\mu_1^T\Sigma_2^{-1}\mu_2^T\right) - tr\left(\mu_2^T\Sigma_2^{-1}\mu_1^T\right)+ tr\left(\mu_2^T\Sigma_2^{-1}\mu_2^T\right)\right] \tag{12} \\ &= \dfrac{1}{2}\left[ \log \dfrac{|\Sigma_2|}{|\Sigma_1|} - n + tr\left(\Sigma_2^{-1}\Sigma_1\right) + tr\left(\mu_1^T\Sigma_2^{-1}\mu_1^T - 2\mu_1^T\Sigma_2^{-1}\mu_2^T + \mu_2^T\Sigma_2^{-1}\mu_2^T\right)\right] \tag{13} \\ &= \dfrac{1}{2}\left[ \log \dfrac{|\Sigma_2|}{|\Sigma_1|} - n + tr\left(\Sigma_2^{-1}\Sigma_1\right) + tr\left[\left(\mu_2-\mu_1\right)^T\Sigma_2^{-1}\left(\mu_2-\mu_1\right)\right]\right] \tag{14} \\ &= \dfrac{1}{2}\left[ \log \dfrac{|\Sigma_2|}{|\Sigma_1|} - n + tr\left(\Sigma_2^{-1}\Sigma_1\right) + \left(\mu_2-\mu_1\right)^T\Sigma_2^{-1}\left(\mu_2-\mu_1\right)\right]. \tag{15}\end{align}</script><h3 id="部分推导细节"><a href="#部分推导细节" class="headerlink" title="部分推导细节"></a>部分推导细节</h3><p>在上述推导中有几步需要额外注意，我自己已经在纸上推导好了，这里简要提示一下（具体参见参考文献）：</p>
+<ul>
+<li>$(4)$式到$(5)$式：利用标量$\Leftrightarrow$标量的迹和迹的交换性；</li>
+<li>$(5)$式到$(6)$式：举个例子展开写就明白了；</li>
+<li>$(8)$式到$(9)$式：其实是$(7)$式到$(9)$式，注意对谁求期望和协方差的定义；</li>
+<li>$(14)$式到$(15)$式：标量$\Leftrightarrow$标量的迹。</li>
+</ul>
+<h3 id="PyTorch官方函数的写法"><a href="#PyTorch官方函数的写法" class="headerlink" title="PyTorch官方函数的写法"></a><code>PyTorch</code>官方函数的写法</h3><p>最后$(15)$式中的结果与<code>PyTorch</code>中多元高斯分布KL散度的表达是一致的，<code>half_term1</code>就是$\dfrac{1}{2}\log \dfrac{|\Sigma_2|}{|\Sigma_1|}$，<code>term2</code>就是$tr\left(\Sigma_2^{-1}\Sigma_1\right)$，<code>term3</code>就是$\left(\mu_2-\mu_1\right)^T\Sigma_2^{-1}\left(\mu_2-\mu_1\right)$：</p>
+<img src="/.io//06/14/多元高斯分布之间的KL散度/KL.png" title="PyTorch中多元高斯分布KL散度函数">
+<h3 id="beta-散度的想法"><a href="#beta-散度的想法" class="headerlink" title="$\beta$散度的想法"></a>$\beta$散度的想法</h3><p>其实本来是想计算$\beta$和$\gamma$散度的类似表达的…只是我真的算不出来…估计只能近似了。列个$\beta$散度的定义，有待研究。</p>
+<script type="math/tex; mode=display">\displaystyle D_{\beta}(p(x)||q(x)) = \dfrac{1}{\beta}\int p(x)^{1+\beta}dx - \dfrac{\beta + 1}{\beta}\int p(x)q(x)^{beta}dx + \int q(x)^{1+\beta}dx. \tag{16}</script><h3 id="参考链接列表"><a href="#参考链接列表" class="headerlink" title="参考链接列表"></a>参考链接列表</h3><ul>
+<li><a href="https://github.com/pytorch/pytorch/blob/master/torch/distributions/kl.py" target="_blank" rel="noopener">https://github.com/pytorch/pytorch/blob/master/torch/distributions/kl.py</a></li>
+<li><a href="https://blog.csdn.net/sinat_33598258/article/details/103866549" target="_blank" rel="noopener">https://blog.csdn.net/sinat_33598258/article/details/103866549</a></li>
+<li><a href="https://arxiv.org/pdf/1905.09961.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1905.09961.pdf</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/143124676" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/143124676</a></li>
+<li><a href="https://stats.stackexchange.com/questions/7440/kl-divergence-between-two-univariate-gaussians" target="_blank" rel="noopener">https://stats.stackexchange.com/questions/7440/kl-divergence-between-two-univariate-gaussians</a></li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    Max Liu
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="http://maxliu245.github.io/2020/06/14/多元高斯分布之间的KL散度/" title="多元高斯分布之间的KL散度">http://maxliu245.github.io/2020/06/14/多元高斯分布之间的KL散度/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/KL-Divergence/" rel="tag"># KL Divergence</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/06/13/NBA2K13鹰重整理/" rel="next" title="NBA2K13鹰重整理">
+                <i class="fa fa-chevron-left"></i> NBA2K13鹰重整理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2020/06/27/Hexo-2-加密博客尝试/" rel="prev" title="[Hexo] 2 加密博客尝试">
+                [Hexo] 2 加密博客尝试 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/icon_max.png#avatar.gif" alt="Max Liu">
+            
+              <p class="site-author-name" itemprop="name">Max Liu</p>
+              <p class="site-description motion-element" itemprop="description">Max Liu's Blog</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">28</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">31</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/MaxLiu245" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:lzmlzm@stu.xjtu.edu.cn" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/9cbd69c5d573" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-book"></i>简书</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/6033196789" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.xjtu.edu.cn/" title="西安交通大学" target="_blank">西安交通大学</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://gatech.edu/" title="佐治亚理工学院" target="_blank">佐治亚理工学院</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://xiammt.xjtu.edu.cn/index.htm" title="国家天元数学西北中心" target="_blank">国家天元数学西北中心</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#完整推导过程"><span class="nav-number">1.</span> <span class="nav-text">完整推导过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部分推导细节"><span class="nav-number">2.</span> <span class="nav-text">部分推导细节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#PyTorch官方函数的写法"><span class="nav-number">3.</span> <span class="nav-text">PyTorch官方函数的写法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#beta-散度的想法"><span class="nav-number">4.</span> <span class="nav-text">$\beta$散度的想法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考链接列表"><span class="nav-number">5.</span> <span class="nav-text">参考链接列表</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Max Liu</span>
+
+
+
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">25.5k</span>
+  
+</div>
+
+
+<div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+
+<br>
+<span id="timeDate">load days...</span><span id="times">load hours...</span><!--<span id="post-couttt">load characters...</span>-->
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("10/14/2019 14:55:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "This blog has run for "+dnum+" days, "; 
+        document.getElementById("times").innerHTML = hnum + "h, " + mnum + "m, " + snum + "s"; 
+        <!-->document.getElementById("post-counttt").innerHTML = "博客全站共"+totalcount(site)+"字"-->
+    } 
+setInterval("createtime()",250);
+</script>
+<br>
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      Vistors <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      PV <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>
