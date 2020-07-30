@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://maxliu245.github.io/"/>
-  <updated>2020-07-24T16:00:18.000Z</updated>
+  <updated>2020-07-30T15:31:27.820Z</updated>
   <id>http://maxliu245.github.io/</id>
   
   <author>
@@ -15,6 +15,32 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【Windows技巧2】用画图编辑图片并保存时出现【发生了共享冲突】</title>
+    <link href="http://maxliu245.github.io/2020/07/30/%E3%80%90Windows%E6%8A%80%E5%B7%A72%E3%80%91%E7%94%A8%E7%94%BB%E5%9B%BE%E7%BC%96%E8%BE%91%E5%9B%BE%E7%89%87%E5%B9%B6%E4%BF%9D%E5%AD%98%E6%97%B6%E5%87%BA%E7%8E%B0%E3%80%90%E5%8F%91%E7%94%9F%E4%BA%86%E5%85%B1%E4%BA%AB%E5%86%B2%E7%AA%81%E3%80%91/"/>
+    <id>http://maxliu245.github.io/2020/07/30/%E3%80%90Windows%E6%8A%80%E5%B7%A72%E3%80%91%E7%94%A8%E7%94%BB%E5%9B%BE%E7%BC%96%E8%BE%91%E5%9B%BE%E7%89%87%E5%B9%B6%E4%BF%9D%E5%AD%98%E6%97%B6%E5%87%BA%E7%8E%B0%E3%80%90%E5%8F%91%E7%94%9F%E4%BA%86%E5%85%B1%E4%BA%AB%E5%86%B2%E7%AA%81%E3%80%91/</id>
+    <published>2020-07-30T15:15:50.000Z</published>
+    <updated>2020-07-30T15:31:27.820Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote><p>用画图软件编辑图片并保存时出现bug（背景是正在用<code>python</code>导入图片）</p><p><code>发生了共享冲突</code></p></blockquote><a id="more"></a><h2 id="bug简介"><a href="#bug简介" class="headerlink" title="bug简介"></a>bug简介</h2><p>不多说，标题已经很明确了，直接上图：</p><img src="/.io//07/30/【Windows技巧2】用画图编辑图片并保存时出现【发生了共享冲突】/1.png" title="发生了共享冲突（请忽略卑微马赛克🐕）"><h2 id="经典解法"><a href="#经典解法" class="headerlink" title="经典解法"></a>经典解法</h2><p>网上有诸多解决方法，其原理都是认为原始图片和自己编辑过的图片，后者并没有在内存中覆盖前者，二者在存储的时候会冲突。</p><p>本文<strong>唯一引用文献</strong>，这篇文章讲得就还好<a href="https://www.beihaiting.com/a/YNJD/XTGZ/2016/0620/8922.html" target="_blank" rel="noopener">Win10画图保存编辑的图片时提示发生了共享冲突怎么办?</a></p><h2 id="我的问题与解法"><a href="#我的问题与解法" class="headerlink" title="我的问题与解法"></a>我的问题与解法</h2><p>但是！这个方法对我不管用，因为我删除原始图片时会显示<strong>画图软件占用</strong>：</p><img src="/.io//07/30/【Windows技巧2】用画图编辑图片并保存时出现【发生了共享冲突】/2.png" title="画图软件占用"><p>这时哥发现了端倪，平时编辑图片也没这问题啊？问题指向了<code>jupyter notebook</code>界面的<code>python</code>代码，它导入图片失败，我正调试bug……</p><p>于是我直接关闭编辑中的画图软件，直接删除图片，果然，<strong>python软件也在占用</strong>：</p><img src="/.io//07/30/【Windows技巧2】用画图编辑图片并保存时出现【发生了共享冲突】/3.png" title="`python`软件占用"><p>所以！我的解决方法是关闭当前<code>jupyter notebook</code>的<code>kernel</code>，🆗了</p><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>咸鱼生活需要bug滋润……</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;用画图软件编辑图片并保存时出现bug（背景是正在用&lt;code&gt;python&lt;/code&gt;导入图片）&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;发生了共享冲突&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="Windows" scheme="http://maxliu245.github.io/tags/Windows/"/>
+    
+      <category term="Bug" scheme="http://maxliu245.github.io/tags/Bug/"/>
+    
+  </entry>
   
   <entry>
     <title>【论文阅读14】MFM——针对重尾分布的元特征调节器</title>
@@ -497,30 +523,6 @@
       <category term="Medical Images" scheme="http://maxliu245.github.io/tags/Medical-Images/"/>
     
       <category term="Xiammt" scheme="http://maxliu245.github.io/tags/Xiammt/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>My Journey in FGO</title>
-    <link href="http://maxliu245.github.io/2019/12/12/My-Journey-in-FGO/"/>
-    <id>http://maxliu245.github.io/2019/12/12/My-Journey-in-FGO/</id>
-    <published>2019-12-12T09:08:12.000Z</published>
-    <updated>2019-12-12T15:43:24.000Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote><p>我非常非常喜欢玩FGO，所以在此记录美妙瞬间！</p><p>Posted on 2019-10-17, updated on 2019-12-12</p></blockquote><a id="more"></a><h3 id="第一个-310-我的小茄子-Mash-Kyrielight"><a href="#第一个-310-我的小茄子-Mash-Kyrielight" class="headerlink" title="第一个 310, 我的小茄子 Mash Kyrielight~!"></a>第一个 <strong>310</strong>, 我的<strong>小茄子</strong> <strong>Mash Kyrielight</strong>~!</h3><img src="/.io//12/12/My-Journey-in-FGO/mash.png" title="Mash Kyrielight"><h3 id="欢迎入住我的Chaldea-Scathach-Skaði"><a href="#欢迎入住我的Chaldea-Scathach-Skaði" class="headerlink" title="欢迎入住我的Chaldea, Scáthach-Skaði!"></a>欢迎入住我的Chaldea, <strong>Scáthach-Skaði</strong>!</h3><img src="/.io//12/12/My-Journey-in-FGO/skaha.png" title="斯卡哈·斯卡蒂"><h3 id="完成活动Fate-Accel-Zero-Order-LAP-2！"><a href="#完成活动Fate-Accel-Zero-Order-LAP-2！" class="headerlink" title="完成活动Fate/Accel Zero Order -LAP_2！"></a>完成活动<strong>Fate/Accel Zero Order -LAP_2</strong>！</h3><img src="/.io//12/12/My-Journey-in-FGO/fz2019.png" title="完成活动"><img src="/.io//12/12/My-Journey-in-FGO/unknowngaonan2.png" title="高难无伤通关"><h3 id="欢迎小黑和女王梅芙"><a href="#欢迎小黑和女王梅芙" class="headerlink" title="欢迎小黑和女王梅芙~"></a>欢迎小黑和女王梅芙~</h3><img src="/.io//12/12/My-Journey-in-FGO/xiaohei.png" title="小黑黑"><img src="/.io//12/12/My-Journey-in-FGO/meifu.png" title="梅芙大大~"><h3 id="欢迎2019万圣二期黄金鬼国Caster酒吞！"><a href="#欢迎2019万圣二期黄金鬼国Caster酒吞！" class="headerlink" title="欢迎2019万圣二期黄金鬼国Caster酒吞！"></a>欢迎2019万圣二期黄金鬼国Caster酒吞！</h3><img src="/.io//12/12/My-Journey-in-FGO/casterjiutun.png" title="Caster酒吞"><h3 id="日服新征程，纪念圣诞无限池第一次出活动礼装"><a href="#日服新征程，纪念圣诞无限池第一次出活动礼装" class="headerlink" title="日服新征程，纪念圣诞无限池第一次出活动礼装"></a>日服新征程，纪念圣诞无限池第一次出活动礼装</h3><img src="/.io//12/12/My-Journey-in-FGO/japanlizhuang.png" title="不知道名字的礼装"><h3 id="澡堂奇遇！国服万圣三期，冥界复刻9呼符欧爆！（虽然没我艾蕾酱呜呜呜）"><a href="#澡堂奇遇！国服万圣三期，冥界复刻9呼符欧爆！（虽然没我艾蕾酱呜呜呜）" class="headerlink" title="澡堂奇遇！国服万圣三期，冥界复刻9呼符欧爆！（虽然没我艾蕾酱呜呜呜）"></a>澡堂奇遇！国服万圣三期，冥界复刻9呼符欧爆！（虽然没我艾蕾酱呜呜呜）</h3><img src="/.io//12/12/My-Journey-in-FGO/meidusha.png" title="欢迎小美杜莎！"><img src="/.io//12/12/My-Journey-in-FGO/meidusha2.png" title="欢迎小美杜莎！"><img src="/.io//12/12/My-Journey-in-FGO/wuwang.png" title="吾王二宝啦啦啦啦啦啦啦啦啦啦啦啦啦">]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;我非常非常喜欢玩FGO，所以在此记录美妙瞬间！&lt;/p&gt;
-&lt;p&gt;Posted on 2019-10-17, updated on 2019-12-12&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="FGO" scheme="http://maxliu245.github.io/tags/FGO/"/>
     
   </entry>
   
