@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://maxliu245.github.io/"/>
-  <updated>2020-07-30T15:31:27.820Z</updated>
+  <updated>2020-08-02T17:01:16.804Z</updated>
   <id>http://maxliu245.github.io/</id>
   
   <author>
@@ -15,6 +15,35 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation</title>
+    <link href="http://maxliu245.github.io/2020/07/31/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB15%E3%80%91Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/"/>
+    <id>http://maxliu245.github.io/2020/07/31/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB15%E3%80%91Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/</id>
+    <published>2020-07-31T10:01:04.000Z</published>
+    <updated>2020-08-02T17:01:16.804Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote><p>论文阅读</p></blockquote><a id="more"></a><h2 id="文章简介"><a href="#文章简介" class="headerlink" title="文章简介"></a>文章简介</h2><p>这篇文章[3]是在ECCV2020的日程[1, 2]中发现的，拿来一读。</p><p>原作者的部分讲解视频在B站BAAI发布的<a href="https://www.bilibili.com/video/BV1wZ4y1M7qw?p=4" target="_blank" rel="noopener">ECCV 2020中国预会议回放丨计算机视觉、目标检测、图像分类、特征提取…55场前沿学术报告集萃</a>P4的181:40-192:00。</p><p>从标题上看是提出了一个对抗网络的变种，<font color="#0000FF">双重对抗网络DANet</font>，针对真实场景，<strong>同时建模（生成）噪声以及去噪</strong>。</p><img src="/.io//07/31/【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/1.png" title="文章简介"><h2 id="主要内容——DANet"><a href="#主要内容——DANet" class="headerlink" title="主要内容——DANet"></a>主要内容——DANet</h2><p>ps:</p><blockquote><p>主要内容直接参考B站视频或者原文即可。</p><p>个人不太想看相关工作的部分，只看了噪声生成的介绍，模拟噪声分布的目的之一是解决数据对的成本问题。其中传统方法GAN的难度在于如何找到好的噪声生成器。</p></blockquote><h3 id="模型提出"><a href="#模型提出" class="headerlink" title="模型提出"></a>模型提出</h3><p>本文的主要思想与之前的<a href="[https://maxliu245.github.io/2020/06/27/10-VDN-Variational-Denoising-Network-%E9%98%85%E8%AF%BB/#more](https://maxliu245.github.io/2020/06/27/10-VDN-Variational-Denoising-Network-阅读/#more">VDN</a>)[4]如出一辙，感觉是顺着VDN在贝叶斯框架下同时进行图像噪声估计和图像降噪的思路继续做的。主要内容是提出了双重对抗网络<strong>DANet</strong>，下面具体介绍一下。</p><p>相比VDN直接贝叶斯框架完成两种噪声相关任务，这次是间接地、从另一个角度地对干净图$x$和带噪图$y$的联合分布$p(x,y)$进行估计，并分两种分解形式。因此从两个方面分别建模，从$y$开始建模，生成$x$的过程就是训练了降噪器$R$，反之就是训练了噪声生成器$G$；两种方式逼近联合分布后通过判别器$D$做监督。这种方式称为标题的“双重对抗”，$R$和$G$相互影响，共同逼近联合分布。</p><p>$x$，$y$联合分布的两种分解很自然，从联合分布定义即可，实际意义参考视频中的图即可理解：</p><img src="/.io//07/31/【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/2.png" title="联合分布$p(x,y)$的两种分解意义"><h3 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h3><p>接下来确定对抗网络的结构：</p><img src="/.io//07/31/【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/3.png" title="网络结构"><p>其中降噪器denoiser记为$R$，噪声生成器generator记为$G$，都用UNet，并加了残差策略；最后判别器discriminator记为$D$，采用5个卷积层和一个FC。</p><h3 id="部分训练细节"><a href="#部分训练细节" class="headerlink" title="部分训练细节"></a>部分训练细节</h3><p>训练的目标函数是Triple-GAN中提出的损失，加上两个正则项（对应于两种分解）。前者是干净图的$L_1$损失，可以优化$R$；后者由于噪声随机性，采用高斯滤波后的某种$L_1$，优化$G$，具体形式参考原文(6)式。</p><p>网络训练的过程参考原文算法1即可，其训练的思路在于向后传播分两步，交替优化$R$和$G$。</p><h3 id="部分亮点"><a href="#部分亮点" class="headerlink" title="部分亮点"></a>部分亮点</h3><p>首先是继承VDN的思路，同时完成两个噪声相关任务。</p><p>其次是在概率框架下从两种联合分布分解形式的角度设计了DANet。</p><p>再者是设计了两种噪声生成质量的度量，比较了真实带噪图和生成带噪图的相似性：</p><ul><li><p><strong>PGap </strong>(PSNR Gap)：借用降噪指标PSNR设计。已知训练集$\mathcal{D}$和测试集$\mathcal{T}$，分别是一堆成对干净图和带噪图，用准备好的噪声生成器$G$，对训练集进行加噪，得到生成的新训练集$\mathcal{D}_G$，准备原始训练数据上训练得到的降噪器$R_1$和在新训练集$\mathcal{D}_G$上得到的降噪器$R_2$，分别计算测试集上的PSNR，其差值小，代表噪声生成得越好，越接近真是噪声分布。</p><script type="math/tex; mode=display">PGap = PSNR(R_1(\mathcal{T})) - PSNR(R_2(\mathcal{T}))</script></li><li><p><strong>AKLD</strong> (Average KL Divergence)：这个比较直接，希望生成噪声的分布与其真实分布接近。真实的分布用了VDN的结论，然后采样；这里的分布是由生成器$G$对应的新分布，都通过采样近似。</p></li></ul><h2 id="DANet-V-S-VDN"><a href="#DANet-V-S-VDN" class="headerlink" title="DANet V.S. VDN"></a>DANet V.S. VDN</h2><p>与VDN的区别？难道是VDN传统贝叶斯框架条件后验，这个直接联合分布？主要区别好像是的耶~</p><blockquote><p> 参考摘要</p><p>Instead of only inferring the posteriori distribution of the latent clean image conditioned on the observed noisy image in traditional MAP framework, our proposed method learns the joint distribution of the clean-noisy image pairs.</p></blockquote><h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>[1] BAAIBeijing. 计算机视觉顶会ECCV 2020中国预会议：日程公开，注册有奖[EB/OL]. <a href="https://blog.csdn.net/BAAIBeijing/article/details/107588080" target="_blank" rel="noopener">https://blog.csdn.net/BAAIBeijing/article/details/107588080</a>, 2020-07-25.</p><p>[2] 智源社区. 智源社区活动[EB/OL]. <a href="https://event.baai.ac.cn/event/53#section-four" target="_blank" rel="noopener">https://event.baai.ac.cn/event/53#section-four</a>, 2020.</p><p>[3] Zongsheng Yue, Qian Zhao, Lei Zhang, and Deyu Meng. Dual adversarial network: Toward real-world noise removal and noise generation, 2020.</p><p>[4] Yue, Zongsheng, et al. Variational denoising network: Toward blind noise modeling and removal, <em>Advances in neural information processing systems</em>, 2019.</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;论文阅读&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="Paper Reading" scheme="http://maxliu245.github.io/tags/Paper-Reading/"/>
+    
+      <category term="Denoising" scheme="http://maxliu245.github.io/tags/Denoising/"/>
+    
+      <category term="Machine Learning" scheme="http://maxliu245.github.io/tags/Machine-Learning/"/>
+    
+      <category term="Computer Vision" scheme="http://maxliu245.github.io/tags/Computer-Vision/"/>
+    
+  </entry>
   
   <entry>
     <title>【Windows技巧2】用画图编辑图片并保存时出现【发生了共享冲突】</title>
@@ -443,9 +472,9 @@
     
     
     
-      <category term="Hexo" scheme="http://maxliu245.github.io/tags/Hexo/"/>
-    
       <category term="Bugs" scheme="http://maxliu245.github.io/tags/Bugs/"/>
+    
+      <category term="Hexo" scheme="http://maxliu245.github.io/tags/Hexo/"/>
     
   </entry>
   
@@ -497,32 +526,6 @@
       <category term="Windows" scheme="http://maxliu245.github.io/tags/Windows/"/>
     
       <category term="Bug" scheme="http://maxliu245.github.io/tags/Bug/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>西北中心研讨班——图像质量评价</title>
-    <link href="http://maxliu245.github.io/2019/12/13/%E8%A5%BF%E5%8C%97%E4%B8%AD%E5%BF%83%E7%A0%94%E8%AE%A8%E7%8F%AD%E2%80%94%E2%80%94%E5%9B%BE%E5%83%8F%E8%B4%A8%E9%87%8F%E8%AF%84%E4%BB%B7/"/>
-    <id>http://maxliu245.github.io/2019/12/13/%E8%A5%BF%E5%8C%97%E4%B8%AD%E5%BF%83%E7%A0%94%E8%AE%A8%E7%8F%AD%E2%80%94%E2%80%94%E5%9B%BE%E5%83%8F%E8%B4%A8%E9%87%8F%E8%AF%84%E4%BB%B7/</id>
-    <published>2019-12-13T00:58:44.000Z</published>
-    <updated>2019-12-15T07:58:44.000Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote><p> 数学西北中心“数据科学与医疗健康”主题年研讨班</p><p> 仅记录一些笔记&amp;感想，内容并不详细！</p></blockquote><a id="more"></a><h2 id="开幕简介"><a href="#开幕简介" class="headerlink" title="开幕简介"></a>开幕简介</h2><p>图像模型都是老套的啦，无非是设计loss，根据task的需求设计参数，我更倾向于用MWN嘻嘻。</p><p>可以举几个常用的model的例子，VAE，滤波，Baysian推断加正则项。</p><p>最后提一下很重要的图像评价指标：</p><ul><li><strong>通用图像质量评价</strong></li><li><strong>面向任务的图像质量评价</strong></li></ul><h2 id="Bayesian-CT图像重建"><a href="#Bayesian-CT图像重建" class="headerlink" title="Bayesian CT图像重建"></a>Bayesian CT图像重建</h2><p>由纽约石溪大学的教授Jerome Zhengrong Liang给出。由于版权问题，笔记不在此，也不发布。</p><h2 id="深度纹理分析-Deep-Texture-Analysis"><a href="#深度纹理分析-Deep-Texture-Analysis" class="headerlink" title="深度纹理分析 Deep Texture Analysis"></a>深度纹理分析 Deep Texture Analysis</h2><p>由纽约石溪大学的教授Jerome Zhengrong Liang给出。由于版权问题，笔记不在此，也不发布。但是可以在这里列一篇参考文献</p><ul><li>Weiguo Cao, Marc J. Pomeroy, Perry J. Pickhardt, Matthew A. Barish, Samuel Stanley III, Hongbing Lu, Zhengrong Liang, “A pyramid machine learning model for polyp classification via CT colonography,” Proc. SPIE 10950, Medical Imaging 2019: Computer-Aided Diagnosis, 109502U (30 May 2019);<a href="https://doi.org/10.1117/12.2513068" target="_blank" rel="noopener">https://doi.org/10.1117/12.2513068</a></li></ul><h2 id="图像质量评价IQA中的问题、理论和方法"><a href="#图像质量评价IQA中的问题、理论和方法" class="headerlink" title="图像质量评价IQA中的问题、理论和方法"></a>图像质量评价IQA中的问题、理论和方法</h2><p>由张林教授给出。两种图像质量的评价标准：</p><ul><li>人类感知效果</li><li>具体任务的评价指标</li></ul><h3 id="基于人类感知"><a href="#基于人类感知" class="headerlink" title="基于人类感知"></a>基于人类感知</h3><ul><li>Pearson线性相关系数PLCC</li><li>均方误差的平方根RMSE</li></ul><p>具体公式不会耶，应该是具体问题具体算客观评分和自己的评分</p><h4 id="FR-IQR方法"><a href="#FR-IQR方法" class="headerlink" title="FR-IQR方法"></a>FR-IQR方法</h4><p>度量图像之间的距离使之满足人类感知。</p><p>MSE不会考虑图像上点的顺序，不会考虑正负偏差，因此与人的感知可能有一些差距。</p><p>相对来说SSIM（结构相似性：structural similarity）会好很多，它是个基石性的工作。它会把图像的变化分为有结构化改变和没有结构化改变两种大情况。</p><p>举个例子，对原始标准图像施加Gaussian noise后，MSE对应的bias是随机模糊的noise，SSIM对应的bias有结构化的意义在里面。PPT里有图像例子，这里没有拍照。</p><p>总之就是，MSE一样时，SSIM能度量结构化的error。</p><h4 id="FSIM-FSIMc-Feature-Similarity-Index"><a href="#FSIM-FSIMc-Feature-Similarity-Index" class="headerlink" title="FSIM/FSIMc: Feature Similarity Index"></a>FSIM/FSIMc: Feature Similarity Index</h4><p>核心概念是相位的一致性phase congruency。这个东西可以算的，具体怎么算不写了，反正我的确不是很会QwQ。</p><p>不过FSIM的计算是受到SSIM很大的启发的，计算过程比较相似。</p><h4 id="GMSD-Gradient-magnitude-similarity-deviation"><a href="#GMSD-Gradient-magnitude-similarity-deviation" class="headerlink" title="GMSD: Gradient magnitude similarity deviation"></a>GMSD: Gradient magnitude similarity deviation</h4><p>梯度模相似性标准差，据说非常有效非常快。主要用的是梯度模的信息。</p><h4 id="LPIPS-A-CNN-based-FR-IQA-Index"><a href="#LPIPS-A-CNN-based-FR-IQA-Index" class="headerlink" title="LPIPS: A CNN based FR-IQA Index"></a>LPIPS: A CNN based FR-IQA Index</h4><p>这都是个什么东西。Learned perceptual image patch similarity.大概是衡量两种patch图像和标准图像的相似性。但是以前的指标判断的都不符合人类感知，这里LPIPS可以衡量得很好，而不依赖于具体DeepCNN的结构。</p><p>LPIPS训练的是tuple：${x,x_0,x_1,h}$，参考图像，patch0，patch1，h指示哪个patch更好。这个有点意思了。</p><h4 id="NR-IQR方法"><a href="#NR-IQR方法" class="headerlink" title="NR-IQR方法"></a>NR-IQR方法</h4><p>FR似乎是指有reference，而NR似乎没啥标准，所以它要自己判断如何符合人类感知。</p><p>NR似乎可以用于对抗学习。</p><h3 id="基于task"><a href="#基于task" class="headerlink" title="基于task"></a>基于task</h3><p>自建数据集去研究去雾，和师姐很想但没师姐强嘻嘻。</p><h2 id="下午实在是困了，没记笔记，再见"><a href="#下午实在是困了，没记笔记，再见" class="headerlink" title="下午实在是困了，没记笔记，再见"></a>下午实在是困了，没记笔记，再见</h2><p>中午被拖堂，没睡好觉。。。</p><h2 id="CT系统设计及锥束CT成像方法"><a href="#CT系统设计及锥束CT成像方法" class="headerlink" title="CT系统设计及锥束CT成像方法"></a>CT系统设计及锥束CT成像方法</h2><p>由朱磊教授给出，GaTech校友，他讲的其实非常好，基本上把图像质量评价和CT面临的问题都讲清楚了！</p><p>一个重点是把实际需求转化为多目标优化问题。</p><p>具体内容只剩一些照片了，不展示在这里。</p><h2 id="基于特定任务的医学图像质量评价"><a href="#基于特定任务的医学图像质量评价" class="headerlink" title="基于特定任务的医学图像质量评价"></a>基于特定任务的医学图像质量评价</h2><p>由卢hb教授给出。第二天下午太浪了，没记什么笔记。</p><p>讲了讲图像质量评价发展、基于特征保持的CT图像重建及恢复和一些医学图像诊疗性能评价方法，一共三块。</p><p>其总的方法都属于<code>影像组学</code> <code>Radiomics</code>，分割啊，特征提取啊再分析这样，影像组学的思路（或者说流程）可以为医学图像处理提供部分定量的研究手段，其实就是能算的一些指标。</p><h4 id="基于特征保持的（Ld）CT图像重建及恢复"><a href="#基于特征保持的（Ld）CT图像重建及恢复" class="headerlink" title="基于特征保持的（Ld）CT图像重建及恢复"></a>基于特征保持的（Ld）CT图像重建及恢复</h4><p>举几个例子：</p><ul><li>针对nonstationary noise的各项异性边缘引导的TV最小化重建方法；</li><li>针对photon starvation的高阶微分模型TVS最小重建方法；</li><li>针对streak artifacts的基于NLM约束的迭代重建方法；</li><li>针对noise/details tradeoff的基于邻域主成分的非局部均值成像算法。</li></ul><p>还有一个例子好像很有意思，有机会再看吧：</p><ul><li>Knowledge-Based Bayesian Reconstruction Using Information from Previous Full-dose CT Scan</li></ul><h4 id="诊疗性能评价方法"><a href="#诊疗性能评价方法" class="headerlink" title="诊疗性能评价方法"></a>诊疗性能评价方法</h4><p>我感觉就是基本的数据分析方法。。。</p><ul><li>ROC: receiver operating characteristic curve，真阳性率和假阳性率的曲线<ul><li>用于两种或以上不同诊断方法对疾病识别能力的比较；</li><li>越靠近左上角，工作越准确（纵轴是真阳性率）；</li><li>离左上角垂直距离最短的一点，敏感度特异度之和最大，成为最佳临界点，点上的值称为最佳临界值</li><li>ROC曲线下面积AUC，越大，诊断价值越高。一般高于80%算好。</li></ul></li><li>C-Index</li><li>LASSO</li><li>Nomogram for disease risk stratification<ul><li>这是用于实现个体化风险预测的诺模图，阐述不同重要特征的预测能力</li><li>回归模型都可以绘制诺模图，画法不说了，感觉就是设置某种映射给特征一个特殊的重要性权重（score）</li></ul></li></ul><p>一个和我相关的例子：</p><ul><li>注意灰度梯度共生特征和灰度曲度共生特征这两个说法！毕竟是某种图像纹理特征，应该还是很有用的！</li></ul><h2 id="Low-Dose-CT-Quality-Enhancement-with-Ethical-AI"><a href="#Low-Dose-CT-Quality-Enhancement-with-Ethical-AI" class="headerlink" title="Low Dose CT Quality Enhancement with Ethical AI"></a>Low Dose CT Quality Enhancement with Ethical AI</h2><p>由Ge Wang教授，CT领域的领军学者之一给出。老师很喜欢深度方法，举了早期的一些介绍性的工作，用网络做data-image-feature的各种转换。老师的想法和我一样耶，ML与医学的结合。</p><ul><li>这老师好凶啊，感觉是暴力网络（网络集成）图像重建啊！？！？他喵的真的是任务&amp;实验驱动的科研啊。。。</li><li>Artifacts尾影问题<ul><li>老师主讲的是LdCT，这个方向还是很火的；</li><li>早期会把经典的迭代方法编程到网络中，权值共享使得计算复杂度降低？</li><li>他的文章里的网络怎么咔咔咔用了5-6个评价指标；</li><li>ADN: disentanglement似乎非常nb；<ul><li>设计了很多编码器解码器，提取尾影特征；</li><li>设计了5种损失，包括对抗损失2种，重建artifacts损失1种，尾影artifacts一致性损失1种，自优化损失1种，目标函数对应minmax问题；</li><li>待改进问题：如何使用先验信息？</li></ul></li></ul></li><li>分辨率和噪影问题<ul><li>分辨率的一种定义方法FWHM，用的啥啥啥点扩散函数。也可以用MTF啥的；</li><li>究极定义分辨率公理QwQ；</li><li>GAN-Circle；</li><li>Deep Resemble Learning；</li></ul></li><li>浪了浪了看小说去了qwq</li></ul><h2 id="深度重建：基于深度学习的CT图像重建"><a href="#深度重建：基于深度学习的CT图像重建" class="headerlink" title="深度重建：基于深度学习的CT图像重建"></a>深度重建：基于深度学习的CT图像重建</h2><p>由四川大学的Yi Zhang老师给出。主要内容区分为single domain单域和cross domain跨域两者方法。这个域指的是image图像域或者data域，所以到底是什么域？</p><p>回去复习一下池化层吧，当时学得不细现在也忘了。</p><p>后面和组里的越来越像了。</p><p>其中一个VGG+GAN的模型，提特征的思路，包括在target上适用性根据效果来判断，和我的一模一样。。。</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt; 数学西北中心“数据科学与医疗健康”主题年研讨班&lt;/p&gt;
-&lt;p&gt; 仅记录一些笔记&amp;amp;感想，内容并不详细！&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="Medical Images" scheme="http://maxliu245.github.io/tags/Medical-Images/"/>
-    
-      <category term="Xiammt" scheme="http://maxliu245.github.io/tags/Xiammt/"/>
     
   </entry>
   

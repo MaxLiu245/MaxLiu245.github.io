@@ -1,6 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation</title>
+    <url>/2020/07/31/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB15%E3%80%91Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>论文阅读</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="文章简介"><a href="#文章简介" class="headerlink" title="文章简介"></a>文章简介</h2><p>这篇文章[3]是在ECCV2020的日程[1, 2]中发现的，拿来一读。</p>
+<p>原作者的部分讲解视频在B站BAAI发布的<a href="https://www.bilibili.com/video/BV1wZ4y1M7qw?p=4" target="_blank" rel="noopener">ECCV 2020中国预会议回放丨计算机视觉、目标检测、图像分类、特征提取…55场前沿学术报告集萃</a>P4的181:40-192:00。</p>
+<p>从标题上看是提出了一个对抗网络的变种，<font color="#0000FF">双重对抗网络DANet</font>，针对真实场景，<strong>同时建模（生成）噪声以及去噪</strong>。</p>
+<img src="/.io//07/31/【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/1.png" title="文章简介">
+<h2 id="主要内容——DANet"><a href="#主要内容——DANet" class="headerlink" title="主要内容——DANet"></a>主要内容——DANet</h2><p>ps:</p>
+<blockquote>
+<p>主要内容直接参考B站视频或者原文即可。</p>
+<p>个人不太想看相关工作的部分，只看了噪声生成的介绍，模拟噪声分布的目的之一是解决数据对的成本问题。其中传统方法GAN的难度在于如何找到好的噪声生成器。</p>
+</blockquote>
+<h3 id="模型提出"><a href="#模型提出" class="headerlink" title="模型提出"></a>模型提出</h3><p>本文的主要思想与之前的<a href="[https://maxliu245.github.io/2020/06/27/10-VDN-Variational-Denoising-Network-%E9%98%85%E8%AF%BB/#more](https://maxliu245.github.io/2020/06/27/10-VDN-Variational-Denoising-Network-阅读/#more">VDN</a>)[4]如出一辙，感觉是顺着VDN在贝叶斯框架下同时进行图像噪声估计和图像降噪的思路继续做的。主要内容是提出了双重对抗网络<strong>DANet</strong>，下面具体介绍一下。</p>
+<p>相比VDN直接贝叶斯框架完成两种噪声相关任务，这次是间接地、从另一个角度地对干净图$x$和带噪图$y$的联合分布$p(x,y)$进行估计，并分两种分解形式。因此从两个方面分别建模，从$y$开始建模，生成$x$的过程就是训练了降噪器$R$，反之就是训练了噪声生成器$G$；两种方式逼近联合分布后通过判别器$D$做监督。这种方式称为标题的“双重对抗”，$R$和$G$相互影响，共同逼近联合分布。</p>
+<p>$x$，$y$联合分布的两种分解很自然，从联合分布定义即可，实际意义参考视频中的图即可理解：</p>
+<img src="/.io//07/31/【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/2.png" title="联合分布$p(x,y)$的两种分解意义">
+<h3 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h3><p>接下来确定对抗网络的结构：</p>
+<img src="/.io//07/31/【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/3.png" title="网络结构">
+<p>其中降噪器denoiser记为$R$，噪声生成器generator记为$G$，都用UNet，并加了残差策略；最后判别器discriminator记为$D$，采用5个卷积层和一个FC。</p>
+<h3 id="部分训练细节"><a href="#部分训练细节" class="headerlink" title="部分训练细节"></a>部分训练细节</h3><p>训练的目标函数是Triple-GAN中提出的损失，加上两个正则项（对应于两种分解）。前者是干净图的$L_1$损失，可以优化$R$；后者由于噪声随机性，采用高斯滤波后的某种$L_1$，优化$G$，具体形式参考原文(6)式。</p>
+<p>网络训练的过程参考原文算法1即可，其训练的思路在于向后传播分两步，交替优化$R$和$G$。</p>
+<h3 id="部分亮点"><a href="#部分亮点" class="headerlink" title="部分亮点"></a>部分亮点</h3><p>首先是继承VDN的思路，同时完成两个噪声相关任务。</p>
+<p>其次是在概率框架下从两种联合分布分解形式的角度设计了DANet。</p>
+<p>再者是设计了两种噪声生成质量的度量，比较了真实带噪图和生成带噪图的相似性：</p>
+<ul>
+<li><p><strong>PGap </strong>(PSNR Gap)：借用降噪指标PSNR设计。已知训练集$\mathcal{D}$和测试集$\mathcal{T}$，分别是一堆成对干净图和带噪图，用准备好的噪声生成器$G$，对训练集进行加噪，得到生成的新训练集$\mathcal{D}_G$，准备原始训练数据上训练得到的降噪器$R_1$和在新训练集$\mathcal{D}_G$上得到的降噪器$R_2$，分别计算测试集上的PSNR，其差值小，代表噪声生成得越好，越接近真是噪声分布。</p>
+<script type="math/tex; mode=display">PGap = PSNR(R_1(\mathcal{T})) - PSNR(R_2(\mathcal{T}))</script></li>
+<li><p><strong>AKLD</strong> (Average KL Divergence)：这个比较直接，希望生成噪声的分布与其真实分布接近。真实的分布用了VDN的结论，然后采样；这里的分布是由生成器$G$对应的新分布，都通过采样近似。</p>
+</li>
+</ul>
+<h2 id="DANet-V-S-VDN"><a href="#DANet-V-S-VDN" class="headerlink" title="DANet V.S. VDN"></a>DANet V.S. VDN</h2><p>与VDN的区别？难道是VDN传统贝叶斯框架条件后验，这个直接联合分布？主要区别好像是的耶~</p>
+<blockquote>
+<p> 参考摘要</p>
+<p>Instead of only inferring the posteriori distribution of the latent clean image conditioned on the observed noisy image in traditional MAP framework, our proposed method learns the joint distribution of the clean-noisy image pairs.</p>
+</blockquote>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>[1] BAAIBeijing. 计算机视觉顶会ECCV 2020中国预会议：日程公开，注册有奖[EB/OL]. <a href="https://blog.csdn.net/BAAIBeijing/article/details/107588080" target="_blank" rel="noopener">https://blog.csdn.net/BAAIBeijing/article/details/107588080</a>, 2020-07-25.</p>
+<p>[2] 智源社区. 智源社区活动[EB/OL]. <a href="https://event.baai.ac.cn/event/53#section-four" target="_blank" rel="noopener">https://event.baai.ac.cn/event/53#section-four</a>, 2020.</p>
+<p>[3] Zongsheng Yue, Qian Zhao, Lei Zhang, and Deyu Meng. Dual adversarial network: Toward real-world noise removal and noise generation, 2020.</p>
+<p>[4] Yue, Zongsheng, et al. Variational denoising network: Toward blind noise modeling and removal, <em>Advances in neural information processing systems</em>, 2019.</p>
+]]></content>
+      <tags>
+        <tag>Paper Reading</tag>
+        <tag>Denoising</tag>
+        <tag>Machine Learning</tag>
+        <tag>Computer Vision</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【Windows技巧2】用画图编辑图片并保存时出现【发生了共享冲突】</title>
     <url>/2020/07/30/%E3%80%90Windows%E6%8A%80%E5%B7%A72%E3%80%91%E7%94%A8%E7%94%BB%E5%9B%BE%E7%BC%96%E8%BE%91%E5%9B%BE%E7%89%87%E5%B9%B6%E4%BF%9D%E5%AD%98%E6%97%B6%E5%87%BA%E7%8E%B0%E3%80%90%E5%8F%91%E7%94%9F%E4%BA%86%E5%85%B1%E4%BA%AB%E5%86%B2%E7%AA%81%E3%80%91/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
@@ -7709,8 +7760,8 @@
 <p>事后我觉得这次bug的原因是我用<code>hexo new &quot;blog title&quot;</code>生成新博客之后对标题不满意，<strong><del>手动在本地修改了<code>md</code>文件的文件名和对应的图片文件夹名</del></strong> ，导致<code>.deploy_git</code>的内容和不知道哪里出现了一些不匹配？<strong>当然这个原因是我猜的~如有高见可以指点我QwQ</strong></p>
 ]]></content>
       <tags>
-        <tag>Hexo</tag>
         <tag>Bugs</tag>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
