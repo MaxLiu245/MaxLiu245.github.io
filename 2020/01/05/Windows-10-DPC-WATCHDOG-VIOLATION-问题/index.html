@@ -96,14 +96,14 @@
 <meta property="og:site_name" content="Max Liu&#39;s Blog">
 <meta property="og:description" content="继电池容量不足后发生的电脑蓝屏 DPC_WATCHDOG_VIOLATION">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://maxliu245.github.io/.io//01/05/Windows-10-DPC-WATCHDOG-VIOLATION-问题/BS.jpg">
-<meta property="og:image" content="http://maxliu245.github.io/.io//01/05/Windows-10-DPC-WATCHDOG-VIOLATION-问题/3601.jpg">
-<meta property="og:image" content="http://maxliu245.github.io/.io//01/05/Windows-10-DPC-WATCHDOG-VIOLATION-问题/3602.png">
+<meta property="og:image" content="http://maxliu245.github.io/2020/01/05/Windows-10-DPC-WATCHDOG-VIOLATION-问题/BS.jpg">
+<meta property="og:image" content="http://maxliu245.github.io/2020/01/05/Windows-10-DPC-WATCHDOG-VIOLATION-问题/3601.jpg">
+<meta property="og:image" content="http://maxliu245.github.io/2020/01/05/Windows-10-DPC-WATCHDOG-VIOLATION-问题/3602.png">
 <meta property="og:updated_time" content="2020-01-05T02:31:44.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Windows 10 DPC_WATCHDOG_VIOLATION 问题">
 <meta name="twitter:description" content="继电池容量不足后发生的电脑蓝屏 DPC_WATCHDOG_VIOLATION">
-<meta name="twitter:image" content="http://maxliu245.github.io/.io//01/05/Windows-10-DPC-WATCHDOG-VIOLATION-问题/BS.jpg">
+<meta name="twitter:image" content="http://maxliu245.github.io/2020/01/05/Windows-10-DPC-WATCHDOG-VIOLATION-问题/BS.jpg">
 
 
 
@@ -393,12 +393,12 @@
 <a id="more"></a>
 <h2 id="bug背景"><a href="#bug背景" class="headerlink" title="bug背景"></a>bug背景</h2><p>先交代一下bug背景，由于电池容量严重不足，电脑之前的用户配置文件损坏，不得不先创建了一个新的账户继续使用。可能是由于这些个原因跳bug。</p>
 <h2 id="bug细节"><a href="#bug细节" class="headerlink" title="bug细节"></a>bug细节</h2><p>某天开机，刚打开浏览器，电脑突然死机，触摸板，键盘，鼠标，显示屏均没有任何反应。等待约5min之后电脑自动蓝屏，提示我出了问题。</p>
-<img src="/.io//01/05/Windows-10-DPC-WATCHDOG-VIOLATION-问题/BS.jpg" title="Blue Screen">
+<img src="/2020/01/05/Windows-10-DPC-WATCHDOG-VIOLATION-问题/BS.jpg" title="Blue Screen">
 <p>Bug名称为<code>DPC_WATCHDOG_VIOLATION</code>。</p>
 <h2 id="bug解决"><a href="#bug解决" class="headerlink" title="bug解决"></a>bug解决</h2><p>长按电源键关机重启后，电脑正常开机。等待一小会，360自动弹框提示蓝屏错误（不是打广告）。</p>
-<img src="/.io//01/05/Windows-10-DPC-WATCHDOG-VIOLATION-问题/3601.jpg" title="360提示">
+<img src="/2020/01/05/Windows-10-DPC-WATCHDOG-VIOLATION-问题/3601.jpg" title="360提示">
 <p>它给出的解决方案是</p>
-<img src="/.io//01/05/Windows-10-DPC-WATCHDOG-VIOLATION-问题/3602.png" title="360删补丁大法">
+<img src="/2020/01/05/Windows-10-DPC-WATCHDOG-VIOLATION-问题/3602.png" title="360删补丁大法">
 <p>觉得删补丁不稳，干脆百度。经查询，大部分解决方案都和[百度经验][<a href="https://jingyan.baidu.com/article/cd4c29795ab8dc756e6e60c5.html]一致，照着来一遍，截至目前bug没有再犯。" target="_blank" rel="noopener">https://jingyan.baidu.com/article/cd4c29795ab8dc756e6e60c5.html]一致，照着来一遍，截至目前bug没有再犯。</a></p>
 
       

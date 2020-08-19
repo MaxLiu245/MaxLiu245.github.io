@@ -96,12 +96,12 @@
 <meta property="og:site_name" content="Max Liu&#39;s Blog">
 <meta property="og:description" content="推导一下两个多元高斯分布之间的KL散度公式">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://maxliu245.github.io/.io//06/14/多元高斯分布之间的KL散度/KL.png">
+<meta property="og:image" content="http://maxliu245.github.io/2020/06/14/多元高斯分布之间的KL散度/KL.png">
 <meta property="og:updated_time" content="2020-06-14T14:01:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多元高斯分布之间的KL散度">
 <meta name="twitter:description" content="推导一下两个多元高斯分布之间的KL散度公式">
-<meta name="twitter:image" content="http://maxliu245.github.io/.io//06/14/多元高斯分布之间的KL散度/KL.png">
+<meta name="twitter:image" content="http://maxliu245.github.io/2020/06/14/多元高斯分布之间的KL散度/KL.png">
 
 
 
@@ -400,7 +400,7 @@
 <li>$(14)$式到$(15)$式：标量$\Leftrightarrow$标量的迹。</li>
 </ul>
 <h3 id="PyTorch官方函数的写法"><a href="#PyTorch官方函数的写法" class="headerlink" title="PyTorch官方函数的写法"></a><code>PyTorch</code>官方函数的写法</h3><p>最后$(15)$式中的结果与<code>PyTorch</code>中多元高斯分布KL散度的表达是一致的，<code>half_term1</code>就是$\dfrac{1}{2}\log \dfrac{|\Sigma_2|}{|\Sigma_1|}$，<code>term2</code>就是$tr\left(\Sigma_2^{-1}\Sigma_1\right)$，<code>term3</code>就是$\left(\mu_2-\mu_1\right)^T\Sigma_2^{-1}\left(\mu_2-\mu_1\right)$：</p>
-<img src="/.io//06/14/多元高斯分布之间的KL散度/KL.png" title="PyTorch中多元高斯分布KL散度函数">
+<img src="/2020/06/14/多元高斯分布之间的KL散度/KL.png" title="PyTorch中多元高斯分布KL散度函数">
 <h3 id="beta-散度的想法"><a href="#beta-散度的想法" class="headerlink" title="$\beta$散度的想法"></a>$\beta$散度的想法</h3><p>其实本来是想计算$\beta$和$\gamma$散度的类似表达的…只是我真的算不出来…估计只能近似了。列个$\beta$散度的定义，有待研究。</p>
 <script type="math/tex; mode=display">\displaystyle D_{\beta}(p(x)||q(x)) = \dfrac{1}{\beta}\int p(x)^{1+\beta}dx - \dfrac{\beta + 1}{\beta}\int p(x)q(x)^{beta}dx + \int q(x)^{1+\beta}dx. \tag{16}</script><h3 id="参考链接列表"><a href="#参考链接列表" class="headerlink" title="参考链接列表"></a>参考链接列表</h3><ul>
 <li><a href="https://github.com/pytorch/pytorch/blob/master/torch/distributions/kl.py" target="_blank" rel="noopener">https://github.com/pytorch/pytorch/blob/master/torch/distributions/kl.py</a></li>

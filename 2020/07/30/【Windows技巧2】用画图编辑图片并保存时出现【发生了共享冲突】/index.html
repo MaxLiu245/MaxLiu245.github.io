@@ -96,14 +96,14 @@
 <meta property="og:site_name" content="Max Liu&#39;s Blog">
 <meta property="og:description" content="用画图软件编辑图片并保存时出现bug（背景是正在用python导入图片） 发生了共享冲突">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://maxliu245.github.io/.io//07/30/【Windows技巧2】用画图编辑图片并保存时出现【发生了共享冲突】/1.png">
-<meta property="og:image" content="http://maxliu245.github.io/.io//07/30/【Windows技巧2】用画图编辑图片并保存时出现【发生了共享冲突】/2.png">
-<meta property="og:image" content="http://maxliu245.github.io/.io//07/30/【Windows技巧2】用画图编辑图片并保存时出现【发生了共享冲突】/3.png">
+<meta property="og:image" content="http://maxliu245.github.io/2020/07/30/【Windows技巧2】用画图编辑图片并保存时出现【发生了共享冲突】/1.png">
+<meta property="og:image" content="http://maxliu245.github.io/2020/07/30/【Windows技巧2】用画图编辑图片并保存时出现【发生了共享冲突】/2.png">
+<meta property="og:image" content="http://maxliu245.github.io/2020/07/30/【Windows技巧2】用画图编辑图片并保存时出现【发生了共享冲突】/3.png">
 <meta property="og:updated_time" content="2020-07-30T15:31:27.820Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【Windows技巧2】用画图编辑图片并保存时出现【发生了共享冲突】">
 <meta name="twitter:description" content="用画图软件编辑图片并保存时出现bug（背景是正在用python导入图片） 发生了共享冲突">
-<meta name="twitter:image" content="http://maxliu245.github.io/.io//07/30/【Windows技巧2】用画图编辑图片并保存时出现【发生了共享冲突】/1.png">
+<meta name="twitter:image" content="http://maxliu245.github.io/2020/07/30/【Windows技巧2】用画图编辑图片并保存时出现【发生了共享冲突】/1.png">
 
 
 
@@ -392,14 +392,14 @@
 </blockquote>
 <a id="more"></a>
 <h2 id="bug简介"><a href="#bug简介" class="headerlink" title="bug简介"></a>bug简介</h2><p>不多说，标题已经很明确了，直接上图：</p>
-<img src="/.io//07/30/【Windows技巧2】用画图编辑图片并保存时出现【发生了共享冲突】/1.png" title="发生了共享冲突（请忽略卑微马赛克🐕）">
+<img src="/2020/07/30/【Windows技巧2】用画图编辑图片并保存时出现【发生了共享冲突】/1.png" title="发生了共享冲突（请忽略卑微马赛克🐕）">
 <h2 id="经典解法"><a href="#经典解法" class="headerlink" title="经典解法"></a>经典解法</h2><p>网上有诸多解决方法，其原理都是认为原始图片和自己编辑过的图片，后者并没有在内存中覆盖前者，二者在存储的时候会冲突。</p>
 <p>本文<strong>唯一引用文献</strong>，这篇文章讲得就还好<a href="https://www.beihaiting.com/a/YNJD/XTGZ/2016/0620/8922.html" target="_blank" rel="noopener">Win10画图保存编辑的图片时提示发生了共享冲突怎么办?</a></p>
 <h2 id="我的问题与解法"><a href="#我的问题与解法" class="headerlink" title="我的问题与解法"></a>我的问题与解法</h2><p>但是！这个方法对我不管用，因为我删除原始图片时会显示<strong>画图软件占用</strong>：</p>
-<img src="/.io//07/30/【Windows技巧2】用画图编辑图片并保存时出现【发生了共享冲突】/2.png" title="画图软件占用">
+<img src="/2020/07/30/【Windows技巧2】用画图编辑图片并保存时出现【发生了共享冲突】/2.png" title="画图软件占用">
 <p>这时哥发现了端倪，平时编辑图片也没这问题啊？问题指向了<code>jupyter notebook</code>界面的<code>python</code>代码，它导入图片失败，我正调试bug……</p>
 <p>于是我直接关闭编辑中的画图软件，直接删除图片，果然，<strong>python软件也在占用</strong>：</p>
-<img src="/.io//07/30/【Windows技巧2】用画图编辑图片并保存时出现【发生了共享冲突】/3.png" title="`python`软件占用">
+<img src="/2020/07/30/【Windows技巧2】用画图编辑图片并保存时出现【发生了共享冲突】/3.png" title="`python`软件占用">
 <p>所以！我的解决方法是关闭当前<code>jupyter notebook</code>的<code>kernel</code>，🆗了</p>
 <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>咸鱼生活需要bug滋润……</p>
 

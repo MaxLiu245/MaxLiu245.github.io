@@ -96,14 +96,14 @@
 <meta property="og:site_name" content="Max Liu&#39;s Blog">
 <meta property="og:description" content="论文阅读">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://maxliu245.github.io/.io//07/31/【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/1.png">
-<meta property="og:image" content="http://maxliu245.github.io/.io//07/31/【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/2.png">
-<meta property="og:image" content="http://maxliu245.github.io/.io//07/31/【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/3.png">
+<meta property="og:image" content="http://maxliu245.github.io/2020/07/31/【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/1.png">
+<meta property="og:image" content="http://maxliu245.github.io/2020/07/31/【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/2.png">
+<meta property="og:image" content="http://maxliu245.github.io/2020/07/31/【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/3.png">
 <meta property="og:updated_time" content="2020-08-02T17:01:16.804Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation">
 <meta name="twitter:description" content="论文阅读">
-<meta name="twitter:image" content="http://maxliu245.github.io/.io//07/31/【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/1.png">
+<meta name="twitter:image" content="http://maxliu245.github.io/2020/07/31/【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/1.png">
 
 
 
@@ -393,7 +393,7 @@
 <h2 id="文章简介"><a href="#文章简介" class="headerlink" title="文章简介"></a>文章简介</h2><p>这篇文章[3]是在ECCV2020的日程[1, 2]中发现的，拿来一读。</p>
 <p>原作者的部分讲解视频在B站BAAI发布的<a href="https://www.bilibili.com/video/BV1wZ4y1M7qw?p=4" target="_blank" rel="noopener">ECCV 2020中国预会议回放丨计算机视觉、目标检测、图像分类、特征提取…55场前沿学术报告集萃</a>P4的181:40-192:00。</p>
 <p>从标题上看是提出了一个对抗网络的变种，<font color="#0000FF">双重对抗网络DANet</font>，针对真实场景，<strong>同时建模（生成）噪声以及去噪</strong>。</p>
-<img src="/.io//07/31/【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/1.png" title="文章简介">
+<img src="/2020/07/31/【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/1.png" title="文章简介">
 <h2 id="主要内容——DANet"><a href="#主要内容——DANet" class="headerlink" title="主要内容——DANet"></a>主要内容——DANet</h2><p>ps:</p>
 <blockquote>
 <p>主要内容直接参考B站视频或者原文即可。</p>
@@ -402,9 +402,9 @@
 <h3 id="模型提出"><a href="#模型提出" class="headerlink" title="模型提出"></a>模型提出</h3><p>本文的主要思想与之前的<a href="[https://maxliu245.github.io/2020/06/27/10-VDN-Variational-Denoising-Network-%E9%98%85%E8%AF%BB/#more](https://maxliu245.github.io/2020/06/27/10-VDN-Variational-Denoising-Network-阅读/#more">VDN</a>)[4]如出一辙，感觉是顺着VDN在贝叶斯框架下同时进行图像噪声估计和图像降噪的思路继续做的。主要内容是提出了双重对抗网络<strong>DANet</strong>，下面具体介绍一下。</p>
 <p>相比VDN直接贝叶斯框架完成两种噪声相关任务，这次是间接地、从另一个角度地对干净图$x$和带噪图$y$的联合分布$p(x,y)$进行估计，并分两种分解形式。因此从两个方面分别建模，从$y$开始建模，生成$x$的过程就是训练了降噪器$R$，反之就是训练了噪声生成器$G$；两种方式逼近联合分布后通过判别器$D$做监督。这种方式称为标题的“双重对抗”，$R$和$G$相互影响，共同逼近联合分布。</p>
 <p>$x$，$y$联合分布的两种分解很自然，从联合分布定义即可，实际意义参考视频中的图即可理解：</p>
-<img src="/.io//07/31/【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/2.png" title="联合分布$p(x,y)$的两种分解意义">
+<img src="/2020/07/31/【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/2.png" title="联合分布$p(x,y)$的两种分解意义">
 <h3 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h3><p>接下来确定对抗网络的结构：</p>
-<img src="/.io//07/31/【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/3.png" title="网络结构">
+<img src="/2020/07/31/【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/3.png" title="网络结构">
 <p>其中降噪器denoiser记为$R$，噪声生成器generator记为$G$，都用UNet，并加了残差策略；最后判别器discriminator记为$D$，采用5个卷积层和一个FC。</p>
 <h3 id="部分训练细节"><a href="#部分训练细节" class="headerlink" title="部分训练细节"></a>部分训练细节</h3><p>训练的目标函数是Triple-GAN中提出的损失，加上两个正则项（对应于两种分解）。前者是干净图的$L_1$损失，可以优化$R$；后者由于噪声随机性，采用高斯滤波后的某种$L_1$，优化$G$，具体形式参考原文(6)式。</p>
 <p>网络训练的过程参考原文算法1即可，其训练的思路在于向后传播分两步，交替优化$R$和$G$。</p>

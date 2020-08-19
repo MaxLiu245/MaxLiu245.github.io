@@ -96,13 +96,13 @@
 <meta property="og:site_name" content="Max Liu&#39;s Blog">
 <meta property="og:description" content="文献阅读笔记">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://maxliu245.github.io/.io//06/10/8-A-Generic-First-Order-Algorithmic-Framework-for-Bi-Level-Programming-Beyond-Lower-Level-Singleton-笔记/8.png">
-<meta property="og:image" content="http://maxliu245.github.io/.io//06/10/8-A-Generic-First-Order-Algorithmic-Framework-for-Bi-Level-Programming-Beyond-Lower-Level-Singleton-笔记/MWN.png">
+<meta property="og:image" content="http://maxliu245.github.io/2020/06/10/8-A-Generic-First-Order-Algorithmic-Framework-for-Bi-Level-Programming-Beyond-Lower-Level-Singleton-笔记/8.png">
+<meta property="og:image" content="http://maxliu245.github.io/2020/06/10/8-A-Generic-First-Order-Algorithmic-Framework-for-Bi-Level-Programming-Beyond-Lower-Level-Singleton-笔记/MWN.png">
 <meta property="og:updated_time" content="2020-06-10T08:59:10.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="8 A Generic First-Order Algorithmic Framework for Bi-Level Programming Beyond Lower-Level Singleton 笔记">
 <meta name="twitter:description" content="文献阅读笔记">
-<meta name="twitter:image" content="http://maxliu245.github.io/.io//06/10/8-A-Generic-First-Order-Algorithmic-Framework-for-Bi-Level-Programming-Beyond-Lower-Level-Singleton-笔记/8.png">
+<meta name="twitter:image" content="http://maxliu245.github.io/2020/06/10/8-A-Generic-First-Order-Algorithmic-Framework-for-Bi-Level-Programming-Beyond-Lower-Level-Singleton-笔记/8.png">
 
 
 
@@ -389,7 +389,7 @@
 <p>文献阅读笔记</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="文献简介"><a href="#文献简介" class="headerlink" title="文献简介"></a>文献简介</h2><img src="/.io//06/10/8-A-Generic-First-Order-Algorithmic-Framework-for-Bi-Level-Programming-Beyond-Lower-Level-Singleton-笔记/8.png" title="A Generic First-Order Algorithmic Framework for Bi-Level Programming Beyond Lower-Level Singleton">
+<h2 id="文献简介"><a href="#文献简介" class="headerlink" title="文献简介"></a>文献简介</h2><img src="/2020/06/10/8-A-Generic-First-Order-Algorithmic-Framework-for-Bi-Level-Programming-Beyond-Lower-Level-Singleton-笔记/8.png" title="A Generic First-Order Algorithmic Framework for Bi-Level Programming Beyond Lower-Level Singleton">
 <ul>
 <li>文献地址：<a href="https://arxiv.org/abs/2006.04045" target="_blank" rel="noopener">https://arxiv.org/abs/2006.04045</a></li>
 <li>文献发布于2020年6月</li>
@@ -410,7 +410,7 @@
 <p>ps：查阅百度、谷歌、wiki均未查到此LLS，应该是本文先这样称谓</p>
 </blockquote>
 <script type="math/tex; mode=display">\min_\limits{x\in \mathcal{X}} F(x,y),\ s.t.\ y=\arg\min_\limits{y}f(x,y).</script><p>定义名称，高层优化问题为upper level，底层为lower level，分别记为<strong>UL问题</strong>和<strong>LL子问题</strong>。那么传统方法不细说，就是我了解的那种交替迭代，放张Meta-Weight-Net的图自行体会吧🤭：</p>
-<img src="/.io//06/10/8-A-Generic-First-Order-Algorithmic-Framework-for-Bi-Level-Programming-Beyond-Lower-Level-Singleton-笔记/MWN.png" title="体会交替优化方法">
+<img src="/2020/06/10/8-A-Generic-First-Order-Algorithmic-Framework-for-Bi-Level-Programming-Beyond-Lower-Level-Singleton-笔记/MWN.png" title="体会交替优化方法">
 <p>那么传统方法不行啊，因为一般LLS条件是<strong>不满足</strong>的（文中举了反例并实验验证），研究一般的双边优化问题<strong>更有意义</strong>。传统方法不好的原因是UL和LL问题中的变量是相互依存的，直接梯度方法交替迭代不能考虑这种联系，因此理论上不能完全保证收敛正确，一旦不满足LLS条件就会螺旋升天。</p>
 <p>基于此提出<strong><code>BDA</code></strong>方法，即Bi-level Descent Aggregation，基本思想就是集合UL和LL问题中变量的联系，力图解决一般的BLP问题。BDA方法的理论我还不完全明白，因为其中包含了很多优化领域的名词、条件，这个暂时没时间一一理解；索性思想是可以明白的，因此大致介绍BDA方法如下：</p>
 <ul>
