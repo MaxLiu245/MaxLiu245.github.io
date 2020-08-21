@@ -97,6 +97,29 @@
       </tags>
   </entry>
   <entry>
+    <title>11 Automated Identification of Chromosome Segments 利用染色体核型图像和条带信息分析易位</title>
+    <url>/2020/07/05/11-Automated-Identification-of-Chromosome-Segments-%E5%88%A9%E7%94%A8%E6%9F%93%E8%89%B2%E4%BD%93%E6%A0%B8%E5%9E%8B%E5%9B%BE%E5%83%8F%E5%92%8C%E6%9D%A1%E5%B8%A6%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90%E6%98%93%E4%BD%8D/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>该文利用DTW算法以及染色体密度谱曲线判断易位信息</p>
+</blockquote>
+<a id="more"></a>
+<img src="/2020/07/05/11-Automated-Identification-of-Chromosome-Segments-利用染色体核型图像和条带信息分析易位/11.png" title="DTW and Chromosome density profile">
+<p>这次读论文尝试了新的记笔记方式，然而现实是残酷的。$\LaTeX{}$写着是真心慢呜呜呜…</p>
+<p>附上笔记么么哒~，参考文献和链接一并记录在pdf文件中。此外，笔记仅供参考，<strong>请勿修改此pdf</strong>。</p>
+
+
+	<div class="row">
+    <embed src="20200707-DTW-blog-pdf.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+]]></content>
+      <tags>
+        <tag>Paper Reading</tag>
+        <tag>DTW</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>8 A Generic First-Order Algorithmic Framework for Bi-Level Programming Beyond Lower-Level Singleton 笔记</title>
     <url>/2020/06/10/8-A-Generic-First-Order-Algorithmic-Framework-for-Bi-Level-Programming-Beyond-Lower-Level-Singleton-%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
@@ -162,26 +185,52 @@
       </tags>
   </entry>
   <entry>
-    <title>11 Automated Identification of Chromosome Segments 利用染色体核型图像和条带信息分析易位</title>
-    <url>/2020/07/05/11-Automated-Identification-of-Chromosome-Segments-%E5%88%A9%E7%94%A8%E6%9F%93%E8%89%B2%E4%BD%93%E6%A0%B8%E5%9E%8B%E5%9B%BE%E5%83%8F%E5%92%8C%E6%9D%A1%E5%B8%A6%E4%BF%A1%E6%81%AF%E5%88%86%E6%9E%90%E6%98%93%E4%BD%8D/</url>
+    <title>9 Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks 笔记</title>
+    <url>/2020/06/12/9-Model-Agnostic-Meta-Learning-for-Fast-Adaptation-of-Deep-Networks-%E7%AC%94%E8%AE%B0/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
-<p>该文利用DTW算法以及染色体密度谱曲线判断易位信息</p>
+<p>MAML文献回顾</p>
 </blockquote>
 <a id="more"></a>
-<img src="/2020/07/05/11-Automated-Identification-of-Chromosome-Segments-利用染色体核型图像和条带信息分析易位/11.png" title="DTW and Chromosome density profile">
-<p>这次读论文尝试了新的记笔记方式，然而现实是残酷的。$\LaTeX{}$写着是真心慢呜呜呜…</p>
-<p>附上笔记么么哒~，参考文献和链接一并记录在pdf文件中。此外，笔记仅供参考，<strong>请勿修改此pdf</strong>。</p>
-
-
-	<div class="row">
-    <embed src="20200707-DTW-blog-pdf.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
+<h2 id="文献简介"><a href="#文献简介" class="headerlink" title="文献简介"></a>文献简介</h2><img src="/2020/06/12/9-Model-Agnostic-Meta-Learning-for-Fast-Adaptation-of-Deep-Networks-笔记/9.png" title="MAML">
+<p>其实寒假的时候就读过这篇文章，<strong>当时的理解</strong>主要是：搞了个新模型去弄原始模型的参数，新模型的目标是使原始模型Loss下一次梯度下降得更多，这样似乎面对新任务新数据时只要几次迭代Loss就能降不少，需要计算迭代的次数因此可能很少。现在希望<strong>回顾</strong>一下。</p>
+<ul>
+<li>文献地址：<a href="https://arxiv.org/abs/1703.03400或https://dl.acm.org/doi/10.5555/3305381.3305498" target="_blank" rel="noopener">https://arxiv.org/abs/1703.03400或https://dl.acm.org/doi/10.5555/3305381.3305498</a></li>
+<li>文献投于ICML2017</li>
+<li>Finn作品，另有参考BAIR的博客<a href="https://bair.berkeley.edu/blog/2017/07/18/learning-to-learn/" target="_blank" rel="noopener">Learning to Learn</a></li>
+<li>截至2020/06/12谷歌学术引用量1664</li>
+</ul>
+<h2 id="阅读笔记——文章主题整理"><a href="#阅读笔记——文章主题整理" class="headerlink" title="阅读笔记——文章主题整理"></a>阅读笔记——文章主题整理</h2><p>这篇文章提出的是一种经典的元学习方法，记为<code>MAML</code>。其卖点在于<code>模型不可知</code>，对于一般使用梯度下降的模型，都可以以<code>MAML</code>的方法使之能<strong>快速适应新任务</strong>。</p>
+<p>MAML的思想来源是元学习，假定有一系列共同或相似内在联系的任务，那么希望机器能把任务之间的关联抽象为所谓的经验，辅助新任务的训练。但是这样一种<strong>general的经验</strong>不好确定啊，而且直观地说，此经验一定是要随着新任务变化而稍有变化的，才能使之合理地成为元学习器。</p>
+<p>其思想就是找到这样的经验并用于加强新任务的<strong>泛化</strong>能力，很自然地，这个经验抽象为了模型的初始参数。在元学习的假设下，我们有很多之前的任务$T_i$（经验）和待解决的新任务，它们都可以从任务分布$p(T)$中采样出来。目标是新模型的快速适应能力，即只要很少的迭代次数就能达到较优的效果，那么，初始参数要使得损失的变化最大，只要微调，性能快速变化。</p>
+<p>所以考虑模型$f<em>{\theta}$，其损失$L$。先采样一个过去的任务$T_i\sim p(T)$（也可以采样多个任务，这里以一个为例），在此任务上计算$L</em>{T<em>i}(f</em>{\theta})$，从中提取经验的信息，对初始参数$\theta$求导得$\nabla<em>{\theta}L</em>{T<em>i}(f</em>{\theta})$。为了使Loss对初始参数的变化更加敏感，对当前初始参数进行一步梯度更新得到$\theta’$。再在重新采样的元任务上确认效果，如何保证Loss对初始参数更敏感？$\theta’$要让经过一次迭代后元任务上的损失就达到最小$\Leftrightarrow$</p>
+<script type="math/tex; mode=display">\min\limits_{\theta}\sum\limits_{T_i\sim p(T)}L_{T_i}(f_{\theta'})=\min\limits_{\theta}\sum\limits_{T_i\sim p(T)}L_{T_i}(f_{\theta-\alpha\nabla_{\theta}L_{T_i}(f_{\theta})})</script><p>骚操作，实验不看了，有空研究下代码就更懂了🤭</p>
 ]]></content>
       <tags>
         <tag>Paper Reading</tag>
-        <tag>DTW</tag>
+        <tag>MAML</tag>
+        <tag>Meta Learning</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>A General Method for Robust Bayesian Modeling 略读</title>
+    <url>/2020/05/11/A-General-Method-for-Robust-Bayesian-Modeling-%E7%95%A5%E8%AF%BB/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>论文略读</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>最近在查阅一些有关稳健贝叶斯的方法，但是目前查到的大多数都是很早之前的文章，亦或是近年来比较specific的研究。比较general的只有一篇16年的<em>A General Method for Robust Bayesian Modeling</em>。读了引言觉得这篇文章讲的其实是<code>localization</code>的思想，因此稍做记录。</p>
+<p>其实早一段时间我就读到过<code>localization</code>的概念，但是不知道它具体指的是什么，隐约觉得它是一种鲁棒（稳健）方法，而这篇文章就印证了当时的猜测。</p>
+<p>另外，不知道大家如何翻译<code>Localization</code>，这里姑且叫<code>局部化</code>好了。如有不当，日后更正。</p>
+<h2 id="Bayesian-Localization"><a href="#Bayesian-Localization" class="headerlink" title="Bayesian + Localization"></a>Bayesian + Localization</h2><p>这篇文章的goal就是在一般贝叶斯概率框架下，说明一种general的稳健手段，减少异常点或者一些采样误差对原始贝叶斯模型的干扰。这种手段就是<code>localization</code>。</p>
+<p>它的思想很简单，就是考虑到使原始贝叶斯模型$\displaystyle p(\beta,\mathbf{x}|\alpha) = p(\beta|\alpha)\prod_{i=1}^n p(x_i|\beta)$出现推断误差的数据因素，即往往收集的观测数据中有异常点（outliers），有因收集或者测量误差导致的corrupted数据点。这些因素是数据本身质量的问题。在不知道哪些数据有问题的情况下，为了使模型能容忍它们的存在，可以稍稍改动贝叶斯原始模型的假设。</p>
+<p>贝叶斯原始模型的假设是数据$\mathbf{x}$的分布由参数$\beta$生成，而参数$\beta$的分布族由参数$\alpha$生成。$\alpha$作为分布族的参数，保证的是$\beta$的结构，从而数据的生成也有一致的结构。但是异常点或者损坏数据并不符合这种假设，它们与其对应的真实数据（假设存在嘛，坏数据=真实数据+bias）之间有所差异，这种差异可以用方差描述，即它们是对应真实数据的偏离。这样每个数据都可以设置某种分布，由其真实值作为分布中心，同时允许不好的数据与之中心有所偏离。<code>打个比方就是PRML中二维假设线性回归的数据点服从正态分布</code>。这就是<code>localization</code>的概念，每个数据点都各自存在一个这样自己的分布，所以原始模型修饰为</p>
+<script type="math/tex; mode=display">\displaystyle p(\beta,\mathbf{x}|\alpha) = \prod_{i=1}^n p(\beta_i|\alpha)\prod_{i=1}^n p(x_i|\beta) = \prod_{i=1}^n p(\beta_i|\alpha)p(x_i|\beta).</script><p>好了，后面正常进行贝叶斯模型的推断和预测，可能要用到MAP或者VI，EM等方法，看情况使用吧$\sim$</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] Chong Wang and David M. Blei. <a href="https://arxiv.org/abs/1510.05078?context=stat.ML" target="_blank" rel="noopener">A general method for robust bayesian modeling</a>, 2015.</p>
+]]></content>
+      <tags>
+        <tag>Paper Reading</tag>
+        <tag>Bayesian Machine Learning</tag>
+        <tag>Robust</tag>
       </tags>
   </entry>
   <entry>
@@ -223,28 +272,6 @@
       <tags>
         <tag>Sustainable Service Learning</tag>
         <tag>Computational Sustainability</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>A General Method for Robust Bayesian Modeling 略读</title>
-    <url>/2020/05/11/A-General-Method-for-Robust-Bayesian-Modeling-%E7%95%A5%E8%AF%BB/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
-<p>论文略读</p>
-</blockquote>
-<a id="more"></a>
-<h2 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h2><p>最近在查阅一些有关稳健贝叶斯的方法，但是目前查到的大多数都是很早之前的文章，亦或是近年来比较specific的研究。比较general的只有一篇16年的<em>A General Method for Robust Bayesian Modeling</em>。读了引言觉得这篇文章讲的其实是<code>localization</code>的思想，因此稍做记录。</p>
-<p>其实早一段时间我就读到过<code>localization</code>的概念，但是不知道它具体指的是什么，隐约觉得它是一种鲁棒（稳健）方法，而这篇文章就印证了当时的猜测。</p>
-<p>另外，不知道大家如何翻译<code>Localization</code>，这里姑且叫<code>局部化</code>好了。如有不当，日后更正。</p>
-<h2 id="Bayesian-Localization"><a href="#Bayesian-Localization" class="headerlink" title="Bayesian + Localization"></a>Bayesian + Localization</h2><p>这篇文章的goal就是在一般贝叶斯概率框架下，说明一种general的稳健手段，减少异常点或者一些采样误差对原始贝叶斯模型的干扰。这种手段就是<code>localization</code>。</p>
-<p>它的思想很简单，就是考虑到使原始贝叶斯模型$\displaystyle p(\beta,\mathbf{x}|\alpha) = p(\beta|\alpha)\prod_{i=1}^n p(x_i|\beta)$出现推断误差的数据因素，即往往收集的观测数据中有异常点（outliers），有因收集或者测量误差导致的corrupted数据点。这些因素是数据本身质量的问题。在不知道哪些数据有问题的情况下，为了使模型能容忍它们的存在，可以稍稍改动贝叶斯原始模型的假设。</p>
-<p>贝叶斯原始模型的假设是数据$\mathbf{x}$的分布由参数$\beta$生成，而参数$\beta$的分布族由参数$\alpha$生成。$\alpha$作为分布族的参数，保证的是$\beta$的结构，从而数据的生成也有一致的结构。但是异常点或者损坏数据并不符合这种假设，它们与其对应的真实数据（假设存在嘛，坏数据=真实数据+bias）之间有所差异，这种差异可以用方差描述，即它们是对应真实数据的偏离。这样每个数据都可以设置某种分布，由其真实值作为分布中心，同时允许不好的数据与之中心有所偏离。<code>打个比方就是PRML中二维假设线性回归的数据点服从正态分布</code>。这就是<code>localization</code>的概念，每个数据点都各自存在一个这样自己的分布，所以原始模型修饰为</p>
-<script type="math/tex; mode=display">\displaystyle p(\beta,\mathbf{x}|\alpha) = \prod_{i=1}^n p(\beta_i|\alpha)\prod_{i=1}^n p(x_i|\beta) = \prod_{i=1}^n p(\beta_i|\alpha)p(x_i|\beta).</script><p>好了，后面正常进行贝叶斯模型的推断和预测，可能要用到MAP或者VI，EM等方法，看情况使用吧$\sim$</p>
-<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] Chong Wang and David M. Blei. <a href="https://arxiv.org/abs/1510.05078?context=stat.ML" target="_blank" rel="noopener">A general method for robust bayesian modeling</a>, 2015.</p>
-]]></content>
-      <tags>
-        <tag>Paper Reading</tag>
-        <tag>Bayesian Machine Learning</tag>
-        <tag>Robust</tag>
       </tags>
   </entry>
   <entry>
@@ -305,30 +332,19 @@
       </tags>
   </entry>
   <entry>
-    <title>9 Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks 笔记</title>
-    <url>/2020/06/12/9-Model-Agnostic-Meta-Learning-for-Fast-Adaptation-of-Deep-Networks-%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
-<p>MAML文献回顾</p>
-</blockquote>
-<a id="more"></a>
-<h2 id="文献简介"><a href="#文献简介" class="headerlink" title="文献简介"></a>文献简介</h2><img src="/2020/06/12/9-Model-Agnostic-Meta-Learning-for-Fast-Adaptation-of-Deep-Networks-笔记/9.png" title="MAML">
-<p>其实寒假的时候就读过这篇文章，<strong>当时的理解</strong>主要是：搞了个新模型去弄原始模型的参数，新模型的目标是使原始模型Loss下一次梯度下降得更多，这样似乎面对新任务新数据时只要几次迭代Loss就能降不少，需要计算迭代的次数因此可能很少。现在希望<strong>回顾</strong>一下。</p>
-<ul>
-<li>文献地址：<a href="https://arxiv.org/abs/1703.03400或https://dl.acm.org/doi/10.5555/3305381.3305498" target="_blank" rel="noopener">https://arxiv.org/abs/1703.03400或https://dl.acm.org/doi/10.5555/3305381.3305498</a></li>
-<li>文献投于ICML2017</li>
-<li>Finn作品，另有参考BAIR的博客<a href="https://bair.berkeley.edu/blog/2017/07/18/learning-to-learn/" target="_blank" rel="noopener">Learning to Learn</a></li>
-<li>截至2020/06/12谷歌学术引用量1664</li>
-</ul>
-<h2 id="阅读笔记——文章主题整理"><a href="#阅读笔记——文章主题整理" class="headerlink" title="阅读笔记——文章主题整理"></a>阅读笔记——文章主题整理</h2><p>这篇文章提出的是一种经典的元学习方法，记为<code>MAML</code>。其卖点在于<code>模型不可知</code>，对于一般使用梯度下降的模型，都可以以<code>MAML</code>的方法使之能<strong>快速适应新任务</strong>。</p>
-<p>MAML的思想来源是元学习，假定有一系列共同或相似内在联系的任务，那么希望机器能把任务之间的关联抽象为所谓的经验，辅助新任务的训练。但是这样一种<strong>general的经验</strong>不好确定啊，而且直观地说，此经验一定是要随着新任务变化而稍有变化的，才能使之合理地成为元学习器。</p>
-<p>其思想就是找到这样的经验并用于加强新任务的<strong>泛化</strong>能力，很自然地，这个经验抽象为了模型的初始参数。在元学习的假设下，我们有很多之前的任务$T_i$（经验）和待解决的新任务，它们都可以从任务分布$p(T)$中采样出来。目标是新模型的快速适应能力，即只要很少的迭代次数就能达到较优的效果，那么，初始参数要使得损失的变化最大，只要微调，性能快速变化。</p>
-<p>所以考虑模型$f<em>{\theta}$，其损失$L$。先采样一个过去的任务$T_i\sim p(T)$（也可以采样多个任务，这里以一个为例），在此任务上计算$L</em>{T<em>i}(f</em>{\theta})$，从中提取经验的信息，对初始参数$\theta$求导得$\nabla<em>{\theta}L</em>{T<em>i}(f</em>{\theta})$。为了使Loss对初始参数的变化更加敏感，对当前初始参数进行一步梯度更新得到$\theta’$。再在重新采样的元任务上确认效果，如何保证Loss对初始参数更敏感？$\theta’$要让经过一次迭代后元任务上的损失就达到最小$\Leftrightarrow$</p>
-<script type="math/tex; mode=display">\min\limits_{\theta}\sum\limits_{T_i\sim p(T)}L_{T_i}(f_{\theta'})=\min\limits_{\theta}\sum\limits_{T_i\sim p(T)}L_{T_i}(f_{\theta-\alpha\nabla_{\theta}L_{T_i}(f_{\theta})})</script><p>骚操作，实验不看了，有空研究下代码就更懂了🤭</p>
-]]></content>
+    <title>[Hexo] 2 加密博客尝试</title>
+    <url>/2020/06/27/Hexo-2-%E5%8A%A0%E5%AF%86%E5%8D%9A%E5%AE%A2%E5%B0%9D%E8%AF%95/</url>
+    <content><![CDATA[<div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <div class="hbe-input-container">
+  <input type="password" id="hbePass" placeholder="" />
+    <label for="hbePass">Please input password to continue...</label>
+    <div class="bottom-line"></div>
+  </div>
+  <script id="hbeData" type="hbeData" data-hmacdigest="edb5e20c23b715968b8477bf0a982bcb9cc3393bedd954396a4ed8bfe91a9d49">7a0f6d1610bd85d142dfca6c113a63ebea2c61e81192ee6fa750c7e682a0a2911fce232fa4035290a3e2f7ea67a62944cc76e5960303612967119da3eae60fd5ed4266dfd401f8ddf7b61461f0237d50c9e17f91905b801f4969e4b4babbae66928617dc7c0292c6644ea66571079f17f014acc9d8607be61822b73e91bd2c1584b62a84b2f3f32996411b4426b42d10a44e1b48d2d7c7cae41481752e9cc36a05954d05080414658d40c3a2e63d30c7ee10cbb8e962e33f3b93c25f065a21c5d6d26520404b19d5651698a6d56012cc70ba407744879b4c9722b8ecc035fa17484a4909cdc321351647c84c4ca77ca12ab4112e7da5ceff16252d319e64dbd9741f0ac0fb44ac1fa0abbc95f158d8f7403f93971ba49b5678b1b02679d537f0c73e083ce27402de8c35d21073663b91db37bdc03d6d3ce4da4459a3cd72081907d6672b77c3f4e040d031ce6464e9d93fffe6cbc122fe021b56df85ba886b83a02a11cb99f7142d5c67f045186330b253c1eaae422acafba5adae35e6ba31182fdd54c35921945c1f0bf667cc720eab517297228cd091054ff054cfbc4939e9f5f3773cb55173b63425ea67889fe3723bba65297caee4859be60efd7c74969741fd8d96b29c105fe66273f5cb4f0dd8a3f8a501dedff57a38fec186ecb5bbebc4be93f9b3b07f5133f39941e26415e18e75bc30f32baf67151ae5e9852b37407d9522a59ea81b7d13efcb33156a30408d934a4d31e1018d46e8acf997db7ba43fe8b33367995b5a60227eda49ab28f3af35536a4cedd6db039d057c23e52fd34c3037fd905ba8990c954f3e948bcbc8f39e0e93569e9fcb37c796301ef2814836e73a007b7ba2a427f85c45d264e6279f890072d5e71c9cf4e5a861c3e1d288c9ac52a608475ab4a4cac2483f8b9afd14b839ee8161299490684d4bef654b6e65e44e6a004cc6fc089cc93ef914738e6f64838d3fd53381e39387821b485b9093c2a7873e83fab0f002db6df169cb49a923e5630a511bdc8ff2ee49795607459d11dcab9ad648d0ef9f9afd58d4d732e7c60b93cb00e6225b892a5b0e29291c6b09870456db1c0cc0da1c90acac2353ab86f8a4625316e02a715b387a3a6097ba7894d094ff09ea2a77a9c720b6b83e2b949e0510aa9dcf21a0ff2a6bc26784c22e6ad575ae01e0003ce9bc5b8fb2456b8ef81d445ce017201f4ff974b1db427cc985c78ccce194b38c6afb165daa8b3b8ed3a2bbd9fcfce18f82a48c92259a1528d72f4d0b531cee2fadcb17b087f73987d675fa6d299874781a9aa8ffc349ff0600266ec2c589d72c6fc4d7b12092e9419c59993ae0aa4fd8e0ec15033edcd0b732bf543e7af3cb1ef2a1dc791938b5fef4bc5f72425f20cb5bc9241ecac4bf55dcd48ab84ba905223a96aea31a2c870a8b54f8e1989fc2915afdec0f15ae271a54284f0b6ae078f5308f8df1dd68644e596c181e294fc53cbc5b53be3ba0c12088ba3385df2068554e3022248a3c94412d56615a093d8642d8fdcd82e5ecb82fc348938391b2bfc6b7948099385e200a84dc877889c1a6cbb4045e9ef893bc3851b084f5428b3a2bd34748f91c296cf3e826e956aa6e9caf06472079e21a6d3c7be329629251ff7639e1ba9d84bb94c25fe3b4a85c8dc2cd8faa0874f23f7d9c7ccf064b95caf4e281312e139f7f53982a210c86f53e2db0891c3ea919f55e4f072d467b2d0b61810938fa6b123268b5b7cf2bf169863aa7d7ef96b2319f1a9418209bbab315eea21c50cbe82348889e2ee84987a9f14baa4038ffcdc7f5854e97e33426f9e4460b3fd2fecd8ba5308082ea15c1769ed6d46a6e415be1e613b8016c4b872772836d884394b45e16bb5ae418ae70d171fd5db3b6ce64b2e99df7e372064f9bdcc40fcf6e5eed18a7df7c9e31fdf664e0f88ea06bdbb7d4e6abbe692ce7e1ab9c184bad79f091253859f442989f9e9dfb46bee567f4481b054914542e1f647da581e92f7fe53dc9da2ff9242595db52c15dc96dcba7ef3793c60a7f5ed22bf1759b2584597f6bc9947c0a36b272577ec8bbd18d4691d1c7eb0c405529d4a94ab377e3f6ba3722e1c0ad966c57d76662f8cdb51f664c932ba86c6f03381beb303a39872e76bc65e33ab3978b7eec0cbf26517242af80caeb37ce959d0078455025ae34391848c206430ca68a6a68d95547d1d75110fdf761ee6300ba5a6559d771cc25dc1b6f71c60ac2ddc37d71667113a3fa66d64e31715dc69560a5572c0784ac281db7a4bc594f424d77a26031c022a71ae438160dc2f4f448d275abfd80173c388cc82e2b4705d12801e4de18a3f019341ffbd4a12382ad326dc86016a9eb478bab68019968a784c593632636e81e74df4f850a46f8330d4aa2ee084e3ca2f12db5ed3b27255be18cadb815406bd89849f9a93b16565fe17b6ac2867d9400efe38e65837a0828adc84f4318cf6429408279a0ce7d48aefe978f3dbd9e31affc8d7f9ed78ebfae4227fd519cad22f93bf619da6ed857f08aa5af866bf735e164435207c4f139906dbb9f28837d2f8b8e7bfc5e73885171f74e0f5ee219d71038606487a06de71a56009d63b22563f07b4307528a84d206d3638ebfad6ee4c56afedc808a7a87549a6979315ecb3cbf0d6593bb8f38767198815a5107ee5b45191ff7d2d8872356e47f1744b0eda30b7416dd3cff4b186d29befa7a9552116759ad6afbacf0d06bd1ab59b9d4a4fdde84a38382b5108c491e34bd30a3917db95188e010bf9e87a46044745b459685512138f51614b7f1dc53c0bdc7b6caf902930029f39aebf3c7873840b410aaa361480e749e043728d779ce547fde42c576c7df2664a2d0dfce4016450a37289445fb94646cf94eaf5a220520892433712066307bc4347a299841b2a0c0bc7d229c3d7d367668841fca6bf092cc78b03f646a660ea57f921b3d843fcb901d913199667b4cd9e7b002a59573c86e489402273ff11a5a64a66aec354640ef705144e76f8a0b4a740eda50af4e21d185abe7e7ee593624c79af49611a72c7b750803e53ca5ab8b229720e4b22c2e1844c9b759e2ce260fc25942175e648c18025d9f662476a82a167f4a873d1ff848c45533b7396300787db61f91ae3ce6f2907d922204b57c958e7d523ee050c21ae43f4d3c08fcccdde37ce7190afa46ff11457ae21fc0d2e5a22bfddec0044722278d54f2bbd6e12c32076e6996b67fe68debc9cd3836f957e7b0a45def7a5291eb04672de01b4bc26ff6920b4cb0b50b1af6de762efd971e84233a9be7dba9e0baca3ff881fbc0217643db5c0e2cf5b3a7880c1f6932ac3b9ad1528d6d2e18408c51bc734ba693f0e297fc29863d3c025770abb74de8d0ac90c3e0847e79e586aa0d35375a803e018ff51697a579ca04e0ecbcb62636018792a81b42cb8558045ba3245d4622fa9ea26ede75066fc6fd0fb155fac03b667db13bda6e9fe840a388afa931ffda0082bd16ba3b1c646cd2db9f310d9d10925e2d3e9f6d2960224c9a205a67a93380373967dfbad512440d714c652397ce24deca947e43fb7513d8b0c53e91189acb4787a02739b1a7ce3a05c7140ed6700500e26c2ae0618721b08227d951399c1d370ef02b97e2861ef376f255b304c3cc3898bad04fe357bcc8a2dab84bb15684c955948c789845486f9b10d8a2ea20507ac28a51544e5898acd875a9e41b83c754b43bf83d2bece114b037b21cf19b4140345843fafd6bf65229e0a0ab6b0be651ef2e5ec00c96420c004d7b151506e7f0d782cb1ed28de8a86a27ffc1b332e17cdfbc05eafeca48652557d79f4f91c0c7263fb3de392e56f84527c3d86fcfc914bc4109a77863be261e0de8d1e03877e6596adba684da65dd23afc0b762b52a2936ba663c4c166f99d2bb7d91192df14feac184df441e1b98effb02ff9fc16e2e22ae7c2a30edfe99451ad9ba1d793a3a71e2fda730c145912f220654551b71cbd029daf40346c04e5718fe9fb973f993e50ee6f951ad3eef2908e7d8628ec1cbc4b32ef622c1b214d0b76f5580cb3b4f5a1647a1804d4717e7005d05085d8f2b2d871d70661ab945409239f9cb95cb214f85b293e42937ae53911b15c2ddcbbc5faa6e2699a04aa978996791c86e826e8b85a632ab81b2a8bf4d912ccbfb3266d3afae2a7b628dba3345792fd22f7b103651d42faf2bbc92781760a17004da33145d38a20562fc8a7fd0785df3be67031d121e44a18f9fb97b2294d52e00c2b21188287ee842fc745f294d1fdecc289358e704e37a4e76f09ed0043276dd070da7f0ad3d50c1cb7dcf3f7a07c0208eb57fe47acdb5f8d5bc980c02ae8a0f41840afcbecb56d356055443ed721175be849de7332762d17356b4f3a1692fdf60754c225f08af205907ce5e51ca37ff5ae32f9cc9d1e107aaf6caaa1656bf82d281e87576afd97250f3f3ac80b4c744108057e10b4ef7af57fa0270548393742b478ef43def59cc2a337c4db16657be1a9098814c35af92ee0fd97e146ee5d577156772125691430c48138986847f13ff2e8184af05d719552769e6b3a75ed9aad3a2ef78178c4312826cad51952080bf54365cd9379a34bff4c317b1595b56cdf127121f7994b61e2805cb0b494d7ba83e0de06699618e3a79647cf8bd3450e847cd56e24ae20e1cc30834b3245eee0178eca33cbf7e54803f4923e8c26ec89e4a6006a0a52e4fdd768334d046155ba8847bc46b94425d3b377865935eb327c750c2e519d235122fb54c04538d895249089d0eb59f845204be04ac1aed814de669689847ad53a3ea146d5f26d476198f6e21f3c3350e9990b86e983a87283efc10f73c8ff9e4b655a0b194f4aaf1d300960c1b3b8ba5e2adf5f230d1686c27e08d9c8e323f31dbd77f684fa2e6b2e29d1849cfeb494248253c21c2152e74adf893be564b60db7693c6818d240f2704ce83a996e343942d6d74523c31f587ab4766794dfea9df9ca2f5899e4fc34f4982d0b559cafebdf214151a4986915bbea1ebd05d6a841b8e3a254f983fb6e40e1ad9a9f4998ae76c374d33a09f10e075d8a32c9c9e97131393e0cfdc4ef157ecdcb11ca6bba6c6491a8a394afa6e91ded20ebf9e06f7ae8fc46e0c6e4d9d8ac1af9ff46a7ef2687ddd11e4c3f978974a9ee87857195e</script>
+</div>
+<script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       <tags>
-        <tag>Paper Reading</tag>
-        <tag>MAML</tag>
-        <tag>Meta Learning</tag>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -351,69 +367,26 @@
       </tags>
   </entry>
   <entry>
-    <title>[LaTeX]ML课程作业模板bugs研究记录</title>
-    <url>/2020/02/20/LaTeX-ML%E8%AF%BE%E7%A8%8B%E4%BD%9C%E4%B8%9A%E6%A8%A1%E6%9D%BFbugs%E7%A0%94%E7%A9%B6%E8%AE%B0%E5%BD%95/</url>
+    <title>My Journey in FGO</title>
+    <url>/2019/12/12/My-Journey-in-FGO/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
-<p>在某课程上遇到的$\LaTeX$模板的bugs研究</p>
+<p>我非常非常喜欢玩FGO，所以在此记录美妙瞬间！</p>
+<p>Posted on 2019-10-17, updated on 2019-12-12</p>
 </blockquote>
 <a id="more"></a>
-<p>今年头一次正式选了一门ML课程，第一周的作业就是用$\LaTeX$写一份介绍文档。</p>
-<p>模板是老师提供的，而凡遇模板必有bug。今天就让哥会会它。</p>
-<h2 id="模板一览-关键信息已隐藏"><a href="#模板一览-关键信息已隐藏" class="headerlink" title="模板一览(关键信息已隐藏)"></a>模板一览(关键信息已隐藏)</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\documentclass[twoside, openany]&#123;cctbook&#125;</span><br><span class="line">\usepackage&#123;graphicx&#125;</span><br><span class="line">\usepackage&#123;Picins&#125;</span><br><span class="line">\usepackage&#123;amssymb&#125;</span><br><span class="line">\usepackage&#123;makeidx&#125;</span><br><span class="line">\usepackage&#123;mathrsfs&#125;</span><br><span class="line">\usepackage&#123;amsmath&#125;</span><br><span class="line">\usepackage&#123;rotating&#125;</span><br><span class="line">\input vatola.sty</span><br><span class="line">%\input psfig.sty</span><br><span class="line">\input cyracc.def</span><br><span class="line">\input amssymb.sty\TagsOnRight</span><br><span class="line">\font\tencyr=wncyr10</span><br><span class="line">\def\cyr&#123;\tencyr\cyracc&#125;</span><br><span class="line">\newsymbol\wjzhml 203F%空集</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">\begin&#123;figure&#125;[t]</span><br><span class="line">...</span><br><span class="line">\end&#123;figure&#125;</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
-<p>拿到这个模板看第一眼我就感觉要gg（最近刚刚从<code>CTEX</code>换成最新的<code>TeXLive</code>+<code>TeXStudio</code>套装）。这模板开头就送我一句：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\usepackage&#123;Picins&#125;</span><br></pre></td></tr></table></figure>
-<p>这个包是老版本的包，在<code>CTEX</code>中常见，自从换了新底层<code>TeXLive</code>我就不用它了。</p>
-<h2 id="有哪些bugs"><a href="#有哪些bugs" class="headerlink" title="有哪些bugs"></a>有哪些bugs</h2><p>简单地用<code>XeLaTeX</code>编译一下，<code>warnings</code>可以不管，但是一片报错可是太难了。研究过程<strong>艰辛而快乐</strong>，就不写了，下面说说哪些地方bugs比较严重。</p>
-<h3 id="老式模板需要更换"><a href="#老式模板需要更换" class="headerlink" title="老式模板需要更换"></a>老式模板需要更换</h3><p>首先是开头的声明就会报错：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\documentclass[twoside, openany]&#123;cctbook&#125;</span><br></pre></td></tr></table></figure>
-<p>原因是<code>cctbook</code>版式适合<code>CTEX</code>，但是新的<code>TeXLive</code>并不会识别这样的老版式，解决方法是更换一个兼容的版式：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\documentclass[twoside, openany]&#123;ctexart&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="各种宏包的缺失"><a href="#各种宏包的缺失" class="headerlink" title="各种宏包的缺失"></a>各种宏包的缺失</h3><p>这里主要是老版本的包很麻烦，尤其是<code>CTEX</code>比较喜欢用的，这里包括<code>Pincins</code>，<code>psfig</code>和<code>vatola</code>。我选择了快乐的手动下包法，直接上<code>Ctan</code>下载对应的<code>sty</code>文件放在<code>tex</code>文件同目录下即可。</p>
-<h3 id="重复调用宏包"><a href="#重复调用宏包" class="headerlink" title="重复调用宏包"></a>重复调用宏包</h3><p>注意模板里有个重复的地方，在已经<code>\usepackage{amssymb}</code>的情况下，下文又<code>\input amssymb.sty</code>，这虽影响不大，但是<code>warning</code>是少不了，直接注释比较舒服：</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">%\input amssymb.sty</span><br></pre></td></tr></table></figure>
-<h3 id="其它麻烦的小东西"><a href="#其它麻烦的小东西" class="headerlink" title="其它麻烦的小东西"></a>其它麻烦的小东西</h3><ul>
-<li><p>第一个是这个奇怪的符号定义<code>\newsymbol\wjzhml 203F%空集</code>，不管它可以，会有个<code>warning</code>。</p>
-</li>
-<li><p>第二个是省略的<code>...</code>中各种奇怪的定义，很多规则似乎已经落后了，所以会有规则冲突，会报很多<code>warnins</code>，不过<code>TeXStudio</code>直接忽略，能生成<code>pdf</code>就可以。</p>
-</li>
-<li><p>第三个是<code>\begin{figure}[t]</code>，直接改成<code>\begin{figure}[h]</code>免得图片位置爆炸。</p>
-</li>
-<li>还有的记不得了，反正哥调好啦~</li>
-</ul>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>感谢以下链接的帮助：</p>
-<ul>
-<li><p>有关<code>cctbook</code>：<a href="http://tieba.baidu.com/p/6251773770" target="_blank" rel="noopener">http://tieba.baidu.com/p/6251773770</a></p>
-</li>
-<li><p>下包的链接：</p>
-<ul>
-<li><a href="https://www.ctan.org/tex-archive/macros/latex209/contrib/picins/" target="_blank" rel="noopener">https://www.ctan.org/tex-archive/macros/latex209/contrib/picins/</a></li>
-<li><a href="https://www.latexstudio.net/archives/3608" target="_blank" rel="noopener">https://www.latexstudio.net/archives/3608</a></li>
-<li><a href="https://www.ctan.org/tex-archive/graphics/psfig/" target="_blank" rel="noopener">https://www.ctan.org/tex-archive/graphics/psfig/</a></li>
-</ul>
-</li>
-<li><p>宏包<code>vatola</code>的介绍：<a href="https://blog.csdn.net/sinat_32547403/article/details/76599126" target="_blank" rel="noopener">https://blog.csdn.net/sinat_32547403/article/details/76599126</a></p>
-</li>
-</ul>
-]]></content>
+<h3 id="第一个-310-我的小茄子-Mash-Kyrielight"><a href="#第一个-310-我的小茄子-Mash-Kyrielight" class="headerlink" title="第一个 310, 我的小茄子 Mash Kyrielight~!"></a>第一个 <strong>310</strong>, 我的<strong>小茄子</strong> <strong>Mash Kyrielight</strong>~!</h3><img src="/2019/12/12/My-Journey-in-FGO/mash.png" title="Mash Kyrielight">
+<h3 id="欢迎入住我的Chaldea-Scathach-Skaði"><a href="#欢迎入住我的Chaldea-Scathach-Skaði" class="headerlink" title="欢迎入住我的Chaldea, Scáthach-Skaði!"></a>欢迎入住我的Chaldea, <strong>Scáthach-Skaði</strong>!</h3><img src="/2019/12/12/My-Journey-in-FGO/skaha.png" title="斯卡哈·斯卡蒂">
+<h3 id="完成活动Fate-Accel-Zero-Order-LAP-2！"><a href="#完成活动Fate-Accel-Zero-Order-LAP-2！" class="headerlink" title="完成活动Fate/Accel Zero Order -LAP_2！"></a>完成活动<strong>Fate/Accel Zero Order -LAP_2</strong>！</h3><img src="/2019/12/12/My-Journey-in-FGO/fz2019.png" title="完成活动">
+<img src="/2019/12/12/My-Journey-in-FGO/unknowngaonan2.png" title="高难无伤通关">
+<h3 id="欢迎小黑和女王梅芙"><a href="#欢迎小黑和女王梅芙" class="headerlink" title="欢迎小黑和女王梅芙~"></a>欢迎小黑和女王梅芙~</h3><img src="/2019/12/12/My-Journey-in-FGO/xiaohei.png" title="小黑黑">
+<img src="/2019/12/12/My-Journey-in-FGO/meifu.png" title="梅芙大大~">
+<h3 id="欢迎2019万圣二期黄金鬼国Caster酒吞！"><a href="#欢迎2019万圣二期黄金鬼国Caster酒吞！" class="headerlink" title="欢迎2019万圣二期黄金鬼国Caster酒吞！"></a>欢迎2019万圣二期黄金鬼国Caster酒吞！</h3><img src="/2019/12/12/My-Journey-in-FGO/casterjiutun.png" title="Caster酒吞">
+<h3 id="日服新征程，纪念圣诞无限池第一次出活动礼装"><a href="#日服新征程，纪念圣诞无限池第一次出活动礼装" class="headerlink" title="日服新征程，纪念圣诞无限池第一次出活动礼装"></a>日服新征程，纪念圣诞无限池第一次出活动礼装</h3><img src="/2019/12/12/My-Journey-in-FGO/japanlizhuang.png" title="不知道名字的礼装">
+<h3 id="澡堂奇遇！国服万圣三期，冥界复刻9呼符欧爆！（虽然没我艾蕾酱呜呜呜）"><a href="#澡堂奇遇！国服万圣三期，冥界复刻9呼符欧爆！（虽然没我艾蕾酱呜呜呜）" class="headerlink" title="澡堂奇遇！国服万圣三期，冥界复刻9呼符欧爆！（虽然没我艾蕾酱呜呜呜）"></a>澡堂奇遇！国服万圣三期，冥界复刻9呼符欧爆！（虽然没我艾蕾酱呜呜呜）</h3><img src="/2019/12/12/My-Journey-in-FGO/meidusha.png" title="欢迎小美杜莎！">
+<img src="/2019/12/12/My-Journey-in-FGO/meidusha2.png" title="欢迎小美杜莎！">
+<img src="/2019/12/12/My-Journey-in-FGO/wuwang.png" title="吾王二宝啦啦啦啦啦啦啦啦啦啦啦啦啦">]]></content>
       <tags>
-        <tag>LaTeX</tag>
-        <tag>Bugs</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>[Hexo] 2 加密博客尝试</title>
-    <url>/2020/06/27/Hexo-2-%E5%8A%A0%E5%AF%86%E5%8D%9A%E5%AE%A2%E5%B0%9D%E8%AF%95/</url>
-    <content><![CDATA[<div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <div class="hbe-input-container">
-  <input type="password" id="hbePass" placeholder="" />
-    <label for="hbePass">Please input password to continue...</label>
-    <div class="bottom-line"></div>
-  </div>
-  <script id="hbeData" type="hbeData" data-hmacdigest="edb5e20c23b715968b8477bf0a982bcb9cc3393bedd954396a4ed8bfe91a9d49">7a0f6d1610bd85d142dfca6c113a63ebea2c61e81192ee6fa750c7e682a0a2911fce232fa4035290a3e2f7ea67a62944cc76e5960303612967119da3eae60fd5ed4266dfd401f8ddf7b61461f0237d50c9e17f91905b801f4969e4b4babbae66928617dc7c0292c6644ea66571079f17f014acc9d8607be61822b73e91bd2c1584b62a84b2f3f32996411b4426b42d10a44e1b48d2d7c7cae41481752e9cc36a05954d05080414658d40c3a2e63d30c7ee10cbb8e962e33f3b93c25f065a21c5d6d26520404b19d5651698a6d56012cc70ba407744879b4c9722b8ecc035fa17484a4909cdc321351647c84c4ca77ca12ab4112e7da5ceff16252d319e64dbd9741f0ac0fb44ac1fa0abbc95f158d8f7403f93971ba49b5678b1b02679d537f0c73e083ce27402de8c35d21073663b91db37bdc03d6d3ce4da4459a3cd72081907d6672b77c3f4e040d031ce6464e9d93fffe6cbc122fe021b56df85ba886b83a02a11cb99f7142d5c67f045186330b253c1eaae422acafba5adae35e6ba31182fdd54c35921945c1f0bf667cc720eab517297228cd091054ff054cfbc4939e9f5f3773cb55173b63425ea67889fe3723bba65297caee4859be60efd7c74969741fd8d96b29c105fe66273f5cb4f0dd8a3f8a501dedff57a38fec186ecb5bbebc4be93f9b3b07f5133f39941e26415e18e75bc30f32baf67151ae5e9852b37407d9522a59ea81b7d13efcb33156a30408d934a4d31e1018d46e8acf997db7ba43fe8b33367995b5a60227eda49ab28f3af35536a4cedd6db039d057c23e52fd34c3037fd905ba8990c954f3e948bcbc8f39e0e93569e9fcb37c796301ef2814836e73a007b7ba2a427f85c45d264e6279f890072d5e71c9cf4e5a861c3e1d288c9ac52a608475ab4a4cac2483f8b9afd14b839ee8161299490684d4bef654b6e65e44e6a004cc6fc089cc93ef914738e6f64838d3fd53381e39387821b485b9093c2a7873e83fab0f002db6df169cb49a923e5630a511bdc8ff2ee49795607459d11dcab9ad648d0ef9f9afd58d4d732e7c60b93cb00e6225b892a5b0e29291c6b09870456db1c0cc0da1c90acac2353ab86f8a4625316e02a715b387a3a6097ba7894d094ff09ea2a77a9c720b6b83e2b949e0510aa9dcf21a0ff2a6bc26784c22e6ad575ae01e0003ce9bc5b8fb2456b8ef81d445ce017201f4ff974b1db427cc985c78ccce194b38c6afb165daa8b3b8ed3a2bbd9fcfce18f82a48c92259a1528d72f4d0b531cee2fadcb17b087f73987d675fa6d299874781a9aa8ffc349ff0600266ec2c589d72c6fc4d7b12092e9419c59993ae0aa4fd8e0ec15033edcd0b732bf543e7af3cb1ef2a1dc791938b5fef4bc5f72425f20cb5bc9241ecac4bf55dcd48ab84ba905223a96aea31a2c870a8b54f8e1989fc2915afdec0f15ae271a54284f0b6ae078f5308f8df1dd68644e596c181e294fc53cbc5b53be3ba0c12088ba3385df2068554e3022248a3c94412d56615a093d8642d8fdcd82e5ecb82fc348938391b2bfc6b7948099385e200a84dc877889c1a6cbb4045e9ef893bc3851b084f5428b3a2bd34748f91c296cf3e826e956aa6e9caf06472079e21a6d3c7be329629251ff7639e1ba9d84bb94c25fe3b4a85c8dc2cd8faa0874f23f7d9c7ccf064b95caf4e281312e139f7f53982a210c86f53e2db0891c3ea919f55e4f072d467b2d0b61810938fa6b123268b5b7cf2bf169863aa7d7ef96b2319f1a9418209bbab315eea21c50cbe82348889e2ee84987a9f14baa4038ffcdc7f5854e97e33426f9e4460b3fd2fecd8ba5308082ea15c1769ed6d46a6e415be1e613b8016c4b872772836d884394b45e16bb5ae418ae70d171fd5db3b6ce64b2e99df7e372064f9bdcc40fcf6e5eed18a7df7c9e31fdf664e0f88ea06bdbb7d4e6abbe692ce7e1ab9c184bad79f091253859f442989f9e9dfb46bee567f4481b054914542e1f647da581e92f7fe53dc9da2ff9242595db52c15dc96dcba7ef3793c60a7f5ed22bf1759b2584597f6bc9947c0a36b272577ec8bbd18d4691d1c7eb0c405529d4a94ab377e3f6ba3722e1c0ad966c57d76662f8cdb51f664c932ba86c6f03381beb303a39872e76bc65e33ab3978b7eec0cbf26517242af80caeb37ce959d0078455025ae34391848c206430ca68a6a68d95547d1d75110fdf761ee6300ba5a6559d771cc25dc1b6f71c60ac2ddc37d71667113a3fa66d64e31715dc69560a5572c0784ac281db7a4bc594f424d77a26031c022a71ae438160dc2f4f448d275abfd80173c388cc82e2b4705d12801e4de18a3f019341ffbd4a12382ad326dc86016a9eb478bab68019968a784c593632636e81e74df4f850a46f8330d4aa2ee084e3ca2f12db5ed3b27255be18cadb815406bd89849f9a93b16565fe17b6ac2867d9400efe38e65837a0828adc84f4318cf6429408279a0ce7d48aefe978f3dbd9e31affc8d7f9ed78ebfae4227fd519cad22f93bf619da6ed857f08aa5af866bf735e164435207c4f139906dbb9f28837d2f8b8e7bfc5e73885171f74e0f5ee219d71038606487a06de71a56009d63b22563f07b4307528a84d206d3638ebfad6ee4c56afedc808a7a87549a6979315ecb3cbf0d6593bb8f38767198815a5107ee5b45191ff7d2d8872356e47f1744b0eda30b7416dd3cff4b186d29befa7a9552116759ad6afbacf0d06bd1ab59b9d4a4fdde84a38382b5108c491e34bd30a3917db95188e010bf9e87a46044745b459685512138f51614b7f1dc53c0bdc7b6caf902930029f39aebf3c7873840b410aaa361480e749e043728d779ce547fde42c576c7df2664a2d0dfce4016450a37289445fb94646cf94eaf5a220520892433712066307bc4347a299841b2a0c0bc7d229c3d7d367668841fca6bf092cc78b03f646a660ea57f921b3d843fcb901d913199667b4cd9e7b002a59573c86e489402273ff11a5a64a66aec354640ef705144e76f8a0b4a740eda50af4e21d185abe7e7ee593624c79af49611a72c7b750803e53ca5ab8b229720e4b22c2e1844c9b759e2ce260fc25942175e648c18025d9f662476a82a167f4a873d1ff848c45533b7396300787db61f91ae3ce6f2907d922204b57c958e7d523ee050c21ae43f4d3c08fcccdde37ce7190afa46ff11457ae21fc0d2e5a22bfddec0044722278d54f2bbd6e12c32076e6996b67fe68debc9cd3836f957e7b0a45def7a5291eb04672de01b4bc26ff6920b4cb0b50b1af6de762efd971e84233a9be7dba9e0baca3ff881fbc0217643db5c0e2cf5b3a7880c1f6932ac3b9ad1528d6d2e18408c51bc734ba693f0e297fc29863d3c025770abb74de8d0ac90c3e0847e79e586aa0d35375a803e018ff51697a579ca04e0ecbcb62636018792a81b42cb8558045ba3245d4622fa9ea26ede75066fc6fd0fb155fac03b667db13bda6e9fe840a388afa931ffda0082bd16ba3b1c646cd2db9f310d9d10925e2d3e9f6d2960224c9a205a67a93380373967dfbad512440d714c652397ce24deca947e43fb7513d8b0c53e91189acb4787a02739b1a7ce3a05c7140ed6700500e26c2ae0618721b08227d951399c1d370ef02b97e2861ef376f255b304c3cc3898bad04fe357bcc8a2dab84bb15684c955948c789845486f9b10d8a2ea20507ac28a51544e5898acd875a9e41b83c754b43bf83d2bece114b037b21cf19b4140345843fafd6bf65229e0a0ab6b0be651ef2e5ec00c96420c004d7b151506e7f0d782cb1ed28de8a86a27ffc1b332e17cdfbc05eafeca48652557d79f4f91c0c7263fb3de392e56f84527c3d86fcfc914bc4109a77863be261e0de8d1e03877e6596adba684da65dd23afc0b762b52a2936ba663c4c166f99d2bb7d91192df14feac184df441e1b98effb02ff9fc16e2e22ae7c2a30edfe99451ad9ba1d793a3a71e2fda730c145912f220654551b71cbd029daf40346c04e5718fe9fb973f993e50ee6f951ad3eef2908e7d8628ec1cbc4b32ef622c1b214d0b76f5580cb3b4f5a1647a1804d4717e7005d05085d8f2b2d871d70661ab945409239f9cb95cb214f85b293e42937ae53911b15c2ddcbbc5faa6e2699a04aa978996791c86e826e8b85a632ab81b2a8bf4d912ccbfb3266d3afae2a7b628dba3345792fd22f7b103651d42faf2bbc92781760a17004da33145d38a20562fc8a7fd0785df3be67031d121e44a18f9fb97b2294d52e00c2b21188287ee842fc745f294d1fdecc289358e704e37a4e76f09ed0043276dd070da7f0ad3d50c1cb7dcf3f7a07c0208eb57fe47acdb5f8d5bc980c02ae8a0f41840afcbecb56d356055443ed721175be849de7332762d17356b4f3a1692fdf60754c225f08af205907ce5e51ca37ff5ae32f9cc9d1e107aaf6caaa1656bf82d281e87576afd97250f3f3ac80b4c744108057e10b4ef7af57fa0270548393742b478ef43def59cc2a337c4db16657be1a9098814c35af92ee0fd97e146ee5d577156772125691430c48138986847f13ff2e8184af05d719552769e6b3a75ed9aad3a2ef78178c4312826cad51952080bf54365cd9379a34bff4c317b1595b56cdf127121f7994b61e2805cb0b494d7ba83e0de06699618e3a79647cf8bd3450e847cd56e24ae20e1cc30834b3245eee0178eca33cbf7e54803f4923e8c26ec89e4a6006a0a52e4fdd768334d046155ba8847bc46b94425d3b377865935eb327c750c2e519d235122fb54c04538d895249089d0eb59f845204be04ac1aed814de669689847ad53a3ea146d5f26d476198f6e21f3c3350e9990b86e983a87283efc10f73c8ff9e4b655a0b194f4aaf1d300960c1b3b8ba5e2adf5f230d1686c27e08d9c8e323f31dbd77f684fa2e6b2e29d1849cfeb494248253c21c2152e74adf893be564b60db7693c6818d240f2704ce83a996e343942d6d74523c31f587ab4766794dfea9df9ca2f5899e4fc34f4982d0b559cafebdf214151a4986915bbea1ebd05d6a841b8e3a254f983fb6e40e1ad9a9f4998ae76c374d33a09f10e075d8a32c9c9e97131393e0cfdc4ef157ecdcb11ca6bba6c6491a8a394afa6e91ded20ebf9e06f7ae8fc46e0c6e4d9d8ac1af9ff46a7ef2687ddd11e4c3f978974a9ee87857195e</script>
-</div>
-<script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
-      <tags>
-        <tag>Hexo</tag>
+        <tag>FGO</tag>
       </tags>
   </entry>
   <entry>
@@ -480,26 +453,646 @@
       </tags>
   </entry>
   <entry>
-    <title>My Journey in FGO</title>
-    <url>/2019/12/12/My-Journey-in-FGO/</url>
+    <title>Windows 10 DPC_WATCHDOG_VIOLATION 问题</title>
+    <url>/2020/01/05/Windows-10-DPC-WATCHDOG-VIOLATION-%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
-<p>我非常非常喜欢玩FGO，所以在此记录美妙瞬间！</p>
-<p>Posted on 2019-10-17, updated on 2019-12-12</p>
+<p>继电池容量不足后发生的电脑蓝屏</p>
+<p><code>DPC_WATCHDOG_VIOLATION</code></p>
 </blockquote>
 <a id="more"></a>
-<h3 id="第一个-310-我的小茄子-Mash-Kyrielight"><a href="#第一个-310-我的小茄子-Mash-Kyrielight" class="headerlink" title="第一个 310, 我的小茄子 Mash Kyrielight~!"></a>第一个 <strong>310</strong>, 我的<strong>小茄子</strong> <strong>Mash Kyrielight</strong>~!</h3><img src="/2019/12/12/My-Journey-in-FGO/mash.png" title="Mash Kyrielight">
-<h3 id="欢迎入住我的Chaldea-Scathach-Skaði"><a href="#欢迎入住我的Chaldea-Scathach-Skaði" class="headerlink" title="欢迎入住我的Chaldea, Scáthach-Skaði!"></a>欢迎入住我的Chaldea, <strong>Scáthach-Skaði</strong>!</h3><img src="/2019/12/12/My-Journey-in-FGO/skaha.png" title="斯卡哈·斯卡蒂">
-<h3 id="完成活动Fate-Accel-Zero-Order-LAP-2！"><a href="#完成活动Fate-Accel-Zero-Order-LAP-2！" class="headerlink" title="完成活动Fate/Accel Zero Order -LAP_2！"></a>完成活动<strong>Fate/Accel Zero Order -LAP_2</strong>！</h3><img src="/2019/12/12/My-Journey-in-FGO/fz2019.png" title="完成活动">
-<img src="/2019/12/12/My-Journey-in-FGO/unknowngaonan2.png" title="高难无伤通关">
-<h3 id="欢迎小黑和女王梅芙"><a href="#欢迎小黑和女王梅芙" class="headerlink" title="欢迎小黑和女王梅芙~"></a>欢迎小黑和女王梅芙~</h3><img src="/2019/12/12/My-Journey-in-FGO/xiaohei.png" title="小黑黑">
-<img src="/2019/12/12/My-Journey-in-FGO/meifu.png" title="梅芙大大~">
-<h3 id="欢迎2019万圣二期黄金鬼国Caster酒吞！"><a href="#欢迎2019万圣二期黄金鬼国Caster酒吞！" class="headerlink" title="欢迎2019万圣二期黄金鬼国Caster酒吞！"></a>欢迎2019万圣二期黄金鬼国Caster酒吞！</h3><img src="/2019/12/12/My-Journey-in-FGO/casterjiutun.png" title="Caster酒吞">
-<h3 id="日服新征程，纪念圣诞无限池第一次出活动礼装"><a href="#日服新征程，纪念圣诞无限池第一次出活动礼装" class="headerlink" title="日服新征程，纪念圣诞无限池第一次出活动礼装"></a>日服新征程，纪念圣诞无限池第一次出活动礼装</h3><img src="/2019/12/12/My-Journey-in-FGO/japanlizhuang.png" title="不知道名字的礼装">
-<h3 id="澡堂奇遇！国服万圣三期，冥界复刻9呼符欧爆！（虽然没我艾蕾酱呜呜呜）"><a href="#澡堂奇遇！国服万圣三期，冥界复刻9呼符欧爆！（虽然没我艾蕾酱呜呜呜）" class="headerlink" title="澡堂奇遇！国服万圣三期，冥界复刻9呼符欧爆！（虽然没我艾蕾酱呜呜呜）"></a>澡堂奇遇！国服万圣三期，冥界复刻9呼符欧爆！（虽然没我艾蕾酱呜呜呜）</h3><img src="/2019/12/12/My-Journey-in-FGO/meidusha.png" title="欢迎小美杜莎！">
-<img src="/2019/12/12/My-Journey-in-FGO/meidusha2.png" title="欢迎小美杜莎！">
-<img src="/2019/12/12/My-Journey-in-FGO/wuwang.png" title="吾王二宝啦啦啦啦啦啦啦啦啦啦啦啦啦">]]></content>
+<h2 id="bug背景"><a href="#bug背景" class="headerlink" title="bug背景"></a>bug背景</h2><p>先交代一下bug背景，由于电池容量严重不足，电脑之前的用户配置文件损坏，不得不先创建了一个新的账户继续使用。可能是由于这些个原因跳bug。</p>
+<h2 id="bug细节"><a href="#bug细节" class="headerlink" title="bug细节"></a>bug细节</h2><p>某天开机，刚打开浏览器，电脑突然死机，触摸板，键盘，鼠标，显示屏均没有任何反应。等待约5min之后电脑自动蓝屏，提示我出了问题。</p>
+<img src="/2020/01/05/Windows-10-DPC-WATCHDOG-VIOLATION-问题/BS.jpg" title="Blue Screen">
+<p>Bug名称为<code>DPC_WATCHDOG_VIOLATION</code>。</p>
+<h2 id="bug解决"><a href="#bug解决" class="headerlink" title="bug解决"></a>bug解决</h2><p>长按电源键关机重启后，电脑正常开机。等待一小会，360自动弹框提示蓝屏错误（不是打广告）。</p>
+<img src="/2020/01/05/Windows-10-DPC-WATCHDOG-VIOLATION-问题/3601.jpg" title="360提示">
+<p>它给出的解决方案是</p>
+<img src="/2020/01/05/Windows-10-DPC-WATCHDOG-VIOLATION-问题/3602.png" title="360删补丁大法">
+<p>觉得删补丁不稳，干脆百度。经查询，大部分解决方案都和[百度经验][<a href="https://jingyan.baidu.com/article/cd4c29795ab8dc756e6e60c5.html]一致，照着来一遍，截至目前bug没有再犯。" target="_blank" rel="noopener">https://jingyan.baidu.com/article/cd4c29795ab8dc756e6e60c5.html]一致，照着来一遍，截至目前bug没有再犯。</a></p>
+]]></content>
       <tags>
-        <tag>FGO</tag>
+        <tag>Windows</tag>
+        <tag>Bug</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>[LaTeX]ML课程作业模板bugs研究记录</title>
+    <url>/2020/02/20/LaTeX-ML%E8%AF%BE%E7%A8%8B%E4%BD%9C%E4%B8%9A%E6%A8%A1%E6%9D%BFbugs%E7%A0%94%E7%A9%B6%E8%AE%B0%E5%BD%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>在某课程上遇到的$\LaTeX$模板的bugs研究</p>
+</blockquote>
+<a id="more"></a>
+<p>今年头一次正式选了一门ML课程，第一周的作业就是用$\LaTeX$写一份介绍文档。</p>
+<p>模板是老师提供的，而凡遇模板必有bug。今天就让哥会会它。</p>
+<h2 id="模板一览-关键信息已隐藏"><a href="#模板一览-关键信息已隐藏" class="headerlink" title="模板一览(关键信息已隐藏)"></a>模板一览(关键信息已隐藏)</h2><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\documentclass[twoside, openany]&#123;cctbook&#125;</span><br><span class="line">\usepackage&#123;graphicx&#125;</span><br><span class="line">\usepackage&#123;Picins&#125;</span><br><span class="line">\usepackage&#123;amssymb&#125;</span><br><span class="line">\usepackage&#123;makeidx&#125;</span><br><span class="line">\usepackage&#123;mathrsfs&#125;</span><br><span class="line">\usepackage&#123;amsmath&#125;</span><br><span class="line">\usepackage&#123;rotating&#125;</span><br><span class="line">\input vatola.sty</span><br><span class="line">%\input psfig.sty</span><br><span class="line">\input cyracc.def</span><br><span class="line">\input amssymb.sty\TagsOnRight</span><br><span class="line">\font\tencyr=wncyr10</span><br><span class="line">\def\cyr&#123;\tencyr\cyracc&#125;</span><br><span class="line">\newsymbol\wjzhml 203F%空集</span><br><span class="line"></span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">\begin&#123;figure&#125;[t]</span><br><span class="line">...</span><br><span class="line">\end&#123;figure&#125;</span><br><span class="line"></span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+<p>拿到这个模板看第一眼我就感觉要gg（最近刚刚从<code>CTEX</code>换成最新的<code>TeXLive</code>+<code>TeXStudio</code>套装）。这模板开头就送我一句：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\usepackage&#123;Picins&#125;</span><br></pre></td></tr></table></figure>
+<p>这个包是老版本的包，在<code>CTEX</code>中常见，自从换了新底层<code>TeXLive</code>我就不用它了。</p>
+<h2 id="有哪些bugs"><a href="#有哪些bugs" class="headerlink" title="有哪些bugs"></a>有哪些bugs</h2><p>简单地用<code>XeLaTeX</code>编译一下，<code>warnings</code>可以不管，但是一片报错可是太难了。研究过程<strong>艰辛而快乐</strong>，就不写了，下面说说哪些地方bugs比较严重。</p>
+<h3 id="老式模板需要更换"><a href="#老式模板需要更换" class="headerlink" title="老式模板需要更换"></a>老式模板需要更换</h3><p>首先是开头的声明就会报错：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\documentclass[twoside, openany]&#123;cctbook&#125;</span><br></pre></td></tr></table></figure>
+<p>原因是<code>cctbook</code>版式适合<code>CTEX</code>，但是新的<code>TeXLive</code>并不会识别这样的老版式，解决方法是更换一个兼容的版式：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">\documentclass[twoside, openany]&#123;ctexart&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="各种宏包的缺失"><a href="#各种宏包的缺失" class="headerlink" title="各种宏包的缺失"></a>各种宏包的缺失</h3><p>这里主要是老版本的包很麻烦，尤其是<code>CTEX</code>比较喜欢用的，这里包括<code>Pincins</code>，<code>psfig</code>和<code>vatola</code>。我选择了快乐的手动下包法，直接上<code>Ctan</code>下载对应的<code>sty</code>文件放在<code>tex</code>文件同目录下即可。</p>
+<h3 id="重复调用宏包"><a href="#重复调用宏包" class="headerlink" title="重复调用宏包"></a>重复调用宏包</h3><p>注意模板里有个重复的地方，在已经<code>\usepackage{amssymb}</code>的情况下，下文又<code>\input amssymb.sty</code>，这虽影响不大，但是<code>warning</code>是少不了，直接注释比较舒服：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">%\input amssymb.sty</span><br></pre></td></tr></table></figure>
+<h3 id="其它麻烦的小东西"><a href="#其它麻烦的小东西" class="headerlink" title="其它麻烦的小东西"></a>其它麻烦的小东西</h3><ul>
+<li><p>第一个是这个奇怪的符号定义<code>\newsymbol\wjzhml 203F%空集</code>，不管它可以，会有个<code>warning</code>。</p>
+</li>
+<li><p>第二个是省略的<code>...</code>中各种奇怪的定义，很多规则似乎已经落后了，所以会有规则冲突，会报很多<code>warnins</code>，不过<code>TeXStudio</code>直接忽略，能生成<code>pdf</code>就可以。</p>
+</li>
+<li><p>第三个是<code>\begin{figure}[t]</code>，直接改成<code>\begin{figure}[h]</code>免得图片位置爆炸。</p>
+</li>
+<li>还有的记不得了，反正哥调好啦~</li>
+</ul>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>感谢以下链接的帮助：</p>
+<ul>
+<li><p>有关<code>cctbook</code>：<a href="http://tieba.baidu.com/p/6251773770" target="_blank" rel="noopener">http://tieba.baidu.com/p/6251773770</a></p>
+</li>
+<li><p>下包的链接：</p>
+<ul>
+<li><a href="https://www.ctan.org/tex-archive/macros/latex209/contrib/picins/" target="_blank" rel="noopener">https://www.ctan.org/tex-archive/macros/latex209/contrib/picins/</a></li>
+<li><a href="https://www.latexstudio.net/archives/3608" target="_blank" rel="noopener">https://www.latexstudio.net/archives/3608</a></li>
+<li><a href="https://www.ctan.org/tex-archive/graphics/psfig/" target="_blank" rel="noopener">https://www.ctan.org/tex-archive/graphics/psfig/</a></li>
+</ul>
+</li>
+<li><p>宏包<code>vatola</code>的介绍：<a href="https://blog.csdn.net/sinat_32547403/article/details/76599126" target="_blank" rel="noopener">https://blog.csdn.net/sinat_32547403/article/details/76599126</a></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>LaTeX</tag>
+        <tag>Bugs</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>NBA2K13鹰重整理</title>
+    <url>/2020/06/13/NBA2K13%E9%B9%B0%E9%87%8D%E6%95%B4%E7%90%86/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><a id="more"></a>
+<h2 id="鹰🦅修改"><a href="#鹰🦅修改" class="headerlink" title="鹰🦅修改"></a>鹰🦅修改</h2><h3 id="Trae-Young"><a href="#Trae-Young" class="headerlink" title="Trae Young"></a>Trae Young</h3><p>用雄鹿的Beno Udo…。名字54726165 596f756e67。号码11=22=16，肤色03，位置PG/SG=00/01，年龄21岁7e 7c，身高6‘2’=188，体重180，原头99 04=1177，时间35=140=8c。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>/</th>
+<th>KM最新</th>
+<th>90</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>姓名地址</td>
+<td>1799b0</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>数据地址</td>
+<td>08e80</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>00</strong></td>
+<td><strong>01</strong></td>
+<td><strong>02</strong></td>
+<td><strong>03</strong></td>
+<td><strong>04</strong></td>
+<td><strong>05</strong></td>
+<td><strong>06</strong></td>
+<td><strong>07</strong></td>
+<td><strong>08</strong></td>
+<td><strong>09</strong></td>
+<td><strong>0a</strong></td>
+<td><strong>0b</strong></td>
+<td><strong>0c</strong></td>
+<td><strong>0d</strong></td>
+<td><strong>0e</strong></td>
+<td><strong>0f</strong></td>
+</tr>
+<tr>
+<td><strong>0</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>?</td>
+<td>1 close   92 5c</td>
+<td>2 med  91 5b</td>
+<td>3 3pt 90 5a</td>
+<td>4 ft 85 55</td>
+<td>5 layup  87 57</td>
+<td>6 dunk  58 3a</td>
+<td>28 stdnk  50 1e</td>
+<td><strong>23  sit</strong>  55 37</td>
+<td><strong>22  sod</strong>  69 45</td>
+<td>25 hus  72 48</td>
+</tr>
+<tr>
+<td><strong>7 hndl</strong>  92 5c</td>
+<td><strong>8  pass</strong>  92 5c</td>
+<td>39</td>
+<td>32</td>
+<td>9 opost  58 3a</td>
+<td>10 dpost  60 3c</td>
+<td>11 block   60 3c</td>
+<td>26 hnd  64 40</td>
+<td>12 steal  50 32</td>
+<td>15 speed  86 56</td>
+<td>16 stam  91 5b</td>
+<td>19</td>
+<td>21 vert 90 5a</td>
+<td>13 oreb  50 21</td>
+<td>14 dreb  50 24</td>
+<td>17 dur  70 46</td>
+</tr>
+<tr>
+<td><strong>18 dawr</strong>  72 48</td>
+<td><strong>19  oawr</strong>  98 62</td>
+<td>32</td>
+<td>54</td>
+<td>27 def 88 58</td>
+<td>24 qui 88 58</td>
+<td>潜力 89 59</td>
+<td>20 str  60 3c</td>
+<td>？</td>
+<td>？</td>
+<td>？</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="Clint-Capela"><a href="#Clint-Capela" class="headerlink" title="Clint Capela"></a>Clint Capela</h3><p>用Alexis Ajinca。身高6‘11’=208，体重240，年龄26=2d 7c，号码17=34=22，肤色01，位置C/05=04/05，原头25 06=1573，名字436c696e74 436170656c61，时间33=132=84。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>/</th>
+<th>KM最新</th>
+<th>86</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>姓名地址</td>
+<td>181960</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>数据地址</td>
+<td>71700</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>00</strong></td>
+<td><strong>01</strong></td>
+<td><strong>02</strong></td>
+<td><strong>03</strong></td>
+<td><strong>04</strong></td>
+<td><strong>05</strong></td>
+<td><strong>06</strong></td>
+<td><strong>07</strong></td>
+<td><strong>08</strong></td>
+<td><strong>09</strong></td>
+<td><strong>0a</strong></td>
+<td><strong>0b</strong></td>
+<td><strong>0c</strong></td>
+<td><strong>0d</strong></td>
+<td><strong>0e</strong></td>
+<td><strong>0f</strong></td>
+</tr>
+<tr>
+<td><strong>0</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>?</td>
+<td>1 close   73 49</td>
+<td>2 med  60 3c</td>
+<td>3 3pt 50 32</td>
+<td>4 ft 54 36</td>
+<td>5 layup  76 4c</td>
+<td>6 dunk  82 52</td>
+<td>28 stdnk  96 60</td>
+<td><strong>23  sit</strong>  88 58</td>
+<td><strong>22  sod</strong>  70 46</td>
+<td>25 hus  82 52</td>
+</tr>
+<tr>
+<td><strong>7 hndl</strong>  70 46</td>
+<td><strong>8  pass</strong>  64 40</td>
+<td>32</td>
+<td>32</td>
+<td>9 opost  79 4f</td>
+<td>10 dpost  84 54</td>
+<td>11 block   81 51</td>
+<td>26 hnd  67 43</td>
+<td>12 steal  52 34</td>
+<td>15 speed  68 44</td>
+<td>16 stam  83 53</td>
+<td>19</td>
+<td>21 vert 71 47</td>
+<td>13 oreb  86 56</td>
+<td>14 dreb  94 5e</td>
+<td>17 dur  80 50</td>
+</tr>
+<tr>
+<td><strong>18 dawr</strong>  84 54</td>
+<td><strong>19  oawr</strong>  79 4f</td>
+<td>19</td>
+<td>4c</td>
+<td>27 def 69 45</td>
+<td>24 qui 59 3b</td>
+<td>潜力 55</td>
+<td>20 str  80 50</td>
+<td>？</td>
+<td>？</td>
+<td>？</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="Qi-Zhou🤭"><a href="#Qi-Zhou🤭" class="headerlink" title="Qi Zhou🤭"></a>Qi Zhou🤭</h3><p>用凯尔特人Fab Melo改。名字5169 5a686f75，身高7‘1’=217，体重210，年龄24=43 7c，号码9=18=12，肤色04，位置C/PF=04/03，原头a1 09=2465，时间15=60=3c。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>/</th>
+<th>KM之前</th>
+<th>69</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>姓名地址</td>
+<td>179dd0</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>数据地址</td>
+<td>0d980</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>00</strong></td>
+<td><strong>01</strong></td>
+<td><strong>02</strong></td>
+<td><strong>03</strong></td>
+<td><strong>04</strong></td>
+<td><strong>05</strong></td>
+<td><strong>06</strong></td>
+<td><strong>07</strong></td>
+<td><strong>08</strong></td>
+<td><strong>09</strong></td>
+<td><strong>0a</strong></td>
+<td><strong>0b</strong></td>
+<td><strong>0c</strong></td>
+<td><strong>0d</strong></td>
+<td><strong>0e</strong></td>
+<td><strong>0f</strong></td>
+</tr>
+<tr>
+<td><strong>0</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>?</td>
+<td>1 close   87 57</td>
+<td>2 med  87 57</td>
+<td>3 3pt 82 52</td>
+<td>4 ft 88 58</td>
+<td>5 layup  75 4b</td>
+<td>6 dunk  75 4b</td>
+<td>28 stdnk  99 63</td>
+<td><strong>23  sit</strong>  67 43</td>
+<td><strong>22  sod</strong>  67 43</td>
+<td>25 hus  89 59</td>
+</tr>
+<tr>
+<td><strong>7 hndl</strong>  61 3d</td>
+<td><strong>8  pass</strong>  50 1d</td>
+<td>32</td>
+<td>32</td>
+<td>9 opost  64 40</td>
+<td>10 dpost  61 3d</td>
+<td>11 block   90 5a</td>
+<td>26 hnd  82 52</td>
+<td>12 steal  68 44</td>
+<td>15 speed  79 4f</td>
+<td>16 stam  90 5a</td>
+<td>28</td>
+<td>21 vert 80 50</td>
+<td>13 oreb  84 54</td>
+<td>14 dreb  87 57</td>
+<td>17 dur  80 50</td>
+</tr>
+<tr>
+<td><strong>18 dawr</strong>  64 40</td>
+<td><strong>19  oawr</strong>  64 40</td>
+<td>23</td>
+<td>50</td>
+<td>27 def 77 4d</td>
+<td>24 qui 77 4d</td>
+<td>潜力 83 53</td>
+<td>20 str  72 48</td>
+<td>？</td>
+<td>？</td>
+<td>？</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+<h3 id="Kevin-Huerter"><a href="#Kevin-Huerter" class="headerlink" title="Kevin Huerter"></a>Kevin Huerter</h3><p>位置SG/SF=01/02，</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>/</th>
+<th>KM</th>
+<th>74</th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>姓名地址</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>数据地址</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td><strong>00</strong></td>
+<td><strong>01</strong></td>
+<td><strong>02</strong></td>
+<td><strong>03</strong></td>
+<td><strong>04</strong></td>
+<td><strong>05</strong></td>
+<td><strong>06</strong></td>
+<td><strong>07</strong></td>
+<td><strong>08</strong></td>
+<td><strong>09</strong></td>
+<td><strong>0a</strong></td>
+<td><strong>0b</strong></td>
+<td><strong>0c</strong></td>
+<td><strong>0d</strong></td>
+<td><strong>0e</strong></td>
+<td><strong>0f</strong></td>
+</tr>
+<tr>
+<td><strong>0</strong></td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>?</td>
+<td>1 close   87 57</td>
+<td>2 med  87 57</td>
+<td>3 3pt 82 52</td>
+<td>4 ft 88 58</td>
+<td>5 layup  75 4b</td>
+<td>6 dunk  75 4b</td>
+<td>28 stdnk  99 63</td>
+<td><strong>23  sit</strong>  67 43</td>
+<td><strong>22  sod</strong>  67 43</td>
+<td>25 hus  89 59</td>
+</tr>
+<tr>
+<td><strong>7 hndl</strong>  61 3d</td>
+<td><strong>8  pass</strong>  50 1d</td>
+<td>32</td>
+<td>32</td>
+<td>9 opost  64 40</td>
+<td>10 dpost  61 3d</td>
+<td>11 block   90 5a</td>
+<td>26 hnd  82 52</td>
+<td>12 steal  68 44</td>
+<td>15 speed  79 4f</td>
+<td>16 stam  90 5a</td>
+<td>28</td>
+<td>21 vert 80 50</td>
+<td>13 oreb  84 54</td>
+<td>14 dreb  87 57</td>
+<td>17 dur  80 50</td>
+</tr>
+<tr>
+<td><strong>18 dawr</strong>  64 40</td>
+<td><strong>19  oawr</strong>  64 40</td>
+<td>23</td>
+<td>50</td>
+<td>27 def 77 4d</td>
+<td>24 qui 77 4d</td>
+<td>潜力 83 53</td>
+<td>20 str  72 48</td>
+<td>？</td>
+<td>？</td>
+<td>？</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+</div>
+]]></content>
+      <tags>
+        <tag>NBA2K13</tag>
+        <tag>DIY修改</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Robust Probabilistic Modeling with Bayesian Data Reweighting</title>
+    <url>/2019/11/27/Robust%20Probabilistic%20Modeling%20with%20Bayesian%20Data%20Reweighting/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>A paper reading</p>
+</blockquote>
+<a id="more"></a>
+<h1 id="Robust-Probabilistic-Modeling-with-Bayesian-Data-Reweighting"><a href="#Robust-Probabilistic-Modeling-with-Bayesian-Data-Reweighting" class="headerlink" title="Robust Probabilistic Modeling with Bayesian Data Reweighting"></a>Robust Probabilistic Modeling with Bayesian Data Reweighting</h1><h2 id="这篇文章大致讲了什么？"><a href="#这篇文章大致讲了什么？" class="headerlink" title="这篇文章大致讲了什么？"></a>这篇文章大致讲了什么？</h2><p>在概率模型PM（这里含隐变量$\beta$）的框架下，现实中很多数据data往往与假设的分布不符或者有些许偏差，导致概率模型做出的推断或者预测效果不太好。因此我们希望能够检测出这种不匹配mismatch的性质，并由此给每个观测observation样本加一个权重，这样模型会对不好的数据有更好的稳健性。权重和隐变量将一起由推断得到（类似meta weight net那样的）。</p>
+<h2 id="大概的算法是什么？"><a href="#大概的算法是什么？" class="headerlink" title="大概的算法是什么？"></a>大概的算法是什么？</h2><p>首先提供的数据是有N个独立观测的样本的数据集$y = (y_1, \cdots, y_n)$。</p>
+<ul>
+<li>首先给定基本的概率模型PM，其对应的联合分布是$p<em>\beta(\beta)\prod</em>{n=1}^{N}l(y<em>n|\beta)$，$l(y_n)$是数据$y_n$的可能性likelihood，由此PM给定，$\beta$是隐变量，它有一个先验$p</em>\beta(\beta)$。</li>
+<li>加权后的模型定义成reweighted probabilistic model，即RPM，权重$w<em>n$的先验是$p_w(w)$。新的RPM是$$p(y,\beta, w) = \frac{1}{Z}p_w(w)p</em>\beta(\beta)\prod_{n=1}^{N}l(y_n|\beta)^{w_n}$$，其中$Z$是对应的归一化常数。</li>
+<li>最后同时推断隐变量和权重参数$\beta$和$w$，对应的后验是$p(\beta, w|y)$。</li>
+</ul>
+<p>为什么加权加在可能性似然的次幂上？我们考虑对联合分布取对数：</p>
+<script type="math/tex; mode=display">log\ p(y,\beta, w) \varpropto log\ p_w(w) + log\ p_\beta(\beta) + \sum_{n=1}^{N}w_nlog\ l(y_n|\beta)</script><p>后验推断其实近似为最大化上面的对数联合概率。当某个观测样本$y_i$不太服从假设分布时，我们认为其可能性$l(y_i)$比较低，趋近于0，那么其对数$log\ l(y_i|\beta)$的绝对值为很小的负数，因此为了增大上式，需要使其权重$w_i$变小，即有问题的数据的权重要小一些；反之亦然。好像还有一种解释是把上式最后一项看成是loss，前面两项看成正则，具体怎么分析我忘啦…</p>
+<h2 id="案例研究Case-Study"><a href="#案例研究Case-Study" class="headerlink" title="案例研究Case Study"></a>案例研究Case Study</h2><p>这个案例是Poisson因子分解模型，去做电影推荐。</p>
+<h1 id="Automated-Identification-of-Chromosome-SegmentsInvolved-in-Translocations-by-Combining-Spectral-Karyotyping-and-Banding-Analysis"><a href="#Automated-Identification-of-Chromosome-SegmentsInvolved-in-Translocations-by-Combining-Spectral-Karyotyping-and-Banding-Analysis" class="headerlink" title="Automated Identification of Chromosome SegmentsInvolved in Translocations by Combining Spectral Karyotyping and Banding Analysis"></a>Automated Identification of Chromosome SegmentsInvolved in Translocations by Combining Spectral Karyotyping and Banding Analysis</h1><p>这篇文章讲的是DTW，即动态时间规划算法在染色体条带匹配上的应用。</p>
+]]></content>
+      <tags>
+        <tag>Papers Reading</tag>
       </tags>
   </entry>
   <entry>
@@ -1199,553 +1792,6 @@
       </tags>
   </entry>
   <entry>
-    <title>NBA2K13鹰重整理</title>
-    <url>/2020/06/13/NBA2K13%E9%B9%B0%E9%87%8D%E6%95%B4%E7%90%86/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><a id="more"></a>
-<h2 id="鹰🦅修改"><a href="#鹰🦅修改" class="headerlink" title="鹰🦅修改"></a>鹰🦅修改</h2><h3 id="Trae-Young"><a href="#Trae-Young" class="headerlink" title="Trae Young"></a>Trae Young</h3><p>用雄鹿的Beno Udo…。名字54726165 596f756e67。号码11=22=16，肤色03，位置PG/SG=00/01，年龄21岁7e 7c，身高6‘2’=188，体重180，原头99 04=1177，时间35=140=8c。</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>/</th>
-<th>KM最新</th>
-<th>90</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>姓名地址</td>
-<td>1799b0</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>数据地址</td>
-<td>08e80</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>00</strong></td>
-<td><strong>01</strong></td>
-<td><strong>02</strong></td>
-<td><strong>03</strong></td>
-<td><strong>04</strong></td>
-<td><strong>05</strong></td>
-<td><strong>06</strong></td>
-<td><strong>07</strong></td>
-<td><strong>08</strong></td>
-<td><strong>09</strong></td>
-<td><strong>0a</strong></td>
-<td><strong>0b</strong></td>
-<td><strong>0c</strong></td>
-<td><strong>0d</strong></td>
-<td><strong>0e</strong></td>
-<td><strong>0f</strong></td>
-</tr>
-<tr>
-<td><strong>0</strong></td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>?</td>
-<td>1 close   92 5c</td>
-<td>2 med  91 5b</td>
-<td>3 3pt 90 5a</td>
-<td>4 ft 85 55</td>
-<td>5 layup  87 57</td>
-<td>6 dunk  58 3a</td>
-<td>28 stdnk  50 1e</td>
-<td><strong>23  sit</strong>  55 37</td>
-<td><strong>22  sod</strong>  69 45</td>
-<td>25 hus  72 48</td>
-</tr>
-<tr>
-<td><strong>7 hndl</strong>  92 5c</td>
-<td><strong>8  pass</strong>  92 5c</td>
-<td>39</td>
-<td>32</td>
-<td>9 opost  58 3a</td>
-<td>10 dpost  60 3c</td>
-<td>11 block   60 3c</td>
-<td>26 hnd  64 40</td>
-<td>12 steal  50 32</td>
-<td>15 speed  86 56</td>
-<td>16 stam  91 5b</td>
-<td>19</td>
-<td>21 vert 90 5a</td>
-<td>13 oreb  50 21</td>
-<td>14 dreb  50 24</td>
-<td>17 dur  70 46</td>
-</tr>
-<tr>
-<td><strong>18 dawr</strong>  72 48</td>
-<td><strong>19  oawr</strong>  98 62</td>
-<td>32</td>
-<td>54</td>
-<td>27 def 88 58</td>
-<td>24 qui 88 58</td>
-<td>潜力 89 59</td>
-<td>20 str  60 3c</td>
-<td>？</td>
-<td>？</td>
-<td>？</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3 id="Clint-Capela"><a href="#Clint-Capela" class="headerlink" title="Clint Capela"></a>Clint Capela</h3><p>用Alexis Ajinca。身高6‘11’=208，体重240，年龄26=2d 7c，号码17=34=22，肤色01，位置C/05=04/05，原头25 06=1573，名字436c696e74 436170656c61，时间33=132=84。</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>/</th>
-<th>KM最新</th>
-<th>86</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>姓名地址</td>
-<td>181960</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>数据地址</td>
-<td>71700</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>00</strong></td>
-<td><strong>01</strong></td>
-<td><strong>02</strong></td>
-<td><strong>03</strong></td>
-<td><strong>04</strong></td>
-<td><strong>05</strong></td>
-<td><strong>06</strong></td>
-<td><strong>07</strong></td>
-<td><strong>08</strong></td>
-<td><strong>09</strong></td>
-<td><strong>0a</strong></td>
-<td><strong>0b</strong></td>
-<td><strong>0c</strong></td>
-<td><strong>0d</strong></td>
-<td><strong>0e</strong></td>
-<td><strong>0f</strong></td>
-</tr>
-<tr>
-<td><strong>0</strong></td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>?</td>
-<td>1 close   73 49</td>
-<td>2 med  60 3c</td>
-<td>3 3pt 50 32</td>
-<td>4 ft 54 36</td>
-<td>5 layup  76 4c</td>
-<td>6 dunk  82 52</td>
-<td>28 stdnk  96 60</td>
-<td><strong>23  sit</strong>  88 58</td>
-<td><strong>22  sod</strong>  70 46</td>
-<td>25 hus  82 52</td>
-</tr>
-<tr>
-<td><strong>7 hndl</strong>  70 46</td>
-<td><strong>8  pass</strong>  64 40</td>
-<td>32</td>
-<td>32</td>
-<td>9 opost  79 4f</td>
-<td>10 dpost  84 54</td>
-<td>11 block   81 51</td>
-<td>26 hnd  67 43</td>
-<td>12 steal  52 34</td>
-<td>15 speed  68 44</td>
-<td>16 stam  83 53</td>
-<td>19</td>
-<td>21 vert 71 47</td>
-<td>13 oreb  86 56</td>
-<td>14 dreb  94 5e</td>
-<td>17 dur  80 50</td>
-</tr>
-<tr>
-<td><strong>18 dawr</strong>  84 54</td>
-<td><strong>19  oawr</strong>  79 4f</td>
-<td>19</td>
-<td>4c</td>
-<td>27 def 69 45</td>
-<td>24 qui 59 3b</td>
-<td>潜力 55</td>
-<td>20 str  80 50</td>
-<td>？</td>
-<td>？</td>
-<td>？</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3 id="Qi-Zhou🤭"><a href="#Qi-Zhou🤭" class="headerlink" title="Qi Zhou🤭"></a>Qi Zhou🤭</h3><p>用凯尔特人Fab Melo改。名字5169 5a686f75，身高7‘1’=217，体重210，年龄24=43 7c，号码9=18=12，肤色04，位置C/PF=04/03，原头a1 09=2465，时间15=60=3c。</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>/</th>
-<th>KM之前</th>
-<th>69</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>姓名地址</td>
-<td>179dd0</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>数据地址</td>
-<td>0d980</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>00</strong></td>
-<td><strong>01</strong></td>
-<td><strong>02</strong></td>
-<td><strong>03</strong></td>
-<td><strong>04</strong></td>
-<td><strong>05</strong></td>
-<td><strong>06</strong></td>
-<td><strong>07</strong></td>
-<td><strong>08</strong></td>
-<td><strong>09</strong></td>
-<td><strong>0a</strong></td>
-<td><strong>0b</strong></td>
-<td><strong>0c</strong></td>
-<td><strong>0d</strong></td>
-<td><strong>0e</strong></td>
-<td><strong>0f</strong></td>
-</tr>
-<tr>
-<td><strong>0</strong></td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>?</td>
-<td>1 close   87 57</td>
-<td>2 med  87 57</td>
-<td>3 3pt 82 52</td>
-<td>4 ft 88 58</td>
-<td>5 layup  75 4b</td>
-<td>6 dunk  75 4b</td>
-<td>28 stdnk  99 63</td>
-<td><strong>23  sit</strong>  67 43</td>
-<td><strong>22  sod</strong>  67 43</td>
-<td>25 hus  89 59</td>
-</tr>
-<tr>
-<td><strong>7 hndl</strong>  61 3d</td>
-<td><strong>8  pass</strong>  50 1d</td>
-<td>32</td>
-<td>32</td>
-<td>9 opost  64 40</td>
-<td>10 dpost  61 3d</td>
-<td>11 block   90 5a</td>
-<td>26 hnd  82 52</td>
-<td>12 steal  68 44</td>
-<td>15 speed  79 4f</td>
-<td>16 stam  90 5a</td>
-<td>28</td>
-<td>21 vert 80 50</td>
-<td>13 oreb  84 54</td>
-<td>14 dreb  87 57</td>
-<td>17 dur  80 50</td>
-</tr>
-<tr>
-<td><strong>18 dawr</strong>  64 40</td>
-<td><strong>19  oawr</strong>  64 40</td>
-<td>23</td>
-<td>50</td>
-<td>27 def 77 4d</td>
-<td>24 qui 77 4d</td>
-<td>潜力 83 53</td>
-<td>20 str  72 48</td>
-<td>？</td>
-<td>？</td>
-<td>？</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3 id="Kevin-Huerter"><a href="#Kevin-Huerter" class="headerlink" title="Kevin Huerter"></a>Kevin Huerter</h3><p>位置SG/SF=01/02，</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>/</th>
-<th>KM</th>
-<th>74</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>姓名地址</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>数据地址</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>00</strong></td>
-<td><strong>01</strong></td>
-<td><strong>02</strong></td>
-<td><strong>03</strong></td>
-<td><strong>04</strong></td>
-<td><strong>05</strong></td>
-<td><strong>06</strong></td>
-<td><strong>07</strong></td>
-<td><strong>08</strong></td>
-<td><strong>09</strong></td>
-<td><strong>0a</strong></td>
-<td><strong>0b</strong></td>
-<td><strong>0c</strong></td>
-<td><strong>0d</strong></td>
-<td><strong>0e</strong></td>
-<td><strong>0f</strong></td>
-</tr>
-<tr>
-<td><strong>0</strong></td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>?</td>
-<td>1 close   87 57</td>
-<td>2 med  87 57</td>
-<td>3 3pt 82 52</td>
-<td>4 ft 88 58</td>
-<td>5 layup  75 4b</td>
-<td>6 dunk  75 4b</td>
-<td>28 stdnk  99 63</td>
-<td><strong>23  sit</strong>  67 43</td>
-<td><strong>22  sod</strong>  67 43</td>
-<td>25 hus  89 59</td>
-</tr>
-<tr>
-<td><strong>7 hndl</strong>  61 3d</td>
-<td><strong>8  pass</strong>  50 1d</td>
-<td>32</td>
-<td>32</td>
-<td>9 opost  64 40</td>
-<td>10 dpost  61 3d</td>
-<td>11 block   90 5a</td>
-<td>26 hnd  82 52</td>
-<td>12 steal  68 44</td>
-<td>15 speed  79 4f</td>
-<td>16 stam  90 5a</td>
-<td>28</td>
-<td>21 vert 80 50</td>
-<td>13 oreb  84 54</td>
-<td>14 dreb  87 57</td>
-<td>17 dur  80 50</td>
-</tr>
-<tr>
-<td><strong>18 dawr</strong>  64 40</td>
-<td><strong>19  oawr</strong>  64 40</td>
-<td>23</td>
-<td>50</td>
-<td>27 def 77 4d</td>
-<td>24 qui 77 4d</td>
-<td>潜力 83 53</td>
-<td>20 str  72 48</td>
-<td>？</td>
-<td>？</td>
-<td>？</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-]]></content>
-      <tags>
-        <tag>NBA2K13</tag>
-        <tag>DIY修改</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Programming Bugs Records</title>
     <url>/2019/11/24/Programming-Bugs-Records/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
@@ -1783,73 +1829,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Windows 10 DPC_WATCHDOG_VIOLATION 问题</title>
-    <url>/2020/01/05/Windows-10-DPC-WATCHDOG-VIOLATION-%E9%97%AE%E9%A2%98/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
-<p>继电池容量不足后发生的电脑蓝屏</p>
-<p><code>DPC_WATCHDOG_VIOLATION</code></p>
-</blockquote>
-<a id="more"></a>
-<h2 id="bug背景"><a href="#bug背景" class="headerlink" title="bug背景"></a>bug背景</h2><p>先交代一下bug背景，由于电池容量严重不足，电脑之前的用户配置文件损坏，不得不先创建了一个新的账户继续使用。可能是由于这些个原因跳bug。</p>
-<h2 id="bug细节"><a href="#bug细节" class="headerlink" title="bug细节"></a>bug细节</h2><p>某天开机，刚打开浏览器，电脑突然死机，触摸板，键盘，鼠标，显示屏均没有任何反应。等待约5min之后电脑自动蓝屏，提示我出了问题。</p>
-<img src="/2020/01/05/Windows-10-DPC-WATCHDOG-VIOLATION-问题/BS.jpg" title="Blue Screen">
-<p>Bug名称为<code>DPC_WATCHDOG_VIOLATION</code>。</p>
-<h2 id="bug解决"><a href="#bug解决" class="headerlink" title="bug解决"></a>bug解决</h2><p>长按电源键关机重启后，电脑正常开机。等待一小会，360自动弹框提示蓝屏错误（不是打广告）。</p>
-<img src="/2020/01/05/Windows-10-DPC-WATCHDOG-VIOLATION-问题/3601.jpg" title="360提示">
-<p>它给出的解决方案是</p>
-<img src="/2020/01/05/Windows-10-DPC-WATCHDOG-VIOLATION-问题/3602.png" title="360删补丁大法">
-<p>觉得删补丁不稳，干脆百度。经查询，大部分解决方案都和[百度经验][<a href="https://jingyan.baidu.com/article/cd4c29795ab8dc756e6e60c5.html]一致，照着来一遍，截至目前bug没有再犯。" target="_blank" rel="noopener">https://jingyan.baidu.com/article/cd4c29795ab8dc756e6e60c5.html]一致，照着来一遍，截至目前bug没有再犯。</a></p>
-]]></content>
-      <tags>
-        <tag>Windows</tag>
-        <tag>Bug</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hello World</title>
-    <url>/2019/10/17/hello-world/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
-<p>This is an initial doc of <strong>hexo</strong>.</p>
-</blockquote>
-<a id="more"></a>
-<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
-]]></content>
-      <tags>
-        <tag>Hexo</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Robust Probabilistic Modeling with Bayesian Data Reweighting</title>
-    <url>/2019/11/27/Robust%20Probabilistic%20Modeling%20with%20Bayesian%20Data%20Reweighting/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
-<p>A paper reading</p>
-</blockquote>
-<a id="more"></a>
-<h1 id="Robust-Probabilistic-Modeling-with-Bayesian-Data-Reweighting"><a href="#Robust-Probabilistic-Modeling-with-Bayesian-Data-Reweighting" class="headerlink" title="Robust Probabilistic Modeling with Bayesian Data Reweighting"></a>Robust Probabilistic Modeling with Bayesian Data Reweighting</h1><h2 id="这篇文章大致讲了什么？"><a href="#这篇文章大致讲了什么？" class="headerlink" title="这篇文章大致讲了什么？"></a>这篇文章大致讲了什么？</h2><p>在概率模型PM（这里含隐变量$\beta$）的框架下，现实中很多数据data往往与假设的分布不符或者有些许偏差，导致概率模型做出的推断或者预测效果不太好。因此我们希望能够检测出这种不匹配mismatch的性质，并由此给每个观测observation样本加一个权重，这样模型会对不好的数据有更好的稳健性。权重和隐变量将一起由推断得到（类似meta weight net那样的）。</p>
-<h2 id="大概的算法是什么？"><a href="#大概的算法是什么？" class="headerlink" title="大概的算法是什么？"></a>大概的算法是什么？</h2><p>首先提供的数据是有N个独立观测的样本的数据集$y = (y_1, \cdots, y_n)$。</p>
-<ul>
-<li>首先给定基本的概率模型PM，其对应的联合分布是$p<em>\beta(\beta)\prod</em>{n=1}^{N}l(y<em>n|\beta)$，$l(y_n)$是数据$y_n$的可能性likelihood，由此PM给定，$\beta$是隐变量，它有一个先验$p</em>\beta(\beta)$。</li>
-<li>加权后的模型定义成reweighted probabilistic model，即RPM，权重$w<em>n$的先验是$p_w(w)$。新的RPM是$$p(y,\beta, w) = \frac{1}{Z}p_w(w)p</em>\beta(\beta)\prod_{n=1}^{N}l(y_n|\beta)^{w_n}$$，其中$Z$是对应的归一化常数。</li>
-<li>最后同时推断隐变量和权重参数$\beta$和$w$，对应的后验是$p(\beta, w|y)$。</li>
-</ul>
-<p>为什么加权加在可能性似然的次幂上？我们考虑对联合分布取对数：</p>
-<script type="math/tex; mode=display">log\ p(y,\beta, w) \varpropto log\ p_w(w) + log\ p_\beta(\beta) + \sum_{n=1}^{N}w_nlog\ l(y_n|\beta)</script><p>后验推断其实近似为最大化上面的对数联合概率。当某个观测样本$y_i$不太服从假设分布时，我们认为其可能性$l(y_i)$比较低，趋近于0，那么其对数$log\ l(y_i|\beta)$的绝对值为很小的负数，因此为了增大上式，需要使其权重$w_i$变小，即有问题的数据的权重要小一些；反之亦然。好像还有一种解释是把上式最后一项看成是loss，前面两项看成正则，具体怎么分析我忘啦…</p>
-<h2 id="案例研究Case-Study"><a href="#案例研究Case-Study" class="headerlink" title="案例研究Case Study"></a>案例研究Case Study</h2><p>这个案例是Poisson因子分解模型，去做电影推荐。</p>
-<h1 id="Automated-Identification-of-Chromosome-SegmentsInvolved-in-Translocations-by-Combining-Spectral-Karyotyping-and-Banding-Analysis"><a href="#Automated-Identification-of-Chromosome-SegmentsInvolved-in-Translocations-by-Combining-Spectral-Karyotyping-and-Banding-Analysis" class="headerlink" title="Automated Identification of Chromosome SegmentsInvolved in Translocations by Combining Spectral Karyotyping and Banding Analysis"></a>Automated Identification of Chromosome SegmentsInvolved in Translocations by Combining Spectral Karyotyping and Banding Analysis</h1><p>这篇文章讲的是DTW，即动态时间规划算法在染色体条带匹配上的应用。</p>
-]]></content>
-      <tags>
-        <tag>Papers Reading</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>[hexo] 用Hexo d提交博客时出现连接不了的错误</title>
     <url>/2020/02/20/hexo-%E7%94%A8Hexo-d%E6%8F%90%E4%BA%A4%E5%8D%9A%E5%AE%A2%E6%97%B6%E5%87%BA%E7%8E%B0%E8%BF%9E%E6%8E%A5%E4%B8%8D%E4%BA%86%E7%9A%84%E9%94%99%E8%AF%AF/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
@@ -1877,28 +1856,24 @@
       </tags>
   </entry>
   <entry>
-    <title>【Windows技巧2】用画图编辑图片并保存时出现【发生了共享冲突】</title>
-    <url>/2020/07/30/%E3%80%90Windows%E6%8A%80%E5%B7%A72%E3%80%91%E7%94%A8%E7%94%BB%E5%9B%BE%E7%BC%96%E8%BE%91%E5%9B%BE%E7%89%87%E5%B9%B6%E4%BF%9D%E5%AD%98%E6%97%B6%E5%87%BA%E7%8E%B0%E3%80%90%E5%8F%91%E7%94%9F%E4%BA%86%E5%85%B1%E4%BA%AB%E5%86%B2%E7%AA%81%E3%80%91/</url>
+    <title>Hello World</title>
+    <url>/2019/10/17/hello-world/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
-<p>用画图软件编辑图片并保存时出现bug（背景是正在用<code>python</code>导入图片）</p>
-<p><code>发生了共享冲突</code></p>
+<p>This is an initial doc of <strong>hexo</strong>.</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="bug简介"><a href="#bug简介" class="headerlink" title="bug简介"></a>bug简介</h2><p>不多说，标题已经很明确了，直接上图：</p>
-<img src="/2020/07/30/【Windows技巧2】用画图编辑图片并保存时出现【发生了共享冲突】/1.png" title="发生了共享冲突（请忽略卑微马赛克🐕）">
-<h2 id="经典解法"><a href="#经典解法" class="headerlink" title="经典解法"></a>经典解法</h2><p>网上有诸多解决方法，其原理都是认为原始图片和自己编辑过的图片，后者并没有在内存中覆盖前者，二者在存储的时候会冲突。</p>
-<p>本文<strong>唯一引用文献</strong>，这篇文章讲得就还好<a href="https://www.beihaiting.com/a/YNJD/XTGZ/2016/0620/8922.html" target="_blank" rel="noopener">Win10画图保存编辑的图片时提示发生了共享冲突怎么办?</a></p>
-<h2 id="我的问题与解法"><a href="#我的问题与解法" class="headerlink" title="我的问题与解法"></a>我的问题与解法</h2><p>但是！这个方法对我不管用，因为我删除原始图片时会显示<strong>画图软件占用</strong>：</p>
-<img src="/2020/07/30/【Windows技巧2】用画图编辑图片并保存时出现【发生了共享冲突】/2.png" title="画图软件占用">
-<p>这时哥发现了端倪，平时编辑图片也没这问题啊？问题指向了<code>jupyter notebook</code>界面的<code>python</code>代码，它导入图片失败，我正调试bug……</p>
-<p>于是我直接关闭编辑中的画图软件，直接删除图片，果然，<strong>python软件也在占用</strong>：</p>
-<img src="/2020/07/30/【Windows技巧2】用画图编辑图片并保存时出现【发生了共享冲突】/3.png" title="`python`软件占用">
-<p>所以！我的解决方法是关闭当前<code>jupyter notebook</code>的<code>kernel</code>，🆗了</p>
-<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>咸鱼生活需要bug滋润……</p>
+<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
+<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
+<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
+<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
+<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
+<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 ]]></content>
       <tags>
-        <tag>Windows</tag>
-        <tag>Bug</tag>
+        <tag>Hexo</tag>
       </tags>
   </entry>
   <entry>
@@ -2240,6 +2215,31 @@
       </tags>
   </entry>
   <entry>
+    <title>【Windows技巧2】用画图编辑图片并保存时出现【发生了共享冲突】</title>
+    <url>/2020/07/30/%E3%80%90Windows%E6%8A%80%E5%B7%A72%E3%80%91%E7%94%A8%E7%94%BB%E5%9B%BE%E7%BC%96%E8%BE%91%E5%9B%BE%E7%89%87%E5%B9%B6%E4%BF%9D%E5%AD%98%E6%97%B6%E5%87%BA%E7%8E%B0%E3%80%90%E5%8F%91%E7%94%9F%E4%BA%86%E5%85%B1%E4%BA%AB%E5%86%B2%E7%AA%81%E3%80%91/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>用画图软件编辑图片并保存时出现bug（背景是正在用<code>python</code>导入图片）</p>
+<p><code>发生了共享冲突</code></p>
+</blockquote>
+<a id="more"></a>
+<h2 id="bug简介"><a href="#bug简介" class="headerlink" title="bug简介"></a>bug简介</h2><p>不多说，标题已经很明确了，直接上图：</p>
+<img src="/2020/07/30/【Windows技巧2】用画图编辑图片并保存时出现【发生了共享冲突】/1.png" title="发生了共享冲突（请忽略卑微马赛克🐕）">
+<h2 id="经典解法"><a href="#经典解法" class="headerlink" title="经典解法"></a>经典解法</h2><p>网上有诸多解决方法，其原理都是认为原始图片和自己编辑过的图片，后者并没有在内存中覆盖前者，二者在存储的时候会冲突。</p>
+<p>本文<strong>唯一引用文献</strong>，这篇文章讲得就还好<a href="https://www.beihaiting.com/a/YNJD/XTGZ/2016/0620/8922.html" target="_blank" rel="noopener">Win10画图保存编辑的图片时提示发生了共享冲突怎么办?</a></p>
+<h2 id="我的问题与解法"><a href="#我的问题与解法" class="headerlink" title="我的问题与解法"></a>我的问题与解法</h2><p>但是！这个方法对我不管用，因为我删除原始图片时会显示<strong>画图软件占用</strong>：</p>
+<img src="/2020/07/30/【Windows技巧2】用画图编辑图片并保存时出现【发生了共享冲突】/2.png" title="画图软件占用">
+<p>这时哥发现了端倪，平时编辑图片也没这问题啊？问题指向了<code>jupyter notebook</code>界面的<code>python</code>代码，它导入图片失败，我正调试bug……</p>
+<p>于是我直接关闭编辑中的画图软件，直接删除图片，果然，<strong>python软件也在占用</strong>：</p>
+<img src="/2020/07/30/【Windows技巧2】用画图编辑图片并保存时出现【发生了共享冲突】/3.png" title="`python`软件占用">
+<p>所以！我的解决方法是关闭当前<code>jupyter notebook</code>的<code>kernel</code>，🆗了</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>咸鱼生活需要bug滋润……</p>
+]]></content>
+      <tags>
+        <tag>Windows</tag>
+        <tag>Bug</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【论文阅读12】Meta Label Corrector——设计元学习器完成错误标签修改</title>
     <url>/2020/07/21/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB12%E3%80%91Meta-Label-Corrector%E2%80%94%E2%80%94%E8%AE%BE%E8%AE%A1%E5%85%83%E5%AD%A6%E4%B9%A0%E5%99%A8%E5%AE%8C%E6%88%90%E9%94%99%E8%AF%AF%E6%A0%87%E7%AD%BE%E4%BF%AE%E6%94%B9/</url>
     <content><![CDATA[<div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
@@ -2253,23 +2253,6 @@
 <script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       <tags>
         <tag>Paper Reading</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>【论文阅读14】MFM——针对重尾分布的元特征调节器</title>
-    <url>/2020/07/23/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB14%E3%80%91MFM%E2%80%94%E2%80%94%E9%92%88%E5%AF%B9%E9%87%8D%E5%B0%BE%E5%88%86%E5%B8%83%E7%9A%84%E5%85%83%E7%89%B9%E5%BE%81%E8%B0%83%E8%8A%82%E5%99%A8/</url>
-    <content><![CDATA[<div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <div class="hbe-input-container">
-  <input type="password" id="hbePass" placeholder="" />
-    <label for="hbePass">Please input password to continue...</label>
-    <div class="bottom-line"></div>
-  </div>
-  <script id="hbeData" type="hbeData" data-hmacdigest="2d7b5b9cef4a173e9dc29c2fda836be7d45b8bd304f6cfd43c1d5b58bebd2d0c">7645007b0ae4653d225684ee43c95f334c978794f82bdcca8d52f986bd4c355fed40e753ace8787e6c67dd1fd3dbbd9edc572f0c82a6927f45447cf800b766400474b2eb5a376951984ff126e88b0636e90130d65083178a7160cb32c8b767417646e2c53adf561b9cced359b74d3620c217299ed7d9f8fbea06a1cb7714f0f9dd187e234e1c646786d4157115e9ee765cb1ae44a581093d7dcbcbc9a5af74a563463ab7622990d035bd681a25d6cac947dbd3b9982aad27544986761100819ee228926ff1bde14367c63dfede32fbd12e7e09ddaedd1b248854c9c42595f40675e409d033a444ed31909b79242b16953cea448ca6262ff5d930bfaf10e9814d0f1708aaea427a634f22f1f691da6b6454877d659b16d34445d9b93e6b2f63e5a56a9069ac2ab449becfbf64dcdecd573ea98909a078d2e49be04eaaba1a55ef489e758d10a3898215caef56ea0b4edc664e864abaedb8bad9ae537f4619429f3c4022e1744d5dbc32bb6ceadb20817bd0f0ad1188b71c41caca8ce3ec380b970c5852bb8bfa5e3ee72cf7ba062c450b4f1f5cbeab53e748b45de7cb29fc03c69c120c5aa379dd28f9253056cc06c15fc6d6045cade43f5dea14e6f686b6d8a942589c656e364caaa87ab1d85543c8841062f7850fdc93df89ea5cbeb7b69d67b838a555f64ae9d1b17ac3fde8885602e474cda303d5bef98ec0f71fd86794a4b235373deecdc87997a93fb6042f4671ea78c210a3d1da407c11b8fc8bd6c66964f45bad597826305add5248b3927b0646e40ae8c8866d05ca1696165e3bc18cac90e10de4283ab2994ce3ccb692988452f5f53d8d1d6c6b8956f323ec5051dc2f3015dad773a87ccade3c017fc22320076c8368a366ea6bffa4c7e20367aa475ecacc10b1107e57a4bd52916e45137923b444593469b94eb26868a94e71f8697b551d634ab1949eb604720f3f0fbb36f48b6e27eebb61e79ead54d9b0d2821b806effeca386e0698eadc04ed32c008a88e0645c4f9c0ca242a0cc70f906b3cbd3f81056319b4e24f1b5bcfd8bc71a161c7a345bc564962f74ed404ab2b7439ab33a6b8b3531fa75d53ce6efc9dee56fb871552bc69742479166cc213d98cff6058b3344be4a33dcbce76c34e1634ae7bf8823fe28261de3464dbd6654da44eea673a4e3384714deba1c575f0221863127ff0bd593f997cb37d97e524c26fe6aefcf61d2e932c86a83e10e4c8f7de6c349997caa35af96bb8c65fd8c8d1c37aff149b4319860a207c88719880c10b8d974c919a239789bbfef11ea25c485f4504ba51bd2934af4a96b202652cf755a5424dca9a86d9d3c4e22d037b8c07463d9aa8500d9c1e4b5628823c5221b8614b62564548b7692102ee206aae764013fe5e02bff77d40ca1562b1f3c16cf25698f9d21a6a055b0f47b613db3b94eb8cc1ccf335db02b8aad919a92afe11cdcfab98045589e9b282e4c657b6ae08f4b1c8ef3199f6aecf839c6a25f26effed0a3cb4273332538a6797463e91062d2ff05d79614a667c4727faa1862cf53abfc9810e21c0dfb316f7fe1dcc439cd0eba92706299f285cd3601767cd7828581ce6cdf375a60f872240d1ce57f767a4a69bade7af4d9ef4eabdde8f061ee1928c3545f1abcae417cc9dd42411b6172bccf35a6da003921d65ab1c37294f8e17f17f16b91d97676f31be6ae5f97883d78ec8d560926ba27bdcb4baf4e5aabf8e68c789d2616da1eba7a7a79de79899af9ba4267628f329748ab3165da9062917da8e2d93c01aab3c27f86741af3644891e4b46c60f7d2e9674dbcdb6112ff178fd51dd9a5bb1d96333700931dc958d74a5e074aadc6a5a4b45b1949ef5878fe5a2d56b16da0b5e14d125fb7baf233fb13fba9272b8a200b1cddd0becfbf97a24922c584996cecbb3cb8f245730a0b9d926a931b33bd73a2354d9feaa9010769472a111ddf8dbe57f68f983cf8f7a5df4463eab164f1d8e28832c79da71ff54e643f63e6d944c0089ab0d2e0ef8159b15bea716249a4e6cc2b3bbbb196d4a28ca8ad8d05de1100844400c673774d5f86a0e29fa08301829164939e4e9a6cc8f1599049f4b0e3c26f5e05cc2566d2cbf0f17fb92aacaab1d3099d9ce2c9147ae4659df6735aa29112e18ccceb70b248d5004d9c1dd074b40e13c438f029320f2f805153d8211d6798846bdfa852b392e7b091fc7cb9827ab8669ca99c00ee33b55720f71aa26f941bb11d5d665f0ebc0ffc6a5019f69d737015ab70db829529ac223d31868b8271af39453dbecc3ebf6c5b317eec31dca05a2ecf7f6717746ac61f56a4da8e5a1c2c2f9a2f67bcfcd5b3be501c1e87b29bfb62ac997430cb724842a3060fd840fca2de26e394747c1c08ecd9fd2ff7012154db13b34735b776bc62566460e9461c8bd14f5a438d9d0fc4d3353f1ad0c3222329ff87b618909c53b09800704564d1f9f3fbdab325b95323ed94e8d8b99afc7f8f0dc6e1151e1a97853c105d69663414c71bd78bbed44527e8e0e913d9b7af5b82cb4e311059d969a2f59a02c41a4982299a97889926f24406fba5b137f9c9174093825ddee36737121a024d1297262557c0b634105a6996eb51c9443b9877f0e80edaa2f9c0bb2fe52c09bcbc10ee81a09fce7e7dd2fe34aa7602c15805e5076ece8aa8764b28eb9b94fda5e52c053d218fb28a35004759da819fdb55e0fc252e2afddbdf64ef76de039225f602263ba269db1afe44534c63fff8e93eb6efcc1d72f66ce9385530cfeb148f6373ad073ebfc42c958d2b1c4719466d576608cf61b6a5089f0f3d3c93c044235a6a322287e0d55845c6274bf3de1a753abdc08fda197c4d04255cccd50e21667f3a1640d1b832c376cfcf8b7766e2d6a4b1ecfcabe6883341bb8b7b4387ea38757375841312cbb65aa3f3084b0edde84c557719e893e500d2196bac5b65feafc1a7f2bdac1e5a3b1436cdd5f6153d5befa14c7f808f630942023f24faaec9b1c4195e44aff1d8b418ce222a6d726b26a55d373beb07cf17dbaea1dfccb87d33c10c3fcb27c2e3fd0e00e0b27d688d97d2f12b91609f68ce2f1a3d4d2dada28f5cf374dcf04b6ecb0ff2d76cbfbe8becd2a1a2a0667290fa412098ae3c8434236a30b2ad75d7b9a9871055e3bc0131c13a76cffd515064ec39dde4b2f2fc4fdd5ccaebe7a020fa574d8964b878d5beb4aedc1907e35f45e260ac879ba181e51cc41b5e75b5efe283eaa69e51af98e2cfeb18c39163def6da56b15e4e145d707a07d46d2d6d77781356a30d8ec6d1f6686250cbd5051ae208566f73ebfd70ba982479c8e7f5438ba25d3eb5b76862d22d148c77430112eb9619b376182a67424438a695c285e4f71278bfb66718eccda2bb31c03dd121817c605b1a52f59b03e6ba3e821919a0fbe86c18c42b139b7ad121c18142add8f7ed9b5226e7e6b09c893f6d4ccae227d28962939b34baf8aeb0509f19748461f0b9ea0b1b68c5b12f7ca4cbc2bf93c2f322abf7eabd58041edf76ee9adaf483e83bc1261f76b854fba3cd57be8c1eb278a47261e4decaba1ef3f94f0989dfb0fa6fe8a375097a9cbad6bcea9098ae38a1516c3235ee977380d4b00c3ac06b5b18f285b23931bc567cdad25ff20af35a614324567678505cf649ee1e56a499f36d5e90f05051a96b2bc511ad9f113cc48ba5506771faa98c0597ddeb6aefb6cb7f4485b8970053b5878fc887a0d6b3c933c9e441071017b09bad1ba1acb1cf4a989f58614fd692ac61a10d99ebe50bfd117f3554bb3c5fded722f1e94fccba381ccd219e3114ff985cc0665418fdabcee7e151163320742ffd988f0d03a94cb8ca501fff636aefd6654ad0b7f81d08544fb60f333aeb59ac736fe0f3d3e3c028a36ec8b6e99d40055fea0afdd1cebc179c7d6bed25f2ba94c35323f776bf762bb02a83af2692570f85821b7e2a9e43dab71e2293ab77f53f2cefd1295a90cd62b02e805deb7450b7d7bcc9d4a4cebea11c3e272d3523e8267851b5e8217f165f474d29d2d35c11875bd13e146b594a2442718578e56d091e01b7a2df98882a75cf0b9bdb181c35cfee9f92bff96cf52c03542c43ec2e7fe071230acb1c17fb7c1c0383ec43db6e3c6f52f80b4e8938120bbd90d106e5c2dd69365ff0a6b144fe56b30dcfda326fd75cc259109bdb82b1aeb647fc9fc8f385d3557adfbd5b6934b105736d0cd61afb5f9e4f2b069c529c3541828ed918fca5219d9ea684ed5082e14315cfac6083125e5100e2b3761c52f067e97bfa6e4f6fca32a60b499c286abf9d795b969838b7c019333b95ecf8a390a4223a5612aeeda74fab41bb0987cb1888d558325800d565848365e63d3f906477a74173dbba45eecef09e1a0b28301c4b82f539ef5f2f8fc82e87a16b03eebd9d58470f632ed59a76385c92a617ce9d152ff65a1d0e176ab09e1b79d6a242568790bfb393ebd1587e7761de2148a9e025e7ca92d3f2f872d6a50117899cf54b3c56f6565948683642773413f1593ff3c0c268b044d75ff372</script>
-</div>
-<script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
-      <tags>
-        <tag>Paper Reading</tag>
-        <tag>Meta Learner</tag>
       </tags>
   </entry>
   <entry>
@@ -2309,54 +2292,20 @@
       </tags>
   </entry>
   <entry>
-    <title>【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation</title>
-    <url>/2020/07/31/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB15%E3%80%91Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
-<p>论文阅读</p>
-</blockquote>
-<a id="more"></a>
-<h2 id="文章简介"><a href="#文章简介" class="headerlink" title="文章简介"></a>文章简介</h2><p>这篇文章[3]是在ECCV2020的日程[1, 2]中发现的，拿来一读。</p>
-<p>原作者的部分讲解视频在B站BAAI发布的<a href="https://www.bilibili.com/video/BV1wZ4y1M7qw?p=4" target="_blank" rel="noopener">ECCV 2020中国预会议回放丨计算机视觉、目标检测、图像分类、特征提取…55场前沿学术报告集萃</a>P4的181:40-192:00。</p>
-<p>从标题上看是提出了一个对抗网络的变种，<font color="#0000FF">双重对抗网络DANet</font>，针对真实场景，<strong>同时建模（生成）噪声以及去噪</strong>。</p>
-<img src="/2020/07/31/【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/1.png" title="文章简介">
-<h2 id="主要内容——DANet"><a href="#主要内容——DANet" class="headerlink" title="主要内容——DANet"></a>主要内容——DANet</h2><p>ps:</p>
-<blockquote>
-<p>主要内容直接参考B站视频或者原文即可。</p>
-<p>个人不太想看相关工作的部分，只看了噪声生成的介绍，模拟噪声分布的目的之一是解决数据对的成本问题。其中传统方法GAN的难度在于如何找到好的噪声生成器。</p>
-</blockquote>
-<h3 id="模型提出"><a href="#模型提出" class="headerlink" title="模型提出"></a>模型提出</h3><p>本文的主要思想与之前的<a href="[https://maxliu245.github.io/2020/06/27/10-VDN-Variational-Denoising-Network-%E9%98%85%E8%AF%BB/#more](https://maxliu245.github.io/2020/06/27/10-VDN-Variational-Denoising-Network-阅读/#more">VDN</a>)[4]如出一辙，感觉是顺着VDN在贝叶斯框架下同时进行图像噪声估计和图像降噪的思路继续做的。主要内容是提出了双重对抗网络<strong>DANet</strong>，下面具体介绍一下。</p>
-<p>相比VDN直接贝叶斯框架完成两种噪声相关任务，这次是间接地、从另一个角度地对干净图$x$和带噪图$y$的联合分布$p(x,y)$进行估计，并分两种分解形式。因此从两个方面分别建模，从$y$开始建模，生成$x$的过程就是训练了降噪器$R$，反之就是训练了噪声生成器$G$；两种方式逼近联合分布后通过判别器$D$做监督。这种方式称为标题的“双重对抗”，$R$和$G$相互影响，共同逼近联合分布。</p>
-<p>$x$，$y$联合分布的两种分解很自然，从联合分布定义即可，实际意义参考视频中的图即可理解：</p>
-<img src="/2020/07/31/【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/2.png" title="联合分布$p(x,y)$的两种分解意义">
-<h3 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h3><p>接下来确定对抗网络的结构：</p>
-<img src="/2020/07/31/【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/3.png" title="网络结构">
-<p>其中降噪器denoiser记为$R$，噪声生成器generator记为$G$，都用UNet，并加了残差策略；最后判别器discriminator记为$D$，采用5个卷积层和一个FC。</p>
-<h3 id="部分训练细节"><a href="#部分训练细节" class="headerlink" title="部分训练细节"></a>部分训练细节</h3><p>训练的目标函数是Triple-GAN中提出的损失，加上两个正则项（对应于两种分解）。前者是干净图的$L_1$损失，可以优化$R$；后者由于噪声随机性，采用高斯滤波后的某种$L_1$，优化$G$，具体形式参考原文(6)式。</p>
-<p>网络训练的过程参考原文算法1即可，其训练的思路在于向后传播分两步，交替优化$R$和$G$。</p>
-<h3 id="部分亮点"><a href="#部分亮点" class="headerlink" title="部分亮点"></a>部分亮点</h3><p>首先是继承VDN的思路，同时完成两个噪声相关任务。</p>
-<p>其次是在概率框架下从两种联合分布分解形式的角度设计了DANet。</p>
-<p>再者是设计了两种噪声生成质量的度量，比较了真实带噪图和生成带噪图的相似性：</p>
-<ul>
-<li><p><strong>PGap </strong>(PSNR Gap)：借用降噪指标PSNR设计。已知训练集$\mathcal{D}$和测试集$\mathcal{T}$，分别是一堆成对干净图和带噪图，用准备好的噪声生成器$G$，对训练集进行加噪，得到生成的新训练集$\mathcal{D}_G$，准备原始训练数据上训练得到的降噪器$R_1$和在新训练集$\mathcal{D}_G$上得到的降噪器$R_2$，分别计算测试集上的PSNR，其差值小，代表噪声生成得越好，越接近真是噪声分布。</p>
-<script type="math/tex; mode=display">PGap = PSNR(R_1(\mathcal{T})) - PSNR(R_2(\mathcal{T}))</script></li>
-<li><p><strong>AKLD</strong> (Average KL Divergence)：这个比较直接，希望生成噪声的分布与其真实分布接近。真实的分布用了VDN的结论，然后采样；这里的分布是由生成器$G$对应的新分布，都通过采样近似。</p>
-</li>
-</ul>
-<h2 id="DANet-V-S-VDN"><a href="#DANet-V-S-VDN" class="headerlink" title="DANet V.S. VDN"></a>DANet V.S. VDN</h2><p>与VDN的区别？难道是VDN传统贝叶斯框架条件后验，这个直接联合分布？主要区别好像是的耶~</p>
-<blockquote>
-<p> 参考摘要</p>
-<p>Instead of only inferring the posteriori distribution of the latent clean image conditioned on the observed noisy image in traditional MAP framework, our proposed method learns the joint distribution of the clean-noisy image pairs.</p>
-</blockquote>
-<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>[1] BAAIBeijing. 计算机视觉顶会ECCV 2020中国预会议：日程公开，注册有奖[EB/OL]. <a href="https://blog.csdn.net/BAAIBeijing/article/details/107588080" target="_blank" rel="noopener">https://blog.csdn.net/BAAIBeijing/article/details/107588080</a>, 2020-07-25.</p>
-<p>[2] 智源社区. 智源社区活动[EB/OL]. <a href="https://event.baai.ac.cn/event/53#section-four" target="_blank" rel="noopener">https://event.baai.ac.cn/event/53#section-four</a>, 2020.</p>
-<p>[3] Zongsheng Yue, Qian Zhao, Lei Zhang, and Deyu Meng. Dual adversarial network: Toward real-world noise removal and noise generation, 2020.</p>
-<p>[4] Yue, Zongsheng, et al. Variational denoising network: Toward blind noise modeling and removal, <em>Advances in neural information processing systems</em>, 2019.</p>
-]]></content>
+    <title>【论文阅读14】MFM——针对重尾分布的元特征调节器</title>
+    <url>/2020/07/23/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB14%E3%80%91MFM%E2%80%94%E2%80%94%E9%92%88%E5%AF%B9%E9%87%8D%E5%B0%BE%E5%88%86%E5%B8%83%E7%9A%84%E5%85%83%E7%89%B9%E5%BE%81%E8%B0%83%E8%8A%82%E5%99%A8/</url>
+    <content><![CDATA[<div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <div class="hbe-input-container">
+  <input type="password" id="hbePass" placeholder="" />
+    <label for="hbePass">Please input password to continue...</label>
+    <div class="bottom-line"></div>
+  </div>
+  <script id="hbeData" type="hbeData" data-hmacdigest="2d7b5b9cef4a173e9dc29c2fda836be7d45b8bd304f6cfd43c1d5b58bebd2d0c">7645007b0ae4653d225684ee43c95f334c978794f82bdcca8d52f986bd4c355fed40e753ace8787e6c67dd1fd3dbbd9edc572f0c82a6927f45447cf800b766400474b2eb5a376951984ff126e88b0636e90130d65083178a7160cb32c8b767417646e2c53adf561b9cced359b74d3620c217299ed7d9f8fbea06a1cb7714f0f9dd187e234e1c646786d4157115e9ee765cb1ae44a581093d7dcbcbc9a5af74a563463ab7622990d035bd681a25d6cac947dbd3b9982aad27544986761100819ee228926ff1bde14367c63dfede32fbd12e7e09ddaedd1b248854c9c42595f40675e409d033a444ed31909b79242b16953cea448ca6262ff5d930bfaf10e9814d0f1708aaea427a634f22f1f691da6b6454877d659b16d34445d9b93e6b2f63e5a56a9069ac2ab449becfbf64dcdecd573ea98909a078d2e49be04eaaba1a55ef489e758d10a3898215caef56ea0b4edc664e864abaedb8bad9ae537f4619429f3c4022e1744d5dbc32bb6ceadb20817bd0f0ad1188b71c41caca8ce3ec380b970c5852bb8bfa5e3ee72cf7ba062c450b4f1f5cbeab53e748b45de7cb29fc03c69c120c5aa379dd28f9253056cc06c15fc6d6045cade43f5dea14e6f686b6d8a942589c656e364caaa87ab1d85543c8841062f7850fdc93df89ea5cbeb7b69d67b838a555f64ae9d1b17ac3fde8885602e474cda303d5bef98ec0f71fd86794a4b235373deecdc87997a93fb6042f4671ea78c210a3d1da407c11b8fc8bd6c66964f45bad597826305add5248b3927b0646e40ae8c8866d05ca1696165e3bc18cac90e10de4283ab2994ce3ccb692988452f5f53d8d1d6c6b8956f323ec5051dc2f3015dad773a87ccade3c017fc22320076c8368a366ea6bffa4c7e20367aa475ecacc10b1107e57a4bd52916e45137923b444593469b94eb26868a94e71f8697b551d634ab1949eb604720f3f0fbb36f48b6e27eebb61e79ead54d9b0d2821b806effeca386e0698eadc04ed32c008a88e0645c4f9c0ca242a0cc70f906b3cbd3f81056319b4e24f1b5bcfd8bc71a161c7a345bc564962f74ed404ab2b7439ab33a6b8b3531fa75d53ce6efc9dee56fb871552bc69742479166cc213d98cff6058b3344be4a33dcbce76c34e1634ae7bf8823fe28261de3464dbd6654da44eea673a4e3384714deba1c575f0221863127ff0bd593f997cb37d97e524c26fe6aefcf61d2e932c86a83e10e4c8f7de6c349997caa35af96bb8c65fd8c8d1c37aff149b4319860a207c88719880c10b8d974c919a239789bbfef11ea25c485f4504ba51bd2934af4a96b202652cf755a5424dca9a86d9d3c4e22d037b8c07463d9aa8500d9c1e4b5628823c5221b8614b62564548b7692102ee206aae764013fe5e02bff77d40ca1562b1f3c16cf25698f9d21a6a055b0f47b613db3b94eb8cc1ccf335db02b8aad919a92afe11cdcfab98045589e9b282e4c657b6ae08f4b1c8ef3199f6aecf839c6a25f26effed0a3cb4273332538a6797463e91062d2ff05d79614a667c4727faa1862cf53abfc9810e21c0dfb316f7fe1dcc439cd0eba92706299f285cd3601767cd7828581ce6cdf375a60f872240d1ce57f767a4a69bade7af4d9ef4eabdde8f061ee1928c3545f1abcae417cc9dd42411b6172bccf35a6da003921d65ab1c37294f8e17f17f16b91d97676f31be6ae5f97883d78ec8d560926ba27bdcb4baf4e5aabf8e68c789d2616da1eba7a7a79de79899af9ba4267628f329748ab3165da9062917da8e2d93c01aab3c27f86741af3644891e4b46c60f7d2e9674dbcdb6112ff178fd51dd9a5bb1d96333700931dc958d74a5e074aadc6a5a4b45b1949ef5878fe5a2d56b16da0b5e14d125fb7baf233fb13fba9272b8a200b1cddd0becfbf97a24922c584996cecbb3cb8f245730a0b9d926a931b33bd73a2354d9feaa9010769472a111ddf8dbe57f68f983cf8f7a5df4463eab164f1d8e28832c79da71ff54e643f63e6d944c0089ab0d2e0ef8159b15bea716249a4e6cc2b3bbbb196d4a28ca8ad8d05de1100844400c673774d5f86a0e29fa08301829164939e4e9a6cc8f1599049f4b0e3c26f5e05cc2566d2cbf0f17fb92aacaab1d3099d9ce2c9147ae4659df6735aa29112e18ccceb70b248d5004d9c1dd074b40e13c438f029320f2f805153d8211d6798846bdfa852b392e7b091fc7cb9827ab8669ca99c00ee33b55720f71aa26f941bb11d5d665f0ebc0ffc6a5019f69d737015ab70db829529ac223d31868b8271af39453dbecc3ebf6c5b317eec31dca05a2ecf7f6717746ac61f56a4da8e5a1c2c2f9a2f67bcfcd5b3be501c1e87b29bfb62ac997430cb724842a3060fd840fca2de26e394747c1c08ecd9fd2ff7012154db13b34735b776bc62566460e9461c8bd14f5a438d9d0fc4d3353f1ad0c3222329ff87b618909c53b09800704564d1f9f3fbdab325b95323ed94e8d8b99afc7f8f0dc6e1151e1a97853c105d69663414c71bd78bbed44527e8e0e913d9b7af5b82cb4e311059d969a2f59a02c41a4982299a97889926f24406fba5b137f9c9174093825ddee36737121a024d1297262557c0b634105a6996eb51c9443b9877f0e80edaa2f9c0bb2fe52c09bcbc10ee81a09fce7e7dd2fe34aa7602c15805e5076ece8aa8764b28eb9b94fda5e52c053d218fb28a35004759da819fdb55e0fc252e2afddbdf64ef76de039225f602263ba269db1afe44534c63fff8e93eb6efcc1d72f66ce9385530cfeb148f6373ad073ebfc42c958d2b1c4719466d576608cf61b6a5089f0f3d3c93c044235a6a322287e0d55845c6274bf3de1a753abdc08fda197c4d04255cccd50e21667f3a1640d1b832c376cfcf8b7766e2d6a4b1ecfcabe6883341bb8b7b4387ea38757375841312cbb65aa3f3084b0edde84c557719e893e500d2196bac5b65feafc1a7f2bdac1e5a3b1436cdd5f6153d5befa14c7f808f630942023f24faaec9b1c4195e44aff1d8b418ce222a6d726b26a55d373beb07cf17dbaea1dfccb87d33c10c3fcb27c2e3fd0e00e0b27d688d97d2f12b91609f68ce2f1a3d4d2dada28f5cf374dcf04b6ecb0ff2d76cbfbe8becd2a1a2a0667290fa412098ae3c8434236a30b2ad75d7b9a9871055e3bc0131c13a76cffd515064ec39dde4b2f2fc4fdd5ccaebe7a020fa574d8964b878d5beb4aedc1907e35f45e260ac879ba181e51cc41b5e75b5efe283eaa69e51af98e2cfeb18c39163def6da56b15e4e145d707a07d46d2d6d77781356a30d8ec6d1f6686250cbd5051ae208566f73ebfd70ba982479c8e7f5438ba25d3eb5b76862d22d148c77430112eb9619b376182a67424438a695c285e4f71278bfb66718eccda2bb31c03dd121817c605b1a52f59b03e6ba3e821919a0fbe86c18c42b139b7ad121c18142add8f7ed9b5226e7e6b09c893f6d4ccae227d28962939b34baf8aeb0509f19748461f0b9ea0b1b68c5b12f7ca4cbc2bf93c2f322abf7eabd58041edf76ee9adaf483e83bc1261f76b854fba3cd57be8c1eb278a47261e4decaba1ef3f94f0989dfb0fa6fe8a375097a9cbad6bcea9098ae38a1516c3235ee977380d4b00c3ac06b5b18f285b23931bc567cdad25ff20af35a614324567678505cf649ee1e56a499f36d5e90f05051a96b2bc511ad9f113cc48ba5506771faa98c0597ddeb6aefb6cb7f4485b8970053b5878fc887a0d6b3c933c9e441071017b09bad1ba1acb1cf4a989f58614fd692ac61a10d99ebe50bfd117f3554bb3c5fded722f1e94fccba381ccd219e3114ff985cc0665418fdabcee7e151163320742ffd988f0d03a94cb8ca501fff636aefd6654ad0b7f81d08544fb60f333aeb59ac736fe0f3d3e3c028a36ec8b6e99d40055fea0afdd1cebc179c7d6bed25f2ba94c35323f776bf762bb02a83af2692570f85821b7e2a9e43dab71e2293ab77f53f2cefd1295a90cd62b02e805deb7450b7d7bcc9d4a4cebea11c3e272d3523e8267851b5e8217f165f474d29d2d35c11875bd13e146b594a2442718578e56d091e01b7a2df98882a75cf0b9bdb181c35cfee9f92bff96cf52c03542c43ec2e7fe071230acb1c17fb7c1c0383ec43db6e3c6f52f80b4e8938120bbd90d106e5c2dd69365ff0a6b144fe56b30dcfda326fd75cc259109bdb82b1aeb647fc9fc8f385d3557adfbd5b6934b105736d0cd61afb5f9e4f2b069c529c3541828ed918fca5219d9ea684ed5082e14315cfac6083125e5100e2b3761c52f067e97bfa6e4f6fca32a60b499c286abf9d795b969838b7c019333b95ecf8a390a4223a5612aeeda74fab41bb0987cb1888d558325800d565848365e63d3f906477a74173dbba45eecef09e1a0b28301c4b82f539ef5f2f8fc82e87a16b03eebd9d58470f632ed59a76385c92a617ce9d152ff65a1d0e176ab09e1b79d6a242568790bfb393ebd1587e7761de2148a9e025e7ca92d3f2f872d6a50117899cf54b3c56f6565948683642773413f1593ff3c0c268b044d75ff372</script>
+</div>
+<script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
       <tags>
         <tag>Paper Reading</tag>
-        <tag>Denoising</tag>
-        <tag>Machine Learning</tag>
-        <tag>Computer Vision</tag>
+        <tag>Meta Learner</tag>
       </tags>
   </entry>
   <entry>
@@ -2437,6 +2386,184 @@
         <tag>Paper Reading</tag>
         <tag>Machine Learning</tag>
         <tag>Abnormality Detection</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【论文阅读17】ODE-Net——从离散化的ResNet到连续化ODE的模拟</title>
+    <url>/2020/08/21/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB17%E3%80%91ODE-Net%E2%80%94%E2%80%94%E4%BB%8E%E7%A6%BB%E6%95%A3%E5%8C%96%E7%9A%84ResNet%E5%88%B0%E8%BF%9E%E7%BB%AD%E5%8C%96ODE%E7%9A%84%E6%A8%A1%E6%8B%9F/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>读不懂PDE-Net，所以想先操作下ODE-Net</p>
+<p>结果是瞎读文章真心难读也读不明白😭😭😭</p>
+</blockquote>
+<a id="more"></a>
+<img src="/2020/08/21/【论文阅读17】ODE-Net——从离散化的ResNet到连续化ODE的模拟/ODE-Net.png" title="ODE-Net">
+<h1 id="为什么读"><a href="#为什么读" class="headerlink" title="为什么读"></a>为什么读</h1><ul>
+<li>在阅读PDE-Net的时候被卡了，读得比较不明白，在搜资料的时候发现了知乎上ODE-Net的<a href="https://www.zhihu.com/question/313064079" target="_blank" rel="noopener">讨论</a>，好介绍哇，觉得现在先看ODE-Net是个不错的选择</li>
+<li>搜资料的时候才发现这是NIP2018最佳论文</li>
+</ul>
+<p>文献链接：<a href="https://arxiv.org/abs/1806.07366" target="_blank" rel="noopener">Neural Ordinary Differential Equations</a>，原作者提交于2018/01，最后修改于2019/12，可见打磨的功夫还是下了不少的。</p>
+<h1 id="文献总结"><a href="#文献总结" class="headerlink" title="文献总结"></a>文献总结</h1><p>将ODE与神经网络结合，用神经网络来模拟ODE的动态性质。</p>
+<p>思想很简单，联想神经网络的隐层嵌套性，联系ResNet的残差（差分）形式并推广，就得到了利用ResNet模拟ODE的思想。细节就麻烦多了看不动看不动…</p>
+<h1 id="文献内容"><a href="#文献内容" class="headerlink" title="文献内容"></a>文献内容</h1><h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>将ODE与神经网络结合，用神经网络来模拟ODE的动态性质，和总结一致。</p>
+<p>另外如果能有办法用网络模拟ODE系统，那一定是应用超级友好的！</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>好像没啥背景，我理解的背景就是这个思想的来源，就够了。文章里的related work我暂时不感兴趣。</p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>这要从ODE与神经网络的一个共性讲起：</p>
+<p>神经网络的嵌套隐层结构可以表示为$h<em>{t+1} = f(h_t, \theta_t)$，每一层都由前一层前向传播得到，现在用ResNet的结构则有意思起来了：$h</em>{t+1} = h_t + f(h_t, \theta_t)$，这种残差的形式与ODE的差分形式很“相似”：</p>
+<script type="math/tex; mode=display">\Delta h(t) = h_{t+1} - h_t = f(h(t), t, \theta) \approx \dfrac{dh(t)}{dt}</script><p>这样ResNet的每一层$f$都相当于当前时刻$t$的一个差分，如果这个$t$不再离散，而是连续化，那么就可以近似为导数，残差神经网络也可以近似为ODE了。当然<strong>前提</strong>是（1）连续化可行；（2）连续化后能保持ODE的基本衍化性质；（3）不知道能不能证明其它性质诸如求解等等。</p>
+<p>那么现在基本的模型其实已经构思好了，下面是实现的技术细节。要使得ResNet成为ODE的近似，首先要考虑可训练的性质，其监督信息由已知的ODEsolver求解，这些solver目前一般都是精度可控的，网络本身作为一个黑箱ODEsolver来训练；前向传播应该比较容易，关键是反向传播会比较麻烦，因为损失的回传需要对参数求导，这些势必要涉及大量参数，会引起高昂的计算代价。</p>
+<p>那么该文怎么进行反向传播的呢，直接算？不是，它绕过去了。</p>
+<p>先看看损失函数，直接定义为：</p>
+<script type="math/tex; mode=display">L(z(t_1)) \approx L\left(z(t_0) + \int_{t_0}^{t_1} f(z(t), t, \theta)dt \right) = L(ODESolve(z(t_0), f, t_0, t_1, \theta))</script><p>其中把ODE最后的target函数记为$z(t)$，ODE初值记为$z(t_0)$，待预测的时刻$t_1$时的值为$z(t_1)$。左边相当于监督信息，用标准的值，右边两个式子都用黑箱网络来近似就可以了。</p>
+<p>由于现在考虑把ResNet变成连续化的模型，因此此时不好用差分的形式，而要采用积分的形式，所以现在预测值是和时刻$t_0$和$t_1$中每个值都要有关系，这提示我们采用链式法则寻找这些值之间的关系。当然这些值太多乃至无穷，我们也只能尽可能多地进行离散近似，其实就是网络的深度（层数），有几层，就意味着我们考虑了时刻$t_0$和$t_1$之间几个中间状态。</p>
+<p>这种近似考虑的方式称为<strong>adjoint sensitivity method</strong>（1962老文章🐂🍺+🐂🐸！），如下的原文图2所示，这里为了表示方便，记号与上文不同，图中的$z(t_N)$相当于上文的$z(t_1)$，意思大家一定能明白，就是多考虑上文中的中间时刻状态。</p>
+<img src="/2020/08/21/【论文阅读17】ODE-Net——从离散化的ResNet到连续化ODE的模拟/ODE-Net2.png" title="Adjoint Sensitivity Method">
+<p>感觉是这样推导的，我们想要的目标是损失$L$对网络参数$\theta$的导数：</p>
+<script type="math/tex; mode=display">\dfrac{dL}{d\theta} = \dfrac{dL}{dz(t_i)}\dfrac{dz(t_i)}{d\theta} = \dfrac{dL}{dz(t_i)}\dfrac{df(z(t_i), t_i, \theta)}{d\theta} \triangleq a(t_i)\dfrac{df(z(t_i), t_i, \theta)}{d\theta}</script><p>其中第一个等号用链式法则和爱因斯坦求和约定表示；第二个等号是因为$z(t<em>i) \approx z(t_0) + \int</em>{t_0}^{t_i} f(z(t), t, \theta)dt$，然后直接求导就得了，其中积分从哪里开始都可以，不一定要$t_0$；第三个等号搞了新定义，把$a(t)$叫做伴随adjoint，它怎么求呢，文章给了$\dfrac{da(t)}{dt} = -a(t)^T\dfrac{\partial f(z(t), t, \theta)}{\partial z}$，但我没看懂，我猜是1962那篇文章的结论。</p>
+<p>上面分析了主要的思路，应该还可以了，下面开始水😂，日常写烂尾文章/(ㄒoㄒ)/~~</p>
+<p>上面的推导就是原文的(5)式，具体计算不是直接BP，因为考虑连续性，和中间状态都有关系了，中间层现在是可以很多的，BP压力很大。现在直接看完整版的算法2，直接想办法计一个积分算梯度（参考了机器之心的文章加深理解），不过很可惜我<strong>没太看明白</strong>具体计算的过程，可能是直接自动求导，只是不再一层一层计算梯度了？这样真的能减少计算量么？</p>
+<p>后面的流模型和生成式模型没有看了，留着看苏剑林的博客吧，感觉和那个关系比较大。</p>
+<h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><p>我理解的优点：</p>
+<ul>
+<li>应用必定是真正有用的应用，且范围很广，涉及ODE的领域实在是太多啦</li>
+<li>思路很棒！从ResNet的差分形式过渡到ODE的模拟，我很喜欢</li>
+<li>文章提到的内存占用小的优点，不过有人杠这一点，我目前没看明白算法2，只好持保留态度了</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>有人杠他们的代码和文章不一致（知乎），我先吃瓜瓜</li>
+<li>算法写的有一点不明白，起码我看了几遍没明白具体是怎么算法（不考虑伪代码）</li>
+<li>原作者之一自己提的缺点，见参考资料<a href="https://www.sohu.com/a/405309910_129720" target="_blank" rel="noopener">「神经常微分方程」提出者之一David Duvenaud：如何利用深度微分方程模型处理连续时间动态</a></li>
+</ul>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>看不动，和参考资料里的是一样的啊，而且有评论说作者放出来的代码和文章不一致，那么轻松复现是不存在的了…</p>
+<p>扫了一眼，文章的实验主要是模拟了一些不那么复杂，但也不是很简单的ODE系统。</p>
+<h1 id="补充资料——参考链接阅读"><a href="#补充资料——参考链接阅读" class="headerlink" title="补充资料——参考链接阅读"></a>补充资料——参考链接阅读</h1><p>在略读了文章第一遍之后有些疑惑，因此搜了一些相关的网页看一看，觉得其中大部分讲的都不错，因此记录于此。</p>
+<ul>
+<li>看了一遍作者<a href="https://www.jiqizhixin.com/users/b0254ca0-165f-4fd3-a041-232d39a848d2" target="_blank" rel="noopener">思源</a>发布在机器之心的文章<a href="https://www.jiqizhixin.com/articles/122302" target="_blank" rel="noopener">硬核NeruIPS 2018最佳论文，一个神经了的常微分方程</a>，前面的解释比较足，有了大致的了解，还有不少细节是不太明白的</li>
+<li>看了知乎上的<a href="https://www.zhihu.com/question/306937011/answer/561576636" target="_blank" rel="noopener">如何评价ODENet？</a>，反对的意见要注意，我看文章的时候觉得它说避免了存储中间计算的值，减少内存使用，而算法中反向计算的时候其实还要算一遍，这个说法很奇怪。目前我感觉确实是代码中，这部分计算没有交给网络，而是交给scipy了。</li>
+<li>看了机器之心在搜狐上的文章<a href="https://www.sohu.com/a/405309910_129720" target="_blank" rel="noopener">「神经常微分方程」提出者之一David Duvenaud：如何利用深度微分方程模型处理连续时间动态</a>，了解了一些该团队最新进展，包括可逆残差网络、设计廉价的可微算子计算梯度、随机微分方程的应用；并看到了有趣的“内幕”哈哈，担心侵权问题就不放原文了，大概意思是他们这篇文章动机很现实，而且有一些数学上比较严肃的问题：</li>
+<li><a href="https://www.toutiao.com/a6703302712311677452/" target="_blank" rel="noopener">一个深度学习突破的方向：神经常微分方程ODE</a>这个文章<strong>内容很多</strong>啊，有不少自己尝试的实验，只简单介绍了ODE-Net的思想，然后自己做了不少拟合的实验，最后给了自己的结论太棒了！它的结论是目前该方法只在小任务上表现良好，实际应用或者稍复杂的例子就会gg😀</li>
+<li>本来想读<a href="https://blog.csdn.net/hanss2/article/details/81301343" target="_blank" rel="noopener">【随感】ODE的欧拉解法实际上就是RNN的一个特例</a>这篇文章，结果发现是转载苏剑林的博客<a href="https://kexue.fm/archives/5643" target="_blank" rel="noopener">貌离神合的RNN与ODE：花式RNN简介</a>，除了开头的时候提了一小句来源，其它是一模一样的，不过我发现这个作者其它内容写得很有趣，很有想法啊👍。<strong>这个RNN的很有意思，有空要读一读在这里做个笔记</strong>。</li>
+</ul>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>[1] Tian Qi Chen, Yulia Rubanova, Jesse Bettencourt and David Duvenaud. Neural Ordinary Differential Equations[EB/OL]. <a href="https://arxiv.org/abs/1806.07366" target="_blank" rel="noopener">https://arxiv.org/abs/1806.07366</a>, 2018.</p>
+<p>[2] 思源.硬核NeruIPS 2018最佳论文，一个神经了的常微分方程[EB/OL]. <a href="https://www.jiqizhixin.com/articles/122302" target="_blank" rel="noopener">https://www.jiqizhixin.com/articles/122302</a>, 2018/12/23.</p>
+<p>[3] 匿名用户. 如何评价ODENet？[EB/OL]. <a href="https://www.zhihu.com/question/306937011/answer/561576636" target="_blank" rel="noopener">https://www.zhihu.com/question/306937011/answer/561576636</a>, 2018-12-30.</p>
+<p>[4] 机器之心Pro. 「神经常微分方程」提出者之一David Duvenaud：如何利用深度微分方程模型处理连续时间动态[EB/OL]. <a href="https://www.sohu.com/a/405309910_129720" target="_blank" rel="noopener">https://www.sohu.com/a/405309910_129720</a>, 2020-07-02.</p>
+<p>[5] AI火箭营. 一个深度学习突破的方向：神经常微分方程ODE[EB/OL]. <a href="https://www.toutiao.com/a6703302712311677452/" target="_blank" rel="noopener">https://www.toutiao.com/a6703302712311677452/</a>, 2019-06-17.</p>
+<p>[6] 苏剑林. (2018, Jun 23). 《貌离神合的RNN与ODE：花式RNN简介 》[Blog post]. Retrieved from <a href="https://kexue.fm/archives/5643" target="_blank" rel="noopener">https://kexue.fm/archives/5643</a></p>
+<p>最后一条按照原文提供的参考文献格式了~</p>
+]]></content>
+      <tags>
+        <tag>Paper Reading</tag>
+        <tag>Machine Learning</tag>
+        <tag>PDE</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>多元高斯分布之间的KL散度</title>
+    <url>/2020/06/14/%E5%A4%9A%E5%85%83%E9%AB%98%E6%96%AF%E5%88%86%E5%B8%83%E4%B9%8B%E9%97%B4%E7%9A%84KL%E6%95%A3%E5%BA%A6/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>推导一下两个多元高斯分布之间的KL散度公式</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="完整推导过程"><a href="#完整推导过程" class="headerlink" title="完整推导过程"></a>完整推导过程</h3><p>哎，其实我是傻乎乎地想推导两个多元高斯分布之间的$\beta$和$\gamma$散度，后来发现不可行。在这个过程中顺手推导了一般的KL散度，谨记过程如下。</p>
+<p>假定两个多元高斯分布分别为$\mathcal{N}(\mu_1, \Sigma_1)$和$\mathcal{N}(\mu_2, \Sigma_2)$，其概率分布分别表示为$p(x)$和$q(x)$。其中$\mu_1$和$\mu_2$为长度$n$的向量，$\Sigma_1$和$\Sigma_2$为维度$n\times n$的协方差阵。那么$p(x)$和$q(x)$之间的差异可以用KL散度表示，定义为：</p>
+<script type="math/tex; mode=display">\displaystyle D_{KL}(p(x)||q(x)) = \int p(x)\log \dfrac{p(x)}{q(x)}dx.\tag{1}</script><p>$(1)$式的完整计算过程如下：</p>
+<script type="math/tex; mode=display">\begin{align} \displaystyle D_{KL}(p(x)||q(x)) &= \int p(x)\log \dfrac{p(x)}{q(x)}dx\\ &= \int p(x)\log \dfrac{\dfrac{1}{(2\pi)^{\frac{n}{2}}|\Sigma_1|^{\frac{1}{2}}}e^{-\frac{1}{2}(x-\mu_1)^T\Sigma_1^{-1}(x-\mu_1)}}{\dfrac{1}{(2\pi)^{\frac{n}{2}}|\Sigma_2|^{\frac{1}{2}}}e^{-\frac{1}{2}(x-\mu_2)^T\Sigma_2^{-1}(x-\mu_2)}}dx \tag{2}\\ &= \int p(x)\log \dfrac{|\Sigma_2|^{\frac{1}{2}}}{|\Sigma_1|^{\frac{1}{2}}} e^{-\frac{1}{2}(x-\mu_1)^T\Sigma_1^{-1}(x-\mu_1) + \frac{1}{2}(x-\mu_2)^T\Sigma_2^{-1}(x-\mu_2)}dx \tag{3} \\&= \dfrac{1}{2}\int p(x)\log \dfrac{|\Sigma_2|}{|\Sigma_1|}dx + \dfrac{1}{2}\int p(x)\left[ -(x-\mu_1)^T\Sigma_1^{-1}(x-\mu_1) + (x-\mu_2)^T\Sigma_2^{-1}(x-\mu_2)\right]dx \tag{4} \\ &= \dfrac{1}{2}\log \dfrac{|\Sigma_2|}{|\Sigma_1|} + \dfrac{1}{2}\int p(x)\left[ -tr\left(\Sigma_1^{-1}(x-\mu_1)(x-\mu_1)^T\right) + tr\left(\Sigma_2^{-1}(x-\mu_2)(x-\mu_2)^T\right)\right]dx \tag{5} \\ &= \dfrac{1}{2}\log \dfrac{|\Sigma_2|}{|\Sigma_1|} - \dfrac{1}{2}tr\left[\int p(x)\left[\Sigma_1^{-1}(x-\mu_1)(x-\mu_1)^T\right]dx\right] + \dfrac{1}{2}tr\left[\int p(x)\left[\Sigma_2^{-1}(x-\mu_2)(x-\mu_2)^T\right]dx\right] \tag{6}\\ &= \dfrac{1}{2}\log \dfrac{|\Sigma_2|}{|\Sigma_1|} - \dfrac{1}{2}tr\left(\Sigma_1^{-1}\int p(x)(x-\mu_1)(x-\mu_1)^T dx\right) + \dfrac{1}{2}tr\left(\Sigma_2^{-1}\int p(x)(x-\mu_2)(x-\mu_2)^T dx\right) \tag{7} \\ &= \dfrac{1}{2}\log \dfrac{|\Sigma_2|}{|\Sigma_1|} - \dfrac{1}{2}tr\left(\Sigma_1^{-1}\mathbb{E}_p\left(xx^T -x\mu_1^T - \mu_1 x^T + \mu_1\mu_1^T\right)\right) + \dfrac{1}{2}tr\left(\Sigma_2^{-1}\mathbb{E}_p\left(xx^T -x\mu_2^T - \mu_2 x^T + \mu_2\mu_2^T\right)\right) \tag{8} \\ &=  \dfrac{1}{2}\log \dfrac{|\Sigma_2|}{|\Sigma_1|} - \dfrac{1}{2}tr\left(\Sigma_1^{-1}\Sigma_1\right) + \dfrac{1}{2}tr\left(\Sigma_2^{-1}\left(\Sigma_1 - \mu_1\mu_2^T - \mu_2 \mu_1^T + \mu_2\mu_2^T\right)\right) \tag{9} \end{align}</script><p>Emmm，式子太长，编辑器渲染都卡爆了，所以接着上面再推导：</p>
+<script type="math/tex; mode=display">\begin{align} \displaystyle D_{KL}(p(x)||q(x)) &= \dfrac{1}{2}\log \dfrac{|\Sigma_2|}{|\Sigma_1|} - \dfrac{1}{2}tr\left(I\right) + \dfrac{1}{2}tr\left(\Sigma_2^{-1}\Sigma_1\right) + \dfrac{1}{2}tr\left[\Sigma_2^{-1}\left(\mu_1\mu_1^T -\mu_1\mu_2^T - \mu_2 \mu_1^T + \mu_2\mu_2^T\right)\right] \tag{10} \\ &= \dfrac{1}{2}\left[ \log \dfrac{|\Sigma_2|}{|\Sigma_1|} - n + tr\left(\Sigma_2^{-1}\Sigma_1\right) + tr\left[\Sigma_2^{-1}\left(\mu_1\mu_1^T -\mu_1\mu_2^T - \mu_2 \mu_1^T + \mu_2\mu_2^T\right)\right]\right] \tag{11}\\ &= \dfrac{1}{2}\left[ \log \dfrac{|\Sigma_2|}{|\Sigma_1|} - n + tr\left(\Sigma_2^{-1}\Sigma_1\right) + tr\left(\mu_1^T\Sigma_2^{-1}\mu_1^T\right) - tr\left(\mu_1^T\Sigma_2^{-1}\mu_2^T\right) - tr\left(\mu_2^T\Sigma_2^{-1}\mu_1^T\right)+ tr\left(\mu_2^T\Sigma_2^{-1}\mu_2^T\right)\right] \tag{12} \\ &= \dfrac{1}{2}\left[ \log \dfrac{|\Sigma_2|}{|\Sigma_1|} - n + tr\left(\Sigma_2^{-1}\Sigma_1\right) + tr\left(\mu_1^T\Sigma_2^{-1}\mu_1^T - 2\mu_1^T\Sigma_2^{-1}\mu_2^T + \mu_2^T\Sigma_2^{-1}\mu_2^T\right)\right] \tag{13} \\ &= \dfrac{1}{2}\left[ \log \dfrac{|\Sigma_2|}{|\Sigma_1|} - n + tr\left(\Sigma_2^{-1}\Sigma_1\right) + tr\left[\left(\mu_2-\mu_1\right)^T\Sigma_2^{-1}\left(\mu_2-\mu_1\right)\right]\right] \tag{14} \\ &= \dfrac{1}{2}\left[ \log \dfrac{|\Sigma_2|}{|\Sigma_1|} - n + tr\left(\Sigma_2^{-1}\Sigma_1\right) + \left(\mu_2-\mu_1\right)^T\Sigma_2^{-1}\left(\mu_2-\mu_1\right)\right]. \tag{15}\end{align}</script><h3 id="部分推导细节"><a href="#部分推导细节" class="headerlink" title="部分推导细节"></a>部分推导细节</h3><p>在上述推导中有几步需要额外注意，我自己已经在纸上推导好了，这里简要提示一下（具体参见参考文献）：</p>
+<ul>
+<li>$(4)$式到$(5)$式：利用标量$\Leftrightarrow$标量的迹和迹的交换性；</li>
+<li>$(5)$式到$(6)$式：举个例子展开写就明白了；</li>
+<li>$(8)$式到$(9)$式：其实是$(7)$式到$(9)$式，注意对谁求期望和协方差的定义；</li>
+<li>$(14)$式到$(15)$式：标量$\Leftrightarrow$标量的迹。</li>
+</ul>
+<h3 id="PyTorch官方函数的写法"><a href="#PyTorch官方函数的写法" class="headerlink" title="PyTorch官方函数的写法"></a><code>PyTorch</code>官方函数的写法</h3><p>最后$(15)$式中的结果与<code>PyTorch</code>中多元高斯分布KL散度的表达是一致的，<code>half_term1</code>就是$\dfrac{1}{2}\log \dfrac{|\Sigma_2|}{|\Sigma_1|}$，<code>term2</code>就是$tr\left(\Sigma_2^{-1}\Sigma_1\right)$，<code>term3</code>就是$\left(\mu_2-\mu_1\right)^T\Sigma_2^{-1}\left(\mu_2-\mu_1\right)$：</p>
+<img src="/2020/06/14/多元高斯分布之间的KL散度/KL.png" title="PyTorch中多元高斯分布KL散度函数">
+<h3 id="beta-散度的想法"><a href="#beta-散度的想法" class="headerlink" title="$\beta$散度的想法"></a>$\beta$散度的想法</h3><p>其实本来是想计算$\beta$和$\gamma$散度的类似表达的…只是我真的算不出来…估计只能近似了。列个$\beta$散度的定义，有待研究。</p>
+<script type="math/tex; mode=display">\displaystyle D_{\beta}(p(x)||q(x)) = \dfrac{1}{\beta}\int p(x)^{1+\beta}dx - \dfrac{\beta + 1}{\beta}\int p(x)q(x)^{beta}dx + \int q(x)^{1+\beta}dx. \tag{16}</script><h3 id="参考链接列表"><a href="#参考链接列表" class="headerlink" title="参考链接列表"></a>参考链接列表</h3><ul>
+<li><a href="https://github.com/pytorch/pytorch/blob/master/torch/distributions/kl.py" target="_blank" rel="noopener">https://github.com/pytorch/pytorch/blob/master/torch/distributions/kl.py</a></li>
+<li><a href="https://blog.csdn.net/sinat_33598258/article/details/103866549" target="_blank" rel="noopener">https://blog.csdn.net/sinat_33598258/article/details/103866549</a></li>
+<li><a href="https://arxiv.org/pdf/1905.09961.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1905.09961.pdf</a></li>
+<li><a href="https://zhuanlan.zhihu.com/p/143124676" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/143124676</a></li>
+<li><a href="https://stats.stackexchange.com/questions/7440/kl-divergence-between-two-univariate-gaussians" target="_blank" rel="noopener">https://stats.stackexchange.com/questions/7440/kl-divergence-between-two-univariate-gaussians</a></li>
+</ul>
+]]></content>
+      <tags>
+        <tag>KL Divergence</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>膨胀与腐蚀法——数学形态学算子</title>
+    <url>/2019/07/03/%E8%86%A8%E8%83%80%E4%B8%8E%E8%85%90%E8%9A%80%E6%B3%95%E2%80%94%E2%80%94%E6%95%B0%E5%AD%A6%E5%BD%A2%E6%80%81%E5%AD%A6%E7%AE%97%E5%AD%90/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p> Dilation and erosion intro </p>
+</blockquote>
+<a id="more"></a>
+<h1 id="膨胀与腐蚀法——数学形态学算子"><a href="#膨胀与腐蚀法——数学形态学算子" class="headerlink" title="膨胀与腐蚀法——数学形态学算子"></a>膨胀与腐蚀法——数学形态学算子</h1><blockquote>
+<p>Note at the beginning:</p>
+<ul>
+<li>为什么学习这个方法：这个方法是基于2019 Summer Session的学习所需</li>
+<li>资源来自何处：谷歌搜索到的资源<a href="http://www.cs.uu.nl/docs/vakken/ibv/reader/chapter6.pdf" target="_blank" rel="noopener">Chapter 6 Mathematical morphology</a>且只学习了部分内容</li>
+<li>其它参考链接：<ul>
+<li><a href="https://www.cnblogs.com/slysky/archive/2011/10/16/2214015.htm" target="_blank" rel="noopener">图像的膨胀与腐蚀、细化</a></li>
+</ul>
+</li>
+</ul>
+</blockquote>
+<h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><blockquote>
+<p>Studied on 1st, July, posted on 3rd.</p>
+</blockquote>
+<p>【<strong><code>数学形态学</code></strong>】</p>
+<p>数学形态学是研究形态的学科，用集合的方法来描述某种形态。</p>
+<p>它被广泛应用在图像处理上，有两点需要注意：</p>
+<p>注意它的算子，尤其是膨胀和腐蚀一般都不是线性的。</p>
+<p>它研究的图像上的元素需要满足可比较的序关系，这样才能进行相关的运算。</p>
+<p>【<strong><code>The Maxima And Minima Image</code></strong>】</p>
+<p>“<code>maximum image</code>” 和 “<code>minimum image</code>”是关于两张图片的定义，即新的图片在某像素点位置的值分别取最大和最小。</p>
+<script type="math/tex; mode=display">(max\{f, g\})(x) = max\{f(x), g(x)\}</script><script type="math/tex; mode=display">(min\{f, g\})(x) = min\{f(x), g(x)\}</script><p>其中$x$即为对应像素点的位置。</p>
+<p>在提及膨胀和腐蚀算子之前先要声明它们属于数学形态学算子。</p>
+<p>【<strong><code>数学形态学算子</code></strong>】</p>
+<p>它描述的是一张图像与一个结构元素之间的关系。结构元素一般比图像小很多，一般是十字形，方形或者圆形的二值区域，也一般取对称的区域。</p>
+<blockquote>
+<p>声明：这篇文章使用资源中的约定，即在提及二值图像的时候，黑色像素指的是目标像素，灰度为1；而白色像素指的是背景像素，灰度为0。</p>
+</blockquote>
+<h2 id="基本算子"><a href="#基本算子" class="headerlink" title="基本算子"></a>基本算子</h2><p>【<strong><code>互补算子</code></strong>】</p>
+<p>互补沿用集合论的符号$c$，假设一张图片$X$在像素$(x,y)$位置上的函数值为$f(x,y)$，其范围$range=[L,\cdots,M]$。则$X^c$的对应位置满足$f^c(x,y) = L+M-f(x,y)$。</p>
+<blockquote>
+<p>一个最简单的例子是二值图像黑白颠倒。</p>
+</blockquote>
+<p>【<strong><code>膨胀算子</code></strong>】</p>
+<p>一张二值图像$X$与一个结构元素$S$的闵科夫斯基和$\oplus$就是一个膨胀操作：</p>
+<script type="math/tex; mode=display">\delta(X) = X\oplus S = \{x+s\mid x\in X\ \and\ s\in S\}</script><blockquote>
+<p>资源里给的例子算得很清楚，是根据位置操作的。<br>我已经看懂了。但是很容易弄混，建议忘了复习一下。</p>
+</blockquote>
+<p>【<strong><code>腐蚀算子</code></strong>】</p>
+<p>它是膨胀算子的对偶算子。一张二值图像$X$与一个结构元素$S$的闵科夫斯基差$\ominus$是一个腐蚀操作：</p>
+<script type="math/tex; mode=display">\epsilon(X) = X\ominus S = \{x\mid \forall s\in S,\ x+s\in X\}</script><blockquote>
+<p>资源里给的也是根据位置操作的。<br>虽然资源里没有说，但是我觉得即使原图像不是二值图像也可以用。</p>
+</blockquote>
+<p>通俗地说：</p>
+<p>把图像看作食物，膨胀法相当于在边缘吐出食物，图像会扩大一点点；腐蚀法相当于在边缘吃掉食物，所以图像会缩小一点点。</p>
+<p>【<strong><code>算子的对偶</code></strong>】</p>
+<p>对偶即<code>dual</code>，两个算子对偶要满足以下式子：</p>
+<p>${\forall f,\ subject\ to\ \varphi_1(f^c)=(\varphi_2(f))^c}$</p>
+<blockquote>
+<p>资源里举了两个例子，这里不写，知道这个式子成立即可。</p>
+</blockquote>
+<h2 id="组合算子"><a href="#组合算子" class="headerlink" title="组合算子"></a>组合算子</h2><p>组合算子只介绍膨胀和腐蚀算子的组合，即开闭运算。</p>
+<p>【<strong><code>开运算</code></strong>】</p>
+<p>开运算<code>Opening</code>定义为$\gamma(f) = \delta(\epsilon(f))$。</p>
+<p>先腐蚀再膨胀，就是开运算。开运算能消除小的<code>object</code>即孤立点。</p>
+<p>【<strong><code>闭运算</code></strong>】</p>
+<p>闭运算<code>Closing</code>定义为$\varphi(f) = \epsilon(\delta(f))$</p>
+<p>先膨胀再腐蚀，就是闭运算。同理，闭运算能填充图像中的小洞。</p>
+<h2 id="代码研究"><a href="#代码研究" class="headerlink" title="代码研究"></a>代码研究</h2><p>将在<code>ipynb</code>文件中进行研究。</p>
+<blockquote>
+<p>代码及分水岭算法均在3rd, July晚上完成，但尚未上传，计划日后一并上传。</p>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Computer Vision</tag>
+        <tag>Mathematical Morphology</tag>
       </tags>
   </entry>
   <entry>
@@ -2556,111 +2683,54 @@
       </tags>
   </entry>
   <entry>
-    <title>多元高斯分布之间的KL散度</title>
-    <url>/2020/06/14/%E5%A4%9A%E5%85%83%E9%AB%98%E6%96%AF%E5%88%86%E5%B8%83%E4%B9%8B%E9%97%B4%E7%9A%84KL%E6%95%A3%E5%BA%A6/</url>
+    <title>【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation</title>
+    <url>/2020/07/31/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB15%E3%80%91Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
-<p>推导一下两个多元高斯分布之间的KL散度公式</p>
+<p>论文阅读</p>
 </blockquote>
 <a id="more"></a>
-<h3 id="完整推导过程"><a href="#完整推导过程" class="headerlink" title="完整推导过程"></a>完整推导过程</h3><p>哎，其实我是傻乎乎地想推导两个多元高斯分布之间的$\beta$和$\gamma$散度，后来发现不可行。在这个过程中顺手推导了一般的KL散度，谨记过程如下。</p>
-<p>假定两个多元高斯分布分别为$\mathcal{N}(\mu_1, \Sigma_1)$和$\mathcal{N}(\mu_2, \Sigma_2)$，其概率分布分别表示为$p(x)$和$q(x)$。其中$\mu_1$和$\mu_2$为长度$n$的向量，$\Sigma_1$和$\Sigma_2$为维度$n\times n$的协方差阵。那么$p(x)$和$q(x)$之间的差异可以用KL散度表示，定义为：</p>
-<script type="math/tex; mode=display">\displaystyle D_{KL}(p(x)||q(x)) = \int p(x)\log \dfrac{p(x)}{q(x)}dx.\tag{1}</script><p>$(1)$式的完整计算过程如下：</p>
-<script type="math/tex; mode=display">\begin{align} \displaystyle D_{KL}(p(x)||q(x)) &= \int p(x)\log \dfrac{p(x)}{q(x)}dx\\ &= \int p(x)\log \dfrac{\dfrac{1}{(2\pi)^{\frac{n}{2}}|\Sigma_1|^{\frac{1}{2}}}e^{-\frac{1}{2}(x-\mu_1)^T\Sigma_1^{-1}(x-\mu_1)}}{\dfrac{1}{(2\pi)^{\frac{n}{2}}|\Sigma_2|^{\frac{1}{2}}}e^{-\frac{1}{2}(x-\mu_2)^T\Sigma_2^{-1}(x-\mu_2)}}dx \tag{2}\\ &= \int p(x)\log \dfrac{|\Sigma_2|^{\frac{1}{2}}}{|\Sigma_1|^{\frac{1}{2}}} e^{-\frac{1}{2}(x-\mu_1)^T\Sigma_1^{-1}(x-\mu_1) + \frac{1}{2}(x-\mu_2)^T\Sigma_2^{-1}(x-\mu_2)}dx \tag{3} \\&= \dfrac{1}{2}\int p(x)\log \dfrac{|\Sigma_2|}{|\Sigma_1|}dx + \dfrac{1}{2}\int p(x)\left[ -(x-\mu_1)^T\Sigma_1^{-1}(x-\mu_1) + (x-\mu_2)^T\Sigma_2^{-1}(x-\mu_2)\right]dx \tag{4} \\ &= \dfrac{1}{2}\log \dfrac{|\Sigma_2|}{|\Sigma_1|} + \dfrac{1}{2}\int p(x)\left[ -tr\left(\Sigma_1^{-1}(x-\mu_1)(x-\mu_1)^T\right) + tr\left(\Sigma_2^{-1}(x-\mu_2)(x-\mu_2)^T\right)\right]dx \tag{5} \\ &= \dfrac{1}{2}\log \dfrac{|\Sigma_2|}{|\Sigma_1|} - \dfrac{1}{2}tr\left[\int p(x)\left[\Sigma_1^{-1}(x-\mu_1)(x-\mu_1)^T\right]dx\right] + \dfrac{1}{2}tr\left[\int p(x)\left[\Sigma_2^{-1}(x-\mu_2)(x-\mu_2)^T\right]dx\right] \tag{6}\\ &= \dfrac{1}{2}\log \dfrac{|\Sigma_2|}{|\Sigma_1|} - \dfrac{1}{2}tr\left(\Sigma_1^{-1}\int p(x)(x-\mu_1)(x-\mu_1)^T dx\right) + \dfrac{1}{2}tr\left(\Sigma_2^{-1}\int p(x)(x-\mu_2)(x-\mu_2)^T dx\right) \tag{7} \\ &= \dfrac{1}{2}\log \dfrac{|\Sigma_2|}{|\Sigma_1|} - \dfrac{1}{2}tr\left(\Sigma_1^{-1}\mathbb{E}_p\left(xx^T -x\mu_1^T - \mu_1 x^T + \mu_1\mu_1^T\right)\right) + \dfrac{1}{2}tr\left(\Sigma_2^{-1}\mathbb{E}_p\left(xx^T -x\mu_2^T - \mu_2 x^T + \mu_2\mu_2^T\right)\right) \tag{8} \\ &=  \dfrac{1}{2}\log \dfrac{|\Sigma_2|}{|\Sigma_1|} - \dfrac{1}{2}tr\left(\Sigma_1^{-1}\Sigma_1\right) + \dfrac{1}{2}tr\left(\Sigma_2^{-1}\left(\Sigma_1 - \mu_1\mu_2^T - \mu_2 \mu_1^T + \mu_2\mu_2^T\right)\right) \tag{9} \end{align}</script><p>Emmm，式子太长，编辑器渲染都卡爆了，所以接着上面再推导：</p>
-<script type="math/tex; mode=display">\begin{align} \displaystyle D_{KL}(p(x)||q(x)) &= \dfrac{1}{2}\log \dfrac{|\Sigma_2|}{|\Sigma_1|} - \dfrac{1}{2}tr\left(I\right) + \dfrac{1}{2}tr\left(\Sigma_2^{-1}\Sigma_1\right) + \dfrac{1}{2}tr\left[\Sigma_2^{-1}\left(\mu_1\mu_1^T -\mu_1\mu_2^T - \mu_2 \mu_1^T + \mu_2\mu_2^T\right)\right] \tag{10} \\ &= \dfrac{1}{2}\left[ \log \dfrac{|\Sigma_2|}{|\Sigma_1|} - n + tr\left(\Sigma_2^{-1}\Sigma_1\right) + tr\left[\Sigma_2^{-1}\left(\mu_1\mu_1^T -\mu_1\mu_2^T - \mu_2 \mu_1^T + \mu_2\mu_2^T\right)\right]\right] \tag{11}\\ &= \dfrac{1}{2}\left[ \log \dfrac{|\Sigma_2|}{|\Sigma_1|} - n + tr\left(\Sigma_2^{-1}\Sigma_1\right) + tr\left(\mu_1^T\Sigma_2^{-1}\mu_1^T\right) - tr\left(\mu_1^T\Sigma_2^{-1}\mu_2^T\right) - tr\left(\mu_2^T\Sigma_2^{-1}\mu_1^T\right)+ tr\left(\mu_2^T\Sigma_2^{-1}\mu_2^T\right)\right] \tag{12} \\ &= \dfrac{1}{2}\left[ \log \dfrac{|\Sigma_2|}{|\Sigma_1|} - n + tr\left(\Sigma_2^{-1}\Sigma_1\right) + tr\left(\mu_1^T\Sigma_2^{-1}\mu_1^T - 2\mu_1^T\Sigma_2^{-1}\mu_2^T + \mu_2^T\Sigma_2^{-1}\mu_2^T\right)\right] \tag{13} \\ &= \dfrac{1}{2}\left[ \log \dfrac{|\Sigma_2|}{|\Sigma_1|} - n + tr\left(\Sigma_2^{-1}\Sigma_1\right) + tr\left[\left(\mu_2-\mu_1\right)^T\Sigma_2^{-1}\left(\mu_2-\mu_1\right)\right]\right] \tag{14} \\ &= \dfrac{1}{2}\left[ \log \dfrac{|\Sigma_2|}{|\Sigma_1|} - n + tr\left(\Sigma_2^{-1}\Sigma_1\right) + \left(\mu_2-\mu_1\right)^T\Sigma_2^{-1}\left(\mu_2-\mu_1\right)\right]. \tag{15}\end{align}</script><h3 id="部分推导细节"><a href="#部分推导细节" class="headerlink" title="部分推导细节"></a>部分推导细节</h3><p>在上述推导中有几步需要额外注意，我自己已经在纸上推导好了，这里简要提示一下（具体参见参考文献）：</p>
-<ul>
-<li>$(4)$式到$(5)$式：利用标量$\Leftrightarrow$标量的迹和迹的交换性；</li>
-<li>$(5)$式到$(6)$式：举个例子展开写就明白了；</li>
-<li>$(8)$式到$(9)$式：其实是$(7)$式到$(9)$式，注意对谁求期望和协方差的定义；</li>
-<li>$(14)$式到$(15)$式：标量$\Leftrightarrow$标量的迹。</li>
-</ul>
-<h3 id="PyTorch官方函数的写法"><a href="#PyTorch官方函数的写法" class="headerlink" title="PyTorch官方函数的写法"></a><code>PyTorch</code>官方函数的写法</h3><p>最后$(15)$式中的结果与<code>PyTorch</code>中多元高斯分布KL散度的表达是一致的，<code>half_term1</code>就是$\dfrac{1}{2}\log \dfrac{|\Sigma_2|}{|\Sigma_1|}$，<code>term2</code>就是$tr\left(\Sigma_2^{-1}\Sigma_1\right)$，<code>term3</code>就是$\left(\mu_2-\mu_1\right)^T\Sigma_2^{-1}\left(\mu_2-\mu_1\right)$：</p>
-<img src="/2020/06/14/多元高斯分布之间的KL散度/KL.png" title="PyTorch中多元高斯分布KL散度函数">
-<h3 id="beta-散度的想法"><a href="#beta-散度的想法" class="headerlink" title="$\beta$散度的想法"></a>$\beta$散度的想法</h3><p>其实本来是想计算$\beta$和$\gamma$散度的类似表达的…只是我真的算不出来…估计只能近似了。列个$\beta$散度的定义，有待研究。</p>
-<script type="math/tex; mode=display">\displaystyle D_{\beta}(p(x)||q(x)) = \dfrac{1}{\beta}\int p(x)^{1+\beta}dx - \dfrac{\beta + 1}{\beta}\int p(x)q(x)^{beta}dx + \int q(x)^{1+\beta}dx. \tag{16}</script><h3 id="参考链接列表"><a href="#参考链接列表" class="headerlink" title="参考链接列表"></a>参考链接列表</h3><ul>
-<li><a href="https://github.com/pytorch/pytorch/blob/master/torch/distributions/kl.py" target="_blank" rel="noopener">https://github.com/pytorch/pytorch/blob/master/torch/distributions/kl.py</a></li>
-<li><a href="https://blog.csdn.net/sinat_33598258/article/details/103866549" target="_blank" rel="noopener">https://blog.csdn.net/sinat_33598258/article/details/103866549</a></li>
-<li><a href="https://arxiv.org/pdf/1905.09961.pdf" target="_blank" rel="noopener">https://arxiv.org/pdf/1905.09961.pdf</a></li>
-<li><a href="https://zhuanlan.zhihu.com/p/143124676" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/143124676</a></li>
-<li><a href="https://stats.stackexchange.com/questions/7440/kl-divergence-between-two-univariate-gaussians" target="_blank" rel="noopener">https://stats.stackexchange.com/questions/7440/kl-divergence-between-two-univariate-gaussians</a></li>
-</ul>
-]]></content>
-      <tags>
-        <tag>KL Divergence</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>膨胀与腐蚀法——数学形态学算子</title>
-    <url>/2019/07/03/%E8%86%A8%E8%83%80%E4%B8%8E%E8%85%90%E8%9A%80%E6%B3%95%E2%80%94%E2%80%94%E6%95%B0%E5%AD%A6%E5%BD%A2%E6%80%81%E5%AD%A6%E7%AE%97%E5%AD%90/</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
-<p> Dilation and erosion intro </p>
+<h2 id="文章简介"><a href="#文章简介" class="headerlink" title="文章简介"></a>文章简介</h2><p>这篇文章[3]是在ECCV2020的日程[1, 2]中发现的，拿来一读。</p>
+<p>原作者的部分讲解视频在B站BAAI发布的<a href="https://www.bilibili.com/video/BV1wZ4y1M7qw?p=4" target="_blank" rel="noopener">ECCV 2020中国预会议回放丨计算机视觉、目标检测、图像分类、特征提取…55场前沿学术报告集萃</a>P4的181:40-192:00。</p>
+<p>从标题上看是提出了一个对抗网络的变种，<font color="#0000FF">双重对抗网络DANet</font>，针对真实场景，<strong>同时建模（生成）噪声以及去噪</strong>。</p>
+<img src="/2020/07/31/【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/1.png" title="文章简介">
+<h2 id="主要内容——DANet"><a href="#主要内容——DANet" class="headerlink" title="主要内容——DANet"></a>主要内容——DANet</h2><p>ps:</p>
+<blockquote>
+<p>主要内容直接参考B站视频或者原文即可。</p>
+<p>个人不太想看相关工作的部分，只看了噪声生成的介绍，模拟噪声分布的目的之一是解决数据对的成本问题。其中传统方法GAN的难度在于如何找到好的噪声生成器。</p>
 </blockquote>
-<a id="more"></a>
-<h1 id="膨胀与腐蚀法——数学形态学算子"><a href="#膨胀与腐蚀法——数学形态学算子" class="headerlink" title="膨胀与腐蚀法——数学形态学算子"></a>膨胀与腐蚀法——数学形态学算子</h1><blockquote>
-<p>Note at the beginning:</p>
+<h3 id="模型提出"><a href="#模型提出" class="headerlink" title="模型提出"></a>模型提出</h3><p>本文的主要思想与之前的<a href="[https://maxliu245.github.io/2020/06/27/10-VDN-Variational-Denoising-Network-%E9%98%85%E8%AF%BB/#more](https://maxliu245.github.io/2020/06/27/10-VDN-Variational-Denoising-Network-阅读/#more">VDN</a>)[4]如出一辙，感觉是顺着VDN在贝叶斯框架下同时进行图像噪声估计和图像降噪的思路继续做的。主要内容是提出了双重对抗网络<strong>DANet</strong>，下面具体介绍一下。</p>
+<p>相比VDN直接贝叶斯框架完成两种噪声相关任务，这次是间接地、从另一个角度地对干净图$x$和带噪图$y$的联合分布$p(x,y)$进行估计，并分两种分解形式。因此从两个方面分别建模，从$y$开始建模，生成$x$的过程就是训练了降噪器$R$，反之就是训练了噪声生成器$G$；两种方式逼近联合分布后通过判别器$D$做监督。这种方式称为标题的“双重对抗”，$R$和$G$相互影响，共同逼近联合分布。</p>
+<p>$x$，$y$联合分布的两种分解很自然，从联合分布定义即可，实际意义参考视频中的图即可理解：</p>
+<img src="/2020/07/31/【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/2.png" title="联合分布$p(x,y)$的两种分解意义">
+<h3 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h3><p>接下来确定对抗网络的结构：</p>
+<img src="/2020/07/31/【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/3.png" title="网络结构">
+<p>其中降噪器denoiser记为$R$，噪声生成器generator记为$G$，都用UNet，并加了残差策略；最后判别器discriminator记为$D$，采用5个卷积层和一个FC。</p>
+<h3 id="部分训练细节"><a href="#部分训练细节" class="headerlink" title="部分训练细节"></a>部分训练细节</h3><p>训练的目标函数是Triple-GAN中提出的损失，加上两个正则项（对应于两种分解）。前者是干净图的$L_1$损失，可以优化$R$；后者由于噪声随机性，采用高斯滤波后的某种$L_1$，优化$G$，具体形式参考原文(6)式。</p>
+<p>网络训练的过程参考原文算法1即可，其训练的思路在于向后传播分两步，交替优化$R$和$G$。</p>
+<h3 id="部分亮点"><a href="#部分亮点" class="headerlink" title="部分亮点"></a>部分亮点</h3><p>首先是继承VDN的思路，同时完成两个噪声相关任务。</p>
+<p>其次是在概率框架下从两种联合分布分解形式的角度设计了DANet。</p>
+<p>再者是设计了两种噪声生成质量的度量，比较了真实带噪图和生成带噪图的相似性：</p>
 <ul>
-<li>为什么学习这个方法：这个方法是基于2019 Summer Session的学习所需</li>
-<li>资源来自何处：谷歌搜索到的资源<a href="http://www.cs.uu.nl/docs/vakken/ibv/reader/chapter6.pdf" target="_blank" rel="noopener">Chapter 6 Mathematical morphology</a>且只学习了部分内容</li>
-<li>其它参考链接：<ul>
-<li><a href="https://www.cnblogs.com/slysky/archive/2011/10/16/2214015.htm" target="_blank" rel="noopener">图像的膨胀与腐蚀、细化</a></li>
-</ul>
+<li><p><strong>PGap </strong>(PSNR Gap)：借用降噪指标PSNR设计。已知训练集$\mathcal{D}$和测试集$\mathcal{T}$，分别是一堆成对干净图和带噪图，用准备好的噪声生成器$G$，对训练集进行加噪，得到生成的新训练集$\mathcal{D}_G$，准备原始训练数据上训练得到的降噪器$R_1$和在新训练集$\mathcal{D}_G$上得到的降噪器$R_2$，分别计算测试集上的PSNR，其差值小，代表噪声生成得越好，越接近真是噪声分布。</p>
+<script type="math/tex; mode=display">PGap = PSNR(R_1(\mathcal{T})) - PSNR(R_2(\mathcal{T}))</script></li>
+<li><p><strong>AKLD</strong> (Average KL Divergence)：这个比较直接，希望生成噪声的分布与其真实分布接近。真实的分布用了VDN的结论，然后采样；这里的分布是由生成器$G$对应的新分布，都通过采样近似。</p>
 </li>
 </ul>
-</blockquote>
-<h2 id="综述"><a href="#综述" class="headerlink" title="综述"></a>综述</h2><blockquote>
-<p>Studied on 1st, July, posted on 3rd.</p>
-</blockquote>
-<p>【<strong><code>数学形态学</code></strong>】</p>
-<p>数学形态学是研究形态的学科，用集合的方法来描述某种形态。</p>
-<p>它被广泛应用在图像处理上，有两点需要注意：</p>
-<p>注意它的算子，尤其是膨胀和腐蚀一般都不是线性的。</p>
-<p>它研究的图像上的元素需要满足可比较的序关系，这样才能进行相关的运算。</p>
-<p>【<strong><code>The Maxima And Minima Image</code></strong>】</p>
-<p>“<code>maximum image</code>” 和 “<code>minimum image</code>”是关于两张图片的定义，即新的图片在某像素点位置的值分别取最大和最小。</p>
-<script type="math/tex; mode=display">(max\{f, g\})(x) = max\{f(x), g(x)\}</script><script type="math/tex; mode=display">(min\{f, g\})(x) = min\{f(x), g(x)\}</script><p>其中$x$即为对应像素点的位置。</p>
-<p>在提及膨胀和腐蚀算子之前先要声明它们属于数学形态学算子。</p>
-<p>【<strong><code>数学形态学算子</code></strong>】</p>
-<p>它描述的是一张图像与一个结构元素之间的关系。结构元素一般比图像小很多，一般是十字形，方形或者圆形的二值区域，也一般取对称的区域。</p>
+<h2 id="DANet-V-S-VDN"><a href="#DANet-V-S-VDN" class="headerlink" title="DANet V.S. VDN"></a>DANet V.S. VDN</h2><p>与VDN的区别？难道是VDN传统贝叶斯框架条件后验，这个直接联合分布？主要区别好像是的耶~</p>
 <blockquote>
-<p>声明：这篇文章使用资源中的约定，即在提及二值图像的时候，黑色像素指的是目标像素，灰度为1；而白色像素指的是背景像素，灰度为0。</p>
+<p> 参考摘要</p>
+<p>Instead of only inferring the posteriori distribution of the latent clean image conditioned on the observed noisy image in traditional MAP framework, our proposed method learns the joint distribution of the clean-noisy image pairs.</p>
 </blockquote>
-<h2 id="基本算子"><a href="#基本算子" class="headerlink" title="基本算子"></a>基本算子</h2><p>【<strong><code>互补算子</code></strong>】</p>
-<p>互补沿用集合论的符号$c$，假设一张图片$X$在像素$(x,y)$位置上的函数值为$f(x,y)$，其范围$range=[L,\cdots,M]$。则$X^c$的对应位置满足$f^c(x,y) = L+M-f(x,y)$。</p>
-<blockquote>
-<p>一个最简单的例子是二值图像黑白颠倒。</p>
-</blockquote>
-<p>【<strong><code>膨胀算子</code></strong>】</p>
-<p>一张二值图像$X$与一个结构元素$S$的闵科夫斯基和$\oplus$就是一个膨胀操作：</p>
-<script type="math/tex; mode=display">\delta(X) = X\oplus S = \{x+s\mid x\in X\ \and\ s\in S\}</script><blockquote>
-<p>资源里给的例子算得很清楚，是根据位置操作的。<br>我已经看懂了。但是很容易弄混，建议忘了复习一下。</p>
-</blockquote>
-<p>【<strong><code>腐蚀算子</code></strong>】</p>
-<p>它是膨胀算子的对偶算子。一张二值图像$X$与一个结构元素$S$的闵科夫斯基差$\ominus$是一个腐蚀操作：</p>
-<script type="math/tex; mode=display">\epsilon(X) = X\ominus S = \{x\mid \forall s\in S,\ x+s\in X\}</script><blockquote>
-<p>资源里给的也是根据位置操作的。<br>虽然资源里没有说，但是我觉得即使原图像不是二值图像也可以用。</p>
-</blockquote>
-<p>通俗地说：</p>
-<p>把图像看作食物，膨胀法相当于在边缘吐出食物，图像会扩大一点点；腐蚀法相当于在边缘吃掉食物，所以图像会缩小一点点。</p>
-<p>【<strong><code>算子的对偶</code></strong>】</p>
-<p>对偶即<code>dual</code>，两个算子对偶要满足以下式子：</p>
-<p>${\forall f,\ subject\ to\ \varphi_1(f^c)=(\varphi_2(f))^c}$</p>
-<blockquote>
-<p>资源里举了两个例子，这里不写，知道这个式子成立即可。</p>
-</blockquote>
-<h2 id="组合算子"><a href="#组合算子" class="headerlink" title="组合算子"></a>组合算子</h2><p>组合算子只介绍膨胀和腐蚀算子的组合，即开闭运算。</p>
-<p>【<strong><code>开运算</code></strong>】</p>
-<p>开运算<code>Opening</code>定义为$\gamma(f) = \delta(\epsilon(f))$。</p>
-<p>先腐蚀再膨胀，就是开运算。开运算能消除小的<code>object</code>即孤立点。</p>
-<p>【<strong><code>闭运算</code></strong>】</p>
-<p>闭运算<code>Closing</code>定义为$\varphi(f) = \epsilon(\delta(f))$</p>
-<p>先膨胀再腐蚀，就是闭运算。同理，闭运算能填充图像中的小洞。</p>
-<h2 id="代码研究"><a href="#代码研究" class="headerlink" title="代码研究"></a>代码研究</h2><p>将在<code>ipynb</code>文件中进行研究。</p>
-<blockquote>
-<p>代码及分水岭算法均在3rd, July晚上完成，但尚未上传，计划日后一并上传。</p>
-</blockquote>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>[1] BAAIBeijing. 计算机视觉顶会ECCV 2020中国预会议：日程公开，注册有奖[EB/OL]. <a href="https://blog.csdn.net/BAAIBeijing/article/details/107588080" target="_blank" rel="noopener">https://blog.csdn.net/BAAIBeijing/article/details/107588080</a>, 2020-07-25.</p>
+<p>[2] 智源社区. 智源社区活动[EB/OL]. <a href="https://event.baai.ac.cn/event/53#section-four" target="_blank" rel="noopener">https://event.baai.ac.cn/event/53#section-four</a>, 2020.</p>
+<p>[3] Zongsheng Yue, Qian Zhao, Lei Zhang, and Deyu Meng. Dual adversarial network: Toward real-world noise removal and noise generation, 2020.</p>
+<p>[4] Yue, Zongsheng, et al. Variational denoising network: Toward blind noise modeling and removal, <em>Advances in neural information processing systems</em>, 2019.</p>
 ]]></content>
       <tags>
+        <tag>Paper Reading</tag>
+        <tag>Denoising</tag>
+        <tag>Machine Learning</tag>
         <tag>Computer Vision</tag>
-        <tag>Mathematical Morphology</tag>
       </tags>
   </entry>
   <entry>
@@ -3600,7 +3670,7 @@
 <td>6 7</td>
 <td>PG</td>
 <td>CBA</td>
-<td></td>
+<td>76福尔克马刺</td>
 <td></td>
 <td></td>
 <td></td>
@@ -4612,7 +4682,7 @@
 <td>6 6</td>
 <td>SG</td>
 <td>可用</td>
-<td></td>
+<td>76的milton</td>
 <td></td>
 <td></td>
 <td></td>

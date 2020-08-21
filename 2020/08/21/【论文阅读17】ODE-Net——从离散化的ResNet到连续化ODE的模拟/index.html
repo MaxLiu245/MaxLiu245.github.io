@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Medical Images,Xiammt,">
+  <meta name="keywords" content="Paper Reading,Machine Learning,PDE,">
 
 
 
@@ -88,18 +88,21 @@
 
 
 
-<meta name="description" content="数学西北中心“数据科学与医疗健康”主题年研讨班  仅记录一些笔记&amp;amp;感想，内容并不详细！">
-<meta name="keywords" content="Medical Images,Xiammt">
+<meta name="description" content="读不懂PDE-Net，所以想先操作下ODE-Net 结果是瞎读文章真心难读也读不明白😭😭😭">
+<meta name="keywords" content="Paper Reading,Machine Learning,PDE">
 <meta property="og:type" content="article">
-<meta property="og:title" content="西北中心研讨班——图像质量评价">
-<meta property="og:url" content="http://maxliu245.github.io/2019/12/13/西北中心研讨班——图像质量评价/index.html">
+<meta property="og:title" content="【论文阅读17】ODE-Net——从离散化的ResNet到连续化ODE的模拟">
+<meta property="og:url" content="http://maxliu245.github.io/2020/08/21/【论文阅读17】ODE-Net——从离散化的ResNet到连续化ODE的模拟/index.html">
 <meta property="og:site_name" content="Max Liu&#39;s Blog">
-<meta property="og:description" content="数学西北中心“数据科学与医疗健康”主题年研讨班  仅记录一些笔记&amp;amp;感想，内容并不详细！">
+<meta property="og:description" content="读不懂PDE-Net，所以想先操作下ODE-Net 结果是瞎读文章真心难读也读不明白😭😭😭">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2019-12-15T07:58:44.000Z">
+<meta property="og:image" content="http://maxliu245.github.io/2020/08/21/【论文阅读17】ODE-Net——从离散化的ResNet到连续化ODE的模拟/ODE-Net.png">
+<meta property="og:image" content="http://maxliu245.github.io/2020/08/21/【论文阅读17】ODE-Net——从离散化的ResNet到连续化ODE的模拟/ODE-Net2.png">
+<meta property="og:updated_time" content="2020-08-21T11:16:21.590Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="西北中心研讨班——图像质量评价">
-<meta name="twitter:description" content="数学西北中心“数据科学与医疗健康”主题年研讨班  仅记录一些笔记&amp;amp;感想，内容并不详细！">
+<meta name="twitter:title" content="【论文阅读17】ODE-Net——从离散化的ResNet到连续化ODE的模拟">
+<meta name="twitter:description" content="读不懂PDE-Net，所以想先操作下ODE-Net 结果是瞎读文章真心难读也读不明白😭😭😭">
+<meta name="twitter:image" content="http://maxliu245.github.io/2020/08/21/【论文阅读17】ODE-Net——从离散化的ResNet到连续化ODE的模拟/ODE-Net.png">
 
 
 
@@ -129,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://maxliu245.github.io/2019/12/13/西北中心研讨班——图像质量评价/">
+  <link rel="canonical" href="http://maxliu245.github.io/2020/08/21/【论文阅读17】ODE-Net——从离散化的ResNet到连续化ODE的模拟/">
 
 
 
 
 
-  <title>西北中心研讨班——图像质量评价 | Max Liu's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>【论文阅读17】ODE-Net——从离散化的ResNet到连续化ODE的模拟 | Max Liu's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -264,7 +267,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://maxliu245.github.io/2019/12/13/西北中心研讨班——图像质量评价/">
+    <link itemprop="mainEntityOfPage" href="http://maxliu245.github.io/2020/08/21/【论文阅读17】ODE-Net——从离散化的ResNet到连续化ODE的模拟/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Max Liu">
@@ -281,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">西北中心研讨班——图像质量评价</h1>
+          <h1 class="post-title" itemprop="name headline">【论文阅读17】ODE-Net——从离散化的ResNet到连续化ODE的模拟</h1>
         
 
         <div class="post-meta">
@@ -296,8 +299,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-12-13T08:58:44+08:00">
-                2019-12-13
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-08-21T19:12:27+08:00">
+                2020-08-21
               </time>
             
 
@@ -312,8 +315,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2019-12-15T15:58:44+08:00">
-                2019-12-15
+              <time title="Post modified" itemprop="dateModified" datetime="2020-08-21T19:16:21+08:00">
+                2020-08-21
               </time>
             
           </span>
@@ -345,7 +348,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.9k
+                  2.5k
                 </span>
               
 
@@ -361,7 +364,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  7
+                  9
                 </span>
               
             </div>
@@ -383,112 +386,65 @@
 
       
         <blockquote>
-<p> 数学西北中心“数据科学与医疗健康”主题年研讨班</p>
-<p> 仅记录一些笔记&amp;感想，内容并不详细！</p>
+<p>读不懂PDE-Net，所以想先操作下ODE-Net</p>
+<p>结果是瞎读文章真心难读也读不明白😭😭😭</p>
 </blockquote>
 <a id="more"></a>
-<h2 id="开幕简介"><a href="#开幕简介" class="headerlink" title="开幕简介"></a>开幕简介</h2><p>图像模型都是老套的啦，无非是设计loss，根据task的需求设计参数，我更倾向于用MWN嘻嘻。</p>
-<p>可以举几个常用的model的例子，VAE，滤波，Baysian推断加正则项。</p>
-<p>最后提一下很重要的图像评价指标：</p>
+<img src="/2020/08/21/【论文阅读17】ODE-Net——从离散化的ResNet到连续化ODE的模拟/ODE-Net.png" title="ODE-Net">
+<h1 id="为什么读"><a href="#为什么读" class="headerlink" title="为什么读"></a>为什么读</h1><ul>
+<li>在阅读PDE-Net的时候被卡了，读得比较不明白，在搜资料的时候发现了知乎上ODE-Net的<a href="https://www.zhihu.com/question/313064079" target="_blank" rel="noopener">讨论</a>，好介绍哇，觉得现在先看ODE-Net是个不错的选择</li>
+<li>搜资料的时候才发现这是NIP2018最佳论文</li>
+</ul>
+<p>文献链接：<a href="https://arxiv.org/abs/1806.07366" target="_blank" rel="noopener">Neural Ordinary Differential Equations</a>，原作者提交于2018/01，最后修改于2019/12，可见打磨的功夫还是下了不少的。</p>
+<h1 id="文献总结"><a href="#文献总结" class="headerlink" title="文献总结"></a>文献总结</h1><p>将ODE与神经网络结合，用神经网络来模拟ODE的动态性质。</p>
+<p>思想很简单，联想神经网络的隐层嵌套性，联系ResNet的残差（差分）形式并推广，就得到了利用ResNet模拟ODE的思想。细节就麻烦多了看不动看不动…</p>
+<h1 id="文献内容"><a href="#文献内容" class="headerlink" title="文献内容"></a>文献内容</h1><h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>将ODE与神经网络结合，用神经网络来模拟ODE的动态性质，和总结一致。</p>
+<p>另外如果能有办法用网络模拟ODE系统，那一定是应用超级友好的！</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>好像没啥背景，我理解的背景就是这个思想的来源，就够了。文章里的related work我暂时不感兴趣。</p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>这要从ODE与神经网络的一个共性讲起：</p>
+<p>神经网络的嵌套隐层结构可以表示为$h<em>{t+1} = f(h_t, \theta_t)$，每一层都由前一层前向传播得到，现在用ResNet的结构则有意思起来了：$h</em>{t+1} = h_t + f(h_t, \theta_t)$，这种残差的形式与ODE的差分形式很“相似”：</p>
+<script type="math/tex; mode=display">\Delta h(t) = h_{t+1} - h_t = f(h(t), t, \theta) \approx \dfrac{dh(t)}{dt}</script><p>这样ResNet的每一层$f$都相当于当前时刻$t$的一个差分，如果这个$t$不再离散，而是连续化，那么就可以近似为导数，残差神经网络也可以近似为ODE了。当然<strong>前提</strong>是（1）连续化可行；（2）连续化后能保持ODE的基本衍化性质；（3）不知道能不能证明其它性质诸如求解等等。</p>
+<p>那么现在基本的模型其实已经构思好了，下面是实现的技术细节。要使得ResNet成为ODE的近似，首先要考虑可训练的性质，其监督信息由已知的ODEsolver求解，这些solver目前一般都是精度可控的，网络本身作为一个黑箱ODEsolver来训练；前向传播应该比较容易，关键是反向传播会比较麻烦，因为损失的回传需要对参数求导，这些势必要涉及大量参数，会引起高昂的计算代价。</p>
+<p>那么该文怎么进行反向传播的呢，直接算？不是，它绕过去了。</p>
+<p>先看看损失函数，直接定义为：</p>
+<script type="math/tex; mode=display">L(z(t_1)) \approx L\left(z(t_0) + \int_{t_0}^{t_1} f(z(t), t, \theta)dt \right) = L(ODESolve(z(t_0), f, t_0, t_1, \theta))</script><p>其中把ODE最后的target函数记为$z(t)$，ODE初值记为$z(t_0)$，待预测的时刻$t_1$时的值为$z(t_1)$。左边相当于监督信息，用标准的值，右边两个式子都用黑箱网络来近似就可以了。</p>
+<p>由于现在考虑把ResNet变成连续化的模型，因此此时不好用差分的形式，而要采用积分的形式，所以现在预测值是和时刻$t_0$和$t_1$中每个值都要有关系，这提示我们采用链式法则寻找这些值之间的关系。当然这些值太多乃至无穷，我们也只能尽可能多地进行离散近似，其实就是网络的深度（层数），有几层，就意味着我们考虑了时刻$t_0$和$t_1$之间几个中间状态。</p>
+<p>这种近似考虑的方式称为<strong>adjoint sensitivity method</strong>（1962老文章🐂🍺+🐂🐸！），如下的原文图2所示，这里为了表示方便，记号与上文不同，图中的$z(t_N)$相当于上文的$z(t_1)$，意思大家一定能明白，就是多考虑上文中的中间时刻状态。</p>
+<img src="/2020/08/21/【论文阅读17】ODE-Net——从离散化的ResNet到连续化ODE的模拟/ODE-Net2.png" title="Adjoint Sensitivity Method">
+<p>感觉是这样推导的，我们想要的目标是损失$L$对网络参数$\theta$的导数：</p>
+<script type="math/tex; mode=display">\dfrac{dL}{d\theta} = \dfrac{dL}{dz(t_i)}\dfrac{dz(t_i)}{d\theta} = \dfrac{dL}{dz(t_i)}\dfrac{df(z(t_i), t_i, \theta)}{d\theta} \triangleq a(t_i)\dfrac{df(z(t_i), t_i, \theta)}{d\theta}</script><p>其中第一个等号用链式法则和爱因斯坦求和约定表示；第二个等号是因为$z(t<em>i) \approx z(t_0) + \int</em>{t_0}^{t_i} f(z(t), t, \theta)dt$，然后直接求导就得了，其中积分从哪里开始都可以，不一定要$t_0$；第三个等号搞了新定义，把$a(t)$叫做伴随adjoint，它怎么求呢，文章给了$\dfrac{da(t)}{dt} = -a(t)^T\dfrac{\partial f(z(t), t, \theta)}{\partial z}$，但我没看懂，我猜是1962那篇文章的结论。</p>
+<p>上面分析了主要的思路，应该还可以了，下面开始水😂，日常写烂尾文章/(ㄒoㄒ)/~~</p>
+<p>上面的推导就是原文的(5)式，具体计算不是直接BP，因为考虑连续性，和中间状态都有关系了，中间层现在是可以很多的，BP压力很大。现在直接看完整版的算法2，直接想办法计一个积分算梯度（参考了机器之心的文章加深理解），不过很可惜我<strong>没太看明白</strong>具体计算的过程，可能是直接自动求导，只是不再一层一层计算梯度了？这样真的能减少计算量么？</p>
+<p>后面的流模型和生成式模型没有看了，留着看苏剑林的博客吧，感觉和那个关系比较大。</p>
+<h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><p>我理解的优点：</p>
 <ul>
-<li><strong>通用图像质量评价</strong></li>
-<li><strong>面向任务的图像质量评价</strong></li>
+<li>应用必定是真正有用的应用，且范围很广，涉及ODE的领域实在是太多啦</li>
+<li>思路很棒！从ResNet的差分形式过渡到ODE的模拟，我很喜欢</li>
+<li>文章提到的内存占用小的优点，不过有人杠这一点，我目前没看明白算法2，只好持保留态度了</li>
 </ul>
-<h2 id="Bayesian-CT图像重建"><a href="#Bayesian-CT图像重建" class="headerlink" title="Bayesian CT图像重建"></a>Bayesian CT图像重建</h2><p>由纽约石溪大学的教授Jerome Zhengrong Liang给出。由于版权问题，笔记不在此，也不发布。</p>
-<h2 id="深度纹理分析-Deep-Texture-Analysis"><a href="#深度纹理分析-Deep-Texture-Analysis" class="headerlink" title="深度纹理分析 Deep Texture Analysis"></a>深度纹理分析 Deep Texture Analysis</h2><p>由纽约石溪大学的教授Jerome Zhengrong Liang给出。由于版权问题，笔记不在此，也不发布。但是可以在这里列一篇参考文献</p>
+<p>缺点：</p>
 <ul>
-<li>Weiguo Cao, Marc J. Pomeroy, Perry J. Pickhardt, Matthew A. Barish, Samuel Stanley III, Hongbing Lu, Zhengrong Liang, “A pyramid machine learning model for polyp classification via CT colonography,” Proc. SPIE 10950, Medical Imaging 2019: Computer-Aided Diagnosis, 109502U (30 May 2019);<a href="https://doi.org/10.1117/12.2513068" target="_blank" rel="noopener">https://doi.org/10.1117/12.2513068</a></li>
+<li>有人杠他们的代码和文章不一致（知乎），我先吃瓜瓜</li>
+<li>算法写的有一点不明白，起码我看了几遍没明白具体是怎么算法（不考虑伪代码）</li>
+<li>原作者之一自己提的缺点，见参考资料<a href="https://www.sohu.com/a/405309910_129720" target="_blank" rel="noopener">「神经常微分方程」提出者之一David Duvenaud：如何利用深度微分方程模型处理连续时间动态</a></li>
 </ul>
-<h2 id="图像质量评价IQA中的问题、理论和方法"><a href="#图像质量评价IQA中的问题、理论和方法" class="headerlink" title="图像质量评价IQA中的问题、理论和方法"></a>图像质量评价IQA中的问题、理论和方法</h2><p>由张林教授给出。两种图像质量的评价标准：</p>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>看不动，和参考资料里的是一样的啊，而且有评论说作者放出来的代码和文章不一致，那么轻松复现是不存在的了…</p>
+<p>扫了一眼，文章的实验主要是模拟了一些不那么复杂，但也不是很简单的ODE系统。</p>
+<h1 id="补充资料——参考链接阅读"><a href="#补充资料——参考链接阅读" class="headerlink" title="补充资料——参考链接阅读"></a>补充资料——参考链接阅读</h1><p>在略读了文章第一遍之后有些疑惑，因此搜了一些相关的网页看一看，觉得其中大部分讲的都不错，因此记录于此。</p>
 <ul>
-<li>人类感知效果</li>
-<li>具体任务的评价指标</li>
+<li>看了一遍作者<a href="https://www.jiqizhixin.com/users/b0254ca0-165f-4fd3-a041-232d39a848d2" target="_blank" rel="noopener">思源</a>发布在机器之心的文章<a href="https://www.jiqizhixin.com/articles/122302" target="_blank" rel="noopener">硬核NeruIPS 2018最佳论文，一个神经了的常微分方程</a>，前面的解释比较足，有了大致的了解，还有不少细节是不太明白的</li>
+<li>看了知乎上的<a href="https://www.zhihu.com/question/306937011/answer/561576636" target="_blank" rel="noopener">如何评价ODENet？</a>，反对的意见要注意，我看文章的时候觉得它说避免了存储中间计算的值，减少内存使用，而算法中反向计算的时候其实还要算一遍，这个说法很奇怪。目前我感觉确实是代码中，这部分计算没有交给网络，而是交给scipy了。</li>
+<li>看了机器之心在搜狐上的文章<a href="https://www.sohu.com/a/405309910_129720" target="_blank" rel="noopener">「神经常微分方程」提出者之一David Duvenaud：如何利用深度微分方程模型处理连续时间动态</a>，了解了一些该团队最新进展，包括可逆残差网络、设计廉价的可微算子计算梯度、随机微分方程的应用；并看到了有趣的“内幕”哈哈，担心侵权问题就不放原文了，大概意思是他们这篇文章动机很现实，而且有一些数学上比较严肃的问题：</li>
+<li><a href="https://www.toutiao.com/a6703302712311677452/" target="_blank" rel="noopener">一个深度学习突破的方向：神经常微分方程ODE</a>这个文章<strong>内容很多</strong>啊，有不少自己尝试的实验，只简单介绍了ODE-Net的思想，然后自己做了不少拟合的实验，最后给了自己的结论太棒了！它的结论是目前该方法只在小任务上表现良好，实际应用或者稍复杂的例子就会gg😀</li>
+<li>本来想读<a href="https://blog.csdn.net/hanss2/article/details/81301343" target="_blank" rel="noopener">【随感】ODE的欧拉解法实际上就是RNN的一个特例</a>这篇文章，结果发现是转载苏剑林的博客<a href="https://kexue.fm/archives/5643" target="_blank" rel="noopener">貌离神合的RNN与ODE：花式RNN简介</a>，除了开头的时候提了一小句来源，其它是一模一样的，不过我发现这个作者其它内容写得很有趣，很有想法啊👍。<strong>这个RNN的很有意思，有空要读一读在这里做个笔记</strong>。</li>
 </ul>
-<h3 id="基于人类感知"><a href="#基于人类感知" class="headerlink" title="基于人类感知"></a>基于人类感知</h3><ul>
-<li>Pearson线性相关系数PLCC</li>
-<li>均方误差的平方根RMSE</li>
-</ul>
-<p>具体公式不会耶，应该是具体问题具体算客观评分和自己的评分</p>
-<h4 id="FR-IQR方法"><a href="#FR-IQR方法" class="headerlink" title="FR-IQR方法"></a>FR-IQR方法</h4><p>度量图像之间的距离使之满足人类感知。</p>
-<p>MSE不会考虑图像上点的顺序，不会考虑正负偏差，因此与人的感知可能有一些差距。</p>
-<p>相对来说SSIM（结构相似性：structural similarity）会好很多，它是个基石性的工作。它会把图像的变化分为有结构化改变和没有结构化改变两种大情况。</p>
-<p>举个例子，对原始标准图像施加Gaussian noise后，MSE对应的bias是随机模糊的noise，SSIM对应的bias有结构化的意义在里面。PPT里有图像例子，这里没有拍照。</p>
-<p>总之就是，MSE一样时，SSIM能度量结构化的error。</p>
-<h4 id="FSIM-FSIMc-Feature-Similarity-Index"><a href="#FSIM-FSIMc-Feature-Similarity-Index" class="headerlink" title="FSIM/FSIMc: Feature Similarity Index"></a>FSIM/FSIMc: Feature Similarity Index</h4><p>核心概念是相位的一致性phase congruency。这个东西可以算的，具体怎么算不写了，反正我的确不是很会QwQ。</p>
-<p>不过FSIM的计算是受到SSIM很大的启发的，计算过程比较相似。</p>
-<h4 id="GMSD-Gradient-magnitude-similarity-deviation"><a href="#GMSD-Gradient-magnitude-similarity-deviation" class="headerlink" title="GMSD: Gradient magnitude similarity deviation"></a>GMSD: Gradient magnitude similarity deviation</h4><p>梯度模相似性标准差，据说非常有效非常快。主要用的是梯度模的信息。</p>
-<h4 id="LPIPS-A-CNN-based-FR-IQA-Index"><a href="#LPIPS-A-CNN-based-FR-IQA-Index" class="headerlink" title="LPIPS: A CNN based FR-IQA Index"></a>LPIPS: A CNN based FR-IQA Index</h4><p>这都是个什么东西。Learned perceptual image patch similarity.大概是衡量两种patch图像和标准图像的相似性。但是以前的指标判断的都不符合人类感知，这里LPIPS可以衡量得很好，而不依赖于具体DeepCNN的结构。</p>
-<p>LPIPS训练的是tuple：${x,x_0,x_1,h}$，参考图像，patch0，patch1，h指示哪个patch更好。这个有点意思了。</p>
-<h4 id="NR-IQR方法"><a href="#NR-IQR方法" class="headerlink" title="NR-IQR方法"></a>NR-IQR方法</h4><p>FR似乎是指有reference，而NR似乎没啥标准，所以它要自己判断如何符合人类感知。</p>
-<p>NR似乎可以用于对抗学习。</p>
-<h3 id="基于task"><a href="#基于task" class="headerlink" title="基于task"></a>基于task</h3><p>自建数据集去研究去雾，和师姐很想但没师姐强嘻嘻。</p>
-<h2 id="下午实在是困了，没记笔记，再见"><a href="#下午实在是困了，没记笔记，再见" class="headerlink" title="下午实在是困了，没记笔记，再见"></a>下午实在是困了，没记笔记，再见</h2><p>中午被拖堂，没睡好觉。。。</p>
-<h2 id="CT系统设计及锥束CT成像方法"><a href="#CT系统设计及锥束CT成像方法" class="headerlink" title="CT系统设计及锥束CT成像方法"></a>CT系统设计及锥束CT成像方法</h2><p>由朱磊教授给出，GaTech校友，他讲的其实非常好，基本上把图像质量评价和CT面临的问题都讲清楚了！</p>
-<p>一个重点是把实际需求转化为多目标优化问题。</p>
-<p>具体内容只剩一些照片了，不展示在这里。</p>
-<h2 id="基于特定任务的医学图像质量评价"><a href="#基于特定任务的医学图像质量评价" class="headerlink" title="基于特定任务的医学图像质量评价"></a>基于特定任务的医学图像质量评价</h2><p>由卢hb教授给出。第二天下午太浪了，没记什么笔记。</p>
-<p>讲了讲图像质量评价发展、基于特征保持的CT图像重建及恢复和一些医学图像诊疗性能评价方法，一共三块。</p>
-<p>其总的方法都属于<code>影像组学</code> <code>Radiomics</code>，分割啊，特征提取啊再分析这样，影像组学的思路（或者说流程）可以为医学图像处理提供部分定量的研究手段，其实就是能算的一些指标。</p>
-<h4 id="基于特征保持的（Ld）CT图像重建及恢复"><a href="#基于特征保持的（Ld）CT图像重建及恢复" class="headerlink" title="基于特征保持的（Ld）CT图像重建及恢复"></a>基于特征保持的（Ld）CT图像重建及恢复</h4><p>举几个例子：</p>
-<ul>
-<li>针对nonstationary noise的各项异性边缘引导的TV最小化重建方法；</li>
-<li>针对photon starvation的高阶微分模型TVS最小重建方法；</li>
-<li>针对streak artifacts的基于NLM约束的迭代重建方法；</li>
-<li>针对noise/details tradeoff的基于邻域主成分的非局部均值成像算法。</li>
-</ul>
-<p>还有一个例子好像很有意思，有机会再看吧：</p>
-<ul>
-<li>Knowledge-Based Bayesian Reconstruction Using Information from Previous Full-dose CT Scan</li>
-</ul>
-<h4 id="诊疗性能评价方法"><a href="#诊疗性能评价方法" class="headerlink" title="诊疗性能评价方法"></a>诊疗性能评价方法</h4><p>我感觉就是基本的数据分析方法。。。</p>
-<ul>
-<li>ROC: receiver operating characteristic curve，真阳性率和假阳性率的曲线<ul>
-<li>用于两种或以上不同诊断方法对疾病识别能力的比较；</li>
-<li>越靠近左上角，工作越准确（纵轴是真阳性率）；</li>
-<li>离左上角垂直距离最短的一点，敏感度特异度之和最大，成为最佳临界点，点上的值称为最佳临界值</li>
-<li>ROC曲线下面积AUC，越大，诊断价值越高。一般高于80%算好。</li>
-</ul>
-</li>
-<li>C-Index</li>
-<li>LASSO</li>
-<li>Nomogram for disease risk stratification<ul>
-<li>这是用于实现个体化风险预测的诺模图，阐述不同重要特征的预测能力</li>
-<li>回归模型都可以绘制诺模图，画法不说了，感觉就是设置某种映射给特征一个特殊的重要性权重（score）</li>
-</ul>
-</li>
-</ul>
-<p>一个和我相关的例子：</p>
-<ul>
-<li>注意灰度梯度共生特征和灰度曲度共生特征这两个说法！毕竟是某种图像纹理特征，应该还是很有用的！</li>
-</ul>
-<h2 id="Low-Dose-CT-Quality-Enhancement-with-Ethical-AI"><a href="#Low-Dose-CT-Quality-Enhancement-with-Ethical-AI" class="headerlink" title="Low Dose CT Quality Enhancement with Ethical AI"></a>Low Dose CT Quality Enhancement with Ethical AI</h2><p>由Ge Wang教授，CT领域的领军学者之一给出。老师很喜欢深度方法，举了早期的一些介绍性的工作，用网络做data-image-feature的各种转换。老师的想法和我一样耶，ML与医学的结合。</p>
-<ul>
-<li>这老师好凶啊，感觉是暴力网络（网络集成）图像重建啊！？！？他喵的真的是任务&amp;实验驱动的科研啊。。。</li>
-<li>Artifacts尾影问题<ul>
-<li>老师主讲的是LdCT，这个方向还是很火的；</li>
-<li>早期会把经典的迭代方法编程到网络中，权值共享使得计算复杂度降低？</li>
-<li>他的文章里的网络怎么咔咔咔用了5-6个评价指标；</li>
-<li>ADN: disentanglement似乎非常nb；<ul>
-<li>设计了很多编码器解码器，提取尾影特征；</li>
-<li>设计了5种损失，包括对抗损失2种，重建artifacts损失1种，尾影artifacts一致性损失1种，自优化损失1种，目标函数对应minmax问题；</li>
-<li>待改进问题：如何使用先验信息？</li>
-</ul>
-</li>
-</ul>
-</li>
-<li>分辨率和噪影问题<ul>
-<li>分辨率的一种定义方法FWHM，用的啥啥啥点扩散函数。也可以用MTF啥的；</li>
-<li>究极定义分辨率公理QwQ；</li>
-<li>GAN-Circle；</li>
-<li>Deep Resemble Learning；</li>
-</ul>
-</li>
-<li>浪了浪了看小说去了qwq</li>
-</ul>
-<h2 id="深度重建：基于深度学习的CT图像重建"><a href="#深度重建：基于深度学习的CT图像重建" class="headerlink" title="深度重建：基于深度学习的CT图像重建"></a>深度重建：基于深度学习的CT图像重建</h2><p>由四川大学的Yi Zhang老师给出。主要内容区分为single domain单域和cross domain跨域两者方法。这个域指的是image图像域或者data域，所以到底是什么域？</p>
-<p>回去复习一下池化层吧，当时学得不细现在也忘了。</p>
-<p>后面和组里的越来越像了。</p>
-<p>其中一个VGG+GAN的模型，提特征的思路，包括在target上适用性根据效果来判断，和我的一模一样。。。</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>[1] Tian Qi Chen, Yulia Rubanova, Jesse Bettencourt and David Duvenaud. Neural Ordinary Differential Equations[EB/OL]. <a href="https://arxiv.org/abs/1806.07366" target="_blank" rel="noopener">https://arxiv.org/abs/1806.07366</a>, 2018.</p>
+<p>[2] 思源.硬核NeruIPS 2018最佳论文，一个神经了的常微分方程[EB/OL]. <a href="https://www.jiqizhixin.com/articles/122302" target="_blank" rel="noopener">https://www.jiqizhixin.com/articles/122302</a>, 2018/12/23.</p>
+<p>[3] 匿名用户. 如何评价ODENet？[EB/OL]. <a href="https://www.zhihu.com/question/306937011/answer/561576636" target="_blank" rel="noopener">https://www.zhihu.com/question/306937011/answer/561576636</a>, 2018-12-30.</p>
+<p>[4] 机器之心Pro. 「神经常微分方程」提出者之一David Duvenaud：如何利用深度微分方程模型处理连续时间动态[EB/OL]. <a href="https://www.sohu.com/a/405309910_129720" target="_blank" rel="noopener">https://www.sohu.com/a/405309910_129720</a>, 2020-07-02.</p>
+<p>[5] AI火箭营. 一个深度学习突破的方向：神经常微分方程ODE[EB/OL]. <a href="https://www.toutiao.com/a6703302712311677452/" target="_blank" rel="noopener">https://www.toutiao.com/a6703302712311677452/</a>, 2019-06-17.</p>
+<p>[6] 苏剑林. (2018, Jun 23). 《貌离神合的RNN与ODE：花式RNN简介 》[Blog post]. Retrieved from <a href="https://kexue.fm/archives/5643" target="_blank" rel="noopener">https://kexue.fm/archives/5643</a></p>
+<p>最后一条按照原文提供的参考文献格式了~</p>
 
       
     </div>
@@ -509,7 +465,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="http://maxliu245.github.io/2019/12/13/西北中心研讨班——图像质量评价/" title="西北中心研讨班——图像质量评价">http://maxliu245.github.io/2019/12/13/西北中心研讨班——图像质量评价/</a>
+    <a href="http://maxliu245.github.io/2020/08/21/【论文阅读17】ODE-Net——从离散化的ResNet到连续化ODE的模拟/" title="【论文阅读17】ODE-Net——从离散化的ResNet到连续化ODE的模拟">http://maxliu245.github.io/2020/08/21/【论文阅读17】ODE-Net——从离散化的ResNet到连续化ODE的模拟/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -524,9 +480,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Medical-Images/" rel="tag"># Medical Images</a>
+            <a href="/tags/Paper-Reading/" rel="tag"># Paper Reading</a>
           
-            <a href="/tags/Xiammt/" rel="tag"># Xiammt</a>
+            <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
+          
+            <a href="/tags/PDE/" rel="tag"># PDE</a>
           
         </div>
       
@@ -539,8 +497,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/12/12/My-Journey-in-FGO/" rel="next" title="My Journey in FGO">
-                <i class="fa fa-chevron-left"></i> My Journey in FGO
+              <a href="/2020/08/19/【论文阅读16】Isolation-Forest——孤立的异常检测方式/" rel="next" title="【论文阅读16】Isolation Forest——孤立的异常检测方式">
+                <i class="fa fa-chevron-left"></i> 【论文阅读16】Isolation Forest——孤立的异常检测方式
               </a>
             
           </div>
@@ -548,10 +506,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/01/05/Windows-10-DPC-WATCHDOG-VIOLATION-问题/" rel="prev" title="Windows 10 DPC_WATCHDOG_VIOLATION 问题">
-                Windows 10 DPC_WATCHDOG_VIOLATION 问题 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -733,7 +687,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#开幕简介"><span class="nav-number">1.</span> <span class="nav-text">开幕简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Bayesian-CT图像重建"><span class="nav-number">2.</span> <span class="nav-text">Bayesian CT图像重建</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深度纹理分析-Deep-Texture-Analysis"><span class="nav-number">3.</span> <span class="nav-text">深度纹理分析 Deep Texture Analysis</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图像质量评价IQA中的问题、理论和方法"><span class="nav-number">4.</span> <span class="nav-text">图像质量评价IQA中的问题、理论和方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#基于人类感知"><span class="nav-number">4.1.</span> <span class="nav-text">基于人类感知</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#FR-IQR方法"><span class="nav-number">4.1.1.</span> <span class="nav-text">FR-IQR方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#FSIM-FSIMc-Feature-Similarity-Index"><span class="nav-number">4.1.2.</span> <span class="nav-text">FSIM/FSIMc: Feature Similarity Index</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#GMSD-Gradient-magnitude-similarity-deviation"><span class="nav-number">4.1.3.</span> <span class="nav-text">GMSD: Gradient magnitude similarity deviation</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#LPIPS-A-CNN-based-FR-IQA-Index"><span class="nav-number">4.1.4.</span> <span class="nav-text">LPIPS: A CNN based FR-IQA Index</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#NR-IQR方法"><span class="nav-number">4.1.5.</span> <span class="nav-text">NR-IQR方法</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于task"><span class="nav-number">4.2.</span> <span class="nav-text">基于task</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#下午实在是困了，没记笔记，再见"><span class="nav-number">5.</span> <span class="nav-text">下午实在是困了，没记笔记，再见</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CT系统设计及锥束CT成像方法"><span class="nav-number">6.</span> <span class="nav-text">CT系统设计及锥束CT成像方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基于特定任务的医学图像质量评价"><span class="nav-number">7.</span> <span class="nav-text">基于特定任务的医学图像质量评价</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#基于特征保持的（Ld）CT图像重建及恢复"><span class="nav-number">7.0.1.</span> <span class="nav-text">基于特征保持的（Ld）CT图像重建及恢复</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#诊疗性能评价方法"><span class="nav-number">7.0.2.</span> <span class="nav-text">诊疗性能评价方法</span></a></li></ol></li></ol><li class="nav-item nav-level-2"><a class="nav-link" href="#Low-Dose-CT-Quality-Enhancement-with-Ethical-AI"><span class="nav-number">8.</span> <span class="nav-text">Low Dose CT Quality Enhancement with Ethical AI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#深度重建：基于深度学习的CT图像重建"><span class="nav-number">9.</span> <span class="nav-text">深度重建：基于深度学习的CT图像重建</span></a></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么读"><span class="nav-number">1.</span> <span class="nav-text">为什么读</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文献总结"><span class="nav-number">2.</span> <span class="nav-text">文献总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文献内容"><span class="nav-number">3.</span> <span class="nav-text">文献内容</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#目的"><span class="nav-number">3.1.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">3.2.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法"><span class="nav-number">3.3.</span> <span class="nav-text">方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优缺点"><span class="nav-number">3.4.</span> <span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验"><span class="nav-number">3.5.</span> <span class="nav-text">实验</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#补充资料——参考链接阅读"><span class="nav-number">4.</span> <span class="nav-text">补充资料——参考链接阅读</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">5.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
             
 
           </div>
