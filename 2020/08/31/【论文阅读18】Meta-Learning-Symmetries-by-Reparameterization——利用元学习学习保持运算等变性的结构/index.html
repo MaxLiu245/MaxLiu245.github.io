@@ -1,0 +1,1069 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon_max.png#favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon_max.png#favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Paper Reading,Meta Learning,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Max Liu's Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="这个文章可是难到我了，谁让年轻的时候抽🐘代数学得菜呢？ 好在可以举例子明白其中的道理┭┮﹏┭┮">
+<meta name="keywords" content="Paper Reading,Meta Learning">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【论文阅读18】Meta-Learning Symmetries by Reparameterization——利用元学习学习保持运算等变性的结构">
+<meta property="og:url" content="http://maxliu245.github.io/2020/08/31/【论文阅读18】Meta-Learning-Symmetries-by-Reparameterization——利用元学习学习保持运算等变性的结构/index.html">
+<meta property="og:site_name" content="Max Liu&#39;s Blog">
+<meta property="og:description" content="这个文章可是难到我了，谁让年轻的时候抽🐘代数学得菜呢？ 好在可以举例子明白其中的道理┭┮﹏┭┮">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://maxliu245.github.io/2020/08/31/【论文阅读18】Meta-Learning-Symmetries-by-Reparameterization——利用元学习学习保持运算等变性的结构/MSR.png">
+<meta property="og:image" content="http://maxliu245.github.io/2020/08/31/【论文阅读18】Meta-Learning-Symmetries-by-Reparameterization——利用元学习学习保持运算等变性的结构/MSR2.png">
+<meta property="og:image" content="http://maxliu245.github.io/2020/08/31/【论文阅读18】Meta-Learning-Symmetries-by-Reparameterization——利用元学习学习保持运算等变性的结构/MSR2.png">
+<meta property="og:updated_time" content="2020-08-31T16:28:29.773Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【论文阅读18】Meta-Learning Symmetries by Reparameterization——利用元学习学习保持运算等变性的结构">
+<meta name="twitter:description" content="这个文章可是难到我了，谁让年轻的时候抽🐘代数学得菜呢？ 好在可以举例子明白其中的道理┭┮﹏┭┮">
+<meta name="twitter:image" content="http://maxliu245.github.io/2020/08/31/【论文阅读18】Meta-Learning-Symmetries-by-Reparameterization——利用元学习学习保持运算等变性的结构/MSR.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://maxliu245.github.io/2020/08/31/【论文阅读18】Meta-Learning-Symmetries-by-Reparameterization——利用元学习学习保持运算等变性的结构/">
+
+
+
+
+
+  <title>【论文阅读18】Meta-Learning Symmetries by Reparameterization——利用元学习学习保持运算等变性的结构 | Max Liu's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+<a href="https://github.com/MaxLiu245" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Max Liu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Earlier birds eat more worms</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://maxliu245.github.io/2020/08/31/【论文阅读18】Meta-Learning-Symmetries-by-Reparameterization——利用元学习学习保持运算等变性的结构/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Max Liu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/icon_max.png#avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Max Liu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【论文阅读18】Meta-Learning Symmetries by Reparameterization——利用元学习学习保持运算等变性的结构</h1>
+        
+
+        <div class="post-meta">
+
+          
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-08-31T23:25:27+08:00">
+                2020-08-31
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2020-09-01T00:28:29+08:00">
+                2020-09-01
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  3.7k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  13
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>这个文章可是难到我了，谁让年轻的时候抽🐘代数学得菜呢？</p>
+<p>好在可以举例子明白其中的道理┭┮﹏┭┮</p>
+</blockquote>
+<a id="more"></a>
+<img src="/2020/08/31/【论文阅读18】Meta-Learning-Symmetries-by-Reparameterization——利用元学习学习保持运算等变性的结构/MSR.png" title="MSR">
+<h1 id="为什么读"><a href="#为什么读" class="headerlink" title="为什么读"></a>为什么读</h1><ul>
+<li>元学习新作</li>
+<li>作者之一是Finn啊doge</li>
+</ul>
+<p>文献链接：<a href="https://arxiv.org/abs/2007.02933" target="_blank" rel="noopener">Meta-Learning Symmetries by Reparameterization</a>，原作者提交于2020/07，挂出来了。</p>
+<h1 id="文献总结"><a href="#文献总结" class="headerlink" title="文献总结"></a>文献总结</h1><p>用强大的神经网络去学习一些参数，它们表示某种变换（如卷积），能对特定的任务（如图像相关）满足某种等变性。</p>
+<p>其实就是<font color="#0000FF">重参数化网络的隐层，学习像卷积这样的运算的模式pattern，可以满足像对图像平移变换的等变性，并利用元学习进一步学习此pattern</font></p>
+<h1 id="文献内容"><a href="#文献内容" class="headerlink" title="文献内容"></a>文献内容</h1><h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>和文献总结一致！</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>背景一方面是CNN，可以认为卷积满足对图像平移变换的等变性，如果像卷积这样的运算可以推广，并满足各种特定运算的等变性，那一定是很🐂🍺。</p>
+<p>另一方面是文章里的related work，不过我暂时不感兴趣没看。</p>
+<h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>说实话我感觉不好总结，姑且分两个部分，一部分讲等变性对应的代数基础，另一部分讲网络参数设置的形式（以使用元学习训练）。</p>
+<h3 id="等变性的代数理论"><a href="#等变性的代数理论" class="headerlink" title="等变性的代数理论"></a>等变性的代数理论</h3><p>3.2节提到了群卷积是什么，我不（代）太（数）明（太）白（差），举个例子吧。</p>
+<p>网络隐层的输入输出都是空间 $X$ 的函数。比如是 $R^n$ 中一个向量，它相当于一个映射，从指标集 $X={1, \cdots, n}$ 映射到对应的 $n$ 个实数。</p>
+<p>$X$ 上的实值函数集合定义为 $F_X$ ，群 $G$ 作用在 $F_X$ 上，通过 $\pi:G\rightarrow GL(F_X)$，这个 $\pi$ 称为representation，把群 $G$ 中的元素 $g$ 映为 $F_X$ 中的一个可逆线性变换。</p>
+<p>注意 $G$ 对 $X$ 的作用是一个 $g\rightarrow F_X$ 的映射，</p>
+<p>即 $F_X$ 中的可逆线性变换 $f$，当然 $f$ 作用的元素是 $X$ 中的元素 $x$ ，因为 $f$ 是 $X$ 上的实值函数嘛，现在 $\pi(g)$ 是一个可逆线性变换，假设就是 $f$ 的逆变换，所以 $\pi(g)$ 复合 $f$ 是一个函数且是恒等映射，即 $(\pi(g)f)(x) = I(x) = x$</p>
+<p>文章写的符号我没看懂，但是看例子懂了， $G=X$ 时，定义作用为 $R^2$ 上的加法平移，则 $g^{-1}x$ 是 $x-g$ ， $gx$ 是 $x+g$ ，</p>
+<img src="/2020/08/31/【论文阅读18】Meta-Learning-Symmetries-by-Reparameterization——利用元学习学习保持运算等变性的结构/MSR2.png" title="举个例子我就懂啦！">
+<p>3.3节表示，定义网络隐层为一个函数 $\phi:F_X\rightarrow F_Y$， $G$ 有等变性，举个简单例子， $X$ ， $Y$ 是输入图片网格和输出特征图的网格，所以， $F_X$ 中的元素就是网格大小的图片， $F_Y$ 中的元素就是特征图大小的图片；3式左边就是先对隐层输入做一个平移变换，再输出特征图，右边相当于先输出特征图，再做输出空间上对应的平移变换。</p>
+<p>一个特例是，如果 $\pi$ 是id恒等映射，即 $X$ 、 $Y$ 空间上平移是一致，一样的，那么就叫不变性，先平移再映射和先映射再平移是一样的；注意这里的两个平移现在是数值上相等，但空间是其实分别是 $X$ 和 $Y$ 。</p>
+<p>由于等变性对于函数复合可以保持，那么如果所有隐层都有等变性，那么整个网络也有。</p>
+<p>线性层是基本的层，希望用它学习参数的共同pattern，达到使之有等变性（像群卷积）。</p>
+<p>最后重述一下MSR方法吧，即学习和编码等变性，这个学习就是学习隐层参数的共享pattern，编码是指在代数上找到上文所述的一个灵活的representation。</p>
+<h3 id="网络参数形式"><a href="#网络参数形式" class="headerlink" title="网络参数形式"></a>网络参数形式</h3><p>其实具体的例子参考文中的图1即可。</p>
+<p>4.1节表示，隐层权重矩阵是图1那样形式叠加的矩阵，这就是一种constraint，就是一种pattern，结果是对平移有等变性。现在希望推广到其它的变换，旋转，镜像什么的，但是咱们没有思路怎么去做，所以就用简单的FC层模拟，设置 $y=\phi(x)=Wx, W\in \mathbb{R}^{m\times n}$ ，然后学习 $W$ 就是在学习这个pattern了。</p>
+<p>接着阐释了这个pattern不是直接去学习 $W$ ，这样也看不出有什么pattern。我猜是参考了矩阵分解的概念， $vec(W)=Uv, v\in\mathbb{R}^k, U\in\mathbb{R}^{mn\times k}$ ， $W$ 分解为伪对称矩阵 $U$ 和滤波参数向量 $v$ 的积， $U$ 的维度就是 $W$ 完全展开，再复制个 $k$ 份， $k$ 就是参量 $v$ 的维度，应该可以自行设置。所以pattern实际上就是 $U$ ， $U$ 可以限制最后 $W$ 的形式，滤波参数 $v$也要根据实际任务训练。</p>
+<blockquote>
+<p>For example, the sharing pattern of standard convolution guarantees that the weight matrix is constant along any diagonal, reducing the number of per-task parameters</p>
+</blockquote>
+<p>显然 $U$ 的维度会很高，怎么办？Kronecker factorization，就是参数化的方式，和我之前看的文章和做的实验都是<strong>一致</strong>的想法！</p>
+<p>4.2节继续，那么 $U$ 具体怎么设置呢？和输入的形式有一些关系…举例子吧，从基本的网格空间 $X$ 上选位置，得到输入 $f$ ，即 $f:X\rightarrow R^c$ ，这个输入是向量（矩阵或者矩阵展开应该也行）。假定 $f$ 是 $s$ 维的， $\bar{f}\in\mathbb{R}^s$ ，其中 $\bar{f}_i=f(x_i)$  。引理就是保证了可以由这个 $U$ 保持群的作用，即保持某种运算的等变性；引理分两部分，一部分是给定群后，群的作用就定了，即运算定了，该运算的等变性存在 $U$ 来保持；第二部分是此 $U$ 存在时，任何 $G$ 卷积都可以由 $vec(W)$ 表示出来。所以 $U$ 就设置成一个固定长度的参数向量，把它参数化为矩阵或者向量本身都可以，进一步得到pattern的形式，这样就是能训练的。证明估计我也看不懂了…</p>
+<h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><p>优点：</p>
+<ul>
+<li>优点：学习保持等变量性质的参数pattern—&gt;泛化，减少参数用量，适用小样本</li>
+<li>从卷积的应用开始，等变性很重要—&gt;是未来发展的方向之一</li>
+<li>未来自动寻找潜在的特殊结构的算子？像卷积这样的带有等变性的</li>
+<li>quickly discovering symmetries的应用</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li>我也不知道，可能要根据等变性做监督，训练得到 $U$ 具体的形式，这算不算一种手动设置呢。好吧我其实在杠，还是暂时挑不出毛病</li>
+</ul>
+<h1 id="附录——“快乐”的阅读体验"><a href="#附录——“快乐”的阅读体验" class="headerlink" title="附录——“快乐”的阅读体验"></a>附录——“快乐”的阅读体验</h1><p>我的阅读历程😭😥😪😵，仅个人记录于此，不建议看官阅读…应该看不懂的，只是一些个人阅读思路。<strong>和上文基（是）本（水）重（字）叠（数）</strong>。</p>
+<ul>
+<li><p>标题中什么叫元学习的对称性？</p>
+<p>这里应该<strong>不是</strong>指“元学习有对称性”，而是一个广泛的概念，是要学习<strong>某种</strong>对称性，包括数据本身性质、任务之间关联性，以及某些对数据运算的性质（如旋转镜像这样的运算算子）</p>
+</li>
+<li><p>摘要中：</p>
+<ul>
+<li><p>等变量equivariances是什么意思？</p>
+<p>参考链接<a href="https://zhuanlan.zhihu.com/p/34288976" target="_blank" rel="noopener">CNN 中等变性（equivariant）与不变性（invariant）的关系</a>即可，确实是，经过某些特定运算，特定的输入<strong>模式</strong>能够保持不变</p>
+</li>
+<li><p>感觉文章的<strong>卖点</strong>是从数据（含某种对称性）中（元）学习这个所谓的等变量，学习的方式是用网络<strong>学习等变量对应的parameter sharing patterns</strong>，用参数化形式学习表达出这种模式！</p>
+</li>
+</ul>
+</li>
+<li><p>引言中：</p>
+<ul>
+<li><strong>等变量的起源——CNN</strong>，利用等变量做了某种对称变换，来保护参数，提高泛化能力。什么意思？大概就是卷积（层）这个操作，这个变换允许输入输出的对应变化（平移）有不变性，叫做translation equivariant，即输入（图像）经过特定的平移变换后输出也会经过类似的变换。</li>
+<li>第一段提到了translation equivariant，这是个名词，专指<strong>平移不变性</strong>，不是混淆为广泛的变化！知乎<a href="https://zhuanlan.zhihu.com/p/34288976" target="_blank" rel="noopener">CNN 中等变性（equivariant）与不变性（invariant）的关系</a>讲得很好！</li>
+<li>上面的指CNN利用的卷积，其本身有这种平移不变性，因此在特定任务上（图像相关）表现很好。现在本文试图找其它的内在的等变量。</li>
+<li><strong>目的</strong>出现！引言第3段，在神经网络中<strong>自动学习等变量</strong>。有利于迁移，不需手动设计像卷积这样有平移等变性的算子，直接去寻找等变量。怎么自动学习？<font color="#0000FF">重参数化网络的隐层，以学习表示共享的pattern，并利用元学习进一步学习共同的pattern</font>。</li>
+<li>引言最后一段讲的什么？网络怎么等价于有限对称群？这对称性和拓扑怎么关系上了？抽🐘代数🐕表示很淦…</li>
+</ul>
+</li>
+<li><p>相关工作看不懂，现在懒得看</p>
+</li>
+<li><p>先修知识章节表示3.2、3.3节会给出等变量和群卷积的定义…<strong>早说啊</strong></p>
+<ul>
+<li><p>3.1回顾MAML，这是典型的元学习，MAML也是这样么，和我记的不太一样啊？我要回去重看MAML了，我就记得它是学一个好的初始参数，具体怎么学的忘了</p>
+</li>
+<li><p>3.2，对称性和等变性是群对集合作用的性质…复习一堆拓扑代数知识hahaha…群的定义，加法群…同态，从群 $G$ 映到 $X$ 的自同构群…自同构群，是群 $X$ 到自己的同构变换，且双射…</p>
+</li>
+<li><p>3.2，群卷积是什么，隐层的输入输出都是空间 $X$ 的函数。比如说 $R^n$ 中一个向量相当于一个映射，从指标集 $X={1, \cdots, n}$ 映射到对应的 $n$ 个实数。</p>
+<img src="/2020/08/31/【论文阅读18】Meta-Learning-Symmetries-by-Reparameterization——利用元学习学习保持运算等变性的结构/MSR2.png" title="举个例子我就懂啦！">
+<p>$X$ 上的实值函数集合定义为 $F_X$ ，群 $G$ 作用在 $F_X$ 上，通过 $\pi:G\rightarrow GL(F_X)$，这个 $\pi$ 称为representation，把群 $G$ 中的元素 $g$ 映为 $F_X$ 中的一个可逆线性变换。</p>
+<p>注意 $G$ 对 $X$ 的作用是一个 $g\rightarrow F_X$ 的映射，</p>
+<p>即 $F_X$ 中的可逆线性变换 $f$，当然 $f$ 作用的元素是 $X$ 中的元素 $x$ ，因为 $f$ 是 $X$ 上的实值函数嘛，现在 $\pi(g)$ 是一个可逆线性变换，假设就是 $f$ 的逆变换，所以 $\pi(g)$ 复合 $f$ 是一个函数且是恒等映射，即 $(\pi(g)f)(x) = I(x) = x$</p>
+<p>文章写的符号我没看懂，但是看例子懂了， $G=X$ 时，定义作用为 $R^2$ 上的加法平移，则 $g^{-1}x$ 是 $x-g$ ， $gx$ 是 $x+g$ ，</p>
+</li>
+<li><p>3.3，定义网络隐层为一个函数 $\phi:F_X\rightarrow F_Y$， $G$ 等变性，举个简单例子， $X$ ， $Y$ 是输入图片网格和输出特征图的网格，所以， $F_X$ 中的元素就是网格大小的图片， $F_Y$ 中的元素就是特征图大小的图片；3式左边就是先对隐层输入做一个平移变换，再输出特征图，右边相当于先输出特征图，再做输出空间上对应的平移变换。</p>
+<p>如果pi_2是id恒等映射，即 $X$ 、 $Y$ 空间上平移是一致一样的，那么就叫不变性，先平移再映射和先映射再平移是一样的；注意这里的两个平移现在是数值上相等，但空间是其实分别是 $X$ 和 $Y$ 。</p>
+</li>
+<li><p>3.3，等变性对于函数复合可以保持，所以如果所有隐层都有等变性，那么整个网络也有。</p>
+</li>
+<li><p>3.3，线性层，研究基本的层，怎么学习参数的共同pattern，达到使之有等变性（群卷积）。</p>
+</li>
+<li><p>3.3，4式什么意思？没细看了，和之前写的3.2的式子应该是一致的</p>
+</li>
+<li><p>MSR方法干什么的：学习和编码等变性，这个学习就是学习隐层参数的共享pattern，编码是指在代数上找到一个灵活的representation</p>
+</li>
+</ul>
+</li>
+<li><p>讲方法了：</p>
+<ul>
+<li><p>4.1，FC层，权重矩阵是那样叠加的矩阵，这就是一种constraint，就是一种pattern，结果是对平移有等变性。现在希望推广到其它的变换，旋转，镜像什么的，但是咱们没有思路怎么去做，所以就用FC层模拟，设置 $y=\phi(x)=Wx, W\in \mathbb{R}^{m\times n}$ ，然后学习 $W$ 就是在学习这个pattern了。</p>
+</li>
+<li><p>接着阐释了这个pattern不是直接去学习 $W$ ，这样也看不出有什么pattern，我猜是参考矩阵分解的概念， $vec(W)=Uv, v\in\mathbb{R}^k, U\in\mathbb{R}^{mn\times k}$ ， $W$ 分解为伪对称矩阵 $U$ 和滤波参数向量 $v$ 的积， $U$ 的维度就是 $W$ 完全展开，再复制个 $k$ 份， $k$ 就是参量 $v$ 的维度，应该可以自行设置。所以pattern实际上就是 $U$ ， $U$ 可以限制最后 $W$ 的形式，滤波参数 $v$也要根据实际任务训练。</p>
+<blockquote>
+<p>For example, the sharing pattern of standard convolution guarantees that the weight matrix is constant along any diagonal, reducing the number of per-task parameters</p>
+</blockquote>
+</li>
+<li><p>显然 $U$ 的维度会很高，怎么办？Kronecker factorization，就是参数化的方式，和之前看的文章和做的实验都是<strong>一致</strong>的想法！</p>
+</li>
+<li><p>4.2，那么 $U$ 具体怎么设置呢？输入的形式…举例子吧，从基本的网格空间 $X$ 上选位置，得到输入 $f$ ，即 $f:X\rightarrow R^c$ ，这个输入是向量（矩阵或者矩阵展开应该也行）。假定 $f$ 是 $s$ 维的， $\bar{f}\in\mathbb{R}^s$ ，其中 $\bar{f}_i=f(x_i)$  。引理就是保证了可以由这个 $U$ 保持群的作用，即保持某种运算的等变性；引理分两部分，一部分是给定群后，群的作用就定了，即运算定了，该运算的等变性存在 $U$ 来保持；第二部分是此 $U$ 存在时，任何 $G$ 卷积都可以由 $vec(W)$ 表示出来。反正就是能训练的。证明估计我也看不懂</p>
+</li>
+</ul>
+</li>
+<li><p>实验日常不想看，但是说实话还是得康康代码的</p>
+</li>
+<li><p>结论：</p>
+<ul>
+<li>优点：学习保持等变量性质的参数pattern—&gt;泛化，减少参数用量，适用小样本</li>
+<li>从卷积的应用开始，等变性很重要—&gt;是未来发展的方向之一</li>
+<li>未来自动寻找潜在的特殊结构的算子？像卷积这样的带有等变性的</li>
+<li>quickly discovering symmetries的应用</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    Max Liu
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="http://maxliu245.github.io/2020/08/31/【论文阅读18】Meta-Learning-Symmetries-by-Reparameterization——利用元学习学习保持运算等变性的结构/" title="【论文阅读18】Meta-Learning Symmetries by Reparameterization——利用元学习学习保持运算等变性的结构">http://maxliu245.github.io/2020/08/31/【论文阅读18】Meta-Learning-Symmetries-by-Reparameterization——利用元学习学习保持运算等变性的结构/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Paper-Reading/" rel="tag"># Paper Reading</a>
+          
+            <a href="/tags/Meta-Learning/" rel="tag"># Meta Learning</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/08/30/【NBA2K13】暑期修改历程暂结/" rel="next" title="【NBA2K13】暑期修改历程暂结">
+                <i class="fa fa-chevron-left"></i> 【NBA2K13】暑期修改历程暂结
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/icon_max.png#avatar.gif" alt="Max Liu">
+            
+              <p class="site-author-name" itemprop="name">Max Liu</p>
+              <p class="site-description motion-element" itemprop="description">Max Liu's Blog</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">34</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">32</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/MaxLiu245" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:lzmlzm@stu.xjtu.edu.cn" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/9cbd69c5d573" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-book"></i>简书</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/6033196789" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.xjtu.edu.cn/" title="西安交通大学" target="_blank">西安交通大学</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://gatech.edu/" title="佐治亚理工学院" target="_blank">佐治亚理工学院</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://xiammt.xjtu.edu.cn/index.htm" title="国家天元数学西北中心" target="_blank">国家天元数学西北中心</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么读"><span class="nav-number">1.</span> <span class="nav-text">为什么读</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文献总结"><span class="nav-number">2.</span> <span class="nav-text">文献总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文献内容"><span class="nav-number">3.</span> <span class="nav-text">文献内容</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#目的"><span class="nav-number">3.1.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">3.2.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法"><span class="nav-number">3.3.</span> <span class="nav-text">方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#等变性的代数理论"><span class="nav-number">3.3.1.</span> <span class="nav-text">等变性的代数理论</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#网络参数形式"><span class="nav-number">3.3.2.</span> <span class="nav-text">网络参数形式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优缺点"><span class="nav-number">3.4.</span> <span class="nav-text">优缺点</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#附录——“快乐”的阅读体验"><span class="nav-number">4.</span> <span class="nav-text">附录——“快乐”的阅读体验</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Max Liu</span>
+
+
+
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">43.2k</span>
+  
+</div>
+
+
+<div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+
+<br>
+<span id="timeDate">load days...</span><span id="times">load hours...</span><!--<span id="post-couttt">load characters...</span>-->
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("10/14/2019 14:55:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "This blog has run for "+dnum+" days, "; 
+        document.getElementById("times").innerHTML = hnum + "h, " + mnum + "m, " + snum + "s"; 
+        <!-->document.getElementById("post-counttt").innerHTML = "博客全站共"+totalcount(site)+"字"-->
+    } 
+setInterval("createtime()",250);
+</script>
+<br>
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      Vistors <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      PV <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>
