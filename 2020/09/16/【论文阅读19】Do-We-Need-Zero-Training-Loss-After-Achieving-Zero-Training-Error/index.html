@@ -75,12 +75,10 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Paper Reading,Machine Learning,Regularization,">
 
 
 
-
-  
 
 
   <link rel="alternate" href="/atom.xml" title="Max Liu's Blog" type="application/atom+xml">
@@ -90,17 +88,21 @@
 
 
 
-<meta name="description" content="Nice to meet you, this is Max Liu, male. I really love eating lychee. Lectures or Discussions Attended  July, 2019, attended the opening ceremony of Association for High Performance Computing, Xi’an J">
-<meta property="og:type" content="website">
-<meta property="og:title" content="about">
-<meta property="og:url" content="http://maxliu245.github.io/about/index.html">
+<meta name="description" content="一种新的正则方法flooding，相比以往直接考虑控制模型复杂度，flooding考虑的是控制训练loss的水平">
+<meta name="keywords" content="Paper Reading,Machine Learning,Regularization">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【论文阅读19】Do We Need Zero Training Loss After Achieving Zero Training Error">
+<meta property="og:url" content="http://maxliu245.github.io/2020/09/16/【论文阅读19】Do-We-Need-Zero-Training-Loss-After-Achieving-Zero-Training-Error/index.html">
 <meta property="og:site_name" content="Max Liu&#39;s Blog">
-<meta property="og:description" content="Nice to meet you, this is Max Liu, male. I really love eating lychee. Lectures or Discussions Attended  July, 2019, attended the opening ceremony of Association for High Performance Computing, Xi’an J">
+<meta property="og:description" content="一种新的正则方法flooding，相比以往直接考虑控制模型复杂度，flooding考虑的是控制训练loss的水平">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-05-11T11:02:00.000Z">
+<meta property="og:image" content="http://maxliu245.github.io/2020/09/16/【论文阅读19】Do-We-Need-Zero-Training-Loss-After-Achieving-Zero-Training-Error/Zero_Training_Loss_No_1.png">
+<meta property="og:image" content="http://maxliu245.github.io/2020/09/16/【论文阅读19】Do-We-Need-Zero-Training-Loss-After-Achieving-Zero-Training-Error/Zero_Training_Loss_No_2.png">
+<meta property="og:updated_time" content="2020-09-16T11:28:45.888Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="about">
-<meta name="twitter:description" content="Nice to meet you, this is Max Liu, male. I really love eating lychee. Lectures or Discussions Attended  July, 2019, attended the opening ceremony of Association for High Performance Computing, Xi’an J">
+<meta name="twitter:title" content="【论文阅读19】Do We Need Zero Training Loss After Achieving Zero Training Error">
+<meta name="twitter:description" content="一种新的正则方法flooding，相比以往直接考虑控制模型复杂度，flooding考虑的是控制训练loss的水平">
+<meta name="twitter:image" content="http://maxliu245.github.io/2020/09/16/【论文阅读19】Do-We-Need-Zero-Training-Loss-After-Achieving-Zero-Training-Error/Zero_Training_Loss_No_1.png">
 
 
 
@@ -130,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://maxliu245.github.io/about/">
+  <link rel="canonical" href="http://maxliu245.github.io/2020/09/16/【论文阅读19】Do-We-Need-Zero-Training-Loss-After-Achieving-Zero-Training-Error/">
 
 
 
 
 
-  <title>about | Max Liu's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>【论文阅读19】Do We Need Zero Training Loss After Achieving Zero Training Error | Max Liu's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -253,53 +255,260 @@
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://maxliu245.github.io/2020/09/16/【论文阅读19】Do-We-Need-Zero-Training-Loss-After-Achieving-Zero-Training-Error/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Max Liu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/icon_max.png#avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Max Liu's Blog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-	<h1 class="post-title" itemprop="name headline">about</h1>
-
-
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <p>Nice to meet you, this is <strong>Max Liu</strong>, male.</p>
-<p>I really love eating lychee.</p>
-<p><strong>Lectures or Discussions Attended</strong></p>
-<ul>
-<li>July, 2019, attended the opening ceremony of Association for High Performance Computing, Xi’an Jiaotong University</li>
-<li>July, 2019, attended <a href="http://xiammt.xjtu.edu.cn/info/1053/1845.htm" target="_blank" rel="noopener">医学图像处理与分析暑期学校</a></li>
-<li>Sep, 2019, attended <a href="http://xiammt.xjtu.edu.cn/info/1052/1948.htm" target="_blank" rel="noopener">多模态医学影像分析建模与算法新进展专题研讨班</a></li>
-<li>Dec, 2019, attended <a href="http://xiammt.xjtu.edu.cn/info/1052/2055.htm" target="_blank" rel="noopener">图像质量评价和图像质量评价引导的CT重建专题研讨班</a></li>
-<li>Mar, 2020, listening to <a href="https://event.baai.ac.cn/con/gnn-online-workshop-2020/" target="_blank" rel="noopener">图神经网络在线研讨会2020</a></li>
-<li>Apr, 2020, listening to <a href="http://xiammt.xjtu.edu.cn/info/1054/2131.htm" target="_blank" rel="noopener">数学模型助力新发重大传染病疫情防控</a> holding by <a href="http://xiammt.xjtu.edu.cn/" target="_blank" rel="noopener">xiammt</a></li>
-</ul>
-<p><strong>Events/Honors</strong></p>
-<ul>
-<li>Feb, 2019, attended <a href="http://gtmap.gatech.edu/19-georgia-scientific-computing-symposium" target="_blank" rel="noopener">2019 Georgia Scientific Computing Symposium</a></li>
-<li>Oct, 2019, attended <a href="http://news.xjtu.edu.cn/info/1033/121576.htm" target="_blank" rel="noopener">中国西部科技创新港西安数学与技术研究院入驻揭牌仪式</a></li>
-<li><p>Nov, 2019, listening to <a href="http://www.prcv2019.com/index.html" target="_blank" rel="noopener"><em>PRCV2019</em> 第二届中国模式识别与计算机视觉学术会议</a></p>
+          <h1 class="post-title" itemprop="name headline">【论文阅读19】Do We Need Zero Training Loss After Achieving Zero Training Error</h1>
+        
+
+        <div class="post-meta">
+
+          
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-09-16T19:05:40+08:00">
+                2020-09-16
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2020-09-16T19:28:45+08:00">
+                2020-09-16
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  1.1k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  3
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>一种新的正则方法flooding，相比以往直接考虑控制模型复杂度，flooding考虑的是控制训练loss的水平</p>
+</blockquote>
+<a id="more"></a>
+<img src="/2020/09/16/【论文阅读19】Do-We-Need-Zero-Training-Loss-After-Achieving-Zero-Training-Error/Zero_Training_Loss_No_1.png" title="Title">
+<h2 id="为什么读"><a href="#为什么读" class="headerlink" title="为什么读"></a>为什么读</h2><p>文献及相关介绍的链接：</p>
+<ol>
+<li><p><a href="https://arxiv.org/abs/2002.08709" target="_blank" rel="noopener">https://arxiv.org/abs/2002.08709</a></p>
 </li>
-<li><p>April, 2020, Meritorious Winner for 2020 Mathematical Contest In Modeling, as a key modeler and all-time programmer</p>
+<li><p><a href="https://blog.csdn.net/oYeZhou" target="_blank" rel="noopener">叶舟</a>的CSDN博客<a href="https://blog.csdn.net/oYeZhou/article/details/107667317" target="_blank" rel="noopener">一种新的正则化方法——flooding，只需一行代码即可使用</a></p>
 </li>
-</ul>
+<li><p>新智元的知乎文章<a href="https://zhuanlan.zhihu.com/p/203417649" target="_blank" rel="noopener">【论文】一行代码发一篇ICML？</a></p>
+</li>
+</ol>
+<p>至于为什么读这篇文章？🤭，因为看起来简单啊，一行代码写出来的，思想上一定是很有意思的，事实也是如此。只是这个有关训练loss和训练error的讨论让我有点迷糊，放在这里，若干纪元以后再来探访~</p>
+<h2 id="从标题到文章主题"><a href="#从标题到文章主题" class="headerlink" title="从标题到文章主题"></a>从标题到文章主题</h2><p>标题点明了文章讨论的两个概念：<strong>训练loss</strong>和<strong>训练error</strong>之间的关系</p>
+<p>为什么会注意到这两个概念呢？从我个人的观点，<strong>前者有一点泛化</strong>的意思在里面，因为loss大了可能欠拟合，小了可能过拟合，合适的loss水平确实对各种训练方法有点影响（个人经验）；后者其实也有一点泛化的味道，但我更喜欢说它<strong>代表拟合</strong>，理由差不多，error太小了，说明模型把训练数据给背下来了，是大概率过拟合的，毕竟极其强大的网络可以拟合数据，甚至“记住”所有训练数据，达到<strong>训练error=0</strong>，但这显然有点问题，大概率会过拟合。</p>
+<blockquote>
+<p>文章里有一句是别人工作的结论，我觉得不太对劲：</p>
+<p>“learning until zero training error is meaningful to achieve a lower generalization error”</p>
+<p>对此我保留意见，文章略过了这一点，直接开始思考🤔…</p>
+</blockquote>
+<p>这就引出了文章标题的思考：</p>
+<blockquote>
+<p>Q: Do we need zero training loss after achieving zero training error?</p>
+</blockquote>
+<h2 id="从传统正则到针对loss水平"><a href="#从传统正则到针对loss水平" class="headerlink" title="从传统正则到针对loss水平"></a>从传统正则到针对loss水平</h2><p>一般我们会用正则控制模型复杂度（但不是完全控制loss，只是加了一项），但它的出发点不是避免0<strong>训练loss</strong>，所以它其实也控制不了<strong>训练loss</strong>的水平，即往往最后的<strong>训练loss</strong>也会有偏大或偏小的现象，达不到合适的水平。</p>
+<p>另外，一般来说<strong>训练error</strong> $\rightarrow$ 0是可以的，但是当前者达到时，<strong>训练loss</strong>还需要继续下降么，还需要继续训练模型么？</p>
+<blockquote>
+<p>even if we add fooding, we can still memorize the training data</p>
+<p>flooding剑指当<strong>训练error</strong>-&gt;0时，<strong>训练loss</strong>维持在比较小的值而不是0</p>
+<p>假设之前希望<strong>训练error</strong>-&gt;0的那句结论的说法是对的，那么控制<strong>训练loss</strong>的水平确实有点意思，但还要确定这个水平是多少</p>
+</blockquote>
+<h2 id="Flooding正则"><a href="#Flooding正则" class="headerlink" title="Flooding正则"></a>Flooding正则</h2><img src="/2020/09/16/【论文阅读19】Do-We-Need-Zero-Training-Loss-After-Achieving-Zero-Training-Error/Zero_Training_Loss_No_2.png" title="形象的模型描述">
+<p>针对这一点，提出flooding的方法，如上图很直观啦，这个洪水的水面高度就相当于最终<strong>训练loss</strong>的水平，称为fooding level。思想很简单，就是控制<strong>训练loss</strong>的水平，当loss较高就正常SGD，loss偏低就<strong>反向进行梯度上升</strong>。思路简单的结果是实现极其简单，如下式，变量flood就是新的loss，变量b就是fooding level。一行代码即可且可应用于<strong>一切</strong>以往基于loss梯度下降的方法。</p>
+<script type="math/tex; mode=display">flood = (loss-b).abs()+b</script><p>这样就有个麻烦，这个fooding level<strong>到底是多少</strong>？我们把<strong>训练loss</strong>控制到这个level<strong>为什么能有效</strong>？</p>
+<blockquote>
+<p>In Appendix F, we show that during this period of random walk, there is an increase in fatness of the loss function</p>
+<p>附录F并没有提及理论上为何有效，似乎在附录A有定理证明</p>
+<p>附录F的图看了几遍也没有看明白，可能需要阅读flatness的相关知识吧</p>
+<p>附录A的证明很清晰，表明这种操作是有效的√</p>
+</blockquote>
+<p>那么现在只差fooding level<strong>到底是多少</strong>这个问题了。文章里表示这个可以手动设置，也可以设置验证（文中的实验就是这么做的），或者当作超参数进行超参优化；个人以为还是最后的舒服。</p>
+<h2 id="注"><a href="#注" class="headerlink" title="注"></a>注</h2><p>这篇文章有个<strong>有意思的知识点</strong>表一，是许多正则方法的比较，以后需要的话可以看看 √</p>
 
-        
-      </div>
-      
-      
       
     </div>
     
     
     
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    Max Liu
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="http://maxliu245.github.io/2020/09/16/【论文阅读19】Do-We-Need-Zero-Training-Loss-After-Achieving-Zero-Training-Error/" title="【论文阅读19】Do We Need Zero Training Loss After Achieving Zero Training Error">http://maxliu245.github.io/2020/09/16/【论文阅读19】Do-We-Need-Zero-Training-Loss-After-Achieving-Zero-Training-Error/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Paper-Reading/" rel="tag"># Paper Reading</a>
+          
+            <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
+          
+            <a href="/tags/Regularization/" rel="tag"># Regularization</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/08/31/【论文阅读18】Meta-Learning-Symmetries-by-Reparameterization——利用元学习学习保持运算等变性的结构/" rel="next" title="【论文阅读18】Meta-Learning Symmetries by Reparameterization——利用元学习学习保持运算等变性的结构">
+                <i class="fa fa-chevron-left"></i> 【论文阅读18】Meta-Learning Symmetries by Reparameterization——利用元学习学习保持运算等变性的结构
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
   </div>
 
 
@@ -332,8 +541,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -443,6 +661,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#为什么读"><span class="nav-number">1.</span> <span class="nav-text">为什么读</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从标题到文章主题"><span class="nav-number">2.</span> <span class="nav-text">从标题到文章主题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#从传统正则到针对loss水平"><span class="nav-number">3.</span> <span class="nav-text">从传统正则到针对loss水平</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Flooding正则"><span class="nav-number">4.</span> <span class="nav-text">Flooding正则</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#注"><span class="nav-number">5.</span> <span class="nav-text">注</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -707,6 +941,26 @@ setInterval("createtime()",250);
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
