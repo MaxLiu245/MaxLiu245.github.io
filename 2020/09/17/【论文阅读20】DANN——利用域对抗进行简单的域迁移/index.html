@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Paper Reading,Machine Learning,Abnormality Detection,">
+  <meta name="keywords" content="Paper Reading,Meta Learning,Machine Learning,Domain Adaptation,">
 
 
 
@@ -88,20 +88,21 @@
 
 
 
-<meta name="description" content="这次在网上学习别人记笔记的方式，感觉很有意思，不知道我能从中学到多少。可惜markdown做富文本表格太麻烦了…但是用别的，比如word、pdf，都不方便即时打开。。。算了吧，选择了markdown还是按标题目录来整理笔记">
-<meta name="keywords" content="Paper Reading,Machine Learning,Abnormality Detection">
+<meta name="description" content="第一次看领域迁移的文章~">
+<meta name="keywords" content="Paper Reading,Meta Learning,Machine Learning,Domain Adaptation">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【论文阅读16】Isolation Forest——孤立的异常检测方式">
-<meta property="og:url" content="http://maxliu245.github.io/2020/08/19/【论文阅读16】Isolation-Forest——孤立的异常检测方式/index.html">
+<meta property="og:title" content="【论文阅读20】DANN——利用域对抗进行简单的域迁移">
+<meta property="og:url" content="http://maxliu245.github.io/2020/09/17/【论文阅读20】DANN——利用域对抗进行简单的域迁移/index.html">
 <meta property="og:site_name" content="Max Liu&#39;s Blog">
-<meta property="og:description" content="这次在网上学习别人记笔记的方式，感觉很有意思，不知道我能从中学到多少。可惜markdown做富文本表格太麻烦了…但是用别的，比如word、pdf，都不方便即时打开。。。算了吧，选择了markdown还是按标题目录来整理笔记">
+<meta property="og:description" content="第一次看领域迁移的文章~">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://maxliu245.github.io/2020/08/19/【论文阅读16】Isolation-Forest——孤立的异常检测方式/1.png">
-<meta property="og:updated_time" content="2020-08-19T02:07:45.693Z">
+<meta property="og:image" content="http://maxliu245.github.io/2020/09/17/【论文阅读20】DANN——利用域对抗进行简单的域迁移/DANN-1.png">
+<meta property="og:image" content="http://maxliu245.github.io/2020/09/17/【论文阅读20】DANN——利用域对抗进行简单的域迁移/DANN-2.png">
+<meta property="og:updated_time" content="2020-09-17T14:25:52.921Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【论文阅读16】Isolation Forest——孤立的异常检测方式">
-<meta name="twitter:description" content="这次在网上学习别人记笔记的方式，感觉很有意思，不知道我能从中学到多少。可惜markdown做富文本表格太麻烦了…但是用别的，比如word、pdf，都不方便即时打开。。。算了吧，选择了markdown还是按标题目录来整理笔记">
-<meta name="twitter:image" content="http://maxliu245.github.io/2020/08/19/【论文阅读16】Isolation-Forest——孤立的异常检测方式/1.png">
+<meta name="twitter:title" content="【论文阅读20】DANN——利用域对抗进行简单的域迁移">
+<meta name="twitter:description" content="第一次看领域迁移的文章~">
+<meta name="twitter:image" content="http://maxliu245.github.io/2020/09/17/【论文阅读20】DANN——利用域对抗进行简单的域迁移/DANN-1.png">
 
 
 
@@ -131,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://maxliu245.github.io/2020/08/19/【论文阅读16】Isolation-Forest——孤立的异常检测方式/">
+  <link rel="canonical" href="http://maxliu245.github.io/2020/09/17/【论文阅读20】DANN——利用域对抗进行简单的域迁移/">
 
 
 
 
 
-  <title>【论文阅读16】Isolation Forest——孤立的异常检测方式 | Max Liu's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>【论文阅读20】DANN——利用域对抗进行简单的域迁移 | Max Liu's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -266,7 +267,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://maxliu245.github.io/2020/08/19/【论文阅读16】Isolation-Forest——孤立的异常检测方式/">
+    <link itemprop="mainEntityOfPage" href="http://maxliu245.github.io/2020/09/17/【论文阅读20】DANN——利用域对抗进行简单的域迁移/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Max Liu">
@@ -283,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">【论文阅读16】Isolation Forest——孤立的异常检测方式</h1>
+          <h1 class="post-title" itemprop="name headline">【论文阅读20】DANN——利用域对抗进行简单的域迁移</h1>
         
 
         <div class="post-meta">
@@ -298,8 +299,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-08-19T09:55:26+08:00">
-                2020-08-19
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-09-17T22:05:42+08:00">
+                2020-09-17
               </time>
             
 
@@ -314,8 +315,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2020-08-19T10:07:45+08:00">
-                2020-08-19
+              <time title="Post modified" itemprop="dateModified" datetime="2020-09-17T22:25:52+08:00">
+                2020-09-17
               </time>
             
           </span>
@@ -347,7 +348,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.8k
+                  1.1k
                 </span>
               
 
@@ -363,7 +364,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  6
+                  4
                 </span>
               
             </div>
@@ -385,75 +386,44 @@
 
       
         <blockquote>
-<p>这次在网上学习别人记笔记的方式，感觉很有意思，不知道我能从中学到多少。可惜markdown做富文本表格太麻烦了…但是用别的，比如word、pdf，都不方便即时打开。。。算了吧，选择了markdown还是按标题目录来整理笔记</p>
+<p>第一次看领域迁移的文章~</p>
 </blockquote>
 <a id="more"></a>
-<img src="/2020/08/19/【论文阅读16】Isolation-Forest——孤立的异常检测方式/1.png" title="文章简介">
-<h1 id="为什么读此文章"><a href="#为什么读此文章" class="headerlink" title="为什么读此文章"></a>为什么读此文章</h1><p>原因有二：</p>
-<ul>
-<li>是我最早接触的论文之一，当年没看，现在拿来读一下，本来想略读，然后就忍不住多看了几遍…</li>
-<li>周志华是作者之一，应该很顶</li>
+<img src="/2020/09/17/【论文阅读20】DANN——利用域对抗进行简单的域迁移/DANN-1.png" title="文献预览">
+<h1 id="为什么读"><a href="#为什么读" class="headerlink" title="为什么读"></a>为什么读</h1><ul>
+<li>IID组会上听来的，好像很炫酷</li>
+<li>人家是JMLR啊，而且似乎是相关工作的开山作？好像是，日后再证</li>
+<li>下面的参考博客中把该文章的模型结构都说的很清楚，但是感觉对loss的描述不够精确细节，我第一遍看没法get到模型的实现机理，因此单独细看了loss，并记录于此博客</li>
 </ul>
-<p>文献链接：<a href="https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/icdm08b.pdf?q=isolation-forest" target="_blank" rel="noopener">Isolation Forest</a></p>
-<h1 id="文献总结"><a href="#文献总结" class="headerlink" title="文献总结"></a>文献总结</h1><p>孤立森林是一种异常检测方法，侧重以孤立的方式直接寻找异常而非比对正常样本。</p>
-<p>这个孤立的思想很棒，少了很多计算的步骤，但同时有很棒的准确性，毕竟基于的是异常本身的重要性质。</p>
-<h1 id="文献内容"><a href="#文献内容" class="headerlink" title="文献内容"></a>文献内容</h1><h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>给异常检测领域提供一种新方法——孤立森林。</p>
-<p>该方法来源于以往没人用过的孤立的思想来做异常检测，且可以发现由此提出的孤立森林有诸多优点。</p>
-<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
-<li>大方向是<strong>异常检测</strong>，看着就知道很重要</li>
-<li>传统的（模型驱动的）异常检测方法把测试样本与已知正常样本对比，不符即为异常。这个想法很基础很实在√</li>
-<li>上面方法的缺点有2，1是<strong>泛化不好</strong>，因为方法效果与正常样本库相关；2是<strong>计算代价大</strong>，往往只能用于低维小规模数据，因为这些方法常常用到距离等度量方式</li>
-<li>在此提出并使用<strong>孤立</strong>的概念，把异常点孤立于其它正常样本。思想是利用了异常的2个性质，1是它们真的只是少数；2是特征与正常样本必是不同的。由此思想，用树来孤立异常数据，异常数据会在树根部被孤立，正常样本只会在深处被孤立。</li>
-</ul>
-<h2 id="方法——从孤立树到孤立森林"><a href="#方法——从孤立树到孤立森林" class="headerlink" title="方法——从孤立树到孤立森林"></a>方法——从孤立树到孤立森林</h2><ul>
-<li>孤立森林是什么：<ul>
-<li>背景提到了孤立树的概念，集成起来就是孤立森林。孤立森林方法只有2个变量，1是树的个数，2是sub-sampling size，一开始我猜这个size翻译为二次采样的size，做一次全分割用的样本数；后来我发现我猜错了，在文章第3章中说明了这个是可以设置多个树，相当于多个异常检测专家，分别随机取一部分数据来检测异常，这些数据的size叫sub-sampling size，至于为什么将在优缺点部分介绍。</li>
-<li>异常的2个性质体现在孤立分割上就是，异常越少，所需分割次数就越少；以及异常会早早被割出来，即异常的平均路径长度average path lengths短，图1很形象。</li>
-</ul>
+<p>文献及相关参考链接：</p>
+<ol>
+<li><p><a href="https://www.jmlr.org/papers/volume17/15-239/15-239.pdf" target="_blank" rel="noopener">https://www.jmlr.org/papers/volume17/15-239/15-239.pdf</a> 或者 <a href="https://arxiv.org/abs/1505.07818" target="_blank" rel="noopener">https://arxiv.org/abs/1505.07818</a></p>
 </li>
-<li>孤立树是什么：<ul>
-<li>先给出基本数据假设：数据集$X={x_1, \cdots, x_n}$，$n$个样本，每个样本是$d$维的，有$d$个分量。</li>
-<li>首先是一棵树，然后在这里，是特定的一种树。用节点来描述，它的节点$T$只有两种，一种是外部节点，就是接下来没有分支了；第二种是内部节点，且分支有且只有两个子节点$(T_l, T_r)$，即左右子节点。</li>
-<li>那么数据集X的孤立方式是，每次随机孤立一个分量，如第$q$个，孤立的分割阈值是$p$，这样把数据分为两部分。多次孤立的停止条件有：<ul>
-<li>树达到临界高度</li>
-<li>最后只有一个点了，即$|X|=1$</li>
-<li>所有数据都只有一个值，没法孤立</li>
-</ul>
+<li><p><a href="https://blog.csdn.net/weixin_37993251" target="_blank" rel="noopener">gdtop818</a>的CSDN博客<a href="https://blog.csdn.net/weixin_37993251/article/details/89398433" target="_blank" rel="noopener">Domain-Adversarial Training of Neural Networks</a></p>
 </li>
-</ul>
+<li><p><a href="https://www.zhihu.com/people/sabrina-65-94" target="_blank" rel="noopener">我的猫爱睡觉</a>的知乎文章<a href="https://zhuanlan.zhihu.com/p/199514982" target="_blank" rel="noopener">Domain-Adversarial Training of NN(DANNs)</a>，包括了几个有用的链接</p>
 </li>
-<li><p>异常的判定——异常score：</p>
-<ul>
-<li>有了方法的概念和方法的构成单元，下面说方法的度量，即怎么样算是异常。基本的想法是path（路径）长度：样本$x$的路径长度记为$h(x)$，在树上，$x$被孤立出来需要的分割次数。但是这个$h(x)$不好，因为这个$h(x)$算不算异常也要看整个树的深度、样本量什么的；因此需要一般性的异常score作为度量。</li>
-<li>这个score来源于BST，二元搜索树，因为发现孤立树和BST有相似的性质。借BST文章的结论，其不成功搜索的路径长度$c(n)$与这里的$h(x)$类似，于是采用(1, 2)式的形式计算了此异常score $s(x, n)$。个人感觉就是$h(x)$不general，引用$c(n)$给它做了某种标准化。图2和图3解释得非常好，一目了然，分别介绍了定性的$s(x, n)$合理性和类似等高线的异常判断方式。</li>
-</ul>
+</ol>
+<h1 id="DANN及其loss构造"><a href="#DANN及其loss构造" class="headerlink" title="DANN及其loss构造"></a>DANN及其loss构造</h1><p>首先还是介绍一下<strong>DANN——Domain-Adversarial Training of Neural Networks</strong>，在我理解是一篇利用了对抗网络来进行简单的领域迁移的文章。这篇文章除了迁移、对抗，还有表示学习的内容，因为具体操作是通过特征的转换完成的。文章思想<strong>核心</strong>是通过让源域和目标域的样本特征不能被很好地辨识，同时源域上的分类效果很好，达到<strong>混淆样本的特征表示</strong>，使分类器在此特征表示上能够完成域迁移的效果。</p>
+<p>话不多说，直接开干原文中第4章的模型结构图，如下图所示：</p>
+<img src="/2020/09/17/【论文阅读20】DANN——利用域对抗进行简单的域迁移/DANN-2.png" title="DANN">
+<p>那么DANN分3个部分：</p>
+<ol>
+<li><p>左上角是特征提取器 $G_f$，feature的提取器。输入 $x$ 包括源域和目标域的样本，输出转化后的特征。其目的一方面是特征提取，另一方面是在特征空间中混淆源域和目标域的样本，即两个域的样本对齐，以便迁移；</p>
 </li>
-</ul>
-<h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><ul>
-<li>孤立森林与已有方法主要区别：<ul>
-<li>它可以利用sub-sampling，<strong>这个sub-sampling指什么？</strong>，是只用一部分数据就可以了，体现在孤立森林的局部：孤立树的使用上；如果数据多，往往树越深，正常样本也多，往往难以检测出异常。具体有两种情形——swamping and masking，分别指错把正常样本识别为异常，和异常点太多，比如扎堆出现，一看还以为都是正常的，其异常性被数量掩盖了。针对它们，只要取一部分数据就可以得到更好的效果，文章第3章画了两张图，非常形象地阐述了机理👍！</li>
-<li>不需要计算什么距离、密度，大大降低计算复杂度</li>
-<li>由集成的优点，大的森林可以处理大量数据了，包括高维情形</li>
-</ul>
+<li><p>右上角是分类器 $G_y$，对标签 $y$ 分类没得说。输入 $f$ 只有源域的样本特征了，因为目标域没有标签，监督不了的。只要保证源域上的分类效果良好，由于两类特征被特征提取器  $G_f$ 混淆，所以源域上效果好，目标域上也便于迁移（不知道有没有证明，应该是实验验证）</p>
 </li>
-<li>孤立森林的优点：<ul>
-<li>线性时间的复杂度，对运算内存的要求为很低的常数。1个原因是不需要计算什么距离、密度，<strong>另一个原因</strong>是按照方法中孤立的方式，即使树是完全树，最多（每次只孤立1个点）的内部节点有$n-1$个。最多的全部节点有$n-1+n=2n-1$个（自己画个图就知道了），所以对变量的内存要求是有界的，与样本量呈线性关系。</li>
-<li>首次把孤立应用于异常检测，似乎用了二次采样，其它已有方法不行</li>
-<li>它的2个变量都比较小，就可以表现优异</li>
-</ul>
+<li><p>右下角是域分类器 $G_d$，domain的分类器，这个要做对抗的。输入则是源域和目标域的特征，目标是在特征空间上分离两个域的样本，这一点可以和特征提取器 $G_f$ 形成对抗。注意 $G_d$ 和 $G_f$ 中甲有个<strong>梯度反传层（GRL）</strong>，它的结构是</p>
+<blockquote>
+<p>leaves the input unchanged during forward propagation and reverses the gradient by multiplying it by a negative scalar during the backpropagation</p>
+</blockquote>
 </li>
-</ul>
-<h2 id="实验——如何训练孤立森林"><a href="#实验——如何训练孤立森林" class="headerlink" title="实验——如何训练孤立森林"></a>实验——如何训练孤立森林</h2><p>和一般的机器学习方法类似，先训练出一个孤立森林模型，再拿测试数据测试。</p>
-<ul>
-<li><p>训练总体的算法是孤立树的集成——孤立森林，为算法1，递归式地分割数据集</p>
-<ul>
-<li>算法1中包括算法2，单颗孤立树的训练，这些都已经说过了。</li>
-<li>算法1、2中有3个参数要提前设置：子采样数、树的最大深度和树的棵树，这些都根据实验经验确定，子采样数默认$\psi=256$，深度默认$l=ceiling(\log_2 \psi)$，棵树默认$t=100$。</li>
-</ul>
-</li>
-<li><p>最后测试的时候计算的score要一直到被孤立出去，且使用递归的方式一点点计算。</p>
-</li>
-</ul>
+</ol>
+<p>现在对抗就在这里，因为 $G_f$ 要求两类样本在特征空间中分不开，而 $G_d$ 则反之，所以两部分的loss符号是相反的（可以再加个系数），即 $G_d$ 正常训练，loss符号不变，但是反传梯度的时候，希望 $G_f$ 分离不了样本，梯度是反过来的。</p>
+<p>反应在BP的过程中就是，梯度从最后 $G_d$ 的输出 $L_d$ 开始计算，先正常反传 $G_d$ 上的梯度 $\dfrac{\partial L_d}{\partial \theta_d}$，经过GRL时加个负号（与正系数 $\lambda$），所以在 $G_f$ 上的梯度就是 $\dfrac{\partial L_d}{\partial \theta_f}$。</p>
+<p>进一步地，反应在损失函数中，让我们康康原文 $(18)$ 式：</p>
+<script type="math/tex; mode=display">\displaystyle E = \dfrac{1}{n}\sum_{i=1}^n \mathcal{L}_y (G_y (G_f (x_i; \theta_f); \theta_y), y_i) - \lambda \left(\dfrac{1}{n}\sum_{i=1}^n \mathcal{L}_d (G_d (GRL(G_f (x_i; \theta_f)); \theta_d), d_i) + \dfrac{1}{n^\prime}\sum_{i=n+1}^N \mathcal{L}_d (G_d (GRL(G_f (x_i; \theta_f)); \theta_d), d_i)\right).</script><p>这样 $E$ 就和上面的DANN的三部分分析对上了，$E$ 右端第一项就是分类器 $G_y$ 的分类误差，梯度是正常反传的，所以loss也是正常的形式。$E$ 右端第二项是域分类器的分类误差，但是分为了两部分，括号里第一项中index为从 $1$ 到 $n$ 的求和是源域的样本分类误差，第二项中index为从 $n+1$ 到 $N$ 的求和是目标域的样本分类误差，其中都经过了GRL的作用，此时要求特征提取器 $G_f$性能不行，因此该误差反传时前面是负数。</p>
+<p>现在loss的组成分析完了，但是<strong>对抗体现在loss的哪里</strong>呢？我想了好一会儿…哎呀还是我菜了，对抗体现在 $E$ 的左右两项啊，第一项是正常的，第二项的反过来的嘛，<strong>对抗就是体现在中间那个负号</strong>上~</p>
 
       
     </div>
@@ -474,7 +444,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="http://maxliu245.github.io/2020/08/19/【论文阅读16】Isolation-Forest——孤立的异常检测方式/" title="【论文阅读16】Isolation Forest——孤立的异常检测方式">http://maxliu245.github.io/2020/08/19/【论文阅读16】Isolation-Forest——孤立的异常检测方式/</a>
+    <a href="http://maxliu245.github.io/2020/09/17/【论文阅读20】DANN——利用域对抗进行简单的域迁移/" title="【论文阅读20】DANN——利用域对抗进行简单的域迁移">http://maxliu245.github.io/2020/09/17/【论文阅读20】DANN——利用域对抗进行简单的域迁移/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -491,9 +461,11 @@
           
             <a href="/tags/Paper-Reading/" rel="tag"># Paper Reading</a>
           
+            <a href="/tags/Meta-Learning/" rel="tag"># Meta Learning</a>
+          
             <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
           
-            <a href="/tags/Abnormality-Detection/" rel="tag"># Abnormality Detection</a>
+            <a href="/tags/Domain-Adaptation/" rel="tag"># Domain Adaptation</a>
           
         </div>
       
@@ -506,8 +478,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/07/31/【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/" rel="next" title="【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation">
-                <i class="fa fa-chevron-left"></i> 【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation
+              <a href="/2020/09/16/【论文阅读19】Do-We-Need-Zero-Training-Loss-After-Achieving-Zero-Training-Error/" rel="next" title="【论文阅读19】Do We Need Zero Training Loss After Achieving Zero Training Error">
+                <i class="fa fa-chevron-left"></i> 【论文阅读19】Do We Need Zero Training Loss After Achieving Zero Training Error
               </a>
             
           </div>
@@ -515,10 +487,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/08/21/【论文阅读17】ODE-Net——从离散化的ResNet到连续化ODE的模拟/" rel="prev" title="【论文阅读17】ODE-Net——从离散化的ResNet到连续化ODE的模拟">
-                【论文阅读17】ODE-Net——从离散化的ResNet到连续化ODE的模拟 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -700,7 +668,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么读此文章"><span class="nav-number">1.</span> <span class="nav-text">为什么读此文章</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文献总结"><span class="nav-number">2.</span> <span class="nav-text">文献总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文献内容"><span class="nav-number">3.</span> <span class="nav-text">文献内容</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#目的"><span class="nav-number">3.1.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">3.2.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法——从孤立树到孤立森林"><span class="nav-number">3.3.</span> <span class="nav-text">方法——从孤立树到孤立森林</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优缺点"><span class="nav-number">3.4.</span> <span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验——如何训练孤立森林"><span class="nav-number">3.5.</span> <span class="nav-text">实验——如何训练孤立森林</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么读"><span class="nav-number">1.</span> <span class="nav-text">为什么读</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DANN及其loss构造"><span class="nav-number">2.</span> <span class="nav-text">DANN及其loss构造</span></a></li></ol></div>
             
 
           </div>

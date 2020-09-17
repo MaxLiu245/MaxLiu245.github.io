@@ -1,6 +1,56 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>【论文阅读20】DANN——利用域对抗进行简单的域迁移</title>
+    <url>/2020/09/17/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB20%E3%80%91DANN%E2%80%94%E2%80%94%E5%88%A9%E7%94%A8%E5%9F%9F%E5%AF%B9%E6%8A%97%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E7%9A%84%E5%9F%9F%E8%BF%81%E7%A7%BB/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>第一次看领域迁移的文章~</p>
+</blockquote>
+<a id="more"></a>
+<img src="/2020/09/17/【论文阅读20】DANN——利用域对抗进行简单的域迁移/DANN-1.png" title="文献预览">
+<h1 id="为什么读"><a href="#为什么读" class="headerlink" title="为什么读"></a>为什么读</h1><ul>
+<li>IID组会上听来的，好像很炫酷</li>
+<li>人家是JMLR啊，而且似乎是相关工作的开山作？好像是，日后再证</li>
+<li>下面的参考博客中把该文章的模型结构都说的很清楚，但是感觉对loss的描述不够精确细节，我第一遍看没法get到模型的实现机理，因此单独细看了loss，并记录于此博客</li>
+</ul>
+<p>文献及相关参考链接：</p>
+<ol>
+<li><p><a href="https://www.jmlr.org/papers/volume17/15-239/15-239.pdf" target="_blank" rel="noopener">https://www.jmlr.org/papers/volume17/15-239/15-239.pdf</a> 或者 <a href="https://arxiv.org/abs/1505.07818" target="_blank" rel="noopener">https://arxiv.org/abs/1505.07818</a></p>
+</li>
+<li><p><a href="https://blog.csdn.net/weixin_37993251" target="_blank" rel="noopener">gdtop818</a>的CSDN博客<a href="https://blog.csdn.net/weixin_37993251/article/details/89398433" target="_blank" rel="noopener">Domain-Adversarial Training of Neural Networks</a></p>
+</li>
+<li><p><a href="https://www.zhihu.com/people/sabrina-65-94" target="_blank" rel="noopener">我的猫爱睡觉</a>的知乎文章<a href="https://zhuanlan.zhihu.com/p/199514982" target="_blank" rel="noopener">Domain-Adversarial Training of NN(DANNs)</a>，包括了几个有用的链接</p>
+</li>
+</ol>
+<h1 id="DANN及其loss构造"><a href="#DANN及其loss构造" class="headerlink" title="DANN及其loss构造"></a>DANN及其loss构造</h1><p>首先还是介绍一下<strong>DANN——Domain-Adversarial Training of Neural Networks</strong>，在我理解是一篇利用了对抗网络来进行简单的领域迁移的文章。这篇文章除了迁移、对抗，还有表示学习的内容，因为具体操作是通过特征的转换完成的。文章思想<strong>核心</strong>是通过让源域和目标域的样本特征不能被很好地辨识，同时源域上的分类效果很好，达到<strong>混淆样本的特征表示</strong>，使分类器在此特征表示上能够完成域迁移的效果。</p>
+<p>话不多说，直接开干原文中第4章的模型结构图，如下图所示：</p>
+<img src="/2020/09/17/【论文阅读20】DANN——利用域对抗进行简单的域迁移/DANN-2.png" title="DANN">
+<p>那么DANN分3个部分：</p>
+<ol>
+<li><p>左上角是特征提取器 $G_f$，feature的提取器。输入 $x$ 包括源域和目标域的样本，输出转化后的特征。其目的一方面是特征提取，另一方面是在特征空间中混淆源域和目标域的样本，即两个域的样本对齐，以便迁移；</p>
+</li>
+<li><p>右上角是分类器 $G_y$，对标签 $y$ 分类没得说。输入 $f$ 只有源域的样本特征了，因为目标域没有标签，监督不了的。只要保证源域上的分类效果良好，由于两类特征被特征提取器  $G_f$ 混淆，所以源域上效果好，目标域上也便于迁移（不知道有没有证明，应该是实验验证）</p>
+</li>
+<li><p>右下角是域分类器 $G_d$，domain的分类器，这个要做对抗的。输入则是源域和目标域的特征，目标是在特征空间上分离两个域的样本，这一点可以和特征提取器 $G_f$ 形成对抗。注意 $G_d$ 和 $G_f$ 中甲有个<strong>梯度反传层（GRL）</strong>，它的结构是</p>
+<blockquote>
+<p>leaves the input unchanged during forward propagation and reverses the gradient by multiplying it by a negative scalar during the backpropagation</p>
+</blockquote>
+</li>
+</ol>
+<p>现在对抗就在这里，因为 $G_f$ 要求两类样本在特征空间中分不开，而 $G_d$ 则反之，所以两部分的loss符号是相反的（可以再加个系数），即 $G_d$ 正常训练，loss符号不变，但是反传梯度的时候，希望 $G_f$ 分离不了样本，梯度是反过来的。</p>
+<p>反应在BP的过程中就是，梯度从最后 $G_d$ 的输出 $L_d$ 开始计算，先正常反传 $G_d$ 上的梯度 $\dfrac{\partial L_d}{\partial \theta_d}$，经过GRL时加个负号（与正系数 $\lambda$），所以在 $G_f$ 上的梯度就是 $\dfrac{\partial L_d}{\partial \theta_f}$。</p>
+<p>进一步地，反应在损失函数中，让我们康康原文 $(18)$ 式：</p>
+<script type="math/tex; mode=display">\displaystyle E = \dfrac{1}{n}\sum_{i=1}^n \mathcal{L}_y (G_y (G_f (x_i; \theta_f); \theta_y), y_i) - \lambda \left(\dfrac{1}{n}\sum_{i=1}^n \mathcal{L}_d (G_d (GRL(G_f (x_i; \theta_f)); \theta_d), d_i) + \dfrac{1}{n^\prime}\sum_{i=n+1}^N \mathcal{L}_d (G_d (GRL(G_f (x_i; \theta_f)); \theta_d), d_i)\right).</script><p>这样 $E$ 就和上面的DANN的三部分分析对上了，$E$ 右端第一项就是分类器 $G_y$ 的分类误差，梯度是正常反传的，所以loss也是正常的形式。$E$ 右端第二项是域分类器的分类误差，但是分为了两部分，括号里第一项中index为从 $1$ 到 $n$ 的求和是源域的样本分类误差，第二项中index为从 $n+1$ 到 $N$ 的求和是目标域的样本分类误差，其中都经过了GRL的作用，此时要求特征提取器 $G_f$性能不行，因此该误差反传时前面是负数。</p>
+<p>现在loss的组成分析完了，但是<strong>对抗体现在loss的哪里</strong>呢？我想了好一会儿…哎呀还是我菜了，对抗体现在 $E$ 的左右两项啊，第一项是正常的，第二项的反过来的嘛，<strong>对抗就是体现在中间那个负号</strong>上~</p>
+]]></content>
+      <tags>
+        <tag>Paper Reading</tag>
+        <tag>Meta Learning</tag>
+        <tag>Machine Learning</tag>
+        <tag>Domain Adaptation</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【论文阅读19】Do We Need Zero Training Loss After Achieving Zero Training Error</title>
     <url>/2020/09/16/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB19%E3%80%91Do-We-Need-Zero-Training-Loss-After-Achieving-Zero-Training-Error/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
