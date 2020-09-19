@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Paper Reading,Machine Learning,Abnormality Detection,">
+  <meta name="keywords" content="Paper Reading,Machine Learning,Domain Adaptation,">
 
 
 
@@ -88,20 +88,21 @@
 
 
 
-<meta name="description" content="这次在网上学习别人记笔记的方式，感觉很有意思，不知道我能从中学到多少。可惜markdown做富文本表格太麻烦了…但是用别的，比如word、pdf，都不方便即时打开。。。算了吧，选择了markdown还是按标题目录来整理笔记">
-<meta name="keywords" content="Paper Reading,Machine Learning,Abnormality Detection">
+<meta name="description" content="DSN全称Domain Separation Network，是我看的第二篇域迁移的文章，这篇文章在DANN之后，思想上的一大亮点是对特征进行了分离，这样潜在地扩大了域迁移的范围~ 补充一点，具体实现上的一大亮点是loss的选择，实验表明scale-invariant的MSE损失的效果确实很棒~">
+<meta name="keywords" content="Paper Reading,Machine Learning,Domain Adaptation">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【论文阅读16】Isolation Forest——孤立的异常检测方式">
-<meta property="og:url" content="http://maxliu245.github.io/2020/08/19/【论文阅读16】Isolation-Forest——孤立的异常检测方式/index.html">
+<meta property="og:title" content="【论文阅读21】DSN——域分离网络">
+<meta property="og:url" content="http://maxliu245.github.io/2020/09/19/【论文阅读21】DSN——域分离网络/index.html">
 <meta property="og:site_name" content="Max Liu&#39;s Blog">
-<meta property="og:description" content="这次在网上学习别人记笔记的方式，感觉很有意思，不知道我能从中学到多少。可惜markdown做富文本表格太麻烦了…但是用别的，比如word、pdf，都不方便即时打开。。。算了吧，选择了markdown还是按标题目录来整理笔记">
+<meta property="og:description" content="DSN全称Domain Separation Network，是我看的第二篇域迁移的文章，这篇文章在DANN之后，思想上的一大亮点是对特征进行了分离，这样潜在地扩大了域迁移的范围~ 补充一点，具体实现上的一大亮点是loss的选择，实验表明scale-invariant的MSE损失的效果确实很棒~">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://maxliu245.github.io/2020/08/19/【论文阅读16】Isolation-Forest——孤立的异常检测方式/1.png">
-<meta property="og:updated_time" content="2020-08-19T02:07:45.693Z">
+<meta property="og:image" content="http://maxliu245.github.io/2020/09/19/【论文阅读21】DSN——域分离网络/DSN-1.png">
+<meta property="og:image" content="http://maxliu245.github.io/2020/09/19/【论文阅读21】DSN——域分离网络/DSN-2.png">
+<meta property="og:updated_time" content="2020-09-19T12:19:44.574Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【论文阅读16】Isolation Forest——孤立的异常检测方式">
-<meta name="twitter:description" content="这次在网上学习别人记笔记的方式，感觉很有意思，不知道我能从中学到多少。可惜markdown做富文本表格太麻烦了…但是用别的，比如word、pdf，都不方便即时打开。。。算了吧，选择了markdown还是按标题目录来整理笔记">
-<meta name="twitter:image" content="http://maxliu245.github.io/2020/08/19/【论文阅读16】Isolation-Forest——孤立的异常检测方式/1.png">
+<meta name="twitter:title" content="【论文阅读21】DSN——域分离网络">
+<meta name="twitter:description" content="DSN全称Domain Separation Network，是我看的第二篇域迁移的文章，这篇文章在DANN之后，思想上的一大亮点是对特征进行了分离，这样潜在地扩大了域迁移的范围~ 补充一点，具体实现上的一大亮点是loss的选择，实验表明scale-invariant的MSE损失的效果确实很棒~">
+<meta name="twitter:image" content="http://maxliu245.github.io/2020/09/19/【论文阅读21】DSN——域分离网络/DSN-1.png">
 
 
 
@@ -131,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://maxliu245.github.io/2020/08/19/【论文阅读16】Isolation-Forest——孤立的异常检测方式/">
+  <link rel="canonical" href="http://maxliu245.github.io/2020/09/19/【论文阅读21】DSN——域分离网络/">
 
 
 
 
 
-  <title>【论文阅读16】Isolation Forest——孤立的异常检测方式 | Max Liu's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>【论文阅读21】DSN——域分离网络 | Max Liu's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -266,7 +267,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://maxliu245.github.io/2020/08/19/【论文阅读16】Isolation-Forest——孤立的异常检测方式/">
+    <link itemprop="mainEntityOfPage" href="http://maxliu245.github.io/2020/09/19/【论文阅读21】DSN——域分离网络/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Max Liu">
@@ -283,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">【论文阅读16】Isolation Forest——孤立的异常检测方式</h1>
+          <h1 class="post-title" itemprop="name headline">【论文阅读21】DSN——域分离网络</h1>
         
 
         <div class="post-meta">
@@ -298,8 +299,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-08-19T09:55:26+08:00">
-                2020-08-19
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-09-19T18:37:00+08:00">
+                2020-09-19
               </time>
             
 
@@ -314,8 +315,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2020-08-19T10:07:45+08:00">
-                2020-08-19
+              <time title="Post modified" itemprop="dateModified" datetime="2020-09-19T20:19:44+08:00">
+                2020-09-19
               </time>
             
           </span>
@@ -347,7 +348,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.8k
+                  2.7k
                 </span>
               
 
@@ -363,7 +364,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  6
+                  10
                 </span>
               
             </div>
@@ -385,75 +386,84 @@
 
       
         <blockquote>
-<p>这次在网上学习别人记笔记的方式，感觉很有意思，不知道我能从中学到多少。可惜markdown做富文本表格太麻烦了…但是用别的，比如word、pdf，都不方便即时打开。。。算了吧，选择了markdown还是按标题目录来整理笔记</p>
+<p>DSN全称Domain Separation Network，是我看的第二篇域迁移的文章，这篇文章在DANN之后，思想上的一大亮点是对特征进行了分离，这样潜在地扩大了域迁移的范围~</p>
+<p>补充一点，具体实现上的一大亮点是loss的选择，实验表明<span style="border-bottom:1px solid black;">scale-invariant的MSE损失</span>的效果确实很棒~</p>
 </blockquote>
 <a id="more"></a>
-<img src="/2020/08/19/【论文阅读16】Isolation-Forest——孤立的异常检测方式/1.png" title="文章简介">
-<h1 id="为什么读此文章"><a href="#为什么读此文章" class="headerlink" title="为什么读此文章"></a>为什么读此文章</h1><p>原因有二：</p>
-<ul>
-<li>是我最早接触的论文之一，当年没看，现在拿来读一下，本来想略读，然后就忍不住多看了几遍…</li>
-<li>周志华是作者之一，应该很顶</li>
+<img src="/2020/09/19/【论文阅读21】DSN——域分离网络/DSN-1.png" title="文献预览">
+<h1 id="写在前面"><a href="#写在前面" class="headerlink" title="写在前面"></a>写在前面</h1><p>读这篇文章的时候觉得自己的写作水平有了变化，但是说不清楚是好是坏。因为DSN这篇文章相比DANN有了理论上的改进，但是在写作DANN的时候却漏掉了一些关键的总结，比如这样的模型优缺点分析。</p>
+<p>虽然DANN的博客似乎有了点味儿，但是还是要把关键的地方点出来啊💪</p>
+<h1 id="为什么读"><a href="#为什么读" class="headerlink" title="为什么读"></a>为什么读</h1><ul>
+<li>同DANN一样，IID-CSS上听来的，而且时间在DANN之后，似乎（的确）有了更多（一些）改进的地方</li>
+<li>人家虽然不是JMLR，但却是2016年NIPS上的一篇poster啊🙈</li>
+<li>在阅读的时候觉得其中可能有个地方有些问题，所以把感受记录下来</li>
 </ul>
-<p>文献链接：<a href="https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/icdm08b.pdf?q=isolation-forest" target="_blank" rel="noopener">Isolation Forest</a></p>
-<h1 id="文献总结"><a href="#文献总结" class="headerlink" title="文献总结"></a>文献总结</h1><p>孤立森林是一种异常检测方法，侧重以孤立的方式直接寻找异常而非比对正常样本。</p>
-<p>这个孤立的思想很棒，少了很多计算的步骤，但同时有很棒的准确性，毕竟基于的是异常本身的重要性质。</p>
-<h1 id="文献内容"><a href="#文献内容" class="headerlink" title="文献内容"></a>文献内容</h1><h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>给异常检测领域提供一种新方法——孤立森林。</p>
-<p>该方法来源于以往没人用过的孤立的思想来做异常检测，且可以发现由此提出的孤立森林有诸多优点。</p>
-<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul>
-<li>大方向是<strong>异常检测</strong>，看着就知道很重要</li>
-<li>传统的（模型驱动的）异常检测方法把测试样本与已知正常样本对比，不符即为异常。这个想法很基础很实在√</li>
-<li>上面方法的缺点有2，1是<strong>泛化不好</strong>，因为方法效果与正常样本库相关；2是<strong>计算代价大</strong>，往往只能用于低维小规模数据，因为这些方法常常用到距离等度量方式</li>
-<li>在此提出并使用<strong>孤立</strong>的概念，把异常点孤立于其它正常样本。思想是利用了异常的2个性质，1是它们真的只是少数；2是特征与正常样本必是不同的。由此思想，用树来孤立异常数据，异常数据会在树根部被孤立，正常样本只会在深处被孤立。</li>
-</ul>
-<h2 id="方法——从孤立树到孤立森林"><a href="#方法——从孤立树到孤立森林" class="headerlink" title="方法——从孤立树到孤立森林"></a>方法——从孤立树到孤立森林</h2><ul>
-<li>孤立森林是什么：<ul>
-<li>背景提到了孤立树的概念，集成起来就是孤立森林。孤立森林方法只有2个变量，1是树的个数，2是sub-sampling size，一开始我猜这个size翻译为二次采样的size，做一次全分割用的样本数；后来我发现我猜错了，在文章第3章中说明了这个是可以设置多个树，相当于多个异常检测专家，分别随机取一部分数据来检测异常，这些数据的size叫sub-sampling size，至于为什么将在优缺点部分介绍。</li>
-<li>异常的2个性质体现在孤立分割上就是，异常越少，所需分割次数就越少；以及异常会早早被割出来，即异常的平均路径长度average path lengths短，图1很形象。</li>
-</ul>
+<p>这次的文献及相关参考链接似乎有点多，在这里列出几个主要的，其它放在文末。</p>
+<ol>
+<li>DSN文献原文：<a href="http://papers.nips.cc/paper/6254-domain-separation-networks.pdf" target="_blank" rel="noopener">DSN</a></li>
+<li>DSN种一个重要损失项——<span style="border-bottom:1px solid black;">scale-invariant的MSE损失</span> 的来源：<a href="http://papers.nips.cc/paper/5539-depth-map-prediction-from-a-single-image-using-a-multi-scale-deep-network.pdf" target="_blank" rel="noopener">Depth Map Prediction from a Single Image using a Multi-Scale Deep Network</a></li>
+<li>知乎用户<a href="https://www.zhihu.com/people/ben-ben-18-78" target="_blank" rel="noopener">笨笨</a>的文章<a href="https://zhuanlan.zhihu.com/p/49479734" target="_blank" rel="noopener"><eyd与机器学习>迁移学习：Domain Separation Networks</eyd与机器学习></a>，在我看来这个讲得很干净，内容也都讲到了</li>
+<li>CSDN用户<a href="https://blog.csdn.net/hjimce" target="_blank" rel="noopener">hjimce</a>的文章<a href="https://blog.csdn.net/hjimce/article/details/50569474" target="_blank" rel="noopener">深度学习（二十八）基于多尺度深度网络的单幅图像深度估计</a>，该文种的代码让我走出迷雾，弄懂了部分loss的具体实现方式</li>
+</ol>
+<h1 id="对文章的整体理解"><a href="#对文章的整体理解" class="headerlink" title="对文章的整体理解"></a>对文章的整体理解</h1><p>其实上面所述参考链接中的知乎文章已经够用了。现在大致重新总结一下，让我们从DANN的一个缺点过渡到本文的思路。</p>
+<p>DANN在做域迁移的时候，<del>直接</del>将源域和目标域的样本转化到某一特征空间中并混淆它们，达到迁移的效果。</p>
+<p>但是这样做，其实有一些问题，即域迁移本身是难以做到全部特征迁移的，因为不同的域对应的特征、特征分布的确是不同的。那么<strong>新的思路</strong>就来了，不同的域之间<span style="border-bottom:1px solid black;">有联系性，也有差异性</span>，那么联系性可以简单描述为特征空间中有一些维度是不同域共享的，称为<strong>共有（common）特征</strong>；反之差异性可以简单描述为特征空间中有另一些维度不是共享的，是域本身的特征，所以称为<strong>私有（private）特征</strong>。</p>
+<p>因此，基于这个新思路，我们希望基于DANN的结构，把共有的特征和私有的特征分离开来，期望能够更好地描述不同域之间的关系，达到更好的效果。到这里，文章标题<em>Domain Separation Network</em>的思路就完全确定了，下面就是怎么去实现了。</p>
+<h1 id="DSN模型结构"><a href="#DSN模型结构" class="headerlink" title="DSN模型结构"></a>DSN模型结构</h1><p>👴话不多说，直接暴力上结构！</p>
+<img src="/2020/09/19/【论文阅读21】DSN——域分离网络/DSN-2.png" title="DSN结构">
+<p>结构还是比较清晰的，咱们直接点明该结构是在哪一（几）块完成公、私有特征分离的操作的。就是除了右下角分类外的全部结构，但是<strong>别慌</strong>，别看框框多，其实都是高度对称的结构。类比DANN，输入从全部样本 $x$ 分离为有标记的两域样本 $x_s$ 和 $x_t$，下标自然是源域source和目标域target了；同时输出也从全部特征空间的 $f$ 转化为了公有特征 $h_c$ 和私有特征 $h_p$。</p>
+<p>成功分离的保证是暹罗网络。啥？暹罗网络？想到了吧哈哈，哥我曾经看过一篇语音生成的文章<a href="https://arxiv.org/abs/1910.03713?context=eess.AS" target="_blank" rel="noopener">MelGAN-VC</a>，现在看看这个特征分离的操作和这篇文章不是有点像，而是完全一致！都是利用Siamese Network，中文译为暹罗网络或者孪生网络，使用的是特征分离对抗➕样本恢复的形式。具体懒得说了，反正我早学过了🤭，这里就列一篇介绍暹罗网络的博客吧<a href="https://blog.csdn.net/weixin_41866216/article/details/90643068" target="_blank" rel="noopener">Siamese Network：孪生网络 简单理解</a>。</p>
+<p>好了，上面把文章的核心对抗方法直接跳过了，那么模型的结构其实就讲完了😄</p>
+<h1 id="Loss组成"><a href="#Loss组成" class="headerlink" title="Loss组成"></a>Loss组成</h1><p>讲到这里，忘了说，文章的两大亮点，一是利用暹罗网络分离了公私有特征；二是loss的具体形式了，先点明，就是<span style="border-bottom:1px solid black;">scale-invariant的MSE损失</span>的使用。loss的具体组成请参阅参考链接中的知乎文章<a href="https://zhuanlan.zhihu.com/p/49479734" target="_blank" rel="noopener"><eyd与机器学习>迁移学习：Domain Separation Networks</eyd与机器学习></a>，这里不再赘述。但是其中很多细节还需要研究研究。</p>
+<p>其实在阅读这部分的时候，我遇到了很多障碍，这里我主要对<span style="border-bottom:1px solid black;">scale-invariant的MSE损失</span>有以下疑问，该loss似乎在全局图像恢复上的效果比一般的MSE好，效果好的理由是文章中的实验验证：</p>
+<ol>
+<li><p>但为什么是这种形式呢？（下文解答）</p>
 </li>
-<li>孤立树是什么：<ul>
-<li>先给出基本数据假设：数据集$X={x_1, \cdots, x_n}$，$n$个样本，每个样本是$d$维的，有$d$个分量。</li>
-<li>首先是一棵树，然后在这里，是特定的一种树。用节点来描述，它的节点$T$只有两种，一种是外部节点，就是接下来没有分支了；第二种是内部节点，且分支有且只有两个子节点$(T_l, T_r)$，即左右子节点。</li>
-<li>那么数据集X的孤立方式是，每次随机孤立一个分量，如第$q$个，孤立的分割阈值是$p$，这样把数据分为两部分。多次孤立的停止条件有：<ul>
-<li>树达到临界高度</li>
-<li>最后只有一个点了，即$|X|=1$</li>
-<li>所有数据都只有一个值，没法孤立</li>
-</ul>
+<li><p>对于图像恢复的颜色和色彩强度没有要求，为什么？（<strong>待求证！</strong>）</p>
+</li>
+<li><p>这个loss的定义很奇怪，原文中的形式是 $(4)$ 式，前一项记为MSE，后一项记为SIMSE。而我在 <a href="https://github.com/fungtion/DSN" target="_blank" rel="noopener">https://github.com/fungtion/DSN</a> 找到的代码中看别人复现的loss用的是此MSE+SIMSE而不是减？（下文解答）</p>
+</li>
+<li><p>此loss中前者MSE的计算并不是什么矩阵 $A^TA$ 特征值绝对值最大值（参考 <a href="https://www.zhihu.com/question/50557667" target="_blank" rel="noopener">https://www.zhihu.com/question/50557667</a> ）而是普通的矩阵元素差值平方和？那这里矩阵的 $L_2$ 范数究竟是什么？</p>
+</li>
+</ol>
+<p>针对问题 $1、3、4$，我先后查阅了这种<span style="border-bottom:1px solid black;">scale-invariant的MSE损失</span>的原文，2014NIPS的<em>Depth Map Prediction from a Single Image using a Multi-Scale Deep Network</em>，以及CSDN博客<a href="https://blog.csdn.net/hjimce/article/details/50569474" target="_blank" rel="noopener">深度学习（二十八）基于多尺度深度网络的单幅图像深度估计</a>，和G站上他人的代码 <a href="https://github.com/fungtion/DSN" target="_blank" rel="noopener">https://github.com/fungtion/DSN</a> 。从这三处，我将给出我的分析过程。</p>
+<p><strong>首先</strong>，G站上的代码是本文的<code>PyTorch</code>实现，loss函数的定义在 <a href="https://github.com/fungtion/DSN/blob/master/functions.py" target="_blank" rel="noopener">https://github.com/fungtion/DSN/blob/master/functions.py</a> ，训练的过程在 <a href="https://github.com/fungtion/DSN/blob/master/train.py" target="_blank" rel="noopener">https://github.com/fungtion/DSN/blob/master/train.py</a> ，由于把源域和目标域损失都分开算了，所以目标域上没标签，就没有分类损失，源域上则有。其中的MSE项和SIMSE项分别是（引用他人代码啦注明出处应该可以…）</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MSE</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        super(MSE, self).__init__()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, pred, real)</span>:</span></span><br><span class="line">        diffs = torch.add(real, -pred)</span><br><span class="line">        n = torch.numel(diffs.data)</span><br><span class="line">        mse = torch.sum(diffs.pow(<span class="number">2</span>)) / n</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> mse</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SIMSE</span><span class="params">(nn.Module)</span>:</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self)</span>:</span></span><br><span class="line">        super(SIMSE, self).__init__()</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">forward</span><span class="params">(self, pred, real)</span>:</span></span><br><span class="line">        diffs = torch.add(real, - pred)</span><br><span class="line">        n = torch.numel(diffs.data)</span><br><span class="line">        simse = torch.sum(diffs).pow(<span class="number">2</span>) / (n ** <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> simse</span><br></pre></td></tr></table></figure>
+<p>这些就是代码实现中的具体loss计算方式，而我觉得原文的 $(4)$ 式右边第一项写成矩阵的 $L_2$ 范数是<strong>不合适</strong>的。毕竟 <code>mse = torch.sum(diffs.pow(2)) / n​</code> 说明了这不是正规的矩阵 $L_2$ 范数。这样<strong>问题 $4$ 就解决了</strong>。</p>
+<p><strong>其次</strong>，在CSDN博客中，作者有一段该loss的代码，不过是TF，我不太熟悉，但是写得很棒。关键是代码的注释里有一句</p>
+<blockquote>
+<p>文献中公式４，参数$\lambda$取值为0.5。公式采用的是简化为（ｎ×sum(d^2)-λ*(sum(d))^2）/(n^2)</p>
+</blockquote>
+<p>这提示，是不是代码实现简化了特征根的计算，用代码中的形式来代替计算呢？确实看了<em>Depth Map Prediction from a Single Image using a Multi-Scale Deep Network</em> $(4)$ 式，形式上是一致的。那么是不是替代品呢？是的，原文是在log空间计算的，所以度量其实是 $\displaystyle \alpha(x, \hat{x}) = \dfrac{1}{n}\sum_i \left(\log x_i - \log \hat{x}_i\right)$ ，所以现在本文用正常的原空间有 $\displaystyle \alpha(x, \hat{x}) = \dfrac{1}{n}\sum_i \left(x_i - \hat{x}_i\right)$，所以带入参考文献<em>Depth Map Prediction from a Single Image using a Multi-Scale Deep Network</em>的 $(1)$ 式有</p>
+<script type="math/tex; mode=display">\begin{align} \displaystyle D(x, \hat{x}) &= \dfrac{1}{2n}\sum_{i=1}^n \left(x_i - \hat{x}_i + \dfrac{1}{n}\sum_i \left(x_i - \hat{x}_i\right)\right)^2 \\ &= \dfrac{1}{2n^2}\sum_{i, j} \left(\left(x_i - x_j\right) - \left(\hat{x}_i - \hat{x}_j\right)\right)^2 \\ &\triangleq \dfrac{1}{n}\sum_i d_i^2 - \dfrac{1}{n^2}\sum_{i, j} d_i d_j \\ &= \dfrac{1}{n}\sum_i d_i^2 - \dfrac{1}{n^2}\left(\sum_i d_i\right)^2 \end{align}</script><p>这的确就是代码实现中的具体计算方式，这进一步说明代码种的形式确实是SIMSE的形式，说明原文的 $(4)$ 式右边第一项写成矩阵的 $L_2$ 范数是不合适的。这样<strong>问题 $1$ 就被推导出来了</strong>。</p>
+<p><strong>最后</strong>，针对问题 $3$，我觉得这位兄弟的代码不小心写错了，好了<strong>问题 $3$ 也解决了</strong>~</p>
+<hr>
+<p>综上，这篇文章我基本上都看完了，还剩一些小问题藏在加粗字中，待办了~</p>
+<h1 id="其它小细节"><a href="#其它小细节" class="headerlink" title="其它小细节"></a>其它小细节</h1><ul>
+<li><p>学到一个新函数：<a href="https://pytorch.org/docs/master/generated/torch.numel.html" target="_blank" rel="noopener"><strong>torch.numel</strong></a>，输入是tensor，输出是全部元素的个数，感觉就是张量的size</p>
+</li>
+<li><p><strong>MMD损失是什么</strong>我看不懂，需要再去具体学习！</p>
+</li>
+<li><p>文章的其它部分，尤其是对比实验、其它loss都可以参考<a href="https://zhuanlan.zhihu.com/p/49479734" target="_blank" rel="noopener">迁移学习：Domain Separation Networks</a>，讲得挺好</p>
+</li>
+<li><p>文章原文中说代码在这<a href="https://github.com/tensorflow/models/domain_adaptation，但👴没找着" target="_blank" rel="noopener">https://github.com/tensorflow/models/domain_adaptation，但👴没找着</a>…</p>
+</li>
+<li><p>difference loss用矩阵乘积的形式超过了DANN loss的效果！说明这种分离公共、私有特征的度量是有效的！</p>
+</li>
+<li><p>上面反复说的知乎文章下面有个评论：</p>
+<blockquote>
+<p>您好，请问在输入公有特征提取器的时候，是把两个域的样本整体用两个矩阵输入进去，还是从每次从目标域和源域各选取一个成为一对输入进去呢</p>
+</blockquote>
+<p>从文章原文 $(3)$ 式的loss看应该是全部数据喂进去了，从代码看也是这样，不过多了点细节，是分源域样本和目标域样本分别通通喂进去的</p>
 </li>
 </ul>
-</li>
-<li><p>异常的判定——异常score：</p>
-<ul>
-<li>有了方法的概念和方法的构成单元，下面说方法的度量，即怎么样算是异常。基本的想法是path（路径）长度：样本$x$的路径长度记为$h(x)$，在树上，$x$被孤立出来需要的分割次数。但是这个$h(x)$不好，因为这个$h(x)$算不算异常也要看整个树的深度、样本量什么的；因此需要一般性的异常score作为度量。</li>
-<li>这个score来源于BST，二元搜索树，因为发现孤立树和BST有相似的性质。借BST文章的结论，其不成功搜索的路径长度$c(n)$与这里的$h(x)$类似，于是采用(1, 2)式的形式计算了此异常score $s(x, n)$。个人感觉就是$h(x)$不general，引用$c(n)$给它做了某种标准化。图2和图3解释得非常好，一目了然，分别介绍了定性的$s(x, n)$合理性和类似等高线的异常判断方式。</li>
-</ul>
-</li>
-</ul>
-<h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><ul>
-<li>孤立森林与已有方法主要区别：<ul>
-<li>它可以利用sub-sampling，<strong>这个sub-sampling指什么？</strong>，是只用一部分数据就可以了，体现在孤立森林的局部：孤立树的使用上；如果数据多，往往树越深，正常样本也多，往往难以检测出异常。具体有两种情形——swamping and masking，分别指错把正常样本识别为异常，和异常点太多，比如扎堆出现，一看还以为都是正常的，其异常性被数量掩盖了。针对它们，只要取一部分数据就可以得到更好的效果，文章第3章画了两张图，非常形象地阐述了机理👍！</li>
-<li>不需要计算什么距离、密度，大大降低计算复杂度</li>
-<li>由集成的优点，大的森林可以处理大量数据了，包括高维情形</li>
-</ul>
-</li>
-<li>孤立森林的优点：<ul>
-<li>线性时间的复杂度，对运算内存的要求为很低的常数。1个原因是不需要计算什么距离、密度，<strong>另一个原因</strong>是按照方法中孤立的方式，即使树是完全树，最多（每次只孤立1个点）的内部节点有$n-1$个。最多的全部节点有$n-1+n=2n-1$个（自己画个图就知道了），所以对变量的内存要求是有界的，与样本量呈线性关系。</li>
-<li>首次把孤立应用于异常检测，似乎用了二次采样，其它已有方法不行</li>
-<li>它的2个变量都比较小，就可以表现优异</li>
-</ul>
-</li>
-</ul>
-<h2 id="实验——如何训练孤立森林"><a href="#实验——如何训练孤立森林" class="headerlink" title="实验——如何训练孤立森林"></a>实验——如何训练孤立森林</h2><p>和一般的机器学习方法类似，先训练出一个孤立森林模型，再拿测试数据测试。</p>
-<ul>
-<li><p>训练总体的算法是孤立树的集成——孤立森林，为算法1，递归式地分割数据集</p>
-<ul>
-<li>算法1中包括算法2，单颗孤立树的训练，这些都已经说过了。</li>
-<li>算法1、2中有3个参数要提前设置：子采样数、树的最大深度和树的棵树，这些都根据实验经验确定，子采样数默认$\psi=256$，深度默认$l=ceiling(\log_2 \psi)$，棵树默认$t=100$。</li>
-</ul>
-</li>
-<li><p>最后测试的时候计算的score要一直到被孤立出去，且使用递归的方式一点点计算。</p>
-</li>
-</ul>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>文章主要的4篇参考文献在<code>为什么读</code>章节中已经给出。</p>
+<p>[5] 黑猫紧张. PN-35: Domain Separation Networks (NIPS 2016)[EB/OL]. <a href="https://zhuanlan.zhihu.com/p/82403668" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/82403668</a>, 2019-09-13.</p>
+<p>[6] gdtop818. Domain Separation Networks[EB/OL]. <a href="https://blog.csdn.net/weixin_37993251/article/details/91472097" target="_blank" rel="noopener">https://blog.csdn.net/weixin_37993251/article/details/91472097</a>, 2019-06-11.</p>
+<p>[7] PoemK. Domain Separation Networks (NIPS 2016)[EB/OL]. <a href="https://blog.csdn.net/yskyskyer123/article/details/95664755" target="_blank" rel="noopener">https://blog.csdn.net/yskyskyer123/article/details/95664755</a>, 2019-07-12.</p>
+<p>[8] 究竟灰. 论文阅读：Depth Map Prediction from a Single Image using a Multi-Scale Deep Network[EB/OL]. <a href="https://zhuanlan.zhihu.com/p/29312227" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/29312227</a>, 2019-09-18.</p>
+<p>[9] Xuefeng_BUPT. Depth Map Prediction from a Single Image using a Multi-Scale Deep Network（NIPS2014）论文阅读[EB/OL]. <a href="https://blog.csdn.net/chishuideyu/article/details/83573174" target="_blank" rel="noopener">https://blog.csdn.net/chishuideyu/article/details/83573174</a>, 2018-10-31.</p>
 
       
     </div>
@@ -474,7 +484,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="http://maxliu245.github.io/2020/08/19/【论文阅读16】Isolation-Forest——孤立的异常检测方式/" title="【论文阅读16】Isolation Forest——孤立的异常检测方式">http://maxliu245.github.io/2020/08/19/【论文阅读16】Isolation-Forest——孤立的异常检测方式/</a>
+    <a href="http://maxliu245.github.io/2020/09/19/【论文阅读21】DSN——域分离网络/" title="【论文阅读21】DSN——域分离网络">http://maxliu245.github.io/2020/09/19/【论文阅读21】DSN——域分离网络/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -493,7 +503,7 @@
           
             <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
           
-            <a href="/tags/Abnormality-Detection/" rel="tag"># Abnormality Detection</a>
+            <a href="/tags/Domain-Adaptation/" rel="tag"># Domain Adaptation</a>
           
         </div>
       
@@ -506,8 +516,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/07/31/【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/" rel="next" title="【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation">
-                <i class="fa fa-chevron-left"></i> 【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation
+              <a href="/2020/09/17/【论文阅读20】DANN——利用域对抗进行简单的域迁移/" rel="next" title="【论文阅读20】DANN——利用域对抗进行简单的域迁移">
+                <i class="fa fa-chevron-left"></i> 【论文阅读20】DANN——利用域对抗进行简单的域迁移
               </a>
             
           </div>
@@ -515,10 +525,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/08/21/【论文阅读17】ODE-Net——从离散化的ResNet到连续化ODE的模拟/" rel="prev" title="【论文阅读17】ODE-Net——从离散化的ResNet到连续化ODE的模拟">
-                【论文阅读17】ODE-Net——从离散化的ResNet到连续化ODE的模拟 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -700,7 +706,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么读此文章"><span class="nav-number">1.</span> <span class="nav-text">为什么读此文章</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文献总结"><span class="nav-number">2.</span> <span class="nav-text">文献总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#文献内容"><span class="nav-number">3.</span> <span class="nav-text">文献内容</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#目的"><span class="nav-number">3.1.</span> <span class="nav-text">目的</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#背景"><span class="nav-number">3.2.</span> <span class="nav-text">背景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#方法——从孤立树到孤立森林"><span class="nav-number">3.3.</span> <span class="nav-text">方法——从孤立树到孤立森林</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优缺点"><span class="nav-number">3.4.</span> <span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验——如何训练孤立森林"><span class="nav-number">3.5.</span> <span class="nav-text">实验——如何训练孤立森林</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#写在前面"><span class="nav-number">1.</span> <span class="nav-text">写在前面</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#为什么读"><span class="nav-number">2.</span> <span class="nav-text">为什么读</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#对文章的整体理解"><span class="nav-number">3.</span> <span class="nav-text">对文章的整体理解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DSN模型结构"><span class="nav-number">4.</span> <span class="nav-text">DSN模型结构</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Loss组成"><span class="nav-number">5.</span> <span class="nav-text">Loss组成</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#其它小细节"><span class="nav-number">6.</span> <span class="nav-text">其它小细节</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">7.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
             
 
           </div>
