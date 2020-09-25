@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://maxliu245.github.io/"/>
-  <updated>2020-09-19T12:19:44.574Z</updated>
+  <updated>2020-09-25T13:22:01.992Z</updated>
   <id>http://maxliu245.github.io/</id>
   
   <author>
@@ -15,6 +15,39 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【Jupyter Notebook 1】创建不了文件以及保存文件失败的问题</title>
+    <link href="http://maxliu245.github.io/2020/09/25/%E3%80%90Jupyter-Notebook-1%E3%80%91%E5%88%9B%E5%BB%BA%E4%B8%8D%E4%BA%86%E6%96%87%E4%BB%B6%E4%BB%A5%E5%8F%8A%E4%BF%9D%E5%AD%98%E6%96%87%E4%BB%B6%E5%A4%B1%E8%B4%A5%E7%9A%84%E9%97%AE%E9%A2%98/"/>
+    <id>http://maxliu245.github.io/2020/09/25/%E3%80%90Jupyter-Notebook-1%E3%80%91%E5%88%9B%E5%BB%BA%E4%B8%8D%E4%BA%86%E6%96%87%E4%BB%B6%E4%BB%A5%E5%8F%8A%E4%BF%9D%E5%AD%98%E6%96%87%E4%BB%B6%E5%A4%B1%E8%B4%A5%E7%9A%84%E9%97%AE%E9%A2%98/</id>
+    <published>2020-09-25T12:38:51.000Z</published>
+    <updated>2020-09-25T13:22:01.992Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote><p>具体的错误包括：</p><ol><li><p>在notebook交互界面一点击保存按钮就会报错</p><p><code>[Error 2] No such file or directory: C:\\...\\...\\....ipynb</code></p></li><li><p>在文件目录界面一创建新文件就会报错</p><p><code>An error occurred while creating a new notebook. No such directory: ...</code></p></li></ol></blockquote><a id="more"></a><h1 id="Bug产生背景"><a href="#Bug产生背景" class="headerlink" title="Bug产生背景"></a>Bug产生背景</h1><p>这次bug的出现是莫名其妙的，白天的时候都好好的，晚上一开电脑就遇到了这个简介中提到cai的两个问题。下面是我的<strong>美丽</strong>截图🤭</p><img src="/2020/09/25/【Jupyter-Notebook-1】创建不了文件以及保存文件失败的问题/JN-1.png" title="保存文件失败——美丽的静香打码"><img src="/2020/09/25/【Jupyter-Notebook-1】创建不了文件以及保存文件失败的问题/JN-2.png" title="创建新文件失败——美丽的静香再打码"><blockquote><p>ps: 本人打码实属👻才，静香图来源于B站撸大师木源，嗯，好像是这个奇妙的名字…</p></blockquote><h1 id="探索解决方法"><a href="#探索解决方法" class="headerlink" title="探索解决方法"></a>探索解决方法</h1><p>起初我以为是以往遇到的一个问题，就是notebook的容量太大了，超过5M可能读取起来就会出错，所以我先手动清除了其中的大部分输出，但是点击保存仍然是这个情况。</p><p>然后在网上搜了一通也没有找到适合我这种情况的解决方法。</p><p>最后注意到一个相关性比较高的回答，它表示路径名称中有特殊字符，好像是中文，不过我忘了具体怎么说的了。虽然以前我都用的中文，但是这次确实是出毛病了啊。我看着一大串的报错信息，觉得这个路径实在是太长了，毕竟我嵌套了很多文件夹…</p><p>于是！我在靠近根目录的地方复制了原来的文件，🆗</p><p><strong>所以，我这里上述两个bug出现是因为当前文件路径过长…</strong></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;具体的错误包括：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;在notebook交互界面一点击保存按钮就会报错&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;[Error 2] No such file or directory: C:\\...\\...\\....ipynb&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;在文件目录界面一创建新文件就会报错&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;An error occurred while creating a new notebook. No such directory: ...&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="Bug" scheme="http://maxliu245.github.io/tags/Bug/"/>
+    
+      <category term="Programming" scheme="http://maxliu245.github.io/tags/Programming/"/>
+    
+  </entry>
   
   <entry>
     <title>【论文阅读21】DSN——域分离网络</title>
@@ -500,33 +533,6 @@
       <category term="NBA2K13" scheme="http://maxliu245.github.io/tags/NBA2K13/"/>
     
       <category term="DIY" scheme="http://maxliu245.github.io/tags/DIY/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>9 Model-Agnostic Meta-Learning for Fast Adaptation of Deep Networks 笔记</title>
-    <link href="http://maxliu245.github.io/2020/06/12/9-Model-Agnostic-Meta-Learning-for-Fast-Adaptation-of-Deep-Networks-%E7%AC%94%E8%AE%B0/"/>
-    <id>http://maxliu245.github.io/2020/06/12/9-Model-Agnostic-Meta-Learning-for-Fast-Adaptation-of-Deep-Networks-%E7%AC%94%E8%AE%B0/</id>
-    <published>2020-06-11T23:37:25.000Z</published>
-    <updated>2020-06-12T00:26:46.000Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote><p>MAML文献回顾</p></blockquote><a id="more"></a><h2 id="文献简介"><a href="#文献简介" class="headerlink" title="文献简介"></a>文献简介</h2><img src="/2020/06/12/9-Model-Agnostic-Meta-Learning-for-Fast-Adaptation-of-Deep-Networks-笔记/9.png" title="MAML"><p>其实寒假的时候就读过这篇文章，<strong>当时的理解</strong>主要是：搞了个新模型去弄原始模型的参数，新模型的目标是使原始模型Loss下一次梯度下降得更多，这样似乎面对新任务新数据时只要几次迭代Loss就能降不少，需要计算迭代的次数因此可能很少。现在希望<strong>回顾</strong>一下。</p><ul><li>文献地址：<a href="https://arxiv.org/abs/1703.03400或https://dl.acm.org/doi/10.5555/3305381.3305498" target="_blank" rel="noopener">https://arxiv.org/abs/1703.03400或https://dl.acm.org/doi/10.5555/3305381.3305498</a></li><li>文献投于ICML2017</li><li>Finn作品，另有参考BAIR的博客<a href="https://bair.berkeley.edu/blog/2017/07/18/learning-to-learn/" target="_blank" rel="noopener">Learning to Learn</a></li><li>截至2020/06/12谷歌学术引用量1664</li></ul><h2 id="阅读笔记——文章主题整理"><a href="#阅读笔记——文章主题整理" class="headerlink" title="阅读笔记——文章主题整理"></a>阅读笔记——文章主题整理</h2><p>这篇文章提出的是一种经典的元学习方法，记为<code>MAML</code>。其卖点在于<code>模型不可知</code>，对于一般使用梯度下降的模型，都可以以<code>MAML</code>的方法使之能<strong>快速适应新任务</strong>。</p><p>MAML的思想来源是元学习，假定有一系列共同或相似内在联系的任务，那么希望机器能把任务之间的关联抽象为所谓的经验，辅助新任务的训练。但是这样一种<strong>general的经验</strong>不好确定啊，而且直观地说，此经验一定是要随着新任务变化而稍有变化的，才能使之合理地成为元学习器。</p><p>其思想就是找到这样的经验并用于加强新任务的<strong>泛化</strong>能力，很自然地，这个经验抽象为了模型的初始参数。在元学习的假设下，我们有很多之前的任务$T_i$（经验）和待解决的新任务，它们都可以从任务分布$p(T)$中采样出来。目标是新模型的快速适应能力，即只要很少的迭代次数就能达到较优的效果，那么，初始参数要使得损失的变化最大，只要微调，性能快速变化。</p><p>所以考虑模型$f<em>{\theta}$，其损失$L$。先采样一个过去的任务$T_i\sim p(T)$（也可以采样多个任务，这里以一个为例），在此任务上计算$L</em>{T<em>i}(f</em>{\theta})$，从中提取经验的信息，对初始参数$\theta$求导得$\nabla<em>{\theta}L</em>{T<em>i}(f</em>{\theta})$。为了使Loss对初始参数的变化更加敏感，对当前初始参数进行一步梯度更新得到$\theta’$。再在重新采样的元任务上确认效果，如何保证Loss对初始参数更敏感？$\theta’$要让经过一次迭代后元任务上的损失就达到最小$\Leftrightarrow$</p><script type="math/tex; mode=display">\min\limits_{\theta}\sum\limits_{T_i\sim p(T)}L_{T_i}(f_{\theta'})=\min\limits_{\theta}\sum\limits_{T_i\sim p(T)}L_{T_i}(f_{\theta-\alpha\nabla_{\theta}L_{T_i}(f_{\theta})})</script><p>骚操作，实验不看了，有空研究下代码就更懂了🤭</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;MAML文献回顾&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="Paper Reading" scheme="http://maxliu245.github.io/tags/Paper-Reading/"/>
-    
-      <category term="MAML" scheme="http://maxliu245.github.io/tags/MAML/"/>
-    
-      <category term="Meta Learning" scheme="http://maxliu245.github.io/tags/Meta-Learning/"/>
     
   </entry>
   

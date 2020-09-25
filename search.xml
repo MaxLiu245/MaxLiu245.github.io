@@ -1,6 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>【Jupyter Notebook 1】创建不了文件以及保存文件失败的问题</title>
+    <url>/2020/09/25/%E3%80%90Jupyter-Notebook-1%E3%80%91%E5%88%9B%E5%BB%BA%E4%B8%8D%E4%BA%86%E6%96%87%E4%BB%B6%E4%BB%A5%E5%8F%8A%E4%BF%9D%E5%AD%98%E6%96%87%E4%BB%B6%E5%A4%B1%E8%B4%A5%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>具体的错误包括：</p>
+<ol>
+<li><p>在notebook交互界面一点击保存按钮就会报错</p>
+<p><code>[Error 2] No such file or directory: C:\\...\\...\\....ipynb</code></p>
+</li>
+<li><p>在文件目录界面一创建新文件就会报错</p>
+<p><code>An error occurred while creating a new notebook. No such directory: ...</code></p>
+</li>
+</ol>
+</blockquote>
+<a id="more"></a>
+<h1 id="Bug产生背景"><a href="#Bug产生背景" class="headerlink" title="Bug产生背景"></a>Bug产生背景</h1><p>这次bug的出现是莫名其妙的，白天的时候都好好的，晚上一开电脑就遇到了这个简介中提到cai的两个问题。下面是我的<strong>美丽</strong>截图🤭</p>
+<img src="/2020/09/25/【Jupyter-Notebook-1】创建不了文件以及保存文件失败的问题/JN-1.png" title="保存文件失败——美丽的静香打码">
+<img src="/2020/09/25/【Jupyter-Notebook-1】创建不了文件以及保存文件失败的问题/JN-2.png" title="创建新文件失败——美丽的静香再打码">
+<blockquote>
+<p>ps: 本人打码实属👻才，静香图来源于B站撸大师木源，嗯，好像是这个奇妙的名字…</p>
+</blockquote>
+<h1 id="探索解决方法"><a href="#探索解决方法" class="headerlink" title="探索解决方法"></a>探索解决方法</h1><p>起初我以为是以往遇到的一个问题，就是notebook的容量太大了，超过5M可能读取起来就会出错，所以我先手动清除了其中的大部分输出，但是点击保存仍然是这个情况。</p>
+<p>然后在网上搜了一通也没有找到适合我这种情况的解决方法。</p>
+<p>最后注意到一个相关性比较高的回答，它表示路径名称中有特殊字符，好像是中文，不过我忘了具体怎么说的了。虽然以前我都用的中文，但是这次确实是出毛病了啊。我看着一大串的报错信息，觉得这个路径实在是太长了，毕竟我嵌套了很多文件夹…</p>
+<p>于是！我在靠近根目录的地方复制了原来的文件，🆗</p>
+<p><strong>所以，我这里上述两个bug出现是因为当前文件路径过长…</strong></p>
+]]></content>
+      <tags>
+        <tag>Bug</tag>
+        <tag>Programming</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【论文阅读21】DSN——域分离网络</title>
     <url>/2020/09/19/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB21%E3%80%91DSN%E2%80%94%E2%80%94%E5%9F%9F%E5%88%86%E7%A6%BB%E7%BD%91%E7%BB%9C/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
