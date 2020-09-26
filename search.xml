@@ -1,6 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>【论文阅读22】ODE2VAE——2阶ODE模拟+BNN引入不确定性</title>
+    <url>/2020/09/25/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB22%E3%80%91ODE2VAE%E2%80%94%E2%80%942%E9%98%B6ODE%E6%A8%A1%E6%8B%9F-BNN%E5%BC%95%E5%85%A5%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>本文笔记主要是我对19年NIPS的文章ODE2VAE：</p>
+<p><code>ODE2VAE: Deep generative second order ODEs with Bayesian neural networks</code></p>
+<p>其模型的生成方式和模型结构的理解，具体概率公式的推导和实验的细节都略掉了，如果需要的话以后再看</p>
+</blockquote>
+<a id="more"></a>
+<img src="/2020/09/25/【论文阅读22】ODE2VAE——2阶ODE模拟-BNN引入不确定性/ODE2VAE-1.png" title="文献预览">
+<h1 id="开门见山——文献总结"><a href="#开门见山——文献总结" class="headerlink" title="开门见山——文献总结"></a>开门见山——文献总结</h1><p>这篇文章是19年的NIPS文章，与ANODE是同一次会议产出的。而在我看来，这两篇文章很多<strong>内容是有类似的地方</strong>的，但是在<strong>思想上又大不相同</strong>：</p>
+<ul>
+<li>前者的目标主要是做生成模型，希望设计学习更好的连续流数据（模型）的建模，方式是在NODE基础上考虑了二阶导的模拟和不确定性的引入，这两个是用一个模块同时完成的，即采用BNN学习二阶导，同时就可以引入不确定性。最后考虑到生成的效果需要保障，因此用VAE的形式进行了对抗</li>
+<li>后者的目标主要是对NODE直接做改进，从NODE的一个缺点入手，利用手动添加增广维度，在高维空间中克服了对低维空间中不连续情形的模拟，从而完成了NODE的增广，据说提高了表达能力、稳定性、泛化性，降低了计算消耗。这个缺点即有一大类函数是NODE学习不了的，但是目前对这个我真的还不是很理解，因此后续再进行阅读</li>
+</ul>
+<p>上面的介绍已经表明了目前我对ODE2VAE模型的认识（<strong>当我自己写到这里的时候，我认为这个ODE2VAE中对二阶导的建模本质上可以看成ANODE在维度上进行增广的一个特例~</strong>）。下面我们回顾一下该模型的前因后果吧。</p>
+<h1 id="前因后果——ODE2VAE的前生今世"><a href="#前因后果——ODE2VAE的前生今世" class="headerlink" title="前因后果——ODE2VAE的前生今世"></a>前因后果——ODE2VAE的前生今世</h1><p>故事要从流模型开始讲，流模型在干什么？一个简单的解释是流模型本身是ODE领域的延伸概念，把ODE初值问题中不同时刻的状态变化过程称为一个流。这个概念其实很有意思，后面我会<font color="#0000FF">单开一文</font>来介绍它。</p>
+<p>流模型由于其本身脱胎于ODE系统的性质，对很多实际情况的模拟应该是比较适合的，但是与神经网络结合的话，此前只有NODE简单地以ResNet中残差的形式对应到了差分，因此完成了一阶导的模拟。举个应用的例子，连续视频流文件的每一帧都可以看成一个中间状态，其背后是很可能有隐含的流模型的，这时如果能学习出其流模型，那么就可以完成视频补帧，甚至短期预测等重要任务。</p>
+<h1 id="模型机理——ODE-amp-VAE"><a href="#模型机理——ODE-amp-VAE" class="headerlink" title="模型机理——ODE&amp;VAE"></a>模型机理——ODE&amp;VAE</h1><p>回顾一下，ODE2VAE的一个目标是学习生成模型，突破NODE1阶导的限制，进行更细的二阶导建模。那么它对二阶导的做法是用BNN来学习一个对应的函数，同时BNN可以引入不确定性。另外，既然是生成模型，那么既要编码也要解码，因此其中又使用了VAE的对抗模式保证数据恢复的质量。下面先上图，再康康这个生成模型是怎么假设的：</p>
+<img src="/2020/09/25/【论文阅读22】ODE2VAE——2阶ODE模拟-BNN引入不确定性/ODE2VAE-2.png" title="模型结构">
+<p>流模型的生成结构为：</p>
+<script type="math/tex; mode=display">\displaystyle \begin{align} s_0 & \sim p(s_0) \tag{1}\\  v_0 &\sim p(v_0) \tag{2}\\  s_t &= s_0 + \int_{0}^{t} v_{\tau} d\tau \tag{3}\\  v_t &= v_0 + \int_{0}^{t} f_{true} (s_{\tau}, v_{\tau})d\tau \tag{4} \\  x_i &\sim p(x_i | s_i), i\in [0, N] \tag{5}\end{align}</script><p><strong>注意</strong>，这里的变量 $s$ 是把原始的流数据经过编码器转换到隐空间中的变量！即在隐空间中假设存在了流模型！</p>
+<p>这里前两个式子 $(1, 2)$ 表示流的初始状态：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>流上的意义</th>
+<th>形象的意义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>$s_0$</td>
+<td>初始状态（state）的值</td>
+<td>初始时刻0时，点的位置</td>
+</tr>
+<tr>
+<td>$v_0$</td>
+<td>初始状态（state）的一阶导</td>
+<td>初始时刻0时，点的速度</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>接下来的 $(3, 4)$ 式则是流的变化过程，一阶导 $v$ 的积分可以描述状态 $s$ 的变化，即 $(3)$ 式；而二阶导 $v^\prime$ 的积分可以描述一阶导 $v$ 的变化，即 $(4)$ 式。其中二阶导就用贝叶斯神经网络BNN来暴力模拟，记这个BNN的整体函数表达式为 $f_{true}$，$(4)$ 式表明它的输入是先前所有状态和一阶导，不过模型结构图表示输入是当前状态的值和一阶导。由于目前我没有研究代码，我<font color="#0000FF">个人认为</font>这两种输入都可以，但我猜在当前的架构下，<span style="border-bottom:1px solid black;">采用前一段时间内的流数据建模</span>比较好，这个想法是比较合理的。前者输入太多，虽然利用的信息多，但是计算的消耗也会很大，而且可能需要用到RNN等处理序列数据的方法作为子模型；后者输入比较少，指利用当前状态的信息，这其实也不太稳，毕竟二阶导自身的变化也应当被正确建模。</p>
+<p>最后的 $(5)$ 式就是图中的解码器了，把学习到的流的变化特征重构成流数据。不过这个 $p(x_i | s_i)$ 具体是怎么解码回去的我就不清楚了，我猜是参数共享，直接把编码器给倒过来，从隐空间恢复原始的流数据。</p>
+<hr>
+<p>以上，本文的出发点，以生成模型建模流数据的过程就弄得差不多了。这里再补充一个小细节，一阶导 $s$ 的生成，是利用原始流数据 $x$ 的前 $m$ 维完成的，举个例子，这个前 $m$ 维就是视频流数据的前 $m$ 帧，这种近似的思想也与前面我所提到的“<span style="border-bottom:1px solid black;">采用前一段时间内的流数据建模</span>”一致~</p>
+<h1 id="优缺点——扶摇直上亿万里"><a href="#优缺点——扶摇直上亿万里" class="headerlink" title="优缺点——扶摇直上亿万里"></a>优缺点——扶摇直上亿万里</h1><p>最后回到总结吧~</p>
+<p>前面提到ODE2VAE的目标主要是做生成模型，对流数据建模，引入BNN暴力学习二阶导，顺便引入了不确定性。这些都是文章出彩的思想，也是卖点所在。</p>
+<p>而这些<strong>应当</strong>是增广NODE模型的一个维度增广特例，只不过是增广了二阶导。那么ANODE又能增广到什么程度呢？我还需要继续阅读，如果能直接暴力增广学习高阶导，那也不错，在此基础上一定有更加有意思的地方。</p>
+<p>Can u get me?</p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p>不太好整，这<code>markdown</code>上不能整<code>bibtex</code>实在是太难受，给个文献链接直接了事~</p>
+<p><a href="http://papers.nips.cc/paper/9497-ode2vae-deep-generative-second-order-odes-with-bayesian-neural-networks" target="_blank" rel="noopener">ODE2VAE: Deep generative second order ODEs with Bayesian neural networks</a></p>
+]]></content>
+      <tags>
+        <tag>Paper Reading</tag>
+        <tag>Machine Learning</tag>
+        <tag>ODE</tag>
+        <tag>Flow Model</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【Jupyter Notebook 1】创建不了文件以及保存文件失败的问题</title>
     <url>/2020/09/25/%E3%80%90Jupyter-Notebook-1%E3%80%91%E5%88%9B%E5%BB%BA%E4%B8%8D%E4%BA%86%E6%96%87%E4%BB%B6%E4%BB%A5%E5%8F%8A%E4%BF%9D%E5%AD%98%E6%96%87%E4%BB%B6%E5%A4%B1%E8%B4%A5%E7%9A%84%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
@@ -19,7 +83,7 @@
 <img src="/2020/09/25/【Jupyter-Notebook-1】创建不了文件以及保存文件失败的问题/JN-1.png" title="保存文件失败——美丽的静香打码">
 <img src="/2020/09/25/【Jupyter-Notebook-1】创建不了文件以及保存文件失败的问题/JN-2.png" title="创建新文件失败——美丽的静香再打码">
 <blockquote>
-<p>ps: 本人打码实属👻才，静香图来源于B站撸大师木源，嗯，好像是这个奇妙的名字…</p>
+<p>ps: 本人打码实属打🐎👻才，静香图来源于B站撸大师木源，嗯，好像是这个奇妙的名字…</p>
 </blockquote>
 <h1 id="探索解决方法"><a href="#探索解决方法" class="headerlink" title="探索解决方法"></a>探索解决方法</h1><p>起初我以为是以往遇到的一个问题，就是notebook的容量太大了，超过5M可能读取起来就会出错，所以我先手动清除了其中的大部分输出，但是点击保存仍然是这个情况。</p>
 <p>然后在网上搜了一通也没有找到适合我这种情况的解决方法。</p>
@@ -28,8 +92,8 @@
 <p><strong>所以，我这里上述两个bug出现是因为当前文件路径过长…</strong></p>
 ]]></content>
       <tags>
-        <tag>Bug</tag>
         <tag>Programming</tag>
+        <tag>Bug</tag>
       </tags>
   </entry>
   <entry>

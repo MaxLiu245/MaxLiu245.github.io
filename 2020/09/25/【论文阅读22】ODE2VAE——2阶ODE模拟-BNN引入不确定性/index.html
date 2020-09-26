@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="NBA2K13,DIY修改,">
+  <meta name="keywords" content="Paper Reading,Machine Learning,ODE,Flow Model,">
 
 
 
@@ -88,18 +88,21 @@
 
 
 
-<meta name="description" content="鹰🦅修改Trae Young用雄鹿的Beno Udo…。名字54726165 596f756e67。号码11=22=16，肤色03，位置PG/SG=00/01，年龄21岁7e 7c，身高6‘2’=188，体重180，原头99 04=1177，时间35=140=8c。     / KM最新 90                  姓名地址 1799b0                 数据地址">
-<meta name="keywords" content="NBA2K13,DIY修改">
+<meta name="description" content="本文笔记主要是我对19年NIPS的文章ODE2VAE： ODE2VAE: Deep generative second order ODEs with Bayesian neural networks 其模型的生成方式和模型结构的理解，具体概率公式的推导和实验的细节都略掉了，如果需要的话以后再看">
+<meta name="keywords" content="Paper Reading,Machine Learning,ODE,Flow Model">
 <meta property="og:type" content="article">
-<meta property="og:title" content="NBA2K13鹰重整理">
-<meta property="og:url" content="http://maxliu245.github.io/2020/06/13/NBA2K13鹰重整理/index.html">
+<meta property="og:title" content="【论文阅读22】ODE2VAE——2阶ODE模拟+BNN引入不确定性">
+<meta property="og:url" content="http://maxliu245.github.io/2020/09/25/【论文阅读22】ODE2VAE——2阶ODE模拟-BNN引入不确定性/index.html">
 <meta property="og:site_name" content="Max Liu&#39;s Blog">
-<meta property="og:description" content="鹰🦅修改Trae Young用雄鹿的Beno Udo…。名字54726165 596f756e67。号码11=22=16，肤色03，位置PG/SG=00/01，年龄21岁7e 7c，身高6‘2’=188，体重180，原头99 04=1177，时间35=140=8c。     / KM最新 90                  姓名地址 1799b0                 数据地址">
+<meta property="og:description" content="本文笔记主要是我对19年NIPS的文章ODE2VAE： ODE2VAE: Deep generative second order ODEs with Bayesian neural networks 其模型的生成方式和模型结构的理解，具体概率公式的推导和实验的细节都略掉了，如果需要的话以后再看">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-06-14T14:03:22.000Z">
+<meta property="og:image" content="http://maxliu245.github.io/2020/09/25/【论文阅读22】ODE2VAE——2阶ODE模拟-BNN引入不确定性/ODE2VAE-1.png">
+<meta property="og:image" content="http://maxliu245.github.io/2020/09/25/【论文阅读22】ODE2VAE——2阶ODE模拟-BNN引入不确定性/ODE2VAE-2.png">
+<meta property="og:updated_time" content="2020-09-26T08:43:43.272Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="NBA2K13鹰重整理">
-<meta name="twitter:description" content="鹰🦅修改Trae Young用雄鹿的Beno Udo…。名字54726165 596f756e67。号码11=22=16，肤色03，位置PG/SG=00/01，年龄21岁7e 7c，身高6‘2’=188，体重180，原头99 04=1177，时间35=140=8c。     / KM最新 90                  姓名地址 1799b0                 数据地址">
+<meta name="twitter:title" content="【论文阅读22】ODE2VAE——2阶ODE模拟+BNN引入不确定性">
+<meta name="twitter:description" content="本文笔记主要是我对19年NIPS的文章ODE2VAE： ODE2VAE: Deep generative second order ODEs with Bayesian neural networks 其模型的生成方式和模型结构的理解，具体概率公式的推导和实验的细节都略掉了，如果需要的话以后再看">
+<meta name="twitter:image" content="http://maxliu245.github.io/2020/09/25/【论文阅读22】ODE2VAE——2阶ODE模拟-BNN引入不确定性/ODE2VAE-1.png">
 
 
 
@@ -129,13 +132,13 @@
 
 
 
-  <link rel="canonical" href="http://maxliu245.github.io/2020/06/13/NBA2K13鹰重整理/">
+  <link rel="canonical" href="http://maxliu245.github.io/2020/09/25/【论文阅读22】ODE2VAE——2阶ODE模拟-BNN引入不确定性/">
 
 
 
 
 
-  <title>NBA2K13鹰重整理 | Max Liu's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>【论文阅读22】ODE2VAE——2阶ODE模拟+BNN引入不确定性 | Max Liu's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -264,7 +267,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://maxliu245.github.io/2020/06/13/NBA2K13鹰重整理/">
+    <link itemprop="mainEntityOfPage" href="http://maxliu245.github.io/2020/09/25/【论文阅读22】ODE2VAE——2阶ODE模拟-BNN引入不确定性/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Max Liu">
@@ -281,7 +284,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">NBA2K13鹰重整理</h1>
+          <h1 class="post-title" itemprop="name headline">【论文阅读22】ODE2VAE——2阶ODE模拟+BNN引入不确定性</h1>
         
 
         <div class="post-meta">
@@ -296,8 +299,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-06-13T22:10:01+08:00">
-                2020-06-13
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-09-25T21:44:02+08:00">
+                2020-09-25
               </time>
             
 
@@ -312,8 +315,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2020-06-14T22:03:22+08:00">
-                2020-06-14
+              <time title="Post modified" itemprop="dateModified" datetime="2020-09-26T16:43:43+08:00">
+                2020-09-26
               </time>
             
           </span>
@@ -345,7 +348,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  773
+                  1.7k
                 </span>
               
 
@@ -361,7 +364,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  4
+                  6
                 </span>
               
             </div>
@@ -382,544 +385,59 @@
       
 
       
-        <a id="more"></a>
-<h2 id="鹰🦅修改"><a href="#鹰🦅修改" class="headerlink" title="鹰🦅修改"></a>鹰🦅修改</h2><h3 id="Trae-Young"><a href="#Trae-Young" class="headerlink" title="Trae Young"></a>Trae Young</h3><p>用雄鹿的Beno Udo…。名字54726165 596f756e67。号码11=22=16，肤色03，位置PG/SG=00/01，年龄21岁7e 7c，身高6‘2’=188，体重180，原头99 04=1177，时间35=140=8c。</p>
+        <blockquote>
+<p>本文笔记主要是我对19年NIPS的文章ODE2VAE：</p>
+<p><code>ODE2VAE: Deep generative second order ODEs with Bayesian neural networks</code></p>
+<p>其模型的生成方式和模型结构的理解，具体概率公式的推导和实验的细节都略掉了，如果需要的话以后再看</p>
+</blockquote>
+<a id="more"></a>
+<img src="/2020/09/25/【论文阅读22】ODE2VAE——2阶ODE模拟-BNN引入不确定性/ODE2VAE-1.png" title="文献预览">
+<h1 id="开门见山——文献总结"><a href="#开门见山——文献总结" class="headerlink" title="开门见山——文献总结"></a>开门见山——文献总结</h1><p>这篇文章是19年的NIPS文章，与ANODE是同一次会议产出的。而在我看来，这两篇文章很多<strong>内容是有类似的地方</strong>的，但是在<strong>思想上又大不相同</strong>：</p>
+<ul>
+<li>前者的目标主要是做生成模型，希望设计学习更好的连续流数据（模型）的建模，方式是在NODE基础上考虑了二阶导的模拟和不确定性的引入，这两个是用一个模块同时完成的，即采用BNN学习二阶导，同时就可以引入不确定性。最后考虑到生成的效果需要保障，因此用VAE的形式进行了对抗</li>
+<li>后者的目标主要是对NODE直接做改进，从NODE的一个缺点入手，利用手动添加增广维度，在高维空间中克服了对低维空间中不连续情形的模拟，从而完成了NODE的增广，据说提高了表达能力、稳定性、泛化性，降低了计算消耗。这个缺点即有一大类函数是NODE学习不了的，但是目前对这个我真的还不是很理解，因此后续再进行阅读</li>
+</ul>
+<p>上面的介绍已经表明了目前我对ODE2VAE模型的认识（<strong>当我自己写到这里的时候，我认为这个ODE2VAE中对二阶导的建模本质上可以看成ANODE在维度上进行增广的一个特例~</strong>）。下面我们回顾一下该模型的前因后果吧。</p>
+<h1 id="前因后果——ODE2VAE的前生今世"><a href="#前因后果——ODE2VAE的前生今世" class="headerlink" title="前因后果——ODE2VAE的前生今世"></a>前因后果——ODE2VAE的前生今世</h1><p>故事要从流模型开始讲，流模型在干什么？一个简单的解释是流模型本身是ODE领域的延伸概念，把ODE初值问题中不同时刻的状态变化过程称为一个流。这个概念其实很有意思，后面我会<font color="#0000FF">单开一文</font>来介绍它。</p>
+<p>流模型由于其本身脱胎于ODE系统的性质，对很多实际情况的模拟应该是比较适合的，但是与神经网络结合的话，此前只有NODE简单地以ResNet中残差的形式对应到了差分，因此完成了一阶导的模拟。举个应用的例子，连续视频流文件的每一帧都可以看成一个中间状态，其背后是很可能有隐含的流模型的，这时如果能学习出其流模型，那么就可以完成视频补帧，甚至短期预测等重要任务。</p>
+<h1 id="模型机理——ODE-amp-VAE"><a href="#模型机理——ODE-amp-VAE" class="headerlink" title="模型机理——ODE&amp;VAE"></a>模型机理——ODE&amp;VAE</h1><p>回顾一下，ODE2VAE的一个目标是学习生成模型，突破NODE1阶导的限制，进行更细的二阶导建模。那么它对二阶导的做法是用BNN来学习一个对应的函数，同时BNN可以引入不确定性。另外，既然是生成模型，那么既要编码也要解码，因此其中又使用了VAE的对抗模式保证数据恢复的质量。下面先上图，再康康这个生成模型是怎么假设的：</p>
+<img src="/2020/09/25/【论文阅读22】ODE2VAE——2阶ODE模拟-BNN引入不确定性/ODE2VAE-2.png" title="模型结构">
+<p>流模型的生成结构为：</p>
+<script type="math/tex; mode=display">\displaystyle \begin{align} s_0 & \sim p(s_0) \tag{1}\\  v_0 &\sim p(v_0) \tag{2}\\  s_t &= s_0 + \int_{0}^{t} v_{\tau} d\tau \tag{3}\\  v_t &= v_0 + \int_{0}^{t} f_{true} (s_{\tau}, v_{\tau})d\tau \tag{4} \\  x_i &\sim p(x_i | s_i), i\in [0, N] \tag{5}\end{align}</script><p><strong>注意</strong>，这里的变量 $s$ 是把原始的流数据经过编码器转换到隐空间中的变量！即在隐空间中假设存在了流模型！</p>
+<p>这里前两个式子 $(1, 2)$ 表示流的初始状态：</p>
 <div class="table-container">
 <table>
 <thead>
 <tr>
-<th>/</th>
-<th>KM最新</th>
-<th>90</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
+<th>符号</th>
+<th>流上的意义</th>
+<th>形象的意义</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td>姓名地址</td>
-<td>1799b0</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>$s_0$</td>
+<td>初始状态（state）的值</td>
+<td>初始时刻0时，点的位置</td>
 </tr>
 <tr>
-<td>数据地址</td>
-<td>08e80</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>00</strong></td>
-<td><strong>01</strong></td>
-<td><strong>02</strong></td>
-<td><strong>03</strong></td>
-<td><strong>04</strong></td>
-<td><strong>05</strong></td>
-<td><strong>06</strong></td>
-<td><strong>07</strong></td>
-<td><strong>08</strong></td>
-<td><strong>09</strong></td>
-<td><strong>0a</strong></td>
-<td><strong>0b</strong></td>
-<td><strong>0c</strong></td>
-<td><strong>0d</strong></td>
-<td><strong>0e</strong></td>
-<td><strong>0f</strong></td>
-</tr>
-<tr>
-<td><strong>0</strong></td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>?</td>
-<td>1 close   92 5c</td>
-<td>2 med  91 5b</td>
-<td>3 3pt 90 5a</td>
-<td>4 ft 85 55</td>
-<td>5 layup  87 57</td>
-<td>6 dunk  58 3a</td>
-<td>28 stdnk  50 1e</td>
-<td><strong>23  sit</strong>  55 37</td>
-<td><strong>22  sod</strong>  69 45</td>
-<td>25 hus  72 48</td>
-</tr>
-<tr>
-<td><strong>7 hndl</strong>  92 5c</td>
-<td><strong>8  pass</strong>  92 5c</td>
-<td>39</td>
-<td>32</td>
-<td>9 opost  58 3a</td>
-<td>10 dpost  60 3c</td>
-<td>11 block   60 3c</td>
-<td>26 hnd  64 40</td>
-<td>12 steal  50 32</td>
-<td>15 speed  86 56</td>
-<td>16 stam  91 5b</td>
-<td>19</td>
-<td>21 vert 90 5a</td>
-<td>13 oreb  50 21</td>
-<td>14 dreb  50 24</td>
-<td>17 dur  70 46</td>
-</tr>
-<tr>
-<td><strong>18 dawr</strong>  72 48</td>
-<td><strong>19  oawr</strong>  98 62</td>
-<td>32</td>
-<td>54</td>
-<td>27 def 88 58</td>
-<td>24 qui 88 58</td>
-<td>潜力 89 59</td>
-<td>20 str  60 3c</td>
-<td>？</td>
-<td>？</td>
-<td>？</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
+<td>$v_0$</td>
+<td>初始状态（state）的一阶导</td>
+<td>初始时刻0时，点的速度</td>
 </tr>
 </tbody>
 </table>
 </div>
-<h3 id="Clint-Capela"><a href="#Clint-Capela" class="headerlink" title="Clint Capela"></a>Clint Capela</h3><p>用Alexis Ajinca。身高6‘11’=208，体重240，年龄26=2d 7c，号码17=34=22，肤色01，位置C/05=04/05，原头25 06=1573，名字436c696e74 436170656c61，时间33=132=84。</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>/</th>
-<th>KM最新</th>
-<th>86</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>姓名地址</td>
-<td>181960</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>数据地址</td>
-<td>71700</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>00</strong></td>
-<td><strong>01</strong></td>
-<td><strong>02</strong></td>
-<td><strong>03</strong></td>
-<td><strong>04</strong></td>
-<td><strong>05</strong></td>
-<td><strong>06</strong></td>
-<td><strong>07</strong></td>
-<td><strong>08</strong></td>
-<td><strong>09</strong></td>
-<td><strong>0a</strong></td>
-<td><strong>0b</strong></td>
-<td><strong>0c</strong></td>
-<td><strong>0d</strong></td>
-<td><strong>0e</strong></td>
-<td><strong>0f</strong></td>
-</tr>
-<tr>
-<td><strong>0</strong></td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>?</td>
-<td>1 close   73 49</td>
-<td>2 med  60 3c</td>
-<td>3 3pt 50 32</td>
-<td>4 ft 54 36</td>
-<td>5 layup  76 4c</td>
-<td>6 dunk  82 52</td>
-<td>28 stdnk  96 60</td>
-<td><strong>23  sit</strong>  88 58</td>
-<td><strong>22  sod</strong>  70 46</td>
-<td>25 hus  82 52</td>
-</tr>
-<tr>
-<td><strong>7 hndl</strong>  70 46</td>
-<td><strong>8  pass</strong>  64 40</td>
-<td>32</td>
-<td>32</td>
-<td>9 opost  79 4f</td>
-<td>10 dpost  84 54</td>
-<td>11 block   81 51</td>
-<td>26 hnd  67 43</td>
-<td>12 steal  52 34</td>
-<td>15 speed  68 44</td>
-<td>16 stam  83 53</td>
-<td>19</td>
-<td>21 vert 71 47</td>
-<td>13 oreb  86 56</td>
-<td>14 dreb  94 5e</td>
-<td>17 dur  80 50</td>
-</tr>
-<tr>
-<td><strong>18 dawr</strong>  84 54</td>
-<td><strong>19  oawr</strong>  79 4f</td>
-<td>19</td>
-<td>4c</td>
-<td>27 def 69 45</td>
-<td>24 qui 59 3b</td>
-<td>潜力 55</td>
-<td>20 str  80 50</td>
-<td>？</td>
-<td>？</td>
-<td>？</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3 id="Qi-Zhou🤭"><a href="#Qi-Zhou🤭" class="headerlink" title="Qi Zhou🤭"></a>Qi Zhou🤭</h3><p>用凯尔特人Fab Melo改。名字5169 5a686f75，身高7‘1’=217，体重210，年龄24=43 7c，号码9=18=12，肤色04，位置C/PF=04/03，原头a1 09=2465，时间15=60=3c。</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>/</th>
-<th>KM之前</th>
-<th>69</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>姓名地址</td>
-<td>179dd0</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>数据地址</td>
-<td>0d980</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>00</strong></td>
-<td><strong>01</strong></td>
-<td><strong>02</strong></td>
-<td><strong>03</strong></td>
-<td><strong>04</strong></td>
-<td><strong>05</strong></td>
-<td><strong>06</strong></td>
-<td><strong>07</strong></td>
-<td><strong>08</strong></td>
-<td><strong>09</strong></td>
-<td><strong>0a</strong></td>
-<td><strong>0b</strong></td>
-<td><strong>0c</strong></td>
-<td><strong>0d</strong></td>
-<td><strong>0e</strong></td>
-<td><strong>0f</strong></td>
-</tr>
-<tr>
-<td><strong>0</strong></td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>?</td>
-<td>1 close   87 57</td>
-<td>2 med  87 57</td>
-<td>3 3pt 82 52</td>
-<td>4 ft 88 58</td>
-<td>5 layup  75 4b</td>
-<td>6 dunk  75 4b</td>
-<td>28 stdnk  99 63</td>
-<td><strong>23  sit</strong>  67 43</td>
-<td><strong>22  sod</strong>  67 43</td>
-<td>25 hus  89 59</td>
-</tr>
-<tr>
-<td><strong>7 hndl</strong>  61 3d</td>
-<td><strong>8  pass</strong>  50 1d</td>
-<td>32</td>
-<td>32</td>
-<td>9 opost  64 40</td>
-<td>10 dpost  61 3d</td>
-<td>11 block   90 5a</td>
-<td>26 hnd  82 52</td>
-<td>12 steal  68 44</td>
-<td>15 speed  79 4f</td>
-<td>16 stam  90 5a</td>
-<td>28</td>
-<td>21 vert 80 50</td>
-<td>13 oreb  84 54</td>
-<td>14 dreb  87 57</td>
-<td>17 dur  80 50</td>
-</tr>
-<tr>
-<td><strong>18 dawr</strong>  64 40</td>
-<td><strong>19  oawr</strong>  64 40</td>
-<td>23</td>
-<td>50</td>
-<td>27 def 77 4d</td>
-<td>24 qui 77 4d</td>
-<td>潜力 83 53</td>
-<td>20 str  72 48</td>
-<td>？</td>
-<td>？</td>
-<td>？</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
-<h3 id="Kevin-Huerter"><a href="#Kevin-Huerter" class="headerlink" title="Kevin Huerter"></a>Kevin Huerter</h3><p>位置SG/SF=01/02，</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>/</th>
-<th>KM</th>
-<th>74</th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-<th></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>姓名地址</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>数据地址</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td><strong>00</strong></td>
-<td><strong>01</strong></td>
-<td><strong>02</strong></td>
-<td><strong>03</strong></td>
-<td><strong>04</strong></td>
-<td><strong>05</strong></td>
-<td><strong>06</strong></td>
-<td><strong>07</strong></td>
-<td><strong>08</strong></td>
-<td><strong>09</strong></td>
-<td><strong>0a</strong></td>
-<td><strong>0b</strong></td>
-<td><strong>0c</strong></td>
-<td><strong>0d</strong></td>
-<td><strong>0e</strong></td>
-<td><strong>0f</strong></td>
-</tr>
-<tr>
-<td><strong>0</strong></td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>0</td>
-<td>?</td>
-<td>1 close   87 57</td>
-<td>2 med  87 57</td>
-<td>3 3pt 82 52</td>
-<td>4 ft 88 58</td>
-<td>5 layup  75 4b</td>
-<td>6 dunk  75 4b</td>
-<td>28 stdnk  99 63</td>
-<td><strong>23  sit</strong>  67 43</td>
-<td><strong>22  sod</strong>  67 43</td>
-<td>25 hus  89 59</td>
-</tr>
-<tr>
-<td><strong>7 hndl</strong>  61 3d</td>
-<td><strong>8  pass</strong>  50 1d</td>
-<td>32</td>
-<td>32</td>
-<td>9 opost  64 40</td>
-<td>10 dpost  61 3d</td>
-<td>11 block   90 5a</td>
-<td>26 hnd  82 52</td>
-<td>12 steal  68 44</td>
-<td>15 speed  79 4f</td>
-<td>16 stam  90 5a</td>
-<td>28</td>
-<td>21 vert 80 50</td>
-<td>13 oreb  84 54</td>
-<td>14 dreb  87 57</td>
-<td>17 dur  80 50</td>
-</tr>
-<tr>
-<td><strong>18 dawr</strong>  64 40</td>
-<td><strong>19  oawr</strong>  64 40</td>
-<td>23</td>
-<td>50</td>
-<td>27 def 77 4d</td>
-<td>24 qui 77 4d</td>
-<td>潜力 83 53</td>
-<td>20 str  72 48</td>
-<td>？</td>
-<td>？</td>
-<td>？</td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-<td></td>
-</tr>
-</tbody>
-</table>
-</div>
+<p>接下来的 $(3, 4)$ 式则是流的变化过程，一阶导 $v$ 的积分可以描述状态 $s$ 的变化，即 $(3)$ 式；而二阶导 $v^\prime$ 的积分可以描述一阶导 $v$ 的变化，即 $(4)$ 式。其中二阶导就用贝叶斯神经网络BNN来暴力模拟，记这个BNN的整体函数表达式为 $f_{true}$，$(4)$ 式表明它的输入是先前所有状态和一阶导，不过模型结构图表示输入是当前状态的值和一阶导。由于目前我没有研究代码，我<font color="#0000FF">个人认为</font>这两种输入都可以，但我猜在当前的架构下，<span style="border-bottom:1px solid black;">采用前一段时间内的流数据建模</span>比较好，这个想法是比较合理的。前者输入太多，虽然利用的信息多，但是计算的消耗也会很大，而且可能需要用到RNN等处理序列数据的方法作为子模型；后者输入比较少，指利用当前状态的信息，这其实也不太稳，毕竟二阶导自身的变化也应当被正确建模。</p>
+<p>最后的 $(5)$ 式就是图中的解码器了，把学习到的流的变化特征重构成流数据。不过这个 $p(x_i | s_i)$ 具体是怎么解码回去的我就不清楚了，我猜是参数共享，直接把编码器给倒过来，从隐空间恢复原始的流数据。</p>
+<hr>
+<p>以上，本文的出发点，以生成模型建模流数据的过程就弄得差不多了。这里再补充一个小细节，一阶导 $s$ 的生成，是利用原始流数据 $x$ 的前 $m$ 维完成的，举个例子，这个前 $m$ 维就是视频流数据的前 $m$ 帧，这种近似的思想也与前面我所提到的“<span style="border-bottom:1px solid black;">采用前一段时间内的流数据建模</span>”一致~</p>
+<h1 id="优缺点——扶摇直上亿万里"><a href="#优缺点——扶摇直上亿万里" class="headerlink" title="优缺点——扶摇直上亿万里"></a>优缺点——扶摇直上亿万里</h1><p>最后回到总结吧~</p>
+<p>前面提到ODE2VAE的目标主要是做生成模型，对流数据建模，引入BNN暴力学习二阶导，顺便引入了不确定性。这些都是文章出彩的思想，也是卖点所在。</p>
+<p>而这些<strong>应当</strong>是增广NODE模型的一个维度增广特例，只不过是增广了二阶导。那么ANODE又能增广到什么程度呢？我还需要继续阅读，如果能直接暴力增广学习高阶导，那也不错，在此基础上一定有更加有意思的地方。</p>
+<p>Can u get me?</p>
+<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p>不太好整，这<code>markdown</code>上不能整<code>bibtex</code>实在是太难受，给个文献链接直接了事~</p>
+<p><a href="http://papers.nips.cc/paper/9497-ode2vae-deep-generative-second-order-odes-with-bayesian-neural-networks" target="_blank" rel="noopener">ODE2VAE: Deep generative second order ODEs with Bayesian neural networks</a></p>
 
       
     </div>
@@ -940,7 +458,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="http://maxliu245.github.io/2020/06/13/NBA2K13鹰重整理/" title="NBA2K13鹰重整理">http://maxliu245.github.io/2020/06/13/NBA2K13鹰重整理/</a>
+    <a href="http://maxliu245.github.io/2020/09/25/【论文阅读22】ODE2VAE——2阶ODE模拟-BNN引入不确定性/" title="【论文阅读22】ODE2VAE——2阶ODE模拟+BNN引入不确定性">http://maxliu245.github.io/2020/09/25/【论文阅读22】ODE2VAE——2阶ODE模拟-BNN引入不确定性/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -955,9 +473,13 @@
       
         <div class="post-tags">
           
-            <a href="/tags/NBA2K13/" rel="tag"># NBA2K13</a>
+            <a href="/tags/Paper-Reading/" rel="tag"># Paper Reading</a>
           
-            <a href="/tags/DIY修改/" rel="tag"># DIY修改</a>
+            <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
+          
+            <a href="/tags/ODE/" rel="tag"># ODE</a>
+          
+            <a href="/tags/Flow-Model/" rel="tag"># Flow Model</a>
           
         </div>
       
@@ -970,8 +492,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/06/12/hexo/" rel="next" title="NBA2K13太阳重整理">
-                <i class="fa fa-chevron-left"></i> NBA2K13太阳重整理
+              <a href="/2020/09/25/【Jupyter-Notebook-1】创建不了文件以及保存文件失败的问题/" rel="next" title="【Jupyter Notebook 1】创建不了文件以及保存文件失败的问题">
+                <i class="fa fa-chevron-left"></i> 【Jupyter Notebook 1】创建不了文件以及保存文件失败的问题
               </a>
             
           </div>
@@ -979,10 +501,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/06/14/多元高斯分布之间的KL散度/" rel="prev" title="多元高斯分布之间的KL散度">
-                多元高斯分布之间的KL散度 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -1164,7 +682,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#鹰🦅修改"><span class="nav-number">1.</span> <span class="nav-text">鹰🦅修改</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Trae-Young"><span class="nav-number">1.1.</span> <span class="nav-text">Trae Young</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Clint-Capela"><span class="nav-number">1.2.</span> <span class="nav-text">Clint Capela</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Qi-Zhou🤭"><span class="nav-number">1.3.</span> <span class="nav-text">Qi Zhou🤭</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Kevin-Huerter"><span class="nav-number">1.4.</span> <span class="nav-text">Kevin Huerter</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#开门见山——文献总结"><span class="nav-number">1.</span> <span class="nav-text">开门见山——文献总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前因后果——ODE2VAE的前生今世"><span class="nav-number">2.</span> <span class="nav-text">前因后果——ODE2VAE的前生今世</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模型机理——ODE-amp-VAE"><span class="nav-number">3.</span> <span class="nav-text">模型机理——ODE&amp;VAE</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#优缺点——扶摇直上亿万里"><span class="nav-number">4.</span> <span class="nav-text">优缺点——扶摇直上亿万里</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">5.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
             
 
           </div>
@@ -1434,6 +952,26 @@ setInterval("createtime()",250);
   
 
   
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
