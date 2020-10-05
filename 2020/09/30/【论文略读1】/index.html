@@ -97,7 +97,8 @@
 <meta property="og:description" content="此博客略读文献列表：  Densely Connected Convolutional Networks（写完笔记之后觉得略读个🔨…）">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://maxliu245.github.io/2020/09/30/【论文略读1】/DenseNet-1.png">
-<meta property="og:updated_time" content="2020-09-30T01:28:52.207Z">
+<meta property="og:image" content="http://maxliu245.github.io/2020/09/30/【论文略读1】/ANODE.png">
+<meta property="og:updated_time" content="2020-10-05T02:21:51.561Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【论文略读1】">
 <meta name="twitter:description" content="此博客略读文献列表：  Densely Connected Convolutional Networks（写完笔记之后觉得略读个🔨…）">
@@ -321,6 +322,10 @@
         <div class="post-meta">
 
           
+            <i class="fa fa-thumb-tack"></i>
+            <font color="00BFFF">置顶</font>
+            <span class="post-meta-divider">|</span>
+          
 
           <span class="post-time">
             
@@ -346,8 +351,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2020-09-30T09:28:52+08:00">
-                2020-09-30
+              <time title="Post modified" itemprop="dateModified" datetime="2020-10-05T10:21:51+08:00">
+                2020-10-05
               </time>
             
           </span>
@@ -379,7 +384,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.1k
+                  2k
                 </span>
               
 
@@ -395,7 +400,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  4
+                  7
                 </span>
               
             </div>
@@ -468,6 +473,37 @@
 <h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p><a href="https://arxiv.org/abs/1608.06993" target="_blank" rel="noopener">DenseNet</a>，<a href="https://arxiv.org/abs/1603.05027" target="_blank" rel="noopener">Identity mappings</a></p>
 <p>[1] G. Huang, Z. Liu, L. Van Der Maaten, and K. Q. Weinberger. Densely connected convolutional networks. In 2017 IEEE Conference on Computer Vision and Pattern Recognition (CVPR), pages 2261–2269, Los Alamitos, CA, USA, jul 2017. IEEE Computer Society.</p>
 <p>[2] Kaiming He, X. Zhang, Shaoqing Ren, and Jian Sun. Identity mappings in deep residual networks. ArXiv, abs/1603.05027, 2016.</p>
+<h1 id="Augmented-Neural-ODEslan"><a href="#Augmented-Neural-ODEslan" class="headerlink" title="Augmented Neural ODEslan"></a>Augmented Neural ODEslan</h1><p><strong>这篇文章本来打算列为精读</strong>，但是一方面读了很久了，另一方面我能写的其实不多，所（偷）以（懒）就列为略读了。</p>
+<p>文献链接：<a href="https://arxiv.org/abs/1904.01681v2" target="_blank" rel="noopener">https://arxiv.org/abs/1904.01681v2</a> 或 <a href="http://papers.nips.cc/paper/8577-augmented-neural-odes" target="_blank" rel="noopener">http://papers.nips.cc/paper/8577-augmented-neural-odes</a></p>
+<img src="/2020/09/30/【论文略读1】/ANODE.png" title="ANODE">
+<h2 id="My-Marvelous-Confusion-solved"><a href="#My-Marvelous-Confusion-solved" class="headerlink" title="My Marvelous Confusion (solved)"></a>My Marvelous Confusion (solved)</h2><p>已经读了很久了，是因为有一个问题一直想不通，直到今天上午开始写总结才反应过来是怎么一回事😭。就是文章的<code>proposition 1</code>提出ODE的流，即原来的NODE函数不能描述这样的一个函数：</p>
+<script type="math/tex; mode=display">\displaystyle \begin{equation} g(x)=\left\{ \begin{aligned} 1,\ x=-1\\ -1,\ x=1. \end{aligned} \right. \end{equation},\ where\ g(x):\mathbb{R}\rightarrow \mathbb{R}.</script><blockquote>
+<p>ps: 这样的一个流函数希望把ODE $\displaystyle \dfrac{h(t)}{dt} = f(h(t), t),\ h(t_0) =h(0) \triangleq x_0$ 中的初始状态 $x_0$ 映射到某一固定时刻 $t_1$ 的状态 $h(t_1)$，即 $g(x):h(t_0)\mapsto h(t_1)$。但是我想了很长时间，暂时都没有举出一个这样的例子😭…后来才反应过来，这他🐱是举不出例子的啊，这样的轨线不存在啊啊啊啊啊啊啊啊啊</p>
+</blockquote>
+<p>但是我之前想，为什么要去要求NODE描述这样的一个表示轨线相交的函数呢？不是已经证明了这样的函数不能成为一个ODE的流函数么？这样的 $g(x)$ 作为所谓的“流函数”应该是不存在的，那你去学习个🔨❓</p>
+<p>后来又想了想，如果能采用<strong>增广维度</strong>的方式，确实，在子空间中其实就不存在轨线相交的情形了，所以ANODE其实是<span style="border-bottom:1px solid black;">通过维度的增广扩宽了NODE能学到的函数空间</span>吧，这样就解决了我的困惑了…</p>
+<h2 id="Why-ANODE"><a href="#Why-ANODE" class="headerlink" title="Why ANODE"></a>Why ANODE</h2><p>为什么读这个文章呢？</p>
+<ul>
+<li>人家是NIPS2019</li>
+<li>最近顺着ODE看这个，挺有意思</li>
+</ul>
+<p>这个文章是核心思想是在NODE的基础上进行数据（状态）的维度增广，通过增广的那部分维度拓宽了可以学习到的函数空间，i.e. 学到了一些原来NODE在原空间中学习不到的函数</p>
+<h2 id="How-ANODE"><a href="#How-ANODE" class="headerlink" title="How ANODE"></a>How ANODE</h2><p>没啥可说的了，原来NODE是考虑ODE方程（不要求自治）</p>
+<script type="math/tex; mode=display">\displaystyle \dfrac{h(t)}{dt} = f(h(t), t),\ h(t_0) =h(0) \triangleq x_0</script><p>但是现在增广维度，可以克服原空间中轨线相交型流函数的学习：</p>
+<script type="math/tex; mode=display">\displaystyle \dfrac{d}{dt}\begin{bmatrix} \textbf{h}(t) \\ \textbf{a}(t) \end{bmatrix} = f(\begin{bmatrix} \textbf{h}(t) \\ \textbf{a}(t) \end{bmatrix}, t),\ \begin{bmatrix} \textbf{h}(t_0) \\ \textbf{a}(t_0) \end{bmatrix} = \begin{bmatrix} \textbf{h}(0) \\ \textbf{a}(0) \end{bmatrix} \triangleq \begin{bmatrix} \textbf{x} \\ \textbf{0} \end{bmatrix}</script><p>我看到这个式子就全明白轨线相交、NODE学习不了的函数这些东西都是在干啥了~</p>
+<h2 id="Advantages-1"><a href="#Advantages-1" class="headerlink" title="Advantages"></a>Advantages</h2><p>直接列举：</p>
+<ul>
+<li>从思想出发，基础的NODE学习不了有的流函数，增广维度可以克服这一点</li>
+<li>所提ANODE表达能力🚀，稳定性🚀，泛化🚀，计算量➖🚀（均未确认）</li>
+<li>保留了NODE的一个优点，保持了原始输入空间的拓扑（阿巴阿巴…）</li>
+</ul>
+<h2 id="Thinking-1"><a href="#Thinking-1" class="headerlink" title="Thinking"></a>Thinking</h2><p>有个固有的想法是：</p>
+<ul>
+<li>维度的增广<strong>本来就是</strong>在拓宽模型的函数空间的，从这角度提出ANODE的话，就是inductive的</li>
+<li>而从这个角度——NODE不能学习的函数，来引入维度增广的思想，这样就是deductive的</li>
+</ul>
+<p>这样一想，这篇ANODE真的就是个idea啊，顶会密码🔞get嗷嗷嗷嗷嗷嗷嗷🤣</p>
+<h2 id="References-1"><a href="#References-1" class="headerlink" title="References"></a>References</h2><p>[1] Emilien Dupont, Arnaud Doucet, and Yee Whye Teh. Augmented neural odes. In H. Wallach, H. Larochelle, A. Beygelzimer, F. d’Alché-Buc, E. Fox, and R. Garnett, editors, Advances in Neural Information Processing Systems 32, pages 3140–3150. Curran Associates, Inc., 2019.</p>
 
       
     </div>
@@ -609,7 +645,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">41</span>
+                  <span class="site-state-item-count">42</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -712,7 +748,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Densely-Connected-Convolutional-Networks"><span class="nav-number">1.</span> <span class="nav-text">Densely Connected Convolutional Networks</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-DenseNet"><span class="nav-number">1.1.</span> <span class="nav-text">Why DenseNet?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What’s-and-How-DenseNet"><span class="nav-number">1.2.</span> <span class="nav-text">What’s and How DenseNet?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Advantages"><span class="nav-number">1.3.</span> <span class="nav-text">Advantages</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thinking"><span class="nav-number">1.4.</span> <span class="nav-text">Thinking</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References"><span class="nav-number">1.5.</span> <span class="nav-text">References</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Densely-Connected-Convolutional-Networks"><span class="nav-number">1.</span> <span class="nav-text">Densely Connected Convolutional Networks</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-DenseNet"><span class="nav-number">1.1.</span> <span class="nav-text">Why DenseNet?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What’s-and-How-DenseNet"><span class="nav-number">1.2.</span> <span class="nav-text">What’s and How DenseNet?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Advantages"><span class="nav-number">1.3.</span> <span class="nav-text">Advantages</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thinking"><span class="nav-number">1.4.</span> <span class="nav-text">Thinking</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References"><span class="nav-number">1.5.</span> <span class="nav-text">References</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Augmented-Neural-ODEslan"><span class="nav-number">2.</span> <span class="nav-text">Augmented Neural ODEslan</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#My-Marvelous-Confusion-solved"><span class="nav-number">2.1.</span> <span class="nav-text">My Marvelous Confusion (solved)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-ANODE"><span class="nav-number">2.2.</span> <span class="nav-text">Why ANODE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-ANODE"><span class="nav-number">2.3.</span> <span class="nav-text">How ANODE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Advantages-1"><span class="nav-number">2.4.</span> <span class="nav-text">Advantages</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thinking-1"><span class="nav-number">2.5.</span> <span class="nav-text">Thinking</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References-1"><span class="nav-number">2.6.</span> <span class="nav-text">References</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -757,7 +793,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">51.6k</span>
+    <span title="Site words total count">55.3k</span>
   
 </div>
 
