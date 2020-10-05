@@ -7,6 +7,7 @@
 <p>此博客略读文献列表：</p>
 <ol>
 <li>Densely Connected Convolutional Networks（写完笔记之后觉得略读个🔨…）</li>
+<li>Augmented Neural ODEs</li>
 </ol>
 </blockquote>
 <a id="more"></a>
@@ -55,7 +56,7 @@
 <h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><p><a href="https://arxiv.org/abs/1608.06993" target="_blank" rel="noopener">DenseNet</a>，<a href="https://arxiv.org/abs/1603.05027" target="_blank" rel="noopener">Identity mappings</a></p>
 <p>[1] G. Huang, Z. Liu, L. Van Der Maaten, and K. Q. Weinberger. Densely connected convolutional networks. In 2017 IEEE Conference on Computer Vision and Pattern Recognition (CVPR), pages 2261–2269, Los Alamitos, CA, USA, jul 2017. IEEE Computer Society.</p>
 <p>[2] Kaiming He, X. Zhang, Shaoqing Ren, and Jian Sun. Identity mappings in deep residual networks. ArXiv, abs/1603.05027, 2016.</p>
-<h1 id="Augmented-Neural-ODEslan"><a href="#Augmented-Neural-ODEslan" class="headerlink" title="Augmented Neural ODEslan"></a>Augmented Neural ODEslan</h1><p><strong>这篇文章本来打算列为精读</strong>，但是一方面读了很久了，另一方面我能写的其实不多，所（偷）以（懒）就列为略读了。</p>
+<h1 id="Augmented-Neural-ODEs"><a href="#Augmented-Neural-ODEs" class="headerlink" title="Augmented Neural ODEs"></a>Augmented Neural ODEs</h1><p><strong>这篇文章本来打算列为精读</strong>，但是一方面读了很久了，另一方面我能写的其实不多，所（偷）以（懒）就列为略读了。</p>
 <p>文献链接：<a href="https://arxiv.org/abs/1904.01681v2" target="_blank" rel="noopener">https://arxiv.org/abs/1904.01681v2</a> 或 <a href="http://papers.nips.cc/paper/8577-augmented-neural-odes" target="_blank" rel="noopener">http://papers.nips.cc/paper/8577-augmented-neural-odes</a></p>
 <img src="/2020/09/30/【论文略读1】/ANODE.png" title="ANODE">
 <h2 id="My-Marvelous-Confusion-solved"><a href="#My-Marvelous-Confusion-solved" class="headerlink" title="My Marvelous Confusion (solved)"></a>My Marvelous Confusion (solved)</h2><p>已经读了很久了，是因为有一个问题一直想不通，直到今天上午开始写总结才反应过来是怎么一回事😭。就是文章的<code>proposition 1</code>提出ODE的流，即原来的NODE函数不能描述这样的一个函数：</p>
