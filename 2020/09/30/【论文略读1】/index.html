@@ -100,7 +100,8 @@
 <meta property="og:image" content="http://maxliu245.github.io/2020/09/30/【论文略读1】/ANODE.png">
 <meta property="og:image" content="http://maxliu245.github.io/2020/09/30/【论文略读1】/RL-NODE.png">
 <meta property="og:image" content="http://maxliu245.github.io/2020/09/30/【论文略读1】/DelugeNets-1.png">
-<meta property="og:updated_time" content="2020-10-12T15:52:51.864Z">
+<meta property="og:image" content="http://maxliu245.github.io/2020/09/30/【论文略读1】/IDENT.png">
+<meta property="og:updated_time" content="2020-10-20T13:13:51.016Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【论文略读1】">
 <meta name="twitter:description" content="此博客略读文献列表：  Densely Connected Convolutional Networks（写完笔记之后觉得略读个🔨…）  Augmented Neural ODEs  Model-based Reinforcement Learning for Semi-Markov Decision Processes with Neural ODEs  updated on 12th, O">
@@ -353,8 +354,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2020-10-12T23:52:51+08:00">
-                2020-10-12
+              <time title="Post modified" itemprop="dateModified" datetime="2020-10-20T21:13:51+08:00">
+                2020-10-20
               </time>
             
           </span>
@@ -386,7 +387,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  3.6k
+                  5.1k
                 </span>
               
 
@@ -402,7 +403,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  14
+                  20
                 </span>
               
             </div>
@@ -438,6 +439,11 @@
 <li><p>DelugeNets: Deep Networks with Efficient and Flexible Cross-layer Information Inflows（读得不太懂…）</p>
 <blockquote>
 <p>updated on 12th, Oct</p>
+</blockquote>
+</li>
+<li><p>IDENT: Identifying Differential Equations with Numerical Time Evolution</p>
+<blockquote>
+<p>updated on 20th, Oct</p>
 </blockquote>
 </li>
 </ol>
@@ -588,6 +594,36 @@
 <p>[3] YIN GUOBING. 卷积神经网络中的Separable Convolution[EB/OL]. <a href="https://yinguobing.com/separable-convolution/#fnref2" target="_blank" rel="noopener">https://yinguobing.com/separable-convolution/#fnref2</a>, 2018-02-27.</p>
 <p>[4] 干巴他爹. Depthwise卷积与Pointwise卷积[EB/OL]. <a href="https://blog.csdn.net/tintinetmilou/article/details/81607721" target="_blank" rel="noopener">https://blog.csdn.net/tintinetmilou/article/details/81607721</a>, 2018-08-12.</p>
 <p>[5] G. Huang, Z. Liu, L. Van Der Maaten, and K. Q. Weinberger. Densely connected convolutional networks. In 2017 IEEE Conference on Computer Vision and Pattern Recognition (CVPR), pages 2261–2269, Los Alamitos, CA, USA, jul 2017. IEEE Computer Society.</p>
+<h1 id="IDENT-Identifying-Differential-Equations-with-Numerical-Time-Evolution"><a href="#IDENT-Identifying-Differential-Equations-with-Numerical-Time-Evolution" class="headerlink" title="IDENT: Identifying Differential Equations with Numerical Time Evolution"></a>IDENT: Identifying Differential Equations with Numerical Time Evolution</h1><img src="/2020/09/30/【论文略读1】/IDENT.png" title="IDENT">
+<p>文献链接： <a href="http://people.math.gatech.edu/~wliao60/Research/papers/IDENT.pdf" target="_blank" rel="noopener">http://people.math.gatech.edu/~wliao60/Research/papers/IDENT.pdf</a> 或 <a href="https://arxiv.org/abs/1904.03538" target="_blank" rel="noopener">https://arxiv.org/abs/1904.03538</a></p>
+<p>这个文章很长，所以<strong>不总结</strong>了，走翻译的老路子。而且这里<strong>只把算法的思路</strong>搞明白，看看大家是怎么做的，具体证明的细节都略掉。</p>
+<h2 id="摘要——姑且算是文献简介"><a href="#摘要——姑且算是文献简介" class="headerlink" title="摘要——姑且算是文献简介"></a>摘要——姑且算是文献简介</h2><p>背景问题是如何由离散的时间序列数据来<strong>识别DE的模式</strong>，其难处是noise即便小也会炸，且非线性性非常复杂，容易<strong>存在多成分</strong>。这个问题的一些偏执归纳是<strong>背后的流模型</strong>——PDE是一系列成分的线性组合，因此主要的问题抽象为<strong>找DE多成分的系数</strong>。</p>
+<p>对此问题，提出<strong>IDENT</strong>（Identifying Differential Equations with Numerical Time Evolution）方法，其训练的约束用到了是Time Evolution Error (TEE)，顺便提出噪声等级的度量Noise-to-Signal ratio。后面一堆方法就不管了。</p>
+<h2 id="文献思路翻译"><a href="#文献思路翻译" class="headerlink" title="文献思路翻译"></a>文献思路翻译</h2><p>$2.1$ 节全是记号，没问题。 $2.2$ 定义问题：</p>
+<p>假设数据背后的PDE模型为分量的线性组合：</p>
+<script type="math/tex; mode=display">\mathcal{F}(x,u,u_x,u_{xx}).</script><p>一共 $10=4+3+2+1$ 个分量： $1, u, u^2, u<em>x, u_x^2, uu_x, u</em>{xx}, u<em>{xx}^2, uu</em>{xx}, u<em>xu</em>{xx}$。其中<strong>记</strong></p>
+<script type="math/tex; mode=display">u_t = \mathcal{F}(x,u,u_x,u_{xx}) = Linear(10\ items)</script><p>其中每个单项式是一个特征，特征数 $N_3 = 10$ ，RHS的线性组合可以看成 $\mathcal{F}$ 的泰勒展开。</p>
+<p>已有的时间数据（注意还有个已知条件是非周期的边界条件）是函数值 $u_i^n = u(x_i, t_n)$ ，以及时空间的分割方式， $(x_i, t_n), i = 1, \cdots, N_1, n = 1, \cdots, N_2$ ，网格式的数据。离散数据可以写成矩阵的形式：</p>
+<script type="math/tex; mode=display">\begin{aligned} \mathbf{b} &\triangleq \begin{pmatrix} u_t(x_1, t_1), \cdots, u_t(x_i, t_n), \cdots, u_t(x_{N_1}, t_{N_2})\end{pmatrix}_{\in \mathbb{R}^{N_1N_2\times 1}}\\ &= \begin{pmatrix} 1& u(x_1, t_1)& u^2(x_1, t_1)& u_x(x_1, t_1)& u_x^2(x_1, t_1)& uu_x(x_1, t_1)& u_{xx}(x_1, t_1)& u_{xx}^2(x_1, t_1)& uu_{xx}(x_1, t_1)& u_xu_{xx}(x_1, t_1)\\\vdots& \vdots& \vdots& \vdots& \vdots& \vdots& \vdots& \vdots& \vdots& \vdots \\ 1& u(x_i, t_n)& u^2(x_i, t_n)& u_x(x_i, t_n)& u_x^2(x_i, t_n)& uu_x(x_i, t_n)& u_{xx}(x_i, t_n)& u_{xx}^2(x_i, t_n)& uu_{xx}(x_i, t_n)& u_xu_{xx}(x_i, t_n)\\ \vdots& \vdots& \vdots& \vdots& \vdots& \vdots& \vdots& \vdots& \vdots& \vdots \\ 1& u(x_{N_1}, t_{N_2})& u^2(x_{N_1}, t_{N_2})& u_x(x_{N_1}, t_{N_2})& u_x^2(x_{N_1}, t_{N_2})& uu_x(x_{N_1}, t_{N_2})& u_{xx}(x_{N_1}, t_{N_2})& u_{xx}^2(x_{N_1}, t_{N_2})& uu_{xx}(x_{N_1}, t_{N_2})& u_xu_{xx}(x_{N_1}, t_{N_2})\end{pmatrix}_{\in \mathbb{R}^{N_1N_2\times N_3}} \begin{pmatrix} a_1\\ a_2\\ a_3\\ \vdots\\ a_{N_3-2}\\ a_{N_3-1}\\ a_{N_3}\\ \end{pmatrix}_{\in \mathbb{R}^{N_3\times 1}} \\ &\triangleq \begin{pmatrix} F[1], \cdots, F[j], \cdots, F[N_3]\end{pmatrix}\mathbf{a}\\ &\triangleq \mathbf{Fa}\end{aligned}</script><p>啊这，这排版功力绝了~🍗你阿巴阿巴了么💯</p>
+<p>目标问题就是求解系数 $\mathbf{a}$ ，而普通的实际问题中，RHS的形式不一定有这么多项，所以系数 $\mathbf{a}$ 的形式很可能是稀疏的。进一步，系数 $\mathbf{a}$ 可能是和 $x$ 相关的，所有的分量都可以写成 $x$ 的函数的形式；再进一步，系数 $\mathbf{a}(x)$ 可以用基函数的形式表出，如分段线性连续（设分 $L$ 段）基函数。那么目标函数可以考虑为泛函 $L^p$ 范数（应该是这样）：</p>
+<script type="math/tex; mode=display">\displaystyle ||a_j - \sum_{l=1}^L a_{j,l}\phi_l||_{L^p}\leqslant O(\frac{1}{L}), p\in (0, \infty)</script><p>在基函数的分解形式下， $\mathbf{F}$ 可以把每一列（特征）的基都写开，那么维度变成 $\mathbb{R}^{N_1N_2\times N_3L}$ ，同理， $\mathbf{a}$ 和 $\mathbf{b}$ 的维度也相应改变。</p>
+<p>此时由于系数 $\mathbf{a}(x)$ 成为真实  $\mathbf{a}$ 的近似表出，那么离散数据对应的矩阵方程可以分离出残差项，即</p>
+<script type="math/tex; mode=display">\mathbf{Fa} = \mathbf{b} + \mathbf{\eta}</script><p>上式需要注意维度已经被基函数扩大了，那么目标函数也变成</p>
+<script type="math/tex; mode=display">\displaystyle ||\eta||_{L^p}\leqslant O(\frac{1}{L}), p\in (0, \infty)</script><p>$2.3$ 节正式提出IDENT算法：</p>
+<p>首先要由函数值导出对时间 $t$ 的导数，即方程中的 $\mathbf{b}$ ，直接用差分近似（文章这个地方好像打错了个下标）：</p>
+<script type="math/tex; mode=display">\hat{u_t}(x_i, t_n) = u_t(x_i, t_n) + O(\Delta t) \triangleq \dfrac{u(x_i, t_n) - u(x_i, t_{n-1})}{\Delta t}</script><p>这就作为 $\mathbf{b}$ 的近似 $\mathbf{\hat{b}}$ 的分量。</p>
+<p>其它的特征，包括 $u<em>x, u</em>{xx}$ 等不直接用一阶差分近似，引用别人的方法，叫做<code>5点ENO</code>，哎，这样一顿操作，大矩阵 $\mathbf{F}$ 的近似出来了，记作 $\hat{\mathbf{F}}$ 。这样近似基本上都弄好了。原先的矩阵方程成为：</p>
+<script type="math/tex; mode=display">\begin{aligned} \hat{\mathbf{F}}\mathbf{a} &= (\hat{\mathbf{F}} + \mathbf{F} - \mathbf{F})\mathbf{a} = \mathbf{b} + \mathbf{\eta} + (\hat{\mathbf{F}} - \mathbf{F})\mathbf{a}\\ &= (\mathbf{b} + \hat{\mathbf{b}} - \hat{\mathbf{b}}) + \mathbf{\eta} + (\hat{\mathbf{F}} - \mathbf{F})\mathbf{a}\\ &= \hat{\mathbf{b}} + (\mathbf{b} - \hat{\mathbf{b}}) + \mathbf{\eta} + (\hat{\mathbf{F}} - \mathbf{F})\mathbf{a}\\ &\triangleq \hat{\mathbf{b}} + \mathbf{e} \end{aligned}</script><p>总的近似误差 $\mathbf{e}$ 满足（应该是后面证明的）</p>
+<script type="math/tex; mode=display">\displaystyle ||\mathbf{e}||_{L^2}\leqslant \varepsilon\ s.t.\ \varepsilon = O(\Delta t + \Delta x^3 + \frac{1}{L}), p\in (0, \infty)</script><p>第二步似乎就是求解了？不，不是求解！第二步是用LASSO筛选出稀疏的成分，判断哪些特征对应的系数是比较重要的，方法是使用了LASSO并构造了带 $L_1$ 稀疏正则的能量函数。</p>
+<p>第三步则是根据已经知道了方程中含有哪些重要的成分（特征），再用TEE方法（Time Evolution Error）最小二乘进行拟合，得到最后的稀疏系数。</p>
+<p>这篇文章后面其实还有很多内容，但是感觉不太能看得下去了，先码在这里，把后面的一些重点列在这里：</p>
+<ol>
+<li>Why LASSO 选取稀疏特征</li>
+<li>TEE效果不错</li>
+<li>噪声水平指标NSR：Noise-to-Signal Ratio</li>
+<li>对噪声稳健性及采样方法</li>
+</ol>
+<h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] Sung Ha Kang, Wenjing Liao, and Yingjie Liu. Ident: Identifying differential equations with numerical time evolution, 2019.</p>
 
       
     </div>
@@ -729,7 +765,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">43</span>
+                  <span class="site-state-item-count">45</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -832,7 +868,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Densely-Connected-Convolutional-Networks"><span class="nav-number">1.</span> <span class="nav-text">Densely Connected Convolutional Networks</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-DenseNet"><span class="nav-number">1.1.</span> <span class="nav-text">Why DenseNet?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What’s-and-How-DenseNet"><span class="nav-number">1.2.</span> <span class="nav-text">What’s and How DenseNet?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Advantages"><span class="nav-number">1.3.</span> <span class="nav-text">Advantages</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thinking"><span class="nav-number">1.4.</span> <span class="nav-text">Thinking</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References"><span class="nav-number">1.5.</span> <span class="nav-text">References</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Augmented-Neural-ODEs"><span class="nav-number">2.</span> <span class="nav-text">Augmented Neural ODEs</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#My-Marvelous-Confusion-solved"><span class="nav-number">2.1.</span> <span class="nav-text">My Marvelous Confusion (solved)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-ANODE"><span class="nav-number">2.2.</span> <span class="nav-text">Why ANODE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-ANODE"><span class="nav-number">2.3.</span> <span class="nav-text">How ANODE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Advantages-1"><span class="nav-number">2.4.</span> <span class="nav-text">Advantages</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thinking-1"><span class="nav-number">2.5.</span> <span class="nav-text">Thinking</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References-1"><span class="nav-number">2.6.</span> <span class="nav-text">References</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Model-based-Reinforcement-Learning-for-Semi-Markov-Decision-Processes-with-Neural-ODEs"><span class="nav-number">3.</span> <span class="nav-text">Model-based Reinforcement Learning for Semi-Markov Decision Processes with Neural ODEs</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#RL-Concepts"><span class="nav-number">3.1.</span> <span class="nav-text">RL Concepts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-RL-Framework-for-SMDPs-with-NODE？"><span class="nav-number">3.2.</span> <span class="nav-text">Why RL Framework for SMDPs with NODE？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What’s-RL-Framework-for-SMDPs-with-NODE"><span class="nav-number">3.3.</span> <span class="nav-text">What’s RL Framework for SMDPs with NODE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Omitted-Details"><span class="nav-number">3.4.</span> <span class="nav-text">Omitted Details</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pros-and-Cons"><span class="nav-number">3.5.</span> <span class="nav-text">Pros and Cons</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References-2"><span class="nav-number">3.6.</span> <span class="nav-text">References</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DelugeNets-Deep-Networks-with-Efficient-and-Flexible-Cross-layer-Information-Inflows"><span class="nav-number">4.</span> <span class="nav-text">DelugeNets: Deep Networks with Efficient and Flexible Cross-layer Information Inflows</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#卷积概念回顾"><span class="nav-number">4.1.</span> <span class="nav-text">卷积概念回顾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-and-What’s-DelugeNets"><span class="nav-number">4.2.</span> <span class="nav-text">Why and What’s DelugeNets?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References-3"><span class="nav-number">4.3.</span> <span class="nav-text">References</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Densely-Connected-Convolutional-Networks"><span class="nav-number">1.</span> <span class="nav-text">Densely Connected Convolutional Networks</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-DenseNet"><span class="nav-number">1.1.</span> <span class="nav-text">Why DenseNet?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What’s-and-How-DenseNet"><span class="nav-number">1.2.</span> <span class="nav-text">What’s and How DenseNet?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Advantages"><span class="nav-number">1.3.</span> <span class="nav-text">Advantages</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thinking"><span class="nav-number">1.4.</span> <span class="nav-text">Thinking</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References"><span class="nav-number">1.5.</span> <span class="nav-text">References</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Augmented-Neural-ODEs"><span class="nav-number">2.</span> <span class="nav-text">Augmented Neural ODEs</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#My-Marvelous-Confusion-solved"><span class="nav-number">2.1.</span> <span class="nav-text">My Marvelous Confusion (solved)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-ANODE"><span class="nav-number">2.2.</span> <span class="nav-text">Why ANODE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#How-ANODE"><span class="nav-number">2.3.</span> <span class="nav-text">How ANODE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Advantages-1"><span class="nav-number">2.4.</span> <span class="nav-text">Advantages</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Thinking-1"><span class="nav-number">2.5.</span> <span class="nav-text">Thinking</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References-1"><span class="nav-number">2.6.</span> <span class="nav-text">References</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Model-based-Reinforcement-Learning-for-Semi-Markov-Decision-Processes-with-Neural-ODEs"><span class="nav-number">3.</span> <span class="nav-text">Model-based Reinforcement Learning for Semi-Markov Decision Processes with Neural ODEs</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#RL-Concepts"><span class="nav-number">3.1.</span> <span class="nav-text">RL Concepts</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-RL-Framework-for-SMDPs-with-NODE？"><span class="nav-number">3.2.</span> <span class="nav-text">Why RL Framework for SMDPs with NODE？</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#What’s-RL-Framework-for-SMDPs-with-NODE"><span class="nav-number">3.3.</span> <span class="nav-text">What’s RL Framework for SMDPs with NODE</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Omitted-Details"><span class="nav-number">3.4.</span> <span class="nav-text">Omitted Details</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Pros-and-Cons"><span class="nav-number">3.5.</span> <span class="nav-text">Pros and Cons</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References-2"><span class="nav-number">3.6.</span> <span class="nav-text">References</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DelugeNets-Deep-Networks-with-Efficient-and-Flexible-Cross-layer-Information-Inflows"><span class="nav-number">4.</span> <span class="nav-text">DelugeNets: Deep Networks with Efficient and Flexible Cross-layer Information Inflows</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#卷积概念回顾"><span class="nav-number">4.1.</span> <span class="nav-text">卷积概念回顾</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Why-and-What’s-DelugeNets"><span class="nav-number">4.2.</span> <span class="nav-text">Why and What’s DelugeNets?</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#References-3"><span class="nav-number">4.3.</span> <span class="nav-text">References</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#IDENT-Identifying-Differential-Equations-with-Numerical-Time-Evolution"><span class="nav-number">5.</span> <span class="nav-text">IDENT: Identifying Differential Equations with Numerical Time Evolution</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#摘要——姑且算是文献简介"><span class="nav-number">5.1.</span> <span class="nav-text">摘要——姑且算是文献简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文献思路翻译"><span class="nav-number">5.2.</span> <span class="nav-text">文献思路翻译</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Reference"><span class="nav-number">5.3.</span> <span class="nav-text">Reference</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -877,7 +913,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">58.5k</span>
+    <span title="Site words total count">63.9k</span>
   
 </div>
 
