@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Paper Reading,Machine Learning,ODE,Flow Model,">
+  <meta name="keywords" content="Paper Reading,Machine Learning,Flow Model,ODE,">
 
 
 
@@ -89,7 +89,7 @@
 
 
 <meta name="description" content="On Second Order Behaviour in Augmented Neural ODEs，简称SONODE，似乎是2020ICML的文章但是我没有搜到…">
-<meta name="keywords" content="Paper Reading,Machine Learning,ODE,Flow Model">
+<meta name="keywords" content="Paper Reading,Machine Learning,Flow Model,ODE">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【论文阅读24】On Second Order Behaviour in ANODE——真二阶NODE">
 <meta property="og:url" content="http://maxliu245.github.io/2020/10/19/【论文阅读24】On-Second-Order-Behaviour-in-ANODE——真二阶NODE/index.html">
@@ -97,7 +97,7 @@
 <meta property="og:description" content="On Second Order Behaviour in Augmented Neural ODEs，简称SONODE，似乎是2020ICML的文章但是我没有搜到…">
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://maxliu245.github.io/2020/10/19/【论文阅读24】On-Second-Order-Behaviour-in-ANODE——真二阶NODE/2nd-NODE-1.png">
-<meta property="og:updated_time" content="2020-10-22T17:43:28.474Z">
+<meta property="og:updated_time" content="2020-10-31T14:02:39.949Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【论文阅读24】On Second Order Behaviour in ANODE——真二阶NODE">
 <meta name="twitter:description" content="On Second Order Behaviour in Augmented Neural ODEs，简称SONODE，似乎是2020ICML的文章但是我没有搜到…">
@@ -346,8 +346,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2020-10-23T01:43:28+08:00">
-                2020-10-23
+              <time title="Post modified" itemprop="dateModified" datetime="2020-10-31T22:02:39+08:00">
+                2020-10-31
               </time>
             
           </span>
@@ -379,7 +379,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.9k
+                  2k
                 </span>
               
 
@@ -395,7 +395,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  7
+                  8
                 </span>
               
             </div>
@@ -436,7 +436,7 @@
 <h1 id="Theory-of-SONODE——NODE理论延拓"><a href="#Theory-of-SONODE——NODE理论延拓" class="headerlink" title="Theory of SONODE——NODE理论延拓"></a>Theory of SONODE——NODE理论延拓</h1><p>这个主要是NODE中<code>adjoint method</code>的延拓了。由于SONODE可以看作两个NODE在ANODE的框架下套娃，那么作者就考虑了一阶<code>adjoint method</code>延拓成二阶，进而辅助网络的训练</p>
 <p>式子为原文命题 $(3.1)$ 但是我真心不想看证明估计也看不太明白…</p>
 <p>进一步，原文给出了这个<code>adjoint method</code>的计算性质比较，即原文命题 $(3.2)$ ，说的是计算复杂度的问题，只用两组一阶<code>adjoint method</code>计算要优于用二阶的<code>adjoint method</code>，后者应该是需要更多的矩阵乘法运算。因此，文中的实验都是准备用两组一阶<code>adjoint method</code>来计算的</p>
-<h1 id="How-to-Use-SONODE——Experiments"><a href="#How-to-Use-SONODE——Experiments" class="headerlink" title="How to Use SONODE——Experiments"></a>How to Use SONODE——Experiments</h1><p>这篇文章做了很多实验，我稍微整理了一下，前三个主要是为了说明SONODE的基本性质；第4个是为了说明SONODE和ANODE二阶性质的比较；后面的是为了说明：</p>
+<h1 id="How-to-Use-SONODE——Experiments"><a href="#How-to-Use-SONODE——Experiments" class="headerlink" title="How to Use SONODE——Experiments"></a>How to Use SONODE——Experiments</h1><p>这篇文章做了很多实验，我稍微整理了一下，前三个主要是为了说明SONODE的基本性质；第4个是为了说明SONODE和ANODE二阶性质的比较；后面的是为了进一步以困难数据说明二者二阶性质的比较：</p>
 <div class="table-container">
 <table>
 <thead>
@@ -469,7 +469,13 @@
 </tr>
 <tr>
 <td>Noise Robustness</td>
-<td></td>
+<td>对 $\sin$ 函数加不同水平高斯噪声</td>
+<td>图7的结果表示SONODE更稳健</td>
+</tr>
+<tr>
+<td>Real-world Dynamic Systems</td>
+<td>实际数据</td>
+<td>不太明白，反正看图猛就完了</td>
 </tr>
 </tbody>
 </table>
@@ -485,27 +491,20 @@
 </thead>
 <tbody>
 <tr>
-<td>idea还是不错的，跨层的花样+++（模型名字CLNN也不错）</td>
-<td>我个人觉得除了实验验证少了什么</td>
+<td>本文的idea很正统，基于ANODE研究2阶性质，不仅给出了adjoint方法的延拓，还与双ANODE联系在一起</td>
+<td>此类方法由于应用非常直接，确实很容易用于不好的用途。。这个问题挺人文的，我还是希望人类能和平发展技术。。</td>
 </tr>
 <tr>
-<td>把底层信息多次传到高层，缓解了底层特征的浪费（消散）问题✔</td>
-<td>跨层操作还是不少的，这样的多次利用可不可以精简？</td>
+<td>理论的保证还是比较足了，主要是adjoint方法、以及确实是在对<strong>真正</strong>的二阶导建模</td>
+<td>文中提到了一手ANODE增广的维度可能发生混乱，是指学到的东西没有可解释性么，这个只提了几句没讲清楚</td>
 </tr>
 <tr>
-<td>分类任务的收敛速度加快（如何通过梯度加速还没明白），通过实验验证</td>
-<td>merge特征（信息）的方式有用么？见上文我的疑惑</td>
+<td>对比ANODE的实验做得很多，确实让我们看到了建模二阶导带来的优势</td>
+<td>二阶导adjoint方法推导似乎就比较复杂，那高阶推导难道要一直嵌套么？这不是我们想要的</td>
 </tr>
 <tr>
-<td>某种程度上CLNN也是训练深度CNN的方法</td>
+<td>此一类方法的潜力都很好，应用场景必然很多，且已经出现！本文二阶方法则尤其适合存在加速度的场景</td>
 <td>TBD</td>
-</tr>
-<tr>
-<td>首次提出cross-layer？不清楚，不过确实连接方式丰富了</td>
-<td></td>
-</tr>
-<tr>
-<td>文章说梯度消失也缓和了，暂时我没啥头绪…</td>
 </tr>
 </tbody>
 </table>
@@ -553,9 +552,9 @@
           
             <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
           
-            <a href="/tags/ODE/" rel="tag"># ODE</a>
-          
             <a href="/tags/Flow-Model/" rel="tag"># Flow Model</a>
+          
+            <a href="/tags/ODE/" rel="tag"># ODE</a>
           
         </div>
       
@@ -659,7 +658,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">45</span>
+                  <span class="site-state-item-count">46</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -672,7 +671,7 @@
               
               <div class="site-state-item site-state-tags">
                 <a href="/tags/index.html">
-                  <span class="site-state-item-count">38</span>
+                  <span class="site-state-item-count">39</span>
                   <span class="site-state-item-name">tags</span>
                 </a>
               </div>
@@ -807,7 +806,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">63.9k</span>
+    <span title="Site words total count">65.7k</span>
   
 </div>
 

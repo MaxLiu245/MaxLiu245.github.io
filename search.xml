@@ -205,8 +205,82 @@
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] Sung Ha Kang, Wenjing Liao, and Yingjie Liu. Ident: Identifying differential equations with numerical time evolution, 2019.</p>
 ]]></content>
       <tags>
-        <tag>paper reading</tag>
         <tag>CNN</tag>
+        <tag>paper reading</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【文献阅读26】YoloV4</title>
+    <url>/2020/11/03/%E3%80%90%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB26%E3%80%91YoloV4/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>头一次正式看目标检测方面的文章，有些功利，直接从YoloV4开始！</p>
+<p><code>YOLOv4: Optimal Speed and Accuracy of Object Detection</code></p>
+</blockquote>
+<a id="more"></a>
+<img src="/2020/11/03/【文献阅读26】YoloV4/YoloV4-1.png" title="YoloV4文献简介">
+<h1 id="文献简介"><a href="#文献简介" class="headerlink" title="文献简介"></a>文献简介</h1><p>先放文献地址： <a href="https://arxiv.org/abs/2004.10934" target="_blank" rel="noopener">https://arxiv.org/abs/2004.10934</a></p>
+<p>YoloV4于2020/04挂在Arxiv上，作者之一是之前Yolo代码的维护者之一，<a href="https://github.com/AlexeyAB" target="_blank" rel="noopener">Alexey Bochkovskiy</a>，暂时没有找到他的更多资料，另外两个作者是台湾中央研究院的，不认识。</p>
+<h1 id="先修知识"><a href="#先修知识" class="headerlink" title="先修知识"></a>先修知识</h1><p>直接上手这篇目标检测领域的文章稍有困难，因为以前没咋接触过目标检测，现在直接来一手业界极强的文章，很多名词概念都不清楚。</p>
+<p>本来打算补一补，但是发现YoloV4用的模型方法实在是有（多）些（炸）多（了），所以其实只补了文章刚开始的一些概念，码在这里：</p>
+<ul>
+<li><p>Pareto optimality curve，中文名帕累托最优曲线，以本文图 $(1,8)$ 为例，都是2维曲线，这是因为本文选取的评价指标（目标）有两个。我联想到了宏观经济学中的供求曲线、价格需求曲线，感觉道理有一点点像（瞎想的）。</p>
+<blockquote>
+<p>具体可参考知乎用户<a href="https://www.zhihu.com/people/li-lin-song-85" target="_blank" rel="noopener">木木松</a>的专栏文章<a href="https://zhuanlan.zhihu.com/p/54691447" target="_blank" rel="noopener">多目标优化之帕累托最优</a></p>
+</blockquote>
+</li>
+<li><p>Anchor-based和Anchor-free方法，都是目标检测中的方法。前者参考下面的链接，讲得很清楚了，依次设计锚点的位置、锚框的个数大小，我猜最后是根据ground truth去判断标记框的优劣；后者似乎是没有具体设置所谓的锚点，只是先识别目标的中心，然后根据中心进行回归得到标记框（未求证）</p>
+<blockquote>
+<p>具体可参考知乎用户<a href="https://www.zhihu.com/people/emiya-98" target="_blank" rel="noopener">emiya</a>的专栏文章<a href="https://zhuanlan.zhihu.com/p/86741707" target="_blank" rel="noopener">Anchor-Based-01 目标检测算法设计思想一：anchor是什么</a></p>
+</blockquote>
+</li>
+</ul>
+<h1 id="YoloV4"><a href="#YoloV4" class="headerlink" title="YoloV4"></a>YoloV4</h1><h2 id="文献总结"><a href="#文献总结" class="headerlink" title="文献总结"></a>文献总结</h2><p>其实刚开始看觉得很舒服，讲的东西都非常合理有道理（后面也是），但是后面讲的名词知识太多了，让我觉得这模型不会就是<strong>各种已有的优秀方法组合拼接</strong>出来的吧！不会吧不会吧，它还<strong>真的就是这样搞的</strong>！</p>
+<p>经过多篇博客总结查证，我基本上确定这文章就是这样做的，不过人家做的确实猛，优点总结如下：</p>
+<ul>
+<li>文章提出的YoloV4达到了文章目标（预期）：保证准确率大前提下，设计出一个<strong>快速实时轻量准确</strong>的目标识别模型。确实，本文表示<strong>只需要1张</strong>优秀的显卡就可以完成快速训练（又向应用前进一步！），并且的确是轻量实时准确的</li>
+<li>在contributions部分提出可以用YoloV4的想法修饰SOTA模型使之有效轻量，应该是这个意思</li>
+<li>集成了<strong>大量已有tricks</strong>，据参考文献表示至少有20多种；这篇文章的工作量十分之大，值得肯定</li>
+<li>文章开头提出了一个说法：CNN任务的一个完整框架需要理论保证+实验验证。本文的tricks可以说是验证了的东西，然后在多个数据集上也显示出帕累托最优的效果</li>
+</ul>
+<h2 id="主要tricks"><a href="#主要tricks" class="headerlink" title="主要tricks"></a>主要tricks</h2><p>说tricks之前忘了提一嘴YoloV4的整体网络框架了，和经典的目标识别检测框架一致，有一个</p>
+<script type="math/tex; mode=display">input \rightarrow backbone \rightarrow neck \rightarrow head(dense\ prediction \rightarrow sparse\ prediction)</script><p>的整体框架，其中某些部分不知道有没有跨连接的操作。下面放一张原文的图 $(2)$ ：</p>
+<img src="/2020/11/03/【文献阅读26】YoloV4/YoloV4-2.png" title="目标检测框架">
+<p>那么YoloV4其实就说各种tricks，或者说是<strong>各种模型插件</strong>套进这个框架。</p>
+<p>这个我其实没有细看文章了，毕竟陌生名词太多，搞不清哪些是重点，这里根据他人博客自己总结其中有用的tricks：</p>
+<ul>
+<li><p>首先有个idea起源于Yolo系列的任务是目标识别检测。目标检测方法往往是任务special的，特定任务要特定设计，在通用模型没有发展起来并大规模应用之前我是站这个东西的。本文希望能做到通用的general目标检测模型，那么一个idea就是special特征和general特征，YoloV4在网络模块的使用上<strong>主动选择了很多general特征</strong>（我认为是特征图）</p>
+</li>
+<li><p>为了轻量实时，<strong>选择Yolo系列</strong>的模型是当前合适的做法，本文在head区域使用了YoloV3</p>
+</li>
+<li><p><strong>各种数据增强技术</strong>的使用</p>
+</li>
+<li><p><strong>自对抗方法增强图像风格</strong>，我觉得可以算数据增强了</p>
+</li>
+<li><p>大佬们还总结了“跨最小批的归一化（Cross mini-batch Normal）、修改的SAM（逐点attention）、修改的PAN（通道合并方式改变）”，不过我现在不太懂，先码在这里。这里最后三条参考：</p>
+<blockquote>
+<p>知乎用户<a href="https://www.zhihu.com/people/william.hyin" target="_blank" rel="noopener">william</a>的专栏文章<a href="https://zhuanlan.zhihu.com/p/161083602" target="_blank" rel="noopener">一文读懂YOLO V5 与 YOLO V4</a></p>
+<p>知乎用户<a href="https://www.zhihu.com/people/jianghongliang" target="_blank" rel="noopener">元峰</a>的回答<a href="https://www.zhihu.com/question/390191723/answer/1177584901" target="_blank" rel="noopener">如何评价新出的YOLO v4 ？</a>不错，从创新性的角度分析了YoloV4使用的主要tricks</p>
+</blockquote>
+</li>
+</ul>
+<h2 id="个人感想（bb）"><a href="#个人感想（bb）" class="headerlink" title="个人感想（bb）"></a>个人感想（bb）</h2><p>本来头一遍翻完这篇文章觉得还挺ysk（😁）的，但是抱着这个怀疑我去读了他人的总结，包括：</p>
+<blockquote>
+<p>知乎用户<a href="https://www.zhihu.com/people/amusi1994" target="_blank" rel="noopener">Amusi</a>的回答<a href="https://www.zhihu.com/question/390191723/answer/1176986665" target="_blank" rel="noopener">如何评价新出的YOLO v4 ？</a>很好，我很赞同。人家工作量在这里，确实很良心</p>
+<p>知乎用户<a href="https://www.zhihu.com/people/david-12-84-45" target="_blank" rel="noopener">David</a>的专栏文章<a href="https://zhuanlan.zhihu.com/p/136172670" target="_blank" rel="noopener">YOLO-V4解读：速度与精度的完美结合[已开源]</a>是一篇简洁的翻译，可以速读参考</p>
+<p>补充资料：知乎用户<a href="https://www.zhihu.com/people/magic-frog-sjtu" target="_blank" rel="noopener">996黄金一代</a>的回答<a href="https://www.zhihu.com/question/399884529/answer/1374024055" target="_blank" rel="noopener">如何评价YOLOv5？</a></p>
+</blockquote>
+<p>我这才有些缓过来，人家毕竟是总结了大量方法，有充足的工作量，而且效果也上去了，那的确是不错的。大家反驳之的意见是似乎大家应用还是不用它，用YoloV3，大概是觉得它这样相当于调参？不过人家做了很多实验，在不少数据集上也足够优秀了，那我是没话说了。</p>
+<p>这种套方法的方式，可取，但是得有充足的调研，充足的实验经验。加油吧骚年！</p>
+<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>[1] Alexey Bochkovskiy, Chien-Yao Wang, and Hong-Yuan Mark Liao. Yolov4: Optimal speed and accuracy of object detection, 2020.</p>
+<p>[2] emiya. Anchor-Based-01 目标检测算法设计思想一：anchor是什么[EB/OL]. <a href="https://zhuanlan.zhihu.com/p/86741707" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/86741707</a>, 2019-10-26.</p>
+<p>[3] 木木松. 多目标优化之帕累托最优[EB/OL]. <a href="https://zhuanlan.zhihu.com/p/54691447" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/54691447</a>, 2020-10-07.</p>
+<p>[4] william. 一文读懂YOLO V5 与 YOLO V4[EB/OL]. <a href="https://zhuanlan.zhihu.com/p/161083602" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/161083602</a>, 2020-07-28.<br>[5] 元峰. 如何评价新出的YOLO v4 ？[EB/OL]. <a href="https://www.zhihu.com/question/390191723/answer/1177584901" target="_blank" rel="noopener">https://www.zhihu.com/question/390191723/answer/1177584901</a>, 2020-04-25.<br>[6] Amusi. 如何评价新出的YOLO v4 ？[EB/OL]. <a href="https://www.zhihu.com/question/390191723/answer/1176986665" target="_blank" rel="noopener">https://www.zhihu.com/question/390191723/answer/1176986665</a>, 2020-04-24.<br>[7] David. YOLO-V4解读：速度与精度的完美结合[已开源][EB/OL]. <a href="https://zhuanlan.zhihu.com/p/136172670" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/136172670</a>, 2020-05-20.<br>[8] 996黄金一代. 如何评价YOLOv5？[EB/OL]. <a href="https://www.zhihu.com/question/399884529/answer/1374024055" target="_blank" rel="noopener">https://www.zhihu.com/question/399884529/answer/1374024055</a>, 2020-07-31.</p>
+]]></content>
+      <tags>
+        <tag>Paper Reading</tag>
+        <tag>CNN</tag>
+        <tag>Computer Vision</tag>
+        <tag>Yolo</tag>
       </tags>
   </entry>
   <entry>
@@ -287,8 +361,8 @@
       <tags>
         <tag>Paper Reading</tag>
         <tag>Machine Learning</tag>
-        <tag>ODE</tag>
         <tag>Flow Model</tag>
+        <tag>ODE</tag>
       </tags>
   </entry>
   <entry>
@@ -314,7 +388,7 @@
 <h1 id="Theory-of-SONODE——NODE理论延拓"><a href="#Theory-of-SONODE——NODE理论延拓" class="headerlink" title="Theory of SONODE——NODE理论延拓"></a>Theory of SONODE——NODE理论延拓</h1><p>这个主要是NODE中<code>adjoint method</code>的延拓了。由于SONODE可以看作两个NODE在ANODE的框架下套娃，那么作者就考虑了一阶<code>adjoint method</code>延拓成二阶，进而辅助网络的训练</p>
 <p>式子为原文命题 $(3.1)$ 但是我真心不想看证明估计也看不太明白…</p>
 <p>进一步，原文给出了这个<code>adjoint method</code>的计算性质比较，即原文命题 $(3.2)$ ，说的是计算复杂度的问题，只用两组一阶<code>adjoint method</code>计算要优于用二阶的<code>adjoint method</code>，后者应该是需要更多的矩阵乘法运算。因此，文中的实验都是准备用两组一阶<code>adjoint method</code>来计算的</p>
-<h1 id="How-to-Use-SONODE——Experiments"><a href="#How-to-Use-SONODE——Experiments" class="headerlink" title="How to Use SONODE——Experiments"></a>How to Use SONODE——Experiments</h1><p>这篇文章做了很多实验，我稍微整理了一下，前三个主要是为了说明SONODE的基本性质；第4个是为了说明SONODE和ANODE二阶性质的比较；后面的是为了说明：</p>
+<h1 id="How-to-Use-SONODE——Experiments"><a href="#How-to-Use-SONODE——Experiments" class="headerlink" title="How to Use SONODE——Experiments"></a>How to Use SONODE——Experiments</h1><p>这篇文章做了很多实验，我稍微整理了一下，前三个主要是为了说明SONODE的基本性质；第4个是为了说明SONODE和ANODE二阶性质的比较；后面的是为了进一步以困难数据说明二者二阶性质的比较：</p>
 <div class="table-container">
 <table>
 <thead>
@@ -347,7 +421,13 @@
 </tr>
 <tr>
 <td>Noise Robustness</td>
-<td></td>
+<td>对 $\sin$ 函数加不同水平高斯噪声</td>
+<td>图7的结果表示SONODE更稳健</td>
+</tr>
+<tr>
+<td>Real-world Dynamic Systems</td>
+<td>实际数据</td>
+<td>不太明白，反正看图猛就完了</td>
 </tr>
 </tbody>
 </table>
@@ -363,27 +443,20 @@
 </thead>
 <tbody>
 <tr>
-<td>idea还是不错的，跨层的花样+++（模型名字CLNN也不错）</td>
-<td>我个人觉得除了实验验证少了什么</td>
+<td>本文的idea很正统，基于ANODE研究2阶性质，不仅给出了adjoint方法的延拓，还与双ANODE联系在一起</td>
+<td>此类方法由于应用非常直接，确实很容易用于不好的用途。。这个问题挺人文的，我还是希望人类能和平发展技术。。</td>
 </tr>
 <tr>
-<td>把底层信息多次传到高层，缓解了底层特征的浪费（消散）问题✔</td>
-<td>跨层操作还是不少的，这样的多次利用可不可以精简？</td>
+<td>理论的保证还是比较足了，主要是adjoint方法、以及确实是在对<strong>真正</strong>的二阶导建模</td>
+<td>文中提到了一手ANODE增广的维度可能发生混乱，是指学到的东西没有可解释性么，这个只提了几句没讲清楚</td>
 </tr>
 <tr>
-<td>分类任务的收敛速度加快（如何通过梯度加速还没明白），通过实验验证</td>
-<td>merge特征（信息）的方式有用么？见上文我的疑惑</td>
+<td>对比ANODE的实验做得很多，确实让我们看到了建模二阶导带来的优势</td>
+<td>二阶导adjoint方法推导似乎就比较复杂，那高阶推导难道要一直嵌套么？这不是我们想要的</td>
 </tr>
 <tr>
-<td>某种程度上CLNN也是训练深度CNN的方法</td>
+<td>此一类方法的潜力都很好，应用场景必然很多，且已经出现！本文二阶方法则尤其适合存在加速度的场景</td>
 <td>TBD</td>
-</tr>
-<tr>
-<td>首次提出cross-layer？不清楚，不过确实连接方式丰富了</td>
-<td></td>
-</tr>
-<tr>
-<td>文章说梯度消失也缓和了，暂时我没啥头绪…</td>
 </tr>
 </tbody>
 </table>
@@ -396,8 +469,8 @@
       <tags>
         <tag>Paper Reading</tag>
         <tag>Machine Learning</tag>
-        <tag>ODE</tag>
         <tag>Flow Model</tag>
+        <tag>ODE</tag>
       </tags>
   </entry>
   <entry>
@@ -2492,8 +2565,8 @@
       <tags>
         <tag>Paper Reading</tag>
         <tag>Machine Learning</tag>
-        <tag>ODE</tag>
         <tag>Flow Model</tag>
+        <tag>ODE</tag>
       </tags>
   </entry>
   <entry>
@@ -2524,8 +2597,8 @@
 <p><strong>所以，我这里上述两个bug出现是因为当前文件路径过长…</strong></p>
 ]]></content>
       <tags>
-        <tag>Programming</tag>
         <tag>Bug</tag>
+        <tag>Programming</tag>
       </tags>
   </entry>
   <entry>
