@@ -96,10 +96,13 @@
 <meta property="og:site_name" content="Max Liu&#39;s Blog">
 <meta property="og:description" content="许久的颓废之后重新开始看文章，这次给大家带来一首隐式meta和GAN结合的思想之歌！ RODE-Net: Learning Ordinary Differential Equations with Randomness from Data">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2020-11-21T12:57:49.805Z">
+<meta property="og:image" content="http://maxliu245.github.io/2020/11/21/【论文阅读27】RODE-Net——不确定性引入与GAN的精妙引入/RODE-Net-1.png">
+<meta property="og:image" content="http://maxliu245.github.io/2020/11/21/【论文阅读27】RODE-Net——不确定性引入与GAN的精妙引入/RODE-Net-2.png">
+<meta property="og:updated_time" content="2020-11-21T13:47:58.554Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【论文阅读27】RODE-Net——不确定性引入与GAN的精妙引入">
 <meta name="twitter:description" content="许久的颓废之后重新开始看文章，这次给大家带来一首隐式meta和GAN结合的思想之歌！ RODE-Net: Learning Ordinary Differential Equations with Randomness from Data">
+<meta name="twitter:image" content="http://maxliu245.github.io/2020/11/21/【论文阅读27】RODE-Net——不确定性引入与GAN的精妙引入/RODE-Net-1.png">
 
 
 
@@ -344,7 +347,7 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2020-11-21T20:57:49+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2020-11-21T21:47:58+08:00">
                 2020-11-21
               </time>
             
@@ -419,7 +422,7 @@
 <p><code>RODE-Net: Learning Ordinary Differential Equations with Randomness from Data</code></p>
 </blockquote>
 <a id="more"></a>
-<h1 id="Overview-amp-Target"><a href="#Overview-amp-Target" class="headerlink" title="Overview &amp; Target"></a>Overview &amp; Target</h1>
+<h1 id="Overview-amp-Target"><a href="#Overview-amp-Target" class="headerlink" title="Overview &amp; Target"></a>Overview &amp; Target</h1><img src="/2020/11/21/【论文阅读27】RODE-Net——不确定性引入与GAN的精妙引入/RODE-Net-1.png" title="文献概览">
 <p>这是董彬老师组于2020/06挂在Arxiv上的文章，文章链接：<a href="https://arxiv.org/abs/2006.02377" target="_blank" rel="noopener">https://arxiv.org/abs/2006.02377</a></p>
 <p>文献主要<strong>研究对象</strong>叫RODE，全称<code>Random ordinary differential equations</code>，指的是ODE系统中的参数看成随机变量。研究的基本问题还是从ODE的轨线（轨迹）数据学习背后的方程究竟是什么</p>
 <p>不过读完了文章不是很推荐，因为走的还是拟合（如果ODE-Net基本模型有解释性那么不错）的路子。只是觉得有些思路可以借鉴</p>
@@ -443,7 +446,7 @@
 </blockquote>
 <h2 id="RODE-Net"><a href="#RODE-Net" class="headerlink" title="RODE-Net"></a>RODE-Net</h2><p>文章提出的引入不确定性的模型，以及对应的网络模型称为RODE-Net。前者即：</p>
 <script type="math/tex; mode=display">\displaystyle \dfrac{dx}{dt} = F_{\eta}(x), x=(x_1,\cdots,x_d)\in \mathbb{R}^d,t\geq 0\tag{2}</script><p>其中 $\eta$ 就是假定有先验分布的参数。后者RODE-Net的结构图如下：</p>
-
+<img src="/2020/11/21/【论文阅读27】RODE-Net——不确定性引入与GAN的精妙引入/RODE-Net-2.png" title="RODE-Net">
 <blockquote>
 <p>ps：上面的先验假设应该是可以嵌套的</p>
 </blockquote>
