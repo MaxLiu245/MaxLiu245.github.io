@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://maxliu245.github.io/"/>
-  <updated>2020-11-10T06:38:56.887Z</updated>
+  <updated>2020-11-21T12:57:49.805Z</updated>
   <id>http://maxliu245.github.io/</id>
   
   <author>
@@ -15,6 +15,34 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【论文阅读27】RODE-Net——不确定性引入与GAN的精妙引入</title>
+    <link href="http://maxliu245.github.io/2020/11/21/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB27%E3%80%91RODE-Net%E2%80%94%E2%80%94%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7%E5%BC%95%E5%85%A5%E4%B8%8EGAN%E7%9A%84%E7%B2%BE%E5%A6%99%E5%BC%95%E5%85%A5/"/>
+    <id>http://maxliu245.github.io/2020/11/21/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB27%E3%80%91RODE-Net%E2%80%94%E2%80%94%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7%E5%BC%95%E5%85%A5%E4%B8%8EGAN%E7%9A%84%E7%B2%BE%E5%A6%99%E5%BC%95%E5%85%A5/</id>
+    <published>2020-11-21T12:52:01.000Z</published>
+    <updated>2020-11-21T12:57:49.805Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote><p>许久的颓废之后重新开始看文章，这次给大家带来一首隐式meta和GAN结合的思想之歌！</p><p><code>RODE-Net: Learning Ordinary Differential Equations with Randomness from Data</code></p></blockquote><a id="more"></a><h1 id="Overview-amp-Target"><a href="#Overview-amp-Target" class="headerlink" title="Overview &amp; Target"></a>Overview &amp; Target</h1><p>这是董彬老师组于2020/06挂在Arxiv上的文章，文章链接：<a href="https://arxiv.org/abs/2006.02377" target="_blank" rel="noopener">https://arxiv.org/abs/2006.02377</a></p><p>文献主要<strong>研究对象</strong>叫RODE，全称<code>Random ordinary differential equations</code>，指的是ODE系统中的参数看成随机变量。研究的基本问题还是从ODE的轨线（轨迹）数据学习背后的方程究竟是什么</p><p>不过读完了文章不是很推荐，因为走的还是拟合（如果ODE-Net基本模型有解释性那么不错）的路子。只是觉得有些思路可以借鉴</p><h1 id="Background-amp-Motivation"><a href="#Background-amp-Motivation" class="headerlink" title="Background &amp; Motivation"></a>Background &amp; Motivation</h1><p>文献<strong>背景</strong></p><ul><li>RODE这类方程引入了一定的随机性</li><li>实际数据可能有不同量纲的特征，这对拟合影响很大</li></ul><p>过去方法缺点：</p><ol><li>如果采用暴力拟合，总归是不好的</li><li>从实际数据获取背后的ODE系统往往需要强先验（ODE形式的归纳偏置）</li><li>即使加了强先验，大家过去也假设参数固定，因此只是平均意义下近似真实ODE系统；真实情况下还有随机性</li></ol><p>进一步地，文章的<strong>动机</strong>就出来了，其实就是一般的从轨线找背后ODE规律的问题，只是相当于直接把原来的ODE中参数添加先验，期以引入不确定性更符合实际，然后为了拟合加了GAN的对抗机制，请见下文</p><h1 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h1><h2 id="Data-generation"><a href="#Data-generation" class="headerlink" title="Data generation"></a>Data generation</h2><p>刚开始看不懂数据是怎么采样出来的，后来明白了，数据生成的过程以文中 $(4.1)$ 节为例。先有模型参数的归纳偏置即先验假设，然后生成 $M$ 组参数，这样就有 $M$ 个ODE，选择初始点 $N_i$ 个，分别用4阶龙格-库塔法生成轨线，这样每个确定的ODE采样了 $N_i$ 条轨线，共 $M$ 个确定的ODE。所以最后得到的数据就是</p><script type="math/tex; mode=display">X=\{x_{\eta_i}^j(t_k)|1\leq i\leq M,\ 1\leq j\leq N_i,\ 0\leq k\leq S\} \tag{1}</script><p>其中 $(1)$ 中 $x$ 是其实是轨线向量，下标 $\eta_i$ 就是每次采样的参数，上标 $j$ 表示初值的编号，后面的 $t_k$ 就是龙格-库塔得到的不同采样时刻</p><blockquote><p>原文表述：</p><p>we generate data $x<em>{\eta_i}^j(t_k)$ by solving $ODE-\eta_i$ using the fourth order Runge-Kutta method with $N_i$ different initial values$x</em>{\eta_i}^j(t_0),j=1,\cdots,k$</p></blockquote><h2 id="RODE-Net"><a href="#RODE-Net" class="headerlink" title="RODE-Net"></a>RODE-Net</h2><p>文章提出的引入不确定性的模型，以及对应的网络模型称为RODE-Net。前者即：</p><script type="math/tex; mode=display">\displaystyle \dfrac{dx}{dt} = F_{\eta}(x), x=(x_1,\cdots,x_d)\in \mathbb{R}^d,t\geq 0\tag{2}</script><p>其中 $\eta$ 就是假定有先验分布的参数。后者RODE-Net的结构图如下：</p><blockquote><p>ps：上面的先验假设应该是可以嵌套的</p></blockquote><p>这个结构里有如下亮点：</p><ul><li>中间的ODE-Net其实就可以是以往的暴力拟合框架，这里文章用了所谓的SymNet中包含了符号运算，内蕴了dynamic操作，因此某种程度上有可解释性。这个SymNet我不知道具体是怎么进行符号运算的，但是我推测是他们组PDE-Net2.0中卷积相关的操作，这个可以；但是后文提到引入GAN的目的之一是避免符号预算的求导，我就<strong>不懂</strong>了，既然符号运算不便求导，那主网络是怎么BP的？</li><li>基础模型ODE-Net之外引入GAN，目的之一是避免SymNet中符号运算求导，目的之二是提供原网络参数更好的监督，进而形成目的三是作为了原网络的正则。联想到之前的ODE2VAE应该是有类似的考虑！</li><li><strong>引入GAN的同时有meta-learning的味道，体现在GAN的double使用，生成之后反过来指导主网络的训练</strong>，类比一下是不是所有模型与GAN嵌套都有这个作用，生成的数据质量越来越高，乃至接近于meta数据，大概也是为什么GAN效果好的解释之一？</li></ul><p>RODE-Net中具体用的ODE-Net主模型就是PDE-Net中变过来的带有符号运算性质的网络；GAN用了WGAN（Wasserstein GAN），细节应该问题不大</p><p>最后讲一下整个RODE-Net是怎么训练的以及其目标函数，从这里感觉，其训练方式是有meta-learning的味道的，这个GAN的double使用，但是<strong>loss上看还是所谓的外练筋骨皮</strong></p><p>训练的过程很像meta方法。先是主网络正常训练，有数据点拟合的监督和对应于异常点不容忍的Huber正则；第二步是第一步得到的模型参数生成，扔到WGAN里训练一下，期中也加了一个梯度惩罚正则，即WGAN-GP；第三步是WGAN返回来作为主模型的正则，希望对抗前后主模型的参数不要相差过大，这样提供了一种整体上的控制</p><blockquote><p>Huber损失介绍，介于 $L_1$ 和 $L_2$ 之间，思想是调整对异常的容忍程度，因此有额外的一个超参数，很棒，可以日后借鉴：</p><p>知乎用户<a href="https://www.zhihu.com/org/jing-lue-ji-zhi" target="_blank" rel="noopener">景略集智</a>的专栏文章<a href="https://zhuanlan.zhihu.com/p/39239829" target="_blank" rel="noopener">机器学习从业者必知的5种回归损失函数</a>，细节满满</p><p>博客园用户<a href="https://www.cnblogs.com/nowgood/" target="_blank" rel="noopener">nowgood</a>的博客<a href="https://www.cnblogs.com/nowgood/p/Huber-Loss.html" target="_blank" rel="noopener">Huber Loss</a>，主要是函数的介绍</p></blockquote><h1 id="Pros-amp-Cons"><a href="#Pros-amp-Cons" class="headerlink" title="Pros &amp; Cons"></a>Pros &amp; Cons</h1><div class="table-container"><table><thead><tr><th>Pros</th><th></th></tr></thead><tbody><tr><td>RODE建模的不确定性是指参数本身的不确定性，实际意义挺好</td><td>文章有一处不懂的：既然符号运算不便求导而引入GAN，那主网络是怎么BP的</td></tr><tr><td>GAN交替使用，相当于用两个GAN，有meta的味道</td><td>这里的多次正则也只是相对于ob数据的，没有真正意义上的泛化</td></tr><tr><td>GAN作为数据驱动正则的思想（目前比 $L_1$ 效果上好）</td><td>文章最后提了一句先验引入可以使高维参数降维，我寻思着不是一般升维了…</td></tr><tr><td>GAN和RODE的”R”天然契合，因为GAN本身就是参数分布的一种估计</td><td>文章最后说non-transparency，确实某种程度上没有建模深层次的dynamic性质（符号运算？）</td></tr></tbody></table></div><h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><p>这次会用EndNote了，试试APA 7th格式，其它参考链接见文中注释部分</p><p>[1] Liu, J., Long, Z., Wang, R., Sun, J., &amp; Dong, B. (2020). RODE-Net: Learning Ordinary Differential Equations with Randomness from Data. arXiv:2006.02377. Retrieved June 01, 2020, from <a href="https://ui.adsabs.harvard.edu/abs/2020arXiv200602377L" target="_blank" rel="noopener">https://ui.adsabs.harvard.edu/abs/2020arXiv200602377L</a></p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;许久的颓废之后重新开始看文章，这次给大家带来一首隐式meta和GAN结合的思想之歌！&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;RODE-Net: Learning Ordinary Differential Equations with Randomness from Data&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="Paper Reading" scheme="http://maxliu245.github.io/tags/Paper-Reading/"/>
+    
+      <category term="Regularization" scheme="http://maxliu245.github.io/tags/Regularization/"/>
+    
+      <category term="ODE" scheme="http://maxliu245.github.io/tags/ODE/"/>
+    
+  </entry>
   
   <entry>
     <title>MLA‘20见闻</title>
@@ -97,9 +125,9 @@
     
       <category term="Machine Learning" scheme="http://maxliu245.github.io/tags/Machine-Learning/"/>
     
-      <category term="Flow Model" scheme="http://maxliu245.github.io/tags/Flow-Model/"/>
-    
       <category term="ODE" scheme="http://maxliu245.github.io/tags/ODE/"/>
+    
+      <category term="Flow Model" scheme="http://maxliu245.github.io/tags/Flow-Model/"/>
     
   </entry>
   
@@ -126,9 +154,9 @@
     
       <category term="Machine Learning" scheme="http://maxliu245.github.io/tags/Machine-Learning/"/>
     
-      <category term="Flow Model" scheme="http://maxliu245.github.io/tags/Flow-Model/"/>
-    
       <category term="ODE" scheme="http://maxliu245.github.io/tags/ODE/"/>
+    
+      <category term="Flow Model" scheme="http://maxliu245.github.io/tags/Flow-Model/"/>
     
   </entry>
   
@@ -283,9 +311,9 @@
     
       <category term="Machine Learning" scheme="http://maxliu245.github.io/tags/Machine-Learning/"/>
     
-      <category term="Flow Model" scheme="http://maxliu245.github.io/tags/Flow-Model/"/>
-    
       <category term="ODE" scheme="http://maxliu245.github.io/tags/ODE/"/>
+    
+      <category term="Flow Model" scheme="http://maxliu245.github.io/tags/Flow-Model/"/>
     
   </entry>
   
@@ -564,29 +592,6 @@
       <category term="Windows" scheme="http://maxliu245.github.io/tags/Windows/"/>
     
       <category term="Bug" scheme="http://maxliu245.github.io/tags/Bug/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【论文阅读14】MFM——针对重尾分布的元特征调节器</title>
-    <link href="http://maxliu245.github.io/2020/07/23/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB14%E3%80%91MFM%E2%80%94%E2%80%94%E9%92%88%E5%AF%B9%E9%87%8D%E5%B0%BE%E5%88%86%E5%B8%83%E7%9A%84%E5%85%83%E7%89%B9%E5%BE%81%E8%B0%83%E8%8A%82%E5%99%A8/"/>
-    <id>http://maxliu245.github.io/2020/07/23/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB14%E3%80%91MFM%E2%80%94%E2%80%94%E9%92%88%E5%AF%B9%E9%87%8D%E5%B0%BE%E5%88%86%E5%B8%83%E7%9A%84%E5%85%83%E7%89%B9%E5%BE%81%E8%B0%83%E8%8A%82%E5%99%A8/</id>
-    <published>2020-07-23T09:07:56.000Z</published>
-    <updated>2020-07-24T16:00:18.000Z</updated>
-    
-    <content type="html"><![CDATA[<div id="hexo-blog-encrypt" data-wpm="Oh, this is an invalid password. Check and try again, please." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">  <div class="hbe-input-container">  <input type="password" id="hbePass" placeholder="" />    <label for="hbePass">Please input password to continue...</label>    <div class="bottom-line"></div>  </div>  <script id="hbeData" type="hbeData" data-hmacdigest="2d7b5b9cef4a173e9dc29c2fda836be7d45b8bd304f6cfd43c1d5b58bebd2d0c">7645007b0ae4653d225684ee43c95f334c978794f82bdcca8d52f986bd4c355fed40e753ace8787e6c67dd1fd3dbbd9edc572f0c82a6927f45447cf800b766400474b2eb5a376951984ff126e88b0636e90130d65083178a7160cb32c8b767417646e2c53adf561b9cced359b74d3620c217299ed7d9f8fbea06a1cb7714f0f9dd187e234e1c646786d4157115e9ee765cb1ae44a581093d7dcbcbc9a5af74a563463ab7622990d035bd681a25d6cac947dbd3b9982aad27544986761100819ee228926ff1bde14367c63dfede32fbd12e7e09ddaedd1b248854c9c42595f40675e409d033a444ed31909b79242b16953cea448ca6262ff5d930bfaf10e9814d0f1708aaea427a634f22f1f691da6b6454877d659b16d34445d9b93e6b2f63e5a56a9069ac2ab449becfbf64dcdecd573ea98909a078d2e49be04eaaba1a55ef489e758d10a3898215caef56ea0b4edc664e864abaedb8bad9ae537f4619429f3c4022e1744d5dbc32bb6ceadb20817bd0f0ad1188b71c41caca8ce3ec380b970c5852bb8bfa5e3ee72cf7ba062c450b4f1f5cbeab53e748b45de7cb29fc03c69c120c5aa379dd28f9253056cc06c15fc6d6045cade43f5dea14e6f686b6d8a942589c656e364caaa87ab1d85543c8841062f7850fdc93df89ea5cbeb7b69d67b838a555f64ae9d1b17ac3fde8885602e474cda303d5bef98ec0f71fd86794a4b235373deecdc87997a93fb6042f4671ea78c210a3d1da407c11b8fc8bd6c66964f45bad597826305add5248b3927b0646e40ae8c8866d05ca1696165e3bc18cac90e10de4283ab2994ce3ccb692988452f5f53d8d1d6c6b8956f323ec5051dc2f3015dad773a87ccade3c017fc22320076c8368a366ea6bffa4c7e20367aa475ecacc10b1107e57a4bd52916e45137923b444593469b94eb26868a94e71f8697b551d634ab1949eb604720f3f0fbb36f48b6e27eebb61e79ead54d9b0d2821b806effeca386e0698eadc04ed32c008a88e0645c4f9c0ca242a0cc70f906b3cbd3f81056319b4e24f1b5bcfd8bc71a161c7a345bc564962f74ed404ab2b7439ab33a6b8b3531fa75d53ce6efc9dee56fb871552bc69742479166cc213d98cff6058b3344be4a33dcbce76c34e1634ae7bf8823fe28261de3464dbd6654da44eea673a4e3384714deba1c575f0221863127ff0bd593f997cb37d97e524c26fe6aefcf61d2e932c86a83e10e4c8f7de6c349997caa35af96bb8c65fd8c8d1c37aff149b4319860a207c88719880c10b8d974c919a239789bbfef11ea25c485f4504ba51bd2934af4a96b202652cf755a5424dca9a86d9d3c4e22d037b8c07463d9aa8500d9c1e4b5628823c5221b8614b62564548b7692102ee206aae764013fe5e02bff77d40ca1562b1f3c16cf25698f9d21a6a055b0f47b613db3b94eb8cc1ccf335db02b8aad919a92afe11cdcfab98045589e9b282e4c657b6ae08f4b1c8ef3199f6aecf839c6a25f26effed0a3cb4273332538a6797463e91062d2ff05d79614a667c4727faa1862cf53abfc9810e21c0dfb316f7fe1dcc439cd0eba92706299f285cd3601767cd7828581ce6cdf375a60f872240d1ce57f767a4a69bade7af4d9ef4eabdde8f061ee1928c3545f1abcae417cc9dd42411b6172bccf35a6da003921d65ab1c37294f8e17f17f16b91d97676f31be6ae5f97883d78ec8d560926ba27bdcb4baf4e5aabf8e68c789d2616da1eba7a7a79de79899af9ba4267628f329748ab3165da9062917da8e2d93c01aab3c27f86741af3644891e4b46c60f7d2e9674dbcdb6112ff178fd51dd9a5bb1d96333700931dc958d74a5e074aadc6a5a4b45b1949ef5878fe5a2d56b16da0b5e14d125fb7baf233fb13fba9272b8a200b1cddd0becfbf97a24922c584996cecbb3cb8f245730a0b9d926a931b33bd73a2354d9feaa9010769472a111ddf8dbe57f68f983cf8f7a5df4463eab164f1d8e28832c79da71ff54e643f63e6d944c0089ab0d2e0ef8159b15bea716249a4e6cc2b3bbbb196d4a28ca8ad8d05de1100844400c673774d5f86a0e29fa08301829164939e4e9a6cc8f1599049f4b0e3c26f5e05cc2566d2cbf0f17fb92aacaab1d3099d9ce2c9147ae4659df6735aa29112e18ccceb70b248d5004d9c1dd074b40e13c438f029320f2f805153d8211d6798846bdfa852b392e7b091fc7cb9827ab8669ca99c00ee33b55720f71aa26f941bb11d5d665f0ebc0ffc6a5019f69d737015ab70db829529ac223d31868b8271af39453dbecc3ebf6c5b317eec31dca05a2ecf7f6717746ac61f56a4da8e5a1c2c2f9a2f67bcfcd5b3be501c1e87b29bfb62ac997430cb724842a3060fd840fca2de26e394747c1c08ecd9fd2ff7012154db13b34735b776bc62566460e9461c8bd14f5a438d9d0fc4d3353f1ad0c3222329ff87b618909c53b09800704564d1f9f3fbdab325b95323ed94e8d8b99afc7f8f0dc6e1151e1a97853c105d69663414c71bd78bbed44527e8e0e913d9b7af5b82cb4e311059d969a2f59a02c41a4982299a97889926f24406fba5b137f9c9174093825ddee36737121a024d1297262557c0b634105a6996eb51c9443b9877f0e80edaa2f9c0bb2fe52c09bcbc10ee81a09fce7e7dd2fe34aa7602c15805e5076ece8aa8764b28eb9b94fda5e52c053d218fb28a35004759da819fdb55e0fc252e2afddbdf64ef76de039225f602263ba269db1afe44534c63fff8e93eb6efcc1d72f66ce9385530cfeb148f6373ad073ebfc42c958d2b1c4719466d576608cf61b6a5089f0f3d3c93c044235a6a322287e0d55845c6274bf3de1a753abdc08fda197c4d04255cccd50e21667f3a1640d1b832c376cfcf8b7766e2d6a4b1ecfcabe6883341bb8b7b4387ea38757375841312cbb65aa3f3084b0edde84c557719e893e500d2196bac5b65feafc1a7f2bdac1e5a3b1436cdd5f6153d5befa14c7f808f630942023f24faaec9b1c4195e44aff1d8b418ce222a6d726b26a55d373beb07cf17dbaea1dfccb87d33c10c3fcb27c2e3fd0e00e0b27d688d97d2f12b91609f68ce2f1a3d4d2dada28f5cf374dcf04b6ecb0ff2d76cbfbe8becd2a1a2a0667290fa412098ae3c8434236a30b2ad75d7b9a9871055e3bc0131c13a76cffd515064ec39dde4b2f2fc4fdd5ccaebe7a020fa574d8964b878d5beb4aedc1907e35f45e260ac879ba181e51cc41b5e75b5efe283eaa69e51af98e2cfeb18c39163def6da56b15e4e145d707a07d46d2d6d77781356a30d8ec6d1f6686250cbd5051ae208566f73ebfd70ba982479c8e7f5438ba25d3eb5b76862d22d148c77430112eb9619b376182a67424438a695c285e4f71278bfb66718eccda2bb31c03dd121817c605b1a52f59b03e6ba3e821919a0fbe86c18c42b139b7ad121c18142add8f7ed9b5226e7e6b09c893f6d4ccae227d28962939b34baf8aeb0509f19748461f0b9ea0b1b68c5b12f7ca4cbc2bf93c2f322abf7eabd58041edf76ee9adaf483e83bc1261f76b854fba3cd57be8c1eb278a47261e4decaba1ef3f94f0989dfb0fa6fe8a375097a9cbad6bcea9098ae38a1516c3235ee977380d4b00c3ac06b5b18f285b23931bc567cdad25ff20af35a614324567678505cf649ee1e56a499f36d5e90f05051a96b2bc511ad9f113cc48ba5506771faa98c0597ddeb6aefb6cb7f4485b8970053b5878fc887a0d6b3c933c9e441071017b09bad1ba1acb1cf4a989f58614fd692ac61a10d99ebe50bfd117f3554bb3c5fded722f1e94fccba381ccd219e3114ff985cc0665418fdabcee7e151163320742ffd988f0d03a94cb8ca501fff636aefd6654ad0b7f81d08544fb60f333aeb59ac736fe0f3d3e3c028a36ec8b6e99d40055fea0afdd1cebc179c7d6bed25f2ba94c35323f776bf762bb02a83af2692570f85821b7e2a9e43dab71e2293ab77f53f2cefd1295a90cd62b02e805deb7450b7d7bcc9d4a4cebea11c3e272d3523e8267851b5e8217f165f474d29d2d35c11875bd13e146b594a2442718578e56d091e01b7a2df98882a75cf0b9bdb181c35cfee9f92bff96cf52c03542c43ec2e7fe071230acb1c17fb7c1c0383ec43db6e3c6f52f80b4e8938120bbd90d106e5c2dd69365ff0a6b144fe56b30dcfda326fd75cc259109bdb82b1aeb647fc9fc8f385d3557adfbd5b6934b105736d0cd61afb5f9e4f2b069c529c3541828ed918fca5219d9ea684ed5082e14315cfac6083125e5100e2b3761c52f067e97bfa6e4f6fca32a60b499c286abf9d795b969838b7c019333b95ecf8a390a4223a5612aeeda74fab41bb0987cb1888d558325800d565848365e63d3f906477a74173dbba45eecef09e1a0b28301c4b82f539ef5f2f8fc82e87a16b03eebd9d58470f632ed59a76385c92a617ce9d152ff65a1d0e176ab09e1b79d6a242568790bfb393ebd1587e7761de2148a9e025e7ca92d3f2f872d6a50117899cf54b3c56f6565948683642773413f1593ff3c0c268b044d75ff372</script></div><script src="/lib/blog-encrypt.js"></script><link href="/css/blog-encrypt.css" rel="stylesheet" type="text/css">]]></content>
-    
-    <summary type="html">
-    
-      有缘自会开放该博客~
-    
-    </summary>
-    
-    
-    
-      <category term="Paper Reading" scheme="http://maxliu245.github.io/tags/Paper-Reading/"/>
-    
-      <category term="Meta Learner" scheme="http://maxliu245.github.io/tags/Meta-Learner/"/>
     
   </entry>
   

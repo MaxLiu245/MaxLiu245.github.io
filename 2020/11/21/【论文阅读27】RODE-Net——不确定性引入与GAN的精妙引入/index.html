@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Paper Reading,Regularization,ODE,">
 
 
 
@@ -88,16 +88,18 @@
 
 
 
-<meta name="description" content="Max Liu&apos;s Blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Max Liu&#39;s Blog">
-<meta property="og:url" content="http://maxliu245.github.io/tags/Xiammt/index.html">
+<meta name="description" content="许久的颓废之后重新开始看文章，这次给大家带来一首隐式meta和GAN结合的思想之歌！ RODE-Net: Learning Ordinary Differential Equations with Randomness from Data">
+<meta name="keywords" content="Paper Reading,Regularization,ODE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【论文阅读27】RODE-Net——不确定性引入与GAN的精妙引入">
+<meta property="og:url" content="http://maxliu245.github.io/2020/11/21/【论文阅读27】RODE-Net——不确定性引入与GAN的精妙引入/index.html">
 <meta property="og:site_name" content="Max Liu&#39;s Blog">
-<meta property="og:description" content="Max Liu&apos;s Blog">
+<meta property="og:description" content="许久的颓废之后重新开始看文章，这次给大家带来一首隐式meta和GAN结合的思想之歌！ RODE-Net: Learning Ordinary Differential Equations with Randomness from Data">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2020-11-21T12:57:49.805Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Max Liu&#39;s Blog">
-<meta name="twitter:description" content="Max Liu&apos;s Blog">
+<meta name="twitter:title" content="【论文阅读27】RODE-Net——不确定性引入与GAN的精妙引入">
+<meta name="twitter:description" content="许久的颓废之后重新开始看文章，这次给大家带来一首隐式meta和GAN结合的思想之歌！ RODE-Net: Learning Ordinary Differential Equations with Randomness from Data">
 
 
 
@@ -127,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://maxliu245.github.io/tags/Xiammt/">
+  <link rel="canonical" href="http://maxliu245.github.io/2020/11/21/【论文阅读27】RODE-Net——不确定性引入与GAN的精妙引入/">
 
 
 
 
 
-  <title>Tag: Xiammt | Max Liu's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>【论文阅读27】RODE-Net——不确定性引入与GAN的精妙引入 | Max Liu's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -152,7 +154,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
 <a href="https://github.com/MaxLiu245" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
@@ -280,52 +282,296 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Xiammt<small>Tag</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://maxliu245.github.io/2020/11/21/【论文阅读27】RODE-Net——不确定性引入与GAN的精妙引入/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Max Liu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/icon_max.png#avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Max Liu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/12/13/西北中心研讨班——图像质量评价/" itemprop="url">
-              
-                <span itemprop="name">西北中心研讨班——图像质量评价</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">【论文阅读27】RODE-Net——不确定性引入与GAN的精妙引入</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-12-13T08:58:44+08:00" content="2019-12-13">
-          12-13
-        </time>
-      </div>
+        <div class="post-meta">
 
-    </header>
-  </article>
+          
 
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-11-21T20:52:01+08:00">
+                2020-11-21
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2020-11-21T20:57:49+08:00">
+                2020-11-21
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  1.7k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  6
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>许久的颓废之后重新开始看文章，这次给大家带来一首隐式meta和GAN结合的思想之歌！</p>
+<p><code>RODE-Net: Learning Ordinary Differential Equations with Randomness from Data</code></p>
+</blockquote>
+<a id="more"></a>
+<h1 id="Overview-amp-Target"><a href="#Overview-amp-Target" class="headerlink" title="Overview &amp; Target"></a>Overview &amp; Target</h1>
+<p>这是董彬老师组于2020/06挂在Arxiv上的文章，文章链接：<a href="https://arxiv.org/abs/2006.02377" target="_blank" rel="noopener">https://arxiv.org/abs/2006.02377</a></p>
+<p>文献主要<strong>研究对象</strong>叫RODE，全称<code>Random ordinary differential equations</code>，指的是ODE系统中的参数看成随机变量。研究的基本问题还是从ODE的轨线（轨迹）数据学习背后的方程究竟是什么</p>
+<p>不过读完了文章不是很推荐，因为走的还是拟合（如果ODE-Net基本模型有解释性那么不错）的路子。只是觉得有些思路可以借鉴</p>
+<h1 id="Background-amp-Motivation"><a href="#Background-amp-Motivation" class="headerlink" title="Background &amp; Motivation"></a>Background &amp; Motivation</h1><p>文献<strong>背景</strong></p>
+<ul>
+<li>RODE这类方程引入了一定的随机性</li>
+<li>实际数据可能有不同量纲的特征，这对拟合影响很大</li>
+</ul>
+<p>过去方法缺点：</p>
+<ol>
+<li>如果采用暴力拟合，总归是不好的</li>
+<li>从实际数据获取背后的ODE系统往往需要强先验（ODE形式的归纳偏置）</li>
+<li>即使加了强先验，大家过去也假设参数固定，因此只是平均意义下近似真实ODE系统；真实情况下还有随机性</li>
+</ol>
+<p>进一步地，文章的<strong>动机</strong>就出来了，其实就是一般的从轨线找背后ODE规律的问题，只是相当于直接把原来的ODE中参数添加先验，期以引入不确定性更符合实际，然后为了拟合加了GAN的对抗机制，请见下文</p>
+<h1 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h1><h2 id="Data-generation"><a href="#Data-generation" class="headerlink" title="Data generation"></a>Data generation</h2><p>刚开始看不懂数据是怎么采样出来的，后来明白了，数据生成的过程以文中 $(4.1)$ 节为例。先有模型参数的归纳偏置即先验假设，然后生成 $M$ 组参数，这样就有 $M$ 个ODE，选择初始点 $N_i$ 个，分别用4阶龙格-库塔法生成轨线，这样每个确定的ODE采样了 $N_i$ 条轨线，共 $M$ 个确定的ODE。所以最后得到的数据就是</p>
+<script type="math/tex; mode=display">X=\{x_{\eta_i}^j(t_k)|1\leq i\leq M,\ 1\leq j\leq N_i,\ 0\leq k\leq S\} \tag{1}</script><p>其中 $(1)$ 中 $x$ 是其实是轨线向量，下标 $\eta_i$ 就是每次采样的参数，上标 $j$ 表示初值的编号，后面的 $t_k$ 就是龙格-库塔得到的不同采样时刻</p>
+<blockquote>
+<p>原文表述：</p>
+<p>we generate data $x<em>{\eta_i}^j(t_k)$ by solving $ODE-\eta_i$ using the fourth order Runge-Kutta method with $N_i$ different initial values$x</em>{\eta_i}^j(t_0),j=1,\cdots,k$</p>
+</blockquote>
+<h2 id="RODE-Net"><a href="#RODE-Net" class="headerlink" title="RODE-Net"></a>RODE-Net</h2><p>文章提出的引入不确定性的模型，以及对应的网络模型称为RODE-Net。前者即：</p>
+<script type="math/tex; mode=display">\displaystyle \dfrac{dx}{dt} = F_{\eta}(x), x=(x_1,\cdots,x_d)\in \mathbb{R}^d,t\geq 0\tag{2}</script><p>其中 $\eta$ 就是假定有先验分布的参数。后者RODE-Net的结构图如下：</p>
+
+<blockquote>
+<p>ps：上面的先验假设应该是可以嵌套的</p>
+</blockquote>
+<p>这个结构里有如下亮点：</p>
+<ul>
+<li>中间的ODE-Net其实就可以是以往的暴力拟合框架，这里文章用了所谓的SymNet中包含了符号运算，内蕴了dynamic操作，因此某种程度上有可解释性。这个SymNet我不知道具体是怎么进行符号运算的，但是我推测是他们组PDE-Net2.0中卷积相关的操作，这个可以；但是后文提到引入GAN的目的之一是避免符号预算的求导，我就<strong>不懂</strong>了，既然符号运算不便求导，那主网络是怎么BP的？</li>
+<li>基础模型ODE-Net之外引入GAN，目的之一是避免SymNet中符号运算求导，目的之二是提供原网络参数更好的监督，进而形成目的三是作为了原网络的正则。联想到之前的ODE2VAE应该是有类似的考虑！</li>
+<li><strong>引入GAN的同时有meta-learning的味道，体现在GAN的double使用，生成之后反过来指导主网络的训练</strong>，类比一下是不是所有模型与GAN嵌套都有这个作用，生成的数据质量越来越高，乃至接近于meta数据，大概也是为什么GAN效果好的解释之一？</li>
+</ul>
+<p>RODE-Net中具体用的ODE-Net主模型就是PDE-Net中变过来的带有符号运算性质的网络；GAN用了WGAN（Wasserstein GAN），细节应该问题不大</p>
+<p>最后讲一下整个RODE-Net是怎么训练的以及其目标函数，从这里感觉，其训练方式是有meta-learning的味道的，这个GAN的double使用，但是<strong>loss上看还是所谓的外练筋骨皮</strong></p>
+<p>训练的过程很像meta方法。先是主网络正常训练，有数据点拟合的监督和对应于异常点不容忍的Huber正则；第二步是第一步得到的模型参数生成，扔到WGAN里训练一下，期中也加了一个梯度惩罚正则，即WGAN-GP；第三步是WGAN返回来作为主模型的正则，希望对抗前后主模型的参数不要相差过大，这样提供了一种整体上的控制</p>
+<blockquote>
+<p>Huber损失介绍，介于 $L_1$ 和 $L_2$ 之间，思想是调整对异常的容忍程度，因此有额外的一个超参数，很棒，可以日后借鉴：</p>
+<p>知乎用户<a href="https://www.zhihu.com/org/jing-lue-ji-zhi" target="_blank" rel="noopener">景略集智</a>的专栏文章<a href="https://zhuanlan.zhihu.com/p/39239829" target="_blank" rel="noopener">机器学习从业者必知的5种回归损失函数</a>，细节满满</p>
+<p>博客园用户<a href="https://www.cnblogs.com/nowgood/" target="_blank" rel="noopener">nowgood</a>的博客<a href="https://www.cnblogs.com/nowgood/p/Huber-Loss.html" target="_blank" rel="noopener">Huber Loss</a>，主要是函数的介绍</p>
+</blockquote>
+<h1 id="Pros-amp-Cons"><a href="#Pros-amp-Cons" class="headerlink" title="Pros &amp; Cons"></a>Pros &amp; Cons</h1><div class="table-container">
+<table>
+<thead>
+<tr>
+<th>Pros</th>
+<th></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>RODE建模的不确定性是指参数本身的不确定性，实际意义挺好</td>
+<td>文章有一处不懂的：既然符号运算不便求导而引入GAN，那主网络是怎么BP的</td>
+</tr>
+<tr>
+<td>GAN交替使用，相当于用两个GAN，有meta的味道</td>
+<td>这里的多次正则也只是相对于ob数据的，没有真正意义上的泛化</td>
+</tr>
+<tr>
+<td>GAN作为数据驱动正则的思想（目前比 $L_1$ 效果上好）</td>
+<td>文章最后提了一句先验引入可以使高维参数降维，我寻思着不是一般升维了…</td>
+</tr>
+<tr>
+<td>GAN和RODE的”R”天然契合，因为GAN本身就是参数分布的一种估计</td>
+<td>文章最后说non-transparency，确实某种程度上没有建模深层次的dynamic性质（符号运算？）</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><p>这次会用EndNote了，试试APA 7th格式，其它参考链接见文中注释部分</p>
+<p>[1] Liu, J., Long, Z., Wang, R., Sun, J., &amp; Dong, B. (2020). RODE-Net: Learning Ordinary Differential Equations with Randomness from Data. arXiv:2006.02377. Retrieved June 01, 2020, from <a href="https://ui.adsabs.harvard.edu/abs/2020arXiv200602377L" target="_blank" rel="noopener">https://ui.adsabs.harvard.edu/abs/2020arXiv200602377L</a></p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    Max Liu
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="http://maxliu245.github.io/2020/11/21/【论文阅读27】RODE-Net——不确定性引入与GAN的精妙引入/" title="【论文阅读27】RODE-Net——不确定性引入与GAN的精妙引入">http://maxliu245.github.io/2020/11/21/【论文阅读27】RODE-Net——不确定性引入与GAN的精妙引入/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Paper-Reading/" rel="tag"># Paper Reading</a>
+          
+            <a href="/tags/Regularization/" rel="tag"># Regularization</a>
+          
+            <a href="/tags/ODE/" rel="tag"># ODE</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/11/10/MLA‘20见闻/" rel="next" title="MLA‘20见闻">
+                <i class="fa fa-chevron-left"></i> MLA‘20见闻
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -333,6 +579,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -353,8 +603,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -464,6 +723,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Overview-amp-Target"><span class="nav-number">1.</span> <span class="nav-text">Overview &amp; Target</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Background-amp-Motivation"><span class="nav-number">2.</span> <span class="nav-text">Background &amp; Motivation</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Method"><span class="nav-number">3.</span> <span class="nav-text">Method</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Data-generation"><span class="nav-number">3.1.</span> <span class="nav-text">Data generation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#RODE-Net"><span class="nav-number">3.2.</span> <span class="nav-text">RODE-Net</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Pros-amp-Cons"><span class="nav-number">4.</span> <span class="nav-text">Pros &amp; Cons</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#References"><span class="nav-number">5.</span> <span class="nav-text">References</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -676,6 +951,10 @@ setInterval("createtime()",250);
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
