@@ -98,7 +98,8 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://maxliu245.github.io/2020/12/12/【论文略读28】继PDE-Net-2-0后引用它的一系列文章/1D-1.png">
 <meta property="og:image" content="http://maxliu245.github.io/2020/12/12/【论文略读28】继PDE-Net-2-0后引用它的一系列文章/1D-2.png">
-<meta property="og:updated_time" content="2020-12-13T01:48:47.690Z">
+<meta property="og:image" content="http://maxliu245.github.io/2020/12/12/【论文略读28】继PDE-Net-2-0后引用它的一系列文章/DeepMoD-1.png">
+<meta property="og:updated_time" content="2020-12-13T15:08:45.462Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【论文略读28】继PDE-Net 2.0后引用它的一系列文章">
 <meta name="twitter:description" content="许久未记录正式的博客笔记了，在此补上一系列文章 它们是我读完PDE-Net 2.0后顺着这条线索收集的">
@@ -347,7 +348,7 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2020-12-13T09:48:47+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2020-12-13T23:08:45+08:00">
                 2020-12-13
               </time>
             
@@ -380,7 +381,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  2.2k
+                  3.3k
                 </span>
               
 
@@ -396,7 +397,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  10
+                  14
                 </span>
               
             </div>
@@ -490,7 +491,7 @@
 </ul>
 </li>
 </ol>
-<h2 id="Learning-to-Discretize-Solving-1D-Scalar-Conservation-Laws-via-Deep-Reinforcement-Learning"><a href="#Learning-to-Discretize-Solving-1D-Scalar-Conservation-Laws-via-Deep-Reinforcement-Learning" class="headerlink" title="Learning to Discretize: Solving 1D Scalar Conservation Laws via Deep Reinforcement Learning"></a>Learning to Discretize: Solving 1D Scalar Conservation Laws via Deep Reinforcement Learning</h2><h3 id="文献资料"><a href="#文献资料" class="headerlink" title="文献资料"></a>文献资料</h3><ol>
+<h2 id="1-Learning-to-Discretize-Solving-1D-Scalar-Conservation-Laws-via-Deep-Reinforcement-Learning"><a href="#1-Learning-to-Discretize-Solving-1D-Scalar-Conservation-Laws-via-Deep-Reinforcement-Learning" class="headerlink" title="1. Learning to Discretize: Solving 1D Scalar Conservation Laws via Deep Reinforcement Learning"></a>1. Learning to Discretize: Solving 1D Scalar Conservation Laws via Deep Reinforcement Learning</h2><h3 id="文献资料"><a href="#文献资料" class="headerlink" title="文献资料"></a>文献资料</h3><ol>
 <li><p>董彬老师组的文章，2020/10挂出来</p>
 </li>
 <li><p><a href="https://arxiv.org/abs/1905.11079?context=math" target="_blank" rel="noopener">https://arxiv.org/abs/1905.11079?context=math</a></p>
@@ -583,6 +584,47 @@
 <li>Learning the policy $P$ within the RL framework makes the algorithm meta-learning like [1, 5, 10, 20, 29].</li>
 <li>The learned policy network is carefully designed to determine a good local discrete approximation based on the current state of the solution, which essentially makes the proposed method a meta-learning approach.</li>
 <li>We attribute the good generalization ability of RL-WENO to our careful action design, which essentially makes RL-WENO a meta-learner under the WENO framework and thus have  strong out-of-distribution generalization.</li>
+</ul>
+<h2 id="2-DeepMoD-Deep-learning-for-model-discovery-in-noisy-data"><a href="#2-DeepMoD-Deep-learning-for-model-discovery-in-noisy-data" class="headerlink" title="2. DeepMoD: Deep learning for model discovery in noisy data"></a>2. DeepMoD: Deep learning for model discovery in noisy data</h2><p><strong><font color="#FF0000">突然想到一个问题，目前没看到几篇文章很关注PDE的边界条件！</font></strong>本文也没有考虑。</p>
+<h3 id="文献资料-1"><a href="#文献资料-1" class="headerlink" title="文献资料"></a>文献资料</h3><ul>
+<li><a href="https://www.sciencedirect.com/science/article/pii/S0021999120307592" target="_blank" rel="noopener">https://www.sciencedirect.com/science/article/pii/S0021999120307592</a></li>
+<li>好像是巴黎大学的研究者写的</li>
+<li>期刊名Journal of Computational Physics，20年11月</li>
+</ul>
+<h3 id="小结：我觉得不彳亍"><a href="#小结：我觉得不彳亍" class="headerlink" title="小结：我觉得不彳亍"></a>小结：我觉得不彳亍</h3><h4 id="模型：DeepMoD及具体内容"><a href="#模型：DeepMoD及具体内容" class="headerlink" title="模型：DeepMoD及具体内容"></a>模型：DeepMoD及具体内容</h4><p>本文提出模型，DeepMoD，指的是deep learning based model discovery algorithm，目标是从数据中学习背后的PDE。该PDE模型的形式其实比较局限，固定为：</p>
+<script type="math/tex; mode=display">\displaystyle \partial_t u = \partial_t u(x,t)=\mathcal{F}(u,u_x,uu_x,u_xx\cdots)\approx \Theta\xi \tag{1}</script><p>两个大困惑，读了好几遍搞不明白，文章为什么要刻意避开这个问题❔我觉得只考虑了这样的形式是因为把神经网络 $f_i$ 作为函数字典，输入是 $(\mathbf{x, t})$，那么输出对输出自动求导看成偏导数。但是<strong>为什么原文公式 $(1)$ 没有 $u$ 对 $t$ 求导呢，是不是在刻意混淆</strong>？而且文章的实验表示不是整个grid上都有数据，可以随机取，那么偏导数也是不能全的啊，怎么保证神经网络就能对输入求导得到字典中的基函数，见下面图中的Library？</p>
+<img src="/2020/12/12/【论文略读28】继PDE-Net-2-0后引用它的一系列文章/DeepMoD-1.png" title="DeepMoD">
+<p>具体方法采用了函数字典，使用稀疏回归，回归时加正则。使用densely-connected feed-forward neural network作为函数的估计，来构建函数字典。考虑了三种loss，MSE损失针对 $u(x,t)$，只考虑每条轨线末端值的监督；回归损失针对 $\Theta\xi$ 的拟合，但是原文的式子下标没写清楚，弄不明白哪里做了监督；最后是字典系数 $\xi$ 的 $L_1$ 正则</p>
+<p>网络训练有2个骚操作：</p>
+<ul>
+<li>数据有一些处理，当神经网络训练完之后，得到的函数字典的稀疏系数其实会不那么稀疏（$L_1$ 不能保证完全稀疏），进一步进行无量纲化，方式是所有变量标准化，包括原文 $(2)$ 式中的 $\partial_t u,\Theta,\xi$，具体意义见原文 $(3,4)$ 式。</li>
+<li>网络训练完之后，再练一次，不加 $L_1$ 正则了，回归项只用之前筛选出来的，原文只说这样得系数的无偏估计❔</li>
+</ul>
+<p>这个方法起效果需要函数字典充足，不过实验结果似乎表示很充足也不至于过拟合，有对函数系数的正则，这个正则和系数某个阈值的设置有关。这个设置似乎不是general的（见Discussion部分）。字典中函数的系数代表了某种模型选择。</p>
+<h4 id="Pros-and-Cons"><a href="#Pros-and-Cons" class="headerlink" title="Pros and Cons"></a>Pros and Cons</h4><p>前两个文章自己说的优点很奇怪：</p>
+<ul>
+<li><p>一个是<strong>对噪声非常稳健</strong>，是实验结论</p>
+</li>
+<li><p>第二个是<strong>不需要训练集</strong>。这应该指的是<strong>不需要太多训练数据，小样本</strong>也可以，并不是完全不需要，原文进行了5种方程的人工实验，一个结论是几种方程的模拟只需要 $\mathcal{O}(10^2)$ 的数据量。</p>
+<blockquote>
+<p>优点原文：This construction makes it <strong>extremely robust to noise</strong>, <strong>applicable to small data sets</strong>, and, contrary to other deep learning methods, <strong>does not require a training set</strong>.</p>
+<p>实验结果之一：</p>
+<p>find that it requires as few as $\mathcal{O}(10^2)$ samples and works at noise levels up to 75%</p>
+</blockquote>
+</li>
+<li><p>第三个是DeepMoD对数据的维度没有要求，之前有些模型是针对1维数据的</p>
+</li>
+<li>第四个，函数字典有模型选择的功能，只是少了点味</li>
+</ul>
+<p>文章表示DeepMoD很稳健，需要数据量少是因为利用regression-based approach完成model discovery任务，用神经网络infer system parameters。。。说🔨呢，真的是原文。。。我很不喜欢这样的说法</p>
+<p>缺点来了，读不明白就甩锅：</p>
+<ul>
+<li>PDE模型的形式到底局限么？原文是不是在故意回避这个问题</li>
+<li>怎么保证神经网络就能对输入求导得到字典中的基函数？偏导数不一定能全？</li>
+<li>两次训练为什么是无偏估计，没说</li>
+<li>阈值的设置好像是special的</li>
+<li>只靠loss得到所谓的稳健、小样本。难道又是实验验证？我不信，而且全是模拟数据</li>
+<li>本文提了一下边界条件，但是仍然没考虑</li>
 </ul>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>APA 7th格式</p>
 <p>[1] Wang, Y., Shen, Z., Long, Z., &amp; Dong, B. (2019). Learning to Discretize: Solving 1D Scalar Conservation Laws via Deep Reinforcement Learning. arXiv e-prints, arXiv:1905.11079. <a href="https://ui.adsabs.harvard.edu/abs/2019arXiv190511079W" target="_blank" rel="noopener">https://ui.adsabs.harvard.edu/abs/2019arXiv190511079W</a> </p>
@@ -840,7 +882,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#搜集文献（不分顺序）"><span class="nav-number">1.</span> <span class="nav-text">搜集文献（不分顺序）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Learning-to-Discretize-Solving-1D-Scalar-Conservation-Laws-via-Deep-Reinforcement-Learning"><span class="nav-number">2.</span> <span class="nav-text">Learning to Discretize: Solving 1D Scalar Conservation Laws via Deep Reinforcement Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文献资料"><span class="nav-number">2.1.</span> <span class="nav-text">文献资料</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表格总结"><span class="nav-number">2.2.</span> <span class="nav-text">表格总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部分细节"><span class="nav-number">2.3.</span> <span class="nav-text">部分细节</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模型基本设置"><span class="nav-number">2.3.1.</span> <span class="nav-text">模型基本设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WENO数值方法"><span class="nav-number">2.3.2.</span> <span class="nav-text">WENO数值方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WENO对应到MDP"><span class="nav-number">2.3.3.</span> <span class="nav-text">WENO对应到MDP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#哪来的meta-learner"><span class="nav-number">2.3.4.</span> <span class="nav-text">哪来的meta-learner</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">3.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#搜集文献（不分顺序）"><span class="nav-number">1.</span> <span class="nav-text">搜集文献（不分顺序）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-Learning-to-Discretize-Solving-1D-Scalar-Conservation-Laws-via-Deep-Reinforcement-Learning"><span class="nav-number">2.</span> <span class="nav-text">1. Learning to Discretize: Solving 1D Scalar Conservation Laws via Deep Reinforcement Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文献资料"><span class="nav-number">2.1.</span> <span class="nav-text">文献资料</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表格总结"><span class="nav-number">2.2.</span> <span class="nav-text">表格总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部分细节"><span class="nav-number">2.3.</span> <span class="nav-text">部分细节</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模型基本设置"><span class="nav-number">2.3.1.</span> <span class="nav-text">模型基本设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WENO数值方法"><span class="nav-number">2.3.2.</span> <span class="nav-text">WENO数值方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WENO对应到MDP"><span class="nav-number">2.3.3.</span> <span class="nav-text">WENO对应到MDP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#哪来的meta-learner"><span class="nav-number">2.3.4.</span> <span class="nav-text">哪来的meta-learner</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-DeepMoD-Deep-learning-for-model-discovery-in-noisy-data"><span class="nav-number">3.</span> <span class="nav-text">2. DeepMoD: Deep learning for model discovery in noisy data</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文献资料-1"><span class="nav-number">3.1.</span> <span class="nav-text">文献资料</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小结：我觉得不彳亍"><span class="nav-number">3.2.</span> <span class="nav-text">小结：我觉得不彳亍</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模型：DeepMoD及具体内容"><span class="nav-number">3.2.1.</span> <span class="nav-text">模型：DeepMoD及具体内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Pros-and-Cons"><span class="nav-number">3.2.2.</span> <span class="nav-text">Pros and Cons</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">4.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
             
 
           </div>
@@ -885,7 +927,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">73.1k</span>
+    <span title="Site words total count">74.2k</span>
   
 </div>
 
