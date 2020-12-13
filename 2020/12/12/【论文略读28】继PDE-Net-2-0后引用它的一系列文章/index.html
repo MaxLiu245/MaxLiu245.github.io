@@ -1,0 +1,1467 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2" rel="stylesheet">
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.4" rel="stylesheet" type="text/css">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/icon_max.png#favicon-32x32-next.png?v=5.1.4">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/icon_max.png#favicon-16x16-next.png?v=5.1.4">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=5.1.4" color="#222">
+
+
+
+
+
+  <meta name="keywords" content="Paper Reading,Machine Learning,ODE,">
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Max Liu's Blog" type="application/atom+xml">
+
+
+
+
+
+
+<meta name="description" content="许久未记录正式的博客笔记了，在此补上一系列文章 它们是我读完PDE-Net 2.0后顺着这条线索收集的">
+<meta name="keywords" content="Paper Reading,Machine Learning,ODE">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【论文略读28】继PDE-Net 2.0后引用它的一系列文章">
+<meta property="og:url" content="http://maxliu245.github.io/2020/12/12/【论文略读28】继PDE-Net-2-0后引用它的一系列文章/index.html">
+<meta property="og:site_name" content="Max Liu&#39;s Blog">
+<meta property="og:description" content="许久未记录正式的博客笔记了，在此补上一系列文章 它们是我读完PDE-Net 2.0后顺着这条线索收集的">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="http://maxliu245.github.io/2020/12/12/【论文略读28】继PDE-Net-2-0后引用它的一系列文章/1D-1.png">
+<meta property="og:image" content="http://maxliu245.github.io/2020/12/12/【论文略读28】继PDE-Net-2-0后引用它的一系列文章/1D-2.png">
+<meta property="og:updated_time" content="2020-12-13T01:48:47.690Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="【论文略读28】继PDE-Net 2.0后引用它的一系列文章">
+<meta name="twitter:description" content="许久未记录正式的博客笔记了，在此补上一系列文章 它们是我读完PDE-Net 2.0后顺着这条线索收集的">
+<meta name="twitter:image" content="http://maxliu245.github.io/2020/12/12/【论文略读28】继PDE-Net-2-0后引用它的一系列文章/1D-1.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '5.1.4',
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    duoshuo: {
+      userId: '0',
+      author: 'Author'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://maxliu245.github.io/2020/12/12/【论文略读28】继PDE-Net-2-0后引用它的一系列文章/">
+
+
+
+
+
+  <title>【论文略读28】继PDE-Net 2.0后引用它的一系列文章 | Max Liu's Blog</title>
+  
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="en">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+<a href="https://github.com/MaxLiu245" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Max Liu's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">Earlier birds eat more worms</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            Home
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br>
+            
+            About
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            Archives
+          </a>
+        </li>
+      
+
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>
+            
+            Search
+          </a>
+        </li>
+      
+    </ul>
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="Searching..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://maxliu245.github.io/2020/12/12/【论文略读28】继PDE-Net-2-0后引用它的一系列文章/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Max Liu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/icon_max.png#avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Max Liu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">【论文略读28】继PDE-Net 2.0后引用它的一系列文章</h1>
+        
+
+        <div class="post-meta">
+
+          
+
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-12-12T15:08:07+08:00">
+                2020-12-12
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2020-12-13T09:48:47+08:00">
+                2020-12-13
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  2.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  10
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>许久未记录正式的博客笔记了，在此补上一系列文章</p>
+<p>它们是我读完PDE-Net 2.0后顺着这条线索收集的</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="搜集文献（不分顺序）"><a href="#搜集文献（不分顺序）" class="headerlink" title="搜集文献（不分顺序）"></a>搜集文献（不分顺序）</h2><ol>
+<li>Learning to Discretize: Solving 1D Scalar Conservation Laws via Deep Reinforcement Learning<ul>
+<li>董彬老师组</li>
+<li><a href="https://arxiv.org/abs/1905.11079?context=math" target="_blank" rel="noopener">https://arxiv.org/abs/1905.11079?context=math</a></li>
+</ul>
+</li>
+<li>Data-driven recovery of hidden physics in reduced order modeling of fluid flows<ul>
+<li><a href="https://aip.scitation.org/doi/abs/10.1063/5.0002051" target="_blank" rel="noopener">https://aip.scitation.org/doi/abs/10.1063/5.0002051</a></li>
+<li>期刊名Physics of Fluids，20年初</li>
+</ul>
+</li>
+<li>DeepMoD: Deep learning for model discovery in noisy data<ul>
+<li><a href="https://www.sciencedirect.com/science/article/pii/S0021999120307592" target="_blank" rel="noopener">https://www.sciencedirect.com/science/article/pii/S0021999120307592</a></li>
+<li>期刊名Journal of Computational Physics，20年11月</li>
+</ul>
+</li>
+<li>Stability selection enables robust learning of partial differential equations from limited noisy data<ul>
+<li><a href="https://arxiv.org/abs/1907.07810" target="_blank" rel="noopener">https://arxiv.org/abs/1907.07810</a></li>
+<li>ArXiv上的分类是Mathematics—&gt;Numerical Analysis，19年7月</li>
+</ul>
+</li>
+<li>Derivatives Pricing via Machine Learning<ul>
+<li><a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3352688" target="_blank" rel="noopener">https://papers.ssrn.com/sol3/papers.cfm?abstract_id=3352688</a></li>
+<li><a href="https://www.scirp.org/journal/paperinformation.aspx?paperid=94637" target="_blank" rel="noopener">https://www.scirp.org/journal/paperinformation.aspx?paperid=94637</a></li>
+<li>期刊名Business &amp; Economics，19年</li>
+</ul>
+</li>
+<li>Extracting Interpretable Physical Parameters from Spatiotemporal Systems Using Unsupervised Learning<ul>
+<li><a href="https://journals.aps.org/prx/abstract/10.1103/PhysRevX.10.031056" target="_blank" rel="noopener">https://journals.aps.org/prx/abstract/10.1103/PhysRevX.10.031056</a></li>
+<li>期刊名PHYSICAL REVIEW X，20年9月</li>
+</ul>
+</li>
+<li>DLGA-PDE: Discovery of PDEs with incomplete candidate library via combination of deep learning and genetic algorithm<ul>
+<li><a href="https://www.sciencedirect.com/science/article/pii/S0021999120303582" target="_blank" rel="noopener">https://www.sciencedirect.com/science/article/pii/S0021999120303582</a></li>
+<li>期刊名Journal of Computational Physics，20年10月</li>
+</ul>
+</li>
+<li>Feature engineering and symbolic regression methods for detecting hidden physics from sparse sensor observation data<ul>
+<li><a href="https://aip.scitation.org/doi/abs/10.1063/1.5136351" target="_blank" rel="noopener">https://aip.scitation.org/doi/abs/10.1063/1.5136351</a></li>
+<li>期刊名Physics of Fluids，20年1月</li>
+</ul>
+</li>
+<li>Data-driven Discovery of Partial Differential Equations for Multiple-Physics Electromagnetic Problem<ul>
+<li><a href="https://arxiv.org/abs/1910.13531" target="_blank" rel="noopener">https://arxiv.org/abs/1910.13531</a></li>
+<li>ArXiv上分类Physics—&gt;Computational Physics，19年10月</li>
+</ul>
+</li>
+<li>TIME: A Transparent, Interpretable, Model-Adaptive and Explainable Neural Network for Dynamic Physical Processes<ul>
+<li><a href="https://arxiv.org/abs/2003.02426" target="_blank" rel="noopener">https://arxiv.org/abs/2003.02426</a></li>
+<li>20年5月</li>
+</ul>
+</li>
+<li>Sparse Symplectically Integrated Neural Networks<ul>
+<li><a href="https://proceedings.neurips.cc/paper/2020/hash/439fca360bc99c315c5882c4432ae7a4-Abstract.html" target="_blank" rel="noopener">https://proceedings.neurips.cc/paper/2020/hash/439fca360bc99c315c5882c4432ae7a4-Abstract.html</a></li>
+<li>NIPS’20</li>
+</ul>
+</li>
+<li>DeepM&amp;Mnet: Inferring the electroconvection multiphysics fields based on operator approximation by neural networks<ul>
+<li><a href="https://arxiv.org/abs/2009.12935" target="_blank" rel="noopener">https://arxiv.org/abs/2009.12935</a></li>
+<li>ArXiv上分类Physics—&gt;Computational Physics，20年9月</li>
+</ul>
+</li>
+<li>Integration of Neural Network-Based Symbolic Regression in Deep Learning for Scientific Discovery<ul>
+<li><a href="https://ieeexplore.ieee.org/abstract/document/9180100" target="_blank" rel="noopener">https://ieeexplore.ieee.org/abstract/document/9180100</a></li>
+<li>IEEE Transactions on Neural Networks and Learning Systems，20年8月</li>
+</ul>
+</li>
+</ol>
+<h2 id="Learning-to-Discretize-Solving-1D-Scalar-Conservation-Laws-via-Deep-Reinforcement-Learning"><a href="#Learning-to-Discretize-Solving-1D-Scalar-Conservation-Laws-via-Deep-Reinforcement-Learning" class="headerlink" title="Learning to Discretize: Solving 1D Scalar Conservation Laws via Deep Reinforcement Learning"></a>Learning to Discretize: Solving 1D Scalar Conservation Laws via Deep Reinforcement Learning</h2><h3 id="文献资料"><a href="#文献资料" class="headerlink" title="文献资料"></a>文献资料</h3><ol>
+<li><p>董彬老师组的文章，2020/10挂出来</p>
+</li>
+<li><p><a href="https://arxiv.org/abs/1905.11079?context=math" target="_blank" rel="noopener">https://arxiv.org/abs/1905.11079?context=math</a></p>
+</li>
+</ol>
+<h3 id="表格总结"><a href="#表格总结" class="headerlink" title="表格总结"></a>表格总结</h3><p>总结完了觉得文章的<strong>思路正常</strong>，文章的一个<strong>亮点</strong>是抽象数值方法为RL问题时<strong>引入了meta-learner</strong>的概念？</p>
+<table id="tfhover" class="tftable" border="1" style="table-layout:fixed;">
+    <col style="width: 15%">
+    <col style="width: 85%">
+<tr><th>文献条目</th><th>具体内容</th></tr>
+<tr>
+<td>Target</td>
+<td>
+<body>
+  <ul type="disc">
+    <li>先声明大领域，依然是拟合PDE数据，包括数值方法、DL方法</li>
+    <li>本文针对求解特定的PDE，守恒律方程（associated with conservation laws）</li>
+  </ul>
+</body>
+</td></tr>
+<tr><td>Motivation/Idea</td>
+<td>
+<body>
+  <ul type="disc">
+    <li>守恒律很重要，应用多。且Burgers方程就是其一个特例</li>
+    <li>从数值方法出发，把PDE-solver看成MDP（Markov Decision Process），进而抽象为强化学习基本问题</li>
+    <li>上述数值方法是WENO（Weighted Essentially Non-Oscillatory Schemes），稍后在细节介绍，基于它有两个ideas：<ul><li>自动化得到方法中的weights</li><li>自动（原WENO需要进行数值判断）判断方法中的upwind direction，此概念在细节中介绍</li></ul></li>
+  </ul>
+</body>
+</td>
+</tr>
+<tr><td>Method</td>
+<td>
+<body>
+  <ul type="disc">
+    整个模型没有命名，其实提供了一种把数值方法转化为网络、DL问题的思路
+    <li>基本模型就是求解PDE的WENO数值方法抽象为MDP形式</li>
+    <li>MDP问题再引入RL，具体细节将在下面介绍</li>
+  </ul>
+</body>
+</td>
+</tr>
+<tr><td>Pros and Cons</td>
+<td>
+<body>
+  <ul type="disc">
+    Pros:
+      <li>把求解1维情况下守恒律方程的数值方法转化为RL问题，其建模过程很标准，可以说是一个framework</li>
+      <li>数值方法直接转化为MDP，RL，model-driven么</li>
+      <li><b>文章重点提到action的构建是个meta-learner,一个说法是，这样的模型泛化不错，一个功劳就归meta-learner</b></li>
+    <br>Cons:
+      <li>别问我为什么meta-learner，怎么就meta-learner了，原因我放在后面单独提一下</li>
+      <li>只考虑了1维情形下守恒律，不能直接推广的话。。。</li>
+      <li>流（flux）的建模依托于WENO，插值太多，虽然插值很精细但总觉得不优美，说不清楚</li>
+  </ul>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</td>
+</tr>
+</table>
+
+
+<h3 id="部分细节"><a href="#部分细节" class="headerlink" title="部分细节"></a>部分细节</h3><h4 id="模型基本设置"><a href="#模型基本设置" class="headerlink" title="模型基本设置"></a>模型基本设置</h4><p>先讲讲所谓有守恒律的方程指什么吧，其实就是指这个方程有守恒律，形式如下：</p>
+<script type="math/tex; mode=display">\displaystyle u_x(x,t)+(f(u(x,t)))_x = 0,\ where\ a\leq x\leq b,\ t\in [0,T],\ u(x,0)=u_0(x) \tag{1}</script><p>这个形式就叫守恒律。由参数 ${x,t}$ 取值在区间上可知，ob数据的形式是把时空间分别分割，得到网格式数据，分割一般均匀，设分割长度和总数分别为 $\Delta x, \Delta t$ 和 $J, N$，详见原文公式 $(2.2)$。</p>
+<p>然后有几个概念要说一下，真实解 $u(x,t)$ 在网格上的取值为 $u(x_j,t_n)$，它的近似记为 $\mathcal{U}_j^n$；另外，$(1)$ 式中间的 $f$ 称为flux，可以理解为守恒律中的流，真实的flux记为 $f_j^n=f(u(x_j,t_n))$。</p>
+<p>最后有个空间中的插值，记号为 $\displaystyle x_{j\pm\frac{1}{2}}=x_j\pm\frac{\Delta x}{2}$，感觉就是更细一点的插值。</p>
+<h4 id="WENO数值方法"><a href="#WENO数值方法" class="headerlink" title="WENO数值方法"></a>WENO数值方法</h4><p>从名字上看这个方法，Weighted Essentially Non-Oscillatory Schemes，推测就是<strong>插值更细</strong>因此可能拟合结果波动更小，插值的时候还有重要性（插值准确性）加权。</p>
+<p>下面给个WENO方法的计算过程：</p>
+
+
+	<div class="row">
+    <embed src="20201212-1D-1.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+<p>如上最后两行，WENO就像一个<strong>多重平均插值</strong>近似，<strong>主要问题</strong>在于不同插值权重的计算、和最后一个upwind direction计算。后者应该是希望数值解不要震荡的方法，参考<a href="https://baike.baidu.com/item/%E4%BA%8C%E9%98%B6%E8%BF%8E%E9%A3%8E%E6%A0%BC%E5%BC%8F/3533165" target="_blank" rel="noopener">二阶迎风格式</a>。</p>
+<h4 id="WENO对应到MDP"><a href="#WENO对应到MDP" class="headerlink" title="WENO对应到MDP"></a>WENO对应到MDP</h4><p>没啥好说的，根据WENO的计算方法写成算法，然后对应到MDP中的state $S$，action $A$，transition dynamics $P$，reward $r$。</p>
+<img src="/2020/12/12/【论文略读28】继PDE-Net-2-0后引用它的一系列文章/1D-1.png" title="WENO算法">
+<img src="/2020/12/12/【论文略读28】继PDE-Net-2-0后引用它的一系列文章/1D-2.png" title="RL对应">
+<p>这样就完事了，再简要介绍一下里面的东西是什么：</p>
+<ul>
+<li>$s$ 是state，有个state function，把指标集对应的$\mathcal{U}_j^\lambda,\ \lambda\in \Lambda$ 映射到 $\hat{f}_j^n$。一个例子是对pdf的三次插值，那 $s$ 就映到3个向量，每个向量是每次插值的所有点（$f_j^\lambda$）和该次插值对应的权重，具体实现是方式是用6层，每层64神经元的MLP，并use the Twin Delayed Deep Deterministic (TD3) policy gradient algorithm to train the RL policy。。。</li>
+<li>$A$ 是action，就是pdf最后一行提到的选择哪些插值，由 $s$ 函数生成</li>
+<li>$P$ 相当于迭代机制，比如前向欧拉对应的迭代形式。。。</li>
+<li>$r$ 用的插值时的无穷范数的相反数</li>
+</ul>
+<h4 id="哪来的meta-learner"><a href="#哪来的meta-learner" class="headerlink" title="哪来的meta-learner"></a>哪来的meta-learner</h4><p>思想不错，$A$ 成为一个meta-learner，原因只有这个靠谱：这个RL里的 $A$ 是通过 $s$ 函数输出得到的，是从当前状态判断的，不是像原来的数值方法那样，在没有其它网络（如上文MLP）的帮助下直接从数值机制推断的。</p>
+<p>文章提的其它原因不太靠谱：</p>
+<ul>
+<li>Learning the policy $P$ within the RL framework makes the algorithm meta-learning like [1, 5, 10, 20, 29].</li>
+<li>The learned policy network is carefully designed to determine a good local discrete approximation based on the current state of the solution, which essentially makes the proposed method a meta-learning approach.</li>
+<li>We attribute the good generalization ability of RL-WENO to our careful action design, which essentially makes RL-WENO a meta-learner under the WENO framework and thus have  strong out-of-distribution generalization.</li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>APA 7th格式</p>
+<p>[1] Wang, Y., Shen, Z., Long, Z., &amp; Dong, B. (2019). Learning to Discretize: Solving 1D Scalar Conservation Laws via Deep Reinforcement Learning. arXiv e-prints, arXiv:1905.11079. <a href="https://ui.adsabs.harvard.edu/abs/2019arXiv190511079W" target="_blank" rel="noopener">https://ui.adsabs.harvard.edu/abs/2019arXiv190511079W</a> </p>
+<p>[2] Pawar, S., Ahmed, S. E., San, O., &amp; Rasheed, A. (2020). Data-driven recovery of hidden physics in reduced order modeling of fluid flows. Physics of Fluids, 32(3), 036602. <a href="https://doi.org/10.1063/5.0002051" target="_blank" rel="noopener">https://doi.org/10.1063/5.0002051</a> </p>
+<p>[3] Both, G.-J., Choudhury, S., Sens, P., &amp; Kusters, R. (2020). DeepMoD: Deep learning for model discovery in noisy data. Journal of Computational Physics, 109985. <a href="https://doi.org/https://doi.org/10.1016/j.jcp.2020.109985" target="_blank" rel="noopener">https://doi.org/https://doi.org/10.1016/j.jcp.2020.109985</a> </p>
+<p>[4] Maddu, S., Cheeseman, B. L., Sbalzarini, I. F., &amp; Müller, C. L. (2019). Stability selection enables robust learning of partial differential equations from limited noisy data. arXiv e-prints, arXiv:1907.07810. <a href="https://ui.adsabs.harvard.edu/abs/2019arXiv190707810M" target="_blank" rel="noopener">https://ui.adsabs.harvard.edu/abs/2019arXiv190707810M</a> </p>
+<p>[5] Ye, T., &amp; Zhang, L. (2019). Derivatives Pricing via Machine Learning. Journal of Mathematical Finance, 09, 561-589. <a href="https://doi.org/10.4236/jmf.2019.93029" target="_blank" rel="noopener">https://doi.org/10.4236/jmf.2019.93029</a> </p>
+<p>[6] Lu, P. Y., Kim, S., &amp; Soljačić, M. (2020). Extracting Interpretable Physical Parameters from Spatiotemporal Systems Using Unsupervised Learning. Physical Review X, 10(3), 031056. <a href="https://doi.org/10.1103/PhysRevX.10.031056" target="_blank" rel="noopener">https://doi.org/10.1103/PhysRevX.10.031056</a> </p>
+<p>[7] Xu, H., Chang, H., &amp; Zhang, D. (2020). DLGA-PDE: Discovery of PDEs with incomplete candidate library via combination of deep learning and genetic algorithm. Journal of Computational Physics, 418, 109584. <a href="https://doi.org/https://doi.org/10.1016/j.jcp.2020.109584" target="_blank" rel="noopener">https://doi.org/https://doi.org/10.1016/j.jcp.2020.109584</a> </p>
+<p>[8] Vaddireddy, H., Rasheed, A., Staples, A. E., &amp; San, O. (2020). Feature engineering and symbolic regression methods for detecting hidden physics from sparse sensor observation data. Physics of Fluids, 32(1), 015113. <a href="https://doi.org/10.1063/1.5136351" target="_blank" rel="noopener">https://doi.org/10.1063/1.5136351</a> </p>
+<p>[9] Xiong, B., Fu, H., Xu, F., &amp; Jin, Y. (2019). Data-driven Discovery of Partial Differential Equations for Multiple-Physics Electromagnetic Problem. arXiv e-prints, arXiv:1910.13531. <a href="https://ui.adsabs.harvard.edu/abs/2019arXiv191013531X" target="_blank" rel="noopener">https://ui.adsabs.harvard.edu/abs/2019arXiv191013531X</a> </p>
+<p>[10] Singh, G., Gupta, S., Lease, M., &amp; Dawson, C. N. (2020). TIME: A Transparent, Interpretable, Model-Adaptive and Explainable Neural Network for Dynamic Physical Processes. arXiv e-prints, arXiv:2003.02426. <a href="https://ui.adsabs.harvard.edu/abs/2020arXiv200302426S" target="_blank" rel="noopener">https://ui.adsabs.harvard.edu/abs/2020arXiv200302426S</a> </p>
+<p>[11] DiPietro, D. M., Xiong, S., &amp; Zhu, B. (2020). Sparse Symplectically Integrated Neural Networks. arXiv e-prints, arXiv:2006.12972. <a href="https://ui.adsabs.harvard.edu/abs/2020arXiv200612972D" target="_blank" rel="noopener">https://ui.adsabs.harvard.edu/abs/2020arXiv200612972D</a> </p>
+<p>[12] Cai, S., Wang, Z., Lu, L., Zaki, T. A., &amp; Karniadakis, G. E. (2020). DeepM&amp;Mnet: Inferring the electroconvection multiphysics fields based on operator approximation by neural networks. arXiv e-prints, arXiv:2009.12935. <a href="https://ui.adsabs.harvard.edu/abs/2020arXiv200912935C" target="_blank" rel="noopener">https://ui.adsabs.harvard.edu/abs/2020arXiv200912935C</a> </p>
+<p>[13] Kim, S., Lu, P. Y., Mukherjee, S., Gilbert, M., Jing, L., Čeperić, V., &amp; Soljačić, M. (2020). Integration of Neural Network-Based Symbolic Regression in Deep Learning for Scientific Discovery. IEEE Transactions on Neural Networks and Learning Systems, 1-12. <a href="https://doi.org/10.1109/TNNLS.2020.3017010" target="_blank" rel="noopener">https://doi.org/10.1109/TNNLS.2020.3017010</a> </p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    Max Liu
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="http://maxliu245.github.io/2020/12/12/【论文略读28】继PDE-Net-2-0后引用它的一系列文章/" title="【论文略读28】继PDE-Net 2.0后引用它的一系列文章">http://maxliu245.github.io/2020/12/12/【论文略读28】继PDE-Net-2-0后引用它的一系列文章/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Paper-Reading/" rel="tag"># Paper Reading</a>
+          
+            <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
+          
+            <a href="/tags/ODE/" rel="tag"># ODE</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/11/21/【论文阅读27】RODE-Net——不确定性引入与GAN的精妙引入/" rel="next" title="【论文阅读27】RODE-Net——不确定性引入与GAN的精妙引入">
+                <i class="fa fa-chevron-left"></i> 【论文阅读27】RODE-Net——不确定性引入与GAN的精妙引入
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
+
+      <section class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/icon_max.png#avatar.gif" alt="Max Liu">
+            
+              <p class="site-author-name" itemprop="name">Max Liu</p>
+              <p class="site-description motion-element" itemprop="description">Max Liu's Blog</p>
+          </div>
+
+          <nav class="site-state motion-element">
+
+            
+              <div class="site-state-item site-state-posts">
+              
+                <a href="/archives/">
+              
+                  <span class="site-state-item-count">49</span>
+                  <span class="site-state-item-name">posts</span>
+                </a>
+              </div>
+            
+
+            
+
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                <a href="/tags/index.html">
+                  <span class="site-state-item-count">40</span>
+                  <span class="site-state-item-name">tags</span>
+                </a>
+              </div>
+            
+
+          </nav>
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+            <div class="links-of-author motion-element">
+                
+                  <span class="links-of-author-item">
+                    <a href="https://github.com/MaxLiu245" target="_blank" title="GitHub">
+                      
+                        <i class="fa fa-fw fa-github"></i>GitHub</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="mailto:lzmlzm@stu.xjtu.edu.cn" target="_blank" title="E-Mail">
+                      
+                        <i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://www.jianshu.com/u/9cbd69c5d573" target="_blank" title="简书">
+                      
+                        <i class="fa fa-fw fa-book"></i>简书</a>
+                  </span>
+                
+                  <span class="links-of-author-item">
+                    <a href="https://weibo.com/u/6033196789" target="_blank" title="微博">
+                      
+                        <i class="fa fa-fw fa-weibo"></i>微博</a>
+                  </span>
+                
+            </div>
+          
+
+          
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                Links
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://www.xjtu.edu.cn/" title="西安交通大学" target="_blank">西安交通大学</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://gatech.edu/" title="佐治亚理工学院" target="_blank">佐治亚理工学院</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://xiammt.xjtu.edu.cn/index.htm" title="国家天元数学西北中心" target="_blank">国家天元数学西北中心</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+
+        </div>
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#搜集文献（不分顺序）"><span class="nav-number">1.</span> <span class="nav-text">搜集文献（不分顺序）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Learning-to-Discretize-Solving-1D-Scalar-Conservation-Laws-via-Deep-Reinforcement-Learning"><span class="nav-number">2.</span> <span class="nav-text">Learning to Discretize: Solving 1D Scalar Conservation Laws via Deep Reinforcement Learning</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文献资料"><span class="nav-number">2.1.</span> <span class="nav-text">文献资料</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表格总结"><span class="nav-number">2.2.</span> <span class="nav-text">表格总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#部分细节"><span class="nav-number">2.3.</span> <span class="nav-text">部分细节</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#模型基本设置"><span class="nav-number">2.3.1.</span> <span class="nav-text">模型基本设置</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WENO数值方法"><span class="nav-number">2.3.2.</span> <span class="nav-text">WENO数值方法</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#WENO对应到MDP"><span class="nav-number">2.3.3.</span> <span class="nav-text">WENO对应到MDP</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#哪来的meta-learner"><span class="nav-number">2.3.4.</span> <span class="nav-text">哪来的meta-learner</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">3.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+<div class="copyright">&copy; 2019 &mdash; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Max Liu</span>
+
+
+
+    <span class="post-meta-divider">|</span>
+    <span class="post-meta-item-icon">
+      <i class="fa fa-area-chart"></i>
+    </span>
+    
+      <span class="post-meta-item-text">Site words total count&#58;</span>
+    
+    <span title="Site words total count">73.1k</span>
+  
+</div>
+
+
+<div class="powered-by">Powered by <a class="theme-link" target="_blank" href="https://hexo.io">Hexo</a></div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">Theme &mdash; <a class="theme-link" target="_blank" href="https://github.com/iissnan/hexo-theme-next">NexT.Gemini</a> v5.1.4</div>
+
+
+
+
+
+<br>
+<span id="timeDate">load days...</span><span id="times">load hours...</span><!--<span id="post-couttt">load characters...</span>-->
+<script>
+    var now = new Date(); 
+    function createtime() { 
+        var grt= new Date("10/14/2019 14:55:00");//此处修改你的建站时间或者网站上线时间
+        now.setTime(now.getTime()+250); 
+        days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days); 
+        hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours); 
+        if(String(hnum).length ==1 ){hnum = "0" + hnum;} minutes = (now - grt ) / 1000 /60 - (24 * 60 * dnum) - (60 * hnum); 
+        mnum = Math.floor(minutes); if(String(mnum).length ==1 ){mnum = "0" + mnum;} 
+        seconds = (now - grt ) / 1000 - (24 * 60 * 60 * dnum) - (60 * 60 * hnum) - (60 * mnum); 
+        snum = Math.round(seconds); if(String(snum).length ==1 ){snum = "0" + snum;} 
+        document.getElementById("timeDate").innerHTML = "This blog has run for "+dnum+" days, "; 
+        document.getElementById("times").innerHTML = hnum + "h, " + mnum + "m, " + snum + "s"; 
+        <!-->document.getElementById("post-counttt").innerHTML = "博客全站共"+totalcount(site)+"字"-->
+    } 
+setInterval("createtime()",250);
+</script>
+<br>
+
+
+  <script src="https://unpkg.com/mermaid@8.0.0/dist/mermaid.min.js"></script>
+  <script>
+    if (window.mermaid) {
+      mermaid.initialize({theme: 'forest'});
+    }
+  </script>
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      Vistors <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      PV <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+  
+
+  
+  
+    <script type="text/javascript" src="/lib/canvas-nest/canvas-nest.min.js"></script>
+  
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.4"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.1.4"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.1.4"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.4"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  <script type="text/javascript">
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url);
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('3');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x" /></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x" /></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
+</html>
