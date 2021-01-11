@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://maxliu245.github.io/"/>
-  <updated>2020-12-14T05:56:39.658Z</updated>
+  <updated>2021-01-11T01:34:16.259Z</updated>
   <id>http://maxliu245.github.io/</id>
   
   <author>
@@ -15,6 +15,62 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【论文略读30】AI Poincare</title>
+    <link href="http://maxliu245.github.io/2021/01/11/%E3%80%90%E8%AE%BA%E6%96%87%E7%95%A5%E8%AF%BB30%E3%80%91AI-Poincare/"/>
+    <id>http://maxliu245.github.io/2021/01/11/%E3%80%90%E8%AE%BA%E6%96%87%E7%95%A5%E8%AF%BB30%E3%80%91AI-Poincare/</id>
+    <published>2021-01-11T01:12:26.000Z</published>
+    <updated>2021-01-11T01:34:16.259Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote><p>阅读文章<em>AI Poincaré: Machine Learning Conservation Laws from Trajectories</em></p><p>名字挺炫酷，不过看了一遍，觉得可以借鉴的地方不多，见正文方法部分最后一句</p></blockquote><a id="more"></a><h1 id="AI-Poincare"><a href="#AI-Poincare" class="headerlink" title="AI Poincaré"></a>AI Poincaré</h1><p>还是偏物理的，个人觉得不太算CS的文章，有的格式都不一样；只有5页，不过符号不算少，就是证明没有，难道是保密技术？纯粹是兴趣看一看，<strong>作者MIT学物理的</strong>，不是我，狗头👍。而且可以学习借鉴的地方不多</p><p>文献链接：<a href="https://arxiv.org/abs/2011.04698" target="_blank" rel="noopener">https://arxiv.org/abs/2011.04698</a></p><p>提出的方法叫做 $AI\ Poincar\acute{e}$，是只利用未知动力系统轨线数据自动寻找守恒律的学习算法</p><h2 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h2><ul><li>纯粹数据驱动，从轨线trajectories中学习守恒律</li><li>自动学习，不手动设计特征，且不加显式的偏置归纳</li><li>实验优点：哈密顿系统中发现了所有精确的守恒量，而且似乎有一定的解释性：发现了周期轨道，phase transitions和breakdown timescale</li></ul><h2 id="认为的缺点："><a href="#认为的缺点：" class="headerlink" title="认为的缺点："></a>认为的缺点：</h2><ul><li>方法在建模比赛中应该是非常有意思的，但是在学习领域，觉得不够味道</li><li>虽然走纯数据驱动的路子，但是可解释性不足，发现轨道等概念的解释性和我想的不一样</li><li>方法其实解释得不清楚，只是讲了一遍过程，合理性不足</li><li>实验结果似乎对不上？没看明白ERD图，难道不是中间有几条线下凸，低于阈值就是发现多少守恒律？文章表格和描述的似乎不一致，我很费解，可能是我菜。。。</li></ul><h2 id="Target"><a href="#Target" class="headerlink" title="Target"></a>Target</h2><p>文章自述一个宏伟的目标是<strong>智能学习物理系统中的规律，如符号回归得到的方程形式、守恒律、对称性，etc</strong>，我喜欢。本文的具体target是：<strong>从轨线trajectories中学习守恒律</strong>。</p><h2 id="Idea"><a href="#Idea" class="headerlink" title="Idea"></a>Idea</h2><p>一般求守恒律可能要限制方程形式？所以以往方法可能是模型驱动。现在的idea就是表示只用轨线，对方程形式没有任何假设，就是要<strong>纯粹数据驱动</strong>试试。</p><p>具体的思想见建模的过程，本质是概念的对应，实现的方式比较基础</p><h2 id="Related-Works"><a href="#Related-Works" class="headerlink" title="Related Works"></a>Related Works</h2><p>用于对比批判的方法：</p><ul><li>用AE、暹罗网络的正交方法（我自己未验证此方法），可以寻找对称性。缺点是要手动设计（对称性）特征</li><li>把守恒律作为偏执归纳先验，但这不是纯数据驱动</li></ul><p>重点参考的方法：</p><p>sampling manifolds方法和动力系统<strong>概念的对应</strong>（我一直在想这个问题但是想不通。。）看了这篇文章给的对应关系，也只是觉得可能有关系，但是还是没有说清楚概念之间的真正联系，可能<strong>还是要看更基础的文章</strong>！</p><img src="/2021/01/11/【论文略读30】AI-Poincare/AIPoin.png" title="概念对应关系"><h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>看完方法觉得在机器学习的范畴内亮点不多。把方法流程大致过一遍。</p><p>首先是模型的基本假设，假定是<strong>带有守恒律</strong> $H_j(\mathbf{x})=h_j$ 的方程（真的是守恒律），每条守恒律都看作是一个高维空间（在可操作意义下都是 $\mathbb{R}^{l}$）中的超平面，满足一条守恒律就意味着有一个<strong>限制条件</strong>（凸分析学的好啊）。本文把所有可行轨线所在的空间看成与满足守恒律的空间一致，称之为可允许状态流形<code>permissible state manifold (PSM)</code> $\mathcal{M}$，且<strong>假设</strong>轨线数据集 $\mathcal{S}={\mathbf{x}(t)|t\geq 0}$ 都分布在这个流形 $\mathcal{M}$ 上。它定义为</p><script type="math/tex; mode=display">\begin{equation} \mathcal{M} = \{\mathbf{x}\in\mathbb{R}^N|H_j(\mathbf{x})=h_j\} \tag{1}\end{equation}</script><p>那么每满足一条守恒律，此流形其实就有了一个的限制，相当于在 $\mathbb{R}^N$ 的基础上维度<strong>降低一维</strong>，如果观察到总维度（应该是提前已知）减去估计出的轨线数据集 $\mathcal{S}$ 的维度不为0，那就是找出了守恒律。</p><p>那么第二点是模型怎么算的。<strong>第1步是对轨线数据预处理</strong>，标准化，这样会有一个协方差矩阵，对角元对应特征值，有特征值就说明找到了重要的维度，初始时的非0特征值个数就应该是上一段说的总维度，然后一旦<strong>有特征值在迭代的过程中变得很小</strong>，那就是守恒律被发现了，这个维度就对应守恒律。第2步是对轨线数据加噪，干扰之，得到<strong>近似的流形</strong>（我认为是这样），再蒙特卡洛采样，学习恢复流形的函数，这一步的目的应该想把干扰后的轨线投影到切空间，如果守恒律存在，那么<strong>合适的干扰对守恒律会有较大的影响</strong>。那么第3步就是把投影后的轨线数据PCA降维处理得到最后的维度，如果降维的过程中发现<strong>维度变化很大</strong>，说明合适水平的噪声影响到了守恒律。这时根据<code>explained ratio diagram (ERD)</code>（我真不懂这个图怎么对应几条守恒律，因为好像和结果描述的不一致）可<strong>看出</strong>守恒律有几条。</p><p>思路就是这样，有点意思，意思在于<strong>干扰影响了守恒律</strong>，且合适水平的干扰可以最大影响守恒律；另外就是其实专门去寻找可能存在的守恒律，这一点与流形上有些概念似乎可以对应。私以为本文<strong>只有这两点可以借鉴</strong>。</p><h2 id="Experiments"><a href="#Experiments" class="headerlink" title="Experiments"></a>Experiments</h2><p>做了5种有守恒律的哈密顿方程的实验。但是私以为讲得不清楚，因为用ERD看出的守恒律数目和文章描述的似乎不一样😶。也可能是我菜看不出来🤡。。。</p><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] Ziming Liu and Max Tegmark. AI Poincaré: Machine Learning Conservation Laws from Trajectories. arXiv e-prints, page arXiv:2011.04698, November 2020.</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;阅读文章&lt;em&gt;AI Poincaré: Machine Learning Conservation Laws from Trajectories&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;名字挺炫酷，不过看了一遍，觉得可以借鉴的地方不多，见正文方法部分最后一句&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="Paper Reading" scheme="http://maxliu245.github.io/tags/Paper-Reading/"/>
+    
+      <category term="Manifold" scheme="http://maxliu245.github.io/tags/Manifold/"/>
+    
+      <category term="PDE" scheme="http://maxliu245.github.io/tags/PDE/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【论文略读29】深度生成模型的黎曼几何理论</title>
+    <link href="http://maxliu245.github.io/2020/12/19/%E3%80%90%E8%AE%BA%E6%96%87%E7%95%A5%E8%AF%BB29%E3%80%91%E6%B7%B1%E5%BA%A6%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%BB%8E%E6%9B%BC%E5%87%A0%E4%BD%95%E7%90%86%E8%AE%BA/"/>
+    <id>http://maxliu245.github.io/2020/12/19/%E3%80%90%E8%AE%BA%E6%96%87%E7%95%A5%E8%AF%BB29%E3%80%91%E6%B7%B1%E5%BA%A6%E7%94%9F%E6%88%90%E6%A8%A1%E5%9E%8B%E7%9A%84%E9%BB%8E%E6%9B%BC%E5%87%A0%E4%BD%95%E7%90%86%E8%AE%BA/</id>
+    <published>2020-12-19T00:10:08.000Z</published>
+    <updated>2021-01-11T00:55:43.299Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote><p>阅读文章<em>The Riemannian Geometry of Deep Generative Models</em></p><p>名字挺吓人</p></blockquote><a id="more"></a><h2 id="文章信息"><a href="#文章信息" class="headerlink" title="文章信息"></a>文章信息</h2><ul><li><p>18年CVPR workshop，据说评价不高</p></li><li><p>作者来自盐湖城犹他大学和IBM</p></li></ul><h2 id="简单笔记"><a href="#简单笔记" class="headerlink" title="简单笔记"></a>简单笔记</h2><div class="table-container"><table><thead><tr><th>Background</th><th>Motivation</th><th>Targets/Contributions</th><th>实验结论：</th></tr></thead><tbody><tr><td>1. 假设实际复杂数据存在流形表示，高维数据在低维流形上有结构</td><td></td><td>1. 研究生成模型中，低维隐空间中流形可能的黎曼几何性质。真研究黎曼几何中的流形，一共三个算法，见表格下方所述</td><td>实际数据的流形非线性，接近０曲率</td></tr><tr><td>2. 假设生成模型学习低维隐空间到高维数据空间的映射，即模型能利用低维隐空间参数化，映射到高维空间中的数据流形（生成器）</td><td></td><td>2. 计算测地线，主要是点到流形距离</td><td>隐空间中的（线性路径）直线相当于流形上的测地线</td></tr><tr><td></td><td></td><td>3. 沿流形path上切向量的平移（对应数据点的语义平移，generate analogies），path是啥我还不知道</td></tr></tbody></table></div><p>表中提到的文章提出三个算法：</p><ul><li>geodesic interpolation between two points on the manifold</li><li>parallel translation of a tangent vector along a path on the manifold</li><li>geodesic shooting from an initial point and velocity on the manifold</li></ul><p>问题：</p><ul><li>Chapter 2中有不少维度让我困惑，最多是D维像集微分同胚于d维隐空间？</li><li>（4）式左边是E？</li><li>为什么（4）的近似可以直接在M上用范数？需要度量来导？有点像欧氏空间了，不知道能不能这样写</li></ul><p>细节：</p><ul><li>雅可比阵把隐空间中切向量映为像集中切向量，通过自动求导计算</li><li>数据空间诱导黎曼度量，提供内积</li><li>黎曼流形平坦，曲率为0，但不一定线性！</li></ul><p>打</p><hr><p><strong>回头再更新，觉得这个文章写得很垃圾，前前后后花了一个星期推导</strong>。。。</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;阅读文章&lt;em&gt;The Riemannian Geometry of Deep Generative Models&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;名字挺吓人&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="Paper Reading" scheme="http://maxliu245.github.io/tags/Paper-Reading/"/>
+    
+      <category term="GAN" scheme="http://maxliu245.github.io/tags/GAN/"/>
+    
+      <category term="Manifold" scheme="http://maxliu245.github.io/tags/Manifold/"/>
+    
+  </entry>
   
   <entry>
     <title>【论文略读28】继PDE-Net 2.0后引用它的一系列文章</title>
@@ -538,62 +594,6 @@
       <category term="Machine Learning" scheme="http://maxliu245.github.io/tags/Machine-Learning/"/>
     
       <category term="PDE" scheme="http://maxliu245.github.io/tags/PDE/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【论文阅读16】Isolation Forest——孤立的异常检测方式</title>
-    <link href="http://maxliu245.github.io/2020/08/19/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB16%E3%80%91Isolation-Forest%E2%80%94%E2%80%94%E5%AD%A4%E7%AB%8B%E7%9A%84%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E6%96%B9%E5%BC%8F/"/>
-    <id>http://maxliu245.github.io/2020/08/19/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB16%E3%80%91Isolation-Forest%E2%80%94%E2%80%94%E5%AD%A4%E7%AB%8B%E7%9A%84%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B%E6%96%B9%E5%BC%8F/</id>
-    <published>2020-08-19T01:55:26.000Z</published>
-    <updated>2020-08-19T02:07:45.693Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote><p>这次在网上学习别人记笔记的方式，感觉很有意思，不知道我能从中学到多少。可惜markdown做富文本表格太麻烦了…但是用别的，比如word、pdf，都不方便即时打开。。。算了吧，选择了markdown还是按标题目录来整理笔记</p></blockquote><a id="more"></a><img src="/2020/08/19/【论文阅读16】Isolation-Forest——孤立的异常检测方式/1.png" title="文章简介"><h1 id="为什么读此文章"><a href="#为什么读此文章" class="headerlink" title="为什么读此文章"></a>为什么读此文章</h1><p>原因有二：</p><ul><li>是我最早接触的论文之一，当年没看，现在拿来读一下，本来想略读，然后就忍不住多看了几遍…</li><li>周志华是作者之一，应该很顶</li></ul><p>文献链接：<a href="https://cs.nju.edu.cn/zhouzh/zhouzh.files/publication/icdm08b.pdf?q=isolation-forest" target="_blank" rel="noopener">Isolation Forest</a></p><h1 id="文献总结"><a href="#文献总结" class="headerlink" title="文献总结"></a>文献总结</h1><p>孤立森林是一种异常检测方法，侧重以孤立的方式直接寻找异常而非比对正常样本。</p><p>这个孤立的思想很棒，少了很多计算的步骤，但同时有很棒的准确性，毕竟基于的是异常本身的重要性质。</p><h1 id="文献内容"><a href="#文献内容" class="headerlink" title="文献内容"></a>文献内容</h1><h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>给异常检测领域提供一种新方法——孤立森林。</p><p>该方法来源于以往没人用过的孤立的思想来做异常检测，且可以发现由此提出的孤立森林有诸多优点。</p><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><ul><li>大方向是<strong>异常检测</strong>，看着就知道很重要</li><li>传统的（模型驱动的）异常检测方法把测试样本与已知正常样本对比，不符即为异常。这个想法很基础很实在√</li><li>上面方法的缺点有2，1是<strong>泛化不好</strong>，因为方法效果与正常样本库相关；2是<strong>计算代价大</strong>，往往只能用于低维小规模数据，因为这些方法常常用到距离等度量方式</li><li>在此提出并使用<strong>孤立</strong>的概念，把异常点孤立于其它正常样本。思想是利用了异常的2个性质，1是它们真的只是少数；2是特征与正常样本必是不同的。由此思想，用树来孤立异常数据，异常数据会在树根部被孤立，正常样本只会在深处被孤立。</li></ul><h2 id="方法——从孤立树到孤立森林"><a href="#方法——从孤立树到孤立森林" class="headerlink" title="方法——从孤立树到孤立森林"></a>方法——从孤立树到孤立森林</h2><ul><li>孤立森林是什么：<ul><li>背景提到了孤立树的概念，集成起来就是孤立森林。孤立森林方法只有2个变量，1是树的个数，2是sub-sampling size，一开始我猜这个size翻译为二次采样的size，做一次全分割用的样本数；后来我发现我猜错了，在文章第3章中说明了这个是可以设置多个树，相当于多个异常检测专家，分别随机取一部分数据来检测异常，这些数据的size叫sub-sampling size，至于为什么将在优缺点部分介绍。</li><li>异常的2个性质体现在孤立分割上就是，异常越少，所需分割次数就越少；以及异常会早早被割出来，即异常的平均路径长度average path lengths短，图1很形象。</li></ul></li><li>孤立树是什么：<ul><li>先给出基本数据假设：数据集$X={x_1, \cdots, x_n}$，$n$个样本，每个样本是$d$维的，有$d$个分量。</li><li>首先是一棵树，然后在这里，是特定的一种树。用节点来描述，它的节点$T$只有两种，一种是外部节点，就是接下来没有分支了；第二种是内部节点，且分支有且只有两个子节点$(T_l, T_r)$，即左右子节点。</li><li>那么数据集X的孤立方式是，每次随机孤立一个分量，如第$q$个，孤立的分割阈值是$p$，这样把数据分为两部分。多次孤立的停止条件有：<ul><li>树达到临界高度</li><li>最后只有一个点了，即$|X|=1$</li><li>所有数据都只有一个值，没法孤立</li></ul></li></ul></li><li><p>异常的判定——异常score：</p><ul><li>有了方法的概念和方法的构成单元，下面说方法的度量，即怎么样算是异常。基本的想法是path（路径）长度：样本$x$的路径长度记为$h(x)$，在树上，$x$被孤立出来需要的分割次数。但是这个$h(x)$不好，因为这个$h(x)$算不算异常也要看整个树的深度、样本量什么的；因此需要一般性的异常score作为度量。</li><li>这个score来源于BST，二元搜索树，因为发现孤立树和BST有相似的性质。借BST文章的结论，其不成功搜索的路径长度$c(n)$与这里的$h(x)$类似，于是采用(1, 2)式的形式计算了此异常score $s(x, n)$。个人感觉就是$h(x)$不general，引用$c(n)$给它做了某种标准化。图2和图3解释得非常好，一目了然，分别介绍了定性的$s(x, n)$合理性和类似等高线的异常判断方式。</li></ul></li></ul><h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><ul><li>孤立森林与已有方法主要区别：<ul><li>它可以利用sub-sampling，<strong>这个sub-sampling指什么？</strong>，是只用一部分数据就可以了，体现在孤立森林的局部：孤立树的使用上；如果数据多，往往树越深，正常样本也多，往往难以检测出异常。具体有两种情形——swamping and masking，分别指错把正常样本识别为异常，和异常点太多，比如扎堆出现，一看还以为都是正常的，其异常性被数量掩盖了。针对它们，只要取一部分数据就可以得到更好的效果，文章第3章画了两张图，非常形象地阐述了机理👍！</li><li>不需要计算什么距离、密度，大大降低计算复杂度</li><li>由集成的优点，大的森林可以处理大量数据了，包括高维情形</li></ul></li><li>孤立森林的优点：<ul><li>线性时间的复杂度，对运算内存的要求为很低的常数。1个原因是不需要计算什么距离、密度，<strong>另一个原因</strong>是按照方法中孤立的方式，即使树是完全树，最多（每次只孤立1个点）的内部节点有$n-1$个。最多的全部节点有$n-1+n=2n-1$个（自己画个图就知道了），所以对变量的内存要求是有界的，与样本量呈线性关系。</li><li>首次把孤立应用于异常检测，似乎用了二次采样，其它已有方法不行</li><li>它的2个变量都比较小，就可以表现优异</li></ul></li></ul><h2 id="实验——如何训练孤立森林"><a href="#实验——如何训练孤立森林" class="headerlink" title="实验——如何训练孤立森林"></a>实验——如何训练孤立森林</h2><p>和一般的机器学习方法类似，先训练出一个孤立森林模型，再拿测试数据测试。</p><ul><li><p>训练总体的算法是孤立树的集成——孤立森林，为算法1，递归式地分割数据集</p><ul><li>算法1中包括算法2，单颗孤立树的训练，这些都已经说过了。</li><li>算法1、2中有3个参数要提前设置：子采样数、树的最大深度和树的棵树，这些都根据实验经验确定，子采样数默认$\psi=256$，深度默认$l=ceiling(\log_2 \psi)$，棵树默认$t=100$。</li></ul></li><li><p>最后测试的时候计算的score要一直到被孤立出去，且使用递归的方式一点点计算。</p></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;这次在网上学习别人记笔记的方式，感觉很有意思，不知道我能从中学到多少。可惜markdown做富文本表格太麻烦了…但是用别的，比如word、pdf，都不方便即时打开。。。算了吧，选择了markdown还是按标题目录来整理笔记&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="Paper Reading" scheme="http://maxliu245.github.io/tags/Paper-Reading/"/>
-    
-      <category term="Machine Learning" scheme="http://maxliu245.github.io/tags/Machine-Learning/"/>
-    
-      <category term="Abnormality Detection" scheme="http://maxliu245.github.io/tags/Abnormality-Detection/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation</title>
-    <link href="http://maxliu245.github.io/2020/07/31/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB15%E3%80%91Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/"/>
-    <id>http://maxliu245.github.io/2020/07/31/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB15%E3%80%91Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/</id>
-    <published>2020-07-31T10:01:04.000Z</published>
-    <updated>2020-08-02T17:01:16.804Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote><p>论文阅读</p></blockquote><a id="more"></a><h2 id="文章简介"><a href="#文章简介" class="headerlink" title="文章简介"></a>文章简介</h2><p>这篇文章[3]是在ECCV2020的日程[1, 2]中发现的，拿来一读。</p><p>原作者的部分讲解视频在B站BAAI发布的<a href="https://www.bilibili.com/video/BV1wZ4y1M7qw?p=4" target="_blank" rel="noopener">ECCV 2020中国预会议回放丨计算机视觉、目标检测、图像分类、特征提取…55场前沿学术报告集萃</a>P4的181:40-192:00。</p><p>从标题上看是提出了一个对抗网络的变种，<font color="#0000FF">双重对抗网络DANet</font>，针对真实场景，<strong>同时建模（生成）噪声以及去噪</strong>。</p><img src="/2020/07/31/【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/1.png" title="文章简介"><h2 id="主要内容——DANet"><a href="#主要内容——DANet" class="headerlink" title="主要内容——DANet"></a>主要内容——DANet</h2><p>ps:</p><blockquote><p>主要内容直接参考B站视频或者原文即可。</p><p>个人不太想看相关工作的部分，只看了噪声生成的介绍，模拟噪声分布的目的之一是解决数据对的成本问题。其中传统方法GAN的难度在于如何找到好的噪声生成器。</p></blockquote><h3 id="模型提出"><a href="#模型提出" class="headerlink" title="模型提出"></a>模型提出</h3><p>本文的主要思想与之前的<a href="[https://maxliu245.github.io/2020/06/27/10-VDN-Variational-Denoising-Network-%E9%98%85%E8%AF%BB/#more](https://maxliu245.github.io/2020/06/27/10-VDN-Variational-Denoising-Network-阅读/#more">VDN</a>)[4]如出一辙，感觉是顺着VDN在贝叶斯框架下同时进行图像噪声估计和图像降噪的思路继续做的。主要内容是提出了双重对抗网络<strong>DANet</strong>，下面具体介绍一下。</p><p>相比VDN直接贝叶斯框架完成两种噪声相关任务，这次是间接地、从另一个角度地对干净图$x$和带噪图$y$的联合分布$p(x,y)$进行估计，并分两种分解形式。因此从两个方面分别建模，从$y$开始建模，生成$x$的过程就是训练了降噪器$R$，反之就是训练了噪声生成器$G$；两种方式逼近联合分布后通过判别器$D$做监督。这种方式称为标题的“双重对抗”，$R$和$G$相互影响，共同逼近联合分布。</p><p>$x$，$y$联合分布的两种分解很自然，从联合分布定义即可，实际意义参考视频中的图即可理解：</p><img src="/2020/07/31/【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/2.png" title="联合分布$p(x,y)$的两种分解意义"><h3 id="网络结构"><a href="#网络结构" class="headerlink" title="网络结构"></a>网络结构</h3><p>接下来确定对抗网络的结构：</p><img src="/2020/07/31/【论文阅读15】Dual-Adversarial-Network-Toward-Real-world-Noise-Removal-and-Noise-Generation/3.png" title="网络结构"><p>其中降噪器denoiser记为$R$，噪声生成器generator记为$G$，都用UNet，并加了残差策略；最后判别器discriminator记为$D$，采用5个卷积层和一个FC。</p><h3 id="部分训练细节"><a href="#部分训练细节" class="headerlink" title="部分训练细节"></a>部分训练细节</h3><p>训练的目标函数是Triple-GAN中提出的损失，加上两个正则项（对应于两种分解）。前者是干净图的$L_1$损失，可以优化$R$；后者由于噪声随机性，采用高斯滤波后的某种$L_1$，优化$G$，具体形式参考原文(6)式。</p><p>网络训练的过程参考原文算法1即可，其训练的思路在于向后传播分两步，交替优化$R$和$G$。</p><h3 id="部分亮点"><a href="#部分亮点" class="headerlink" title="部分亮点"></a>部分亮点</h3><p>首先是继承VDN的思路，同时完成两个噪声相关任务。</p><p>其次是在概率框架下从两种联合分布分解形式的角度设计了DANet。</p><p>再者是设计了两种噪声生成质量的度量，比较了真实带噪图和生成带噪图的相似性：</p><ul><li><p><strong>PGap </strong>(PSNR Gap)：借用降噪指标PSNR设计。已知训练集$\mathcal{D}$和测试集$\mathcal{T}$，分别是一堆成对干净图和带噪图，用准备好的噪声生成器$G$，对训练集进行加噪，得到生成的新训练集$\mathcal{D}_G$，准备原始训练数据上训练得到的降噪器$R_1$和在新训练集$\mathcal{D}_G$上得到的降噪器$R_2$，分别计算测试集上的PSNR，其差值小，代表噪声生成得越好，越接近真是噪声分布。</p><script type="math/tex; mode=display">PGap = PSNR(R_1(\mathcal{T})) - PSNR(R_2(\mathcal{T}))</script></li><li><p><strong>AKLD</strong> (Average KL Divergence)：这个比较直接，希望生成噪声的分布与其真实分布接近。真实的分布用了VDN的结论，然后采样；这里的分布是由生成器$G$对应的新分布，都通过采样近似。</p></li></ul><h2 id="DANet-V-S-VDN"><a href="#DANet-V-S-VDN" class="headerlink" title="DANet V.S. VDN"></a>DANet V.S. VDN</h2><p>与VDN的区别？难道是VDN传统贝叶斯框架条件后验，这个直接联合分布？主要区别好像是的耶~</p><blockquote><p> 参考摘要</p><p>Instead of only inferring the posteriori distribution of the latent clean image conditioned on the observed noisy image in traditional MAP framework, our proposed method learns the joint distribution of the clean-noisy image pairs.</p></blockquote><h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>[1] BAAIBeijing. 计算机视觉顶会ECCV 2020中国预会议：日程公开，注册有奖[EB/OL]. <a href="https://blog.csdn.net/BAAIBeijing/article/details/107588080" target="_blank" rel="noopener">https://blog.csdn.net/BAAIBeijing/article/details/107588080</a>, 2020-07-25.</p><p>[2] 智源社区. 智源社区活动[EB/OL]. <a href="https://event.baai.ac.cn/event/53#section-four" target="_blank" rel="noopener">https://event.baai.ac.cn/event/53#section-four</a>, 2020.</p><p>[3] Zongsheng Yue, Qian Zhao, Lei Zhang, and Deyu Meng. Dual adversarial network: Toward real-world noise removal and noise generation, 2020.</p><p>[4] Yue, Zongsheng, et al. Variational denoising network: Toward blind noise modeling and removal, <em>Advances in neural information processing systems</em>, 2019.</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;论文阅读&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="Paper Reading" scheme="http://maxliu245.github.io/tags/Paper-Reading/"/>
-    
-      <category term="Denoising" scheme="http://maxliu245.github.io/tags/Denoising/"/>
-    
-      <category term="Machine Learning" scheme="http://maxliu245.github.io/tags/Machine-Learning/"/>
-    
-      <category term="Computer Vision" scheme="http://maxliu245.github.io/tags/Computer-Vision/"/>
     
   </entry>
   
