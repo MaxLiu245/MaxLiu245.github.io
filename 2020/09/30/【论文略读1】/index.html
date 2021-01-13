@@ -597,7 +597,7 @@
 <p>对此问题，提出<strong>IDENT</strong>（Identifying Differential Equations with Numerical Time Evolution）方法，其训练的约束用到了是Time Evolution Error (TEE)，顺便提出噪声等级的度量Noise-to-Signal ratio。后面一堆方法就不管了。</p>
 <h2 id="文献思路翻译"><a href="#文献思路翻译" class="headerlink" title="文献思路翻译"></a>文献思路翻译</h2><p>$2.1$ 节全是记号，没问题。 $2.2$ 定义问题：</p>
 <p>假设数据背后的PDE模型为分量的线性组合：</p>
-<script type="math/tex; mode=display">\mathcal{F}(x,u,u_x,u_{xx}).</script><p>一共 $10=4+3+2+1$ 个分量： $1, u, u^2, u<em>x, u_x^2, uu_x, u</em>{xx}, u<em>{xx}^2, uu</em>{xx}, u<em>xu</em>{xx}$。其中<strong>记</strong></p>
+<script type="math/tex; mode=display">\mathcal{F}(x,u,u_x,u_{xx}).</script><p>一共 $10=4+3+2+1$ 个分量： $1, u, u^2, u_x, u_x^2, uu_x, u_{xx}, u_{xx}^2, uu_{xx}, u_xu_{xx}$。其中<strong>记</strong></p>
 <script type="math/tex; mode=display">u_t = \mathcal{F}(x,u,u_x,u_{xx}) = Linear(10\ items)</script><p>其中每个单项式是一个特征，特征数 $N_3 = 10$ ，RHS的线性组合可以看成 $\mathcal{F}$ 的泰勒展开。</p>
 <p>已有的时间数据（注意还有个已知条件是非周期的边界条件）是函数值 $u_i^n = u(x_i, t_n)$ ，以及时空间的分割方式， $(x_i, t_n), i = 1, \cdots, N_1, n = 1, \cdots, N_2$ ，网格式的数据。离散数据可以写成矩阵的形式：</p>
 <script type="math/tex; mode=display">\begin{aligned} \mathbf{b} &\triangleq \begin{pmatrix} u_t(x_1, t_1), \cdots, u_t(x_i, t_n), \cdots, u_t(x_{N_1}, t_{N_2})\end{pmatrix}_{\in \mathbb{R}^{N_1N_2\times 1}}\\ &= \begin{pmatrix} 1& u(x_1, t_1)& u^2(x_1, t_1)& u_x(x_1, t_1)& u_x^2(x_1, t_1)& uu_x(x_1, t_1)& u_{xx}(x_1, t_1)& u_{xx}^2(x_1, t_1)& uu_{xx}(x_1, t_1)& u_xu_{xx}(x_1, t_1)\\\vdots& \vdots& \vdots& \vdots& \vdots& \vdots& \vdots& \vdots& \vdots& \vdots \\ 1& u(x_i, t_n)& u^2(x_i, t_n)& u_x(x_i, t_n)& u_x^2(x_i, t_n)& uu_x(x_i, t_n)& u_{xx}(x_i, t_n)& u_{xx}^2(x_i, t_n)& uu_{xx}(x_i, t_n)& u_xu_{xx}(x_i, t_n)\\ \vdots& \vdots& \vdots& \vdots& \vdots& \vdots& \vdots& \vdots& \vdots& \vdots \\ 1& u(x_{N_1}, t_{N_2})& u^2(x_{N_1}, t_{N_2})& u_x(x_{N_1}, t_{N_2})& u_x^2(x_{N_1}, t_{N_2})& uu_x(x_{N_1}, t_{N_2})& u_{xx}(x_{N_1}, t_{N_2})& u_{xx}^2(x_{N_1}, t_{N_2})& uu_{xx}(x_{N_1}, t_{N_2})& u_xu_{xx}(x_{N_1}, t_{N_2})\end{pmatrix}_{\in \mathbb{R}^{N_1N_2\times N_3}} \begin{pmatrix} a_1\\ a_2\\ a_3\\ \vdots\\ a_{N_3-2}\\ a_{N_3-1}\\ a_{N_3}\\ \end{pmatrix}_{\in \mathbb{R}^{N_3\times 1}} \\ &\triangleq \begin{pmatrix} F[1], \cdots, F[j], \cdots, F[N_3]\end{pmatrix}\mathbf{a}\\ &\triangleq \mathbf{Fa}\end{aligned}</script><p>啊这，这排版功力绝了~🍗你阿巴阿巴了么💯</p>
@@ -608,7 +608,7 @@
 <script type="math/tex; mode=display">\displaystyle ||\eta||_{L^p}\leqslant O(\frac{1}{L}), p\in (0, \infty)</script><p>$2.3$ 节正式提出IDENT算法：</p>
 <p>首先要由函数值导出对时间 $t$ 的导数，即方程中的 $\mathbf{b}$ ，直接用差分近似（文章这个地方好像打错了个下标）：</p>
 <script type="math/tex; mode=display">\hat{u_t}(x_i, t_n) = u_t(x_i, t_n) + O(\Delta t) \triangleq \dfrac{u(x_i, t_n) - u(x_i, t_{n-1})}{\Delta t}</script><p>这就作为 $\mathbf{b}$ 的近似 $\mathbf{\hat{b}}$ 的分量。</p>
-<p>其它的特征，包括 $u<em>x, u</em>{xx}$ 等不直接用一阶差分近似，引用别人的方法，叫做<code>5点ENO</code>，哎，这样一顿操作，大矩阵 $\mathbf{F}$ 的近似出来了，记作 $\hat{\mathbf{F}}$ 。这样近似基本上都弄好了。原先的矩阵方程成为：</p>
+<p>其它的特征，包括 $u_x, u_{xx}$ 等不直接用一阶差分近似，引用别人的方法，叫做<code>5点ENO</code>，哎，这样一顿操作，大矩阵 $\mathbf{F}$ 的近似出来了，记作 $\hat{\mathbf{F}}$ 。这样近似基本上都弄好了。原先的矩阵方程成为：</p>
 <script type="math/tex; mode=display">\begin{aligned} \hat{\mathbf{F}}\mathbf{a} &= (\hat{\mathbf{F}} + \mathbf{F} - \mathbf{F})\mathbf{a} = \mathbf{b} + \mathbf{\eta} + (\hat{\mathbf{F}} - \mathbf{F})\mathbf{a}\\ &= (\mathbf{b} + \hat{\mathbf{b}} - \hat{\mathbf{b}}) + \mathbf{\eta} + (\hat{\mathbf{F}} - \mathbf{F})\mathbf{a}\\ &= \hat{\mathbf{b}} + (\mathbf{b} - \hat{\mathbf{b}}) + \mathbf{\eta} + (\hat{\mathbf{F}} - \mathbf{F})\mathbf{a}\\ &\triangleq \hat{\mathbf{b}} + \mathbf{e} \end{aligned}</script><p>总的近似误差 $\mathbf{e}$ 满足（应该是后面证明的）</p>
 <script type="math/tex; mode=display">\displaystyle ||\mathbf{e}||_{L^2}\leqslant \varepsilon\ s.t.\ \varepsilon = O(\Delta t + \Delta x^3 + \frac{1}{L}), p\in (0, \infty)</script><p>第二步似乎就是求解了？不，不是求解！第二步是用LASSO筛选出稀疏的成分，判断哪些特征对应的系数是比较重要的，方法是使用了LASSO并构造了带 $L_1$ 稀疏正则的能量函数。</p>
 <p>第三步则是根据已经知道了方程中含有哪些重要的成分（特征），再用TEE方法（Time Evolution Error）最小二乘进行拟合，得到最后的稀疏系数。</p>
@@ -761,7 +761,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -909,7 +909,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">79.5k</span>
+    <span title="Site words total count">80k</span>
   
 </div>
 
@@ -1479,15 +1479,7 @@ setInterval("createtime()",250);
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
-
-
-  
-
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -1504,5 +1496,13 @@ setInterval("createtime()",250);
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end --></body>
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
 </html>

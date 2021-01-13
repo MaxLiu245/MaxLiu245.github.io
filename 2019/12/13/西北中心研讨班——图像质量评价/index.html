@@ -450,7 +450,7 @@
 <p>不过FSIM的计算是受到SSIM很大的启发的，计算过程比较相似。</p>
 <h4 id="GMSD-Gradient-magnitude-similarity-deviation"><a href="#GMSD-Gradient-magnitude-similarity-deviation" class="headerlink" title="GMSD: Gradient magnitude similarity deviation"></a>GMSD: Gradient magnitude similarity deviation</h4><p>梯度模相似性标准差，据说非常有效非常快。主要用的是梯度模的信息。</p>
 <h4 id="LPIPS-A-CNN-based-FR-IQA-Index"><a href="#LPIPS-A-CNN-based-FR-IQA-Index" class="headerlink" title="LPIPS: A CNN based FR-IQA Index"></a>LPIPS: A CNN based FR-IQA Index</h4><p>这都是个什么东西。Learned perceptual image patch similarity.大概是衡量两种patch图像和标准图像的相似性。但是以前的指标判断的都不符合人类感知，这里LPIPS可以衡量得很好，而不依赖于具体DeepCNN的结构。</p>
-<p>LPIPS训练的是tuple：${x,x_0,x_1,h}$，参考图像，patch0，patch1，h指示哪个patch更好。这个有点意思了。</p>
+<p>LPIPS训练的是tuple：$\{x,x_0,x_1,h\}$，参考图像，patch0，patch1，h指示哪个patch更好。这个有点意思了。</p>
 <h4 id="NR-IQR方法"><a href="#NR-IQR方法" class="headerlink" title="NR-IQR方法"></a>NR-IQR方法</h4><p>FR似乎是指有reference，而NR似乎没啥标准，所以它要自己判断如何符合人类感知。</p>
 <p>NR似乎可以用于对抗学习。</p>
 <h3 id="基于task"><a href="#基于task" class="headerlink" title="基于task"></a>基于task</h3><p>自建数据集去研究去雾，和师姐很想但没师姐强嘻嘻。</p>
@@ -662,7 +662,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -810,7 +810,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">79.5k</span>
+    <span title="Site words total count">80k</span>
   
 </div>
 
@@ -1380,15 +1380,7 @@ setInterval("createtime()",250);
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
-
-
-  
-
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -1405,5 +1397,13 @@ setInterval("createtime()",250);
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end --></body>
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
 </html>

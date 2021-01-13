@@ -431,7 +431,7 @@
 <h2 id="阅读笔记——文章主题整理"><a href="#阅读笔记——文章主题整理" class="headerlink" title="阅读笔记——文章主题整理"></a>阅读笔记——文章主题整理</h2><p>这篇文章提出的是一种经典的元学习方法，记为<code>MAML</code>。其卖点在于<code>模型不可知</code>，对于一般使用梯度下降的模型，都可以以<code>MAML</code>的方法使之能<strong>快速适应新任务</strong>。</p>
 <p>MAML的思想来源是元学习，假定有一系列共同或相似内在联系的任务，那么希望机器能把任务之间的关联抽象为所谓的经验，辅助新任务的训练。但是这样一种<strong>general的经验</strong>不好确定啊，而且直观地说，此经验一定是要随着新任务变化而稍有变化的，才能使之合理地成为元学习器。</p>
 <p>其思想就是找到这样的经验并用于加强新任务的<strong>泛化</strong>能力，很自然地，这个经验抽象为了模型的初始参数。在元学习的假设下，我们有很多之前的任务$T_i$（经验）和待解决的新任务，它们都可以从任务分布$p(T)$中采样出来。目标是新模型的快速适应能力，即只要很少的迭代次数就能达到较优的效果，那么，初始参数要使得损失的变化最大，只要微调，性能快速变化。</p>
-<p>所以考虑模型$f<em>{\theta}$，其损失$L$。先采样一个过去的任务$T_i\sim p(T)$（也可以采样多个任务，这里以一个为例），在此任务上计算$L</em>{T<em>i}(f</em>{\theta})$，从中提取经验的信息，对初始参数$\theta$求导得$\nabla<em>{\theta}L</em>{T<em>i}(f</em>{\theta})$。为了使Loss对初始参数的变化更加敏感，对当前初始参数进行一步梯度更新得到$\theta’$。再在重新采样的元任务上确认效果，如何保证Loss对初始参数更敏感？$\theta’$要让经过一次迭代后元任务上的损失就达到最小$\Leftrightarrow$</p>
+<p>所以考虑模型$f_{\theta}$，其损失$L$。先采样一个过去的任务$T_i\sim p(T)$（也可以采样多个任务，这里以一个为例），在此任务上计算$L_{T_i}(f_{\theta})$，从中提取经验的信息，对初始参数$\theta$求导得$\nabla_{\theta}L_{T_i}(f_{\theta})$。为了使Loss对初始参数的变化更加敏感，对当前初始参数进行一步梯度更新得到$\theta’$。再在重新采样的元任务上确认效果，如何保证Loss对初始参数更敏感？$\theta’$要让经过一次迭代后元任务上的损失就达到最小$\Leftrightarrow$</p>
 <script type="math/tex; mode=display">\min\limits_{\theta}\sum\limits_{T_i\sim p(T)}L_{T_i}(f_{\theta'})=\min\limits_{\theta}\sum\limits_{T_i\sim p(T)}L_{T_i}(f_{\theta-\alpha\nabla_{\theta}L_{T_i}(f_{\theta})})</script><p>骚操作，实验不看了，有空研究下代码就更懂了🤭</p>
 
       
@@ -576,7 +576,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -724,7 +724,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">79.5k</span>
+    <span title="Site words total count">80k</span>
   
 </div>
 
@@ -1294,15 +1294,7 @@ setInterval("createtime()",250);
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
-
-
-  
-
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -1319,5 +1311,13 @@ setInterval("createtime()",250);
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end --></body>
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
 </html>

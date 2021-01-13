@@ -448,7 +448,7 @@ A -->D(Jacobi计算<br>泰勒展开以及行列式的迹估计)
 A -->E(正则引入<br>有两种方法改善模型效果,分别是测地正则和逆一致正则)</pre>
 
 <h2 id="基本任务——对归纳偏执建模"><a href="#基本任务——对归纳偏执建模" class="headerlink" title="基本任务——对归纳偏执建模"></a>基本任务——对归纳偏执建模</h2><p>写总结的时候发现还是要写像target一样的东西放在前面</p>
-<p>对流的建模基本不变，即数据 $X={x_1,\cdots,x_N}$，引入生成模型及其隐变量 $z$，目标是最大似然</p>
+<p>对流的建模基本不变，即数据 $X=\{x_1,\cdots,x_N\}$，引入生成模型及其隐变量 $z$，目标是最大似然</p>
 <script type="math/tex; mode=display">\begin{align} \displaystyle \log p_{\theta}(X)&=\sum_{i=1}^N \log p_{\theta}x_i \tag{1}\\ &\overset{p_{\theta}(x)=\int p_{\theta}(z,x)dz}{\geq} \mathbb{E}_{q_{\lambda}(z|x)}[\log p_{\theta}(x|z)-KL(q_{\lambda}(z|x)|p(z))]. \tag{2}\end{align}</script><p>现在给出归纳偏置，由于主要是<strong>建模隐变量</strong> $z$，试图近似它的后验分布，那么本文假设的是<strong>最终的隐变量 $z$ 由一系列可逆变换 $\phi_k$ 作用在初始分布 $q_0$ 上得到</strong>，即</p>
 <script type="math/tex; mode=display">\displaystyle final\ latent\ variable\ z_K = \phi_K\circ\cdots\circ\phi_2\circ\phi_1(z_0) \tag{3}</script><p>之后要写出对应的变分目标，具体的过程就是 $(3)$ 式<strong>概率密度函数分解</strong>，由</p>
 <script type="math/tex; mode=display">\begin{align} \displaystyle q_{k+1}(z_{k+1})&=q_k(z_k)\bigg|det\dfrac{\partial \phi_{k+1}(z_k)}{\partial z_k}\bigg|^{-1} \tag{4}\\ &=q_k(\phi_{k+1}^{-1}(z_{k+1}))\bigg|det\dfrac{\partial \phi_{k+1}^{-1}(z_{k+1})}{\partial z_{k+1}}\bigg| \tag{5}\end{align}</script><p>可得分解后的变分目标（其实不难，就是要写半天。。。）为</p>
@@ -476,8 +476,8 @@ A -->E(正则引入<br>有两种方法改善模型效果,分别是测地正则�
 </ul>
 <h2 id="网络结构——RNN-ResNet-ODE-Net"><a href="#网络结构——RNN-ResNet-ODE-Net" class="headerlink" title="网络结构——RNN+ResNet(ODE-Net)"></a>网络结构——RNN+ResNet(ODE-Net)</h2><p>这个部分本来以为挺难，但是读完了发现文章中图2真是<strong>一图胜千言</strong>。我解读了三次此网络，前两次应该都错了！后一次就是总结出来的┭┮﹏┭┮</p>
 <img src="/2021/01/13/【论文阅读31】DDNF——深度微分同胚的Normalizing-Flow/DDNF-3.png" title="网络设置">
-<p>首先，观察<strong>最下面的图</strong>，这就是<strong>整个流的建模过程</strong>，即通过 $K$ <strong>个可逆微分同胚变换</strong>，${\phi<em>{k}}_k$ ，它把初始化的隐变量 $z_0$，逐步映射到最终目标隐变量 $z_K$。因此，最下面的图中每个block都是在流形上某点$z_k$处切空间中进行积分的过程。且注意到在每个切空间  $T</em>{z_k}\Omega$中，切向量都是不同的，因此每步变换中的切向量或者说速率不同！</p>
-<p>其次，如上图<strong>中间的图</strong>表示，中间的图整个是<strong>一个积分过程，表示一步可逆变换</strong> $z<em>{k+1}=\phi</em>{k+1}(z<em>k)$。<strong>整体是RNN</strong>模型，其中有 $T$ 个block，指的是 $T$ 个ResNet block，$T$ 指的是从 $z_k$ 到 $z</em>{k+1}$ 的积分过程中离散近似的小区间数目，RNN就是把这离散的过程叠加循环起来。且为了方便，建模时考虑<strong>使用不随时间变化的stationary向量场</strong>，即每个block使用相同的向量场，图中记为 $v^k$ 是很合理的。此时，整个一步积分是自治方程 $(8)$ 的求解过程，，解出来其实是指映射 $\phi^{v_k}=exp(v^k(t,\cdot))=exp(v^k(\cdot))$，如果考虑实验中的近似手段 $T$ 个block的结果叠加，那就是 $\phi^{v_k}=exp(v^k(\cdot)/T)^T$</p>
+<p>首先，观察<strong>最下面的图</strong>，这就是<strong>整个流的建模过程</strong>，即通过 $K$ <strong>个可逆微分同胚变换</strong>，$\{\phi_{k}\}_k$ ，它把初始化的隐变量 $z_0$，逐步映射到最终目标隐变量 $z_K$。因此，最下面的图中每个block都是在流形上某点$z_k$处切空间中进行积分的过程。且注意到在每个切空间  $T_{z_k}\Omega$中，切向量都是不同的，因此每步变换中的切向量或者说速率不同！</p>
+<p>其次，如上图<strong>中间的图</strong>表示，中间的图整个是<strong>一个积分过程，表示一步可逆变换</strong> $z_{k+1}=\phi_{k+1}(z_k)$。<strong>整体是RNN</strong>模型，其中有 $T$ 个block，指的是 $T$ 个ResNet block，$T$ 指的是从 $z_k$ 到 $z_{k+1}$ 的积分过程中离散近似的小区间数目，RNN就是把这离散的过程叠加循环起来。且为了方便，建模时考虑<strong>使用不随时间变化的stationary向量场</strong>，即每个block使用相同的向量场，图中记为 $v^k$ 是很合理的。此时，整个一步积分是自治方程 $(8)$ 的求解过程，，解出来其实是指映射 $\phi^{v_k}=exp(v^k(t,\cdot))=exp(v^k(\cdot))$，如果考虑实验中的近似手段 $T$ 个block的结果叠加，那就是 $\phi^{v_k}=exp(v^k(\cdot)/T)^T$</p>
 <p>最后是<strong>最上面的模型</strong>，即具体<strong>一步积分中一个小区间的近似</strong>过程，为<strong>一个ResNet block</strong>，其中使用多少层，每层宽度多少是可以调整的。我记的没错的话，本文实验多使用的结构只有两层，每层只有两个神经元，目的是验证即使结构简单，其表达能力也很强，这将会验证基于ODE的微分同胚流的模型是优异的</p>
 <hr>
 <p>这样模型就讲完了，下面介绍为什么使用ResNet的结构，计算Jacobi会用到，但是这<strong>和以前我看的不一样</strong>，我记得以前看过哪篇文章，<strong>用ResNet的结构会使Jacobi呈现行列式为1的形式</strong>，进一步微调使之变化（好像是这样，忘了）。这里计算Jacobi不太一样</p>
@@ -578,6 +578,10 @@ A -->E(正则引入<br>有两种方法改善模型效果,分别是测地正则�
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2021/01/13/【Hexo4】公式渲染出错更正——渲染位置失效问题/" rel="prev" title="【Hexo4】公式渲染出错更正——渲染位置失效问题">
+                【Hexo4】公式渲染出错更正——渲染位置失效问题 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -655,7 +659,7 @@ A -->E(正则引入<br>有两种方法改善模型效果,分别是测地正则�
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -803,7 +807,7 @@ A -->E(正则引入<br>有两种方法改善模型效果,分别是测地正则�
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">79.5k</span>
+    <span title="Site words total count">80k</span>
   
 </div>
 
@@ -1373,15 +1377,7 @@ setInterval("createtime()",250);
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
-
-
-  
-
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -1398,5 +1394,13 @@ setInterval("createtime()",250);
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end --></body>
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
 </html>

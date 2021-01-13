@@ -468,7 +468,7 @@
 <li><p>VDN理论推导过程</p>
 <ul>
 <li><p>贝叶斯模型建立</p>
-<p>数据对集合$D={\mathbf{y}<em>j, \mathbf{x}_j}</em>{j=1}^n$，前者是带噪图，后者是对应的真实干净图，下标$j$是样本的index。贝叶斯框架下，隐变量是带噪图条件下的干净图和噪声。假定图像的维度为$d = weight \times height$，单个样本对$(\mathbf{y}, \mathbf{x})=\left(\left[y_1, \cdots, y_d\right]^T, \left[x_1, \cdots, x_d\right]^T\right)$，维度的index则统一用下标$i$表示。那么一张带噪图$\mathbf{y}$的一个分量</p>
+<p>数据对集合$D=\{\mathbf{y}_j, \mathbf{x}_j\}_{j=1}^n$，前者是带噪图，后者是对应的真实干净图，下标$j$是样本的index。贝叶斯框架下，隐变量是带噪图条件下的干净图和噪声。假定图像的维度为$d = weight \times height$，单个样本对$(\mathbf{y}, \mathbf{x})=\left(\left[y_1, \cdots, y_d\right]^T, \left[x_1, \cdots, x_d\right]^T\right)$，维度的index则统一用下标$i$表示。那么一张带噪图$\mathbf{y}$的一个分量</p>
 <script type="math/tex; mode=display">y_i \sim \mathcal{N}(y_i | z_i, \sigma_i^2), i = 1, 2, \cdots, d \tag{1}</script><p>其中$z_i\in \mathbb{R}^d$，是隐变量，潜在的干净图，以数据对中的干净图为先验，</p>
 <script type="math/tex; mode=display">z_i \sim \mathcal{N}(z_i | x_i, \epsilon_0^2), i = 1, 2, \cdots, d \tag{2}</script><p>为共轭的高斯先验。后面的方差项就是指图像上每个像素处的噪声是非iid的，不知道为什么取为对什么共轭的逆高斯分布IG，即</p>
 <script type="math/tex; mode=display">\sigma_i^2 \sim IG\left(\sigma_i^2 | \dfrac{p^2}{2} - 1, \dfrac{p^2\xi_i}{2}\right), i = 1, 2, \cdots, d \tag{3}</script><p>其中$\mathbf{\xi} =\mathcal{G}\left(\left(\hat{\mathbf{y}} - \hat{\mathbf{x}} \right)^2; p\right)$，其中$\left(\hat{\mathbf{y}} - \hat{\mathbf{x}} \right)^2$称为variance map，中文可能叫图像的方差映射；$\mathcal{G}(\cdot, p)$指用$p\times p$的卷积核进行高斯滤波。具体有啥用我没看懂鸭…</p>
@@ -644,7 +644,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -792,7 +792,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">79.5k</span>
+    <span title="Site words total count">80k</span>
   
 </div>
 
@@ -1362,15 +1362,7 @@ setInterval("createtime()",250);
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
-
-
-  
-
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -1387,5 +1379,13 @@ setInterval("createtime()",250);
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end --></body>
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
 </html>

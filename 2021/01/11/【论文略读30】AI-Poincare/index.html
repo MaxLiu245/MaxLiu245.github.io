@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Paper Reading,Manifold,PDE,">
+  <meta name="keywords" content="Paper Reading,PDE,Manifold,">
 
 
 
@@ -89,7 +89,7 @@
 
 
 <meta name="description" content="阅读文章AI Poincaré: Machine Learning Conservation Laws from Trajectories 名字挺炫酷，不过看了一遍，觉得可以借鉴的地方不多，见正文方法部分最后一句">
-<meta name="keywords" content="Paper Reading,Manifold,PDE">
+<meta name="keywords" content="Paper Reading,PDE,Manifold">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【论文略读30】AI Poincare">
 <meta property="og:url" content="http://maxliu245.github.io/2021/01/11/【论文略读30】AI-Poincare/index.html">
@@ -447,7 +447,7 @@
 <p>sampling manifolds方法和动力系统<strong>概念的对应</strong>（我一直在想这个问题但是想不通。。）看了这篇文章给的对应关系，也只是觉得可能有关系，但是还是没有说清楚概念之间的真正联系，可能<strong>还是要看更基础的文章</strong>！</p>
 <img src="/2021/01/11/【论文略读30】AI-Poincare/AIPoin.png" title="概念对应关系">
 <h2 id="Method"><a href="#Method" class="headerlink" title="Method"></a>Method</h2><p>看完方法觉得在机器学习的范畴内亮点不多。把方法流程大致过一遍。</p>
-<p>首先是模型的基本假设，假定是<strong>带有守恒律</strong> $H_j(\mathbf{x})=h_j$ 的方程（真的是守恒律），每条守恒律都看作是一个高维空间（在可操作意义下都是 $\mathbb{R}^{l}$）中的超平面，满足一条守恒律就意味着有一个<strong>限制条件</strong>（凸分析学的好啊）。本文把所有可行轨线所在的空间看成与满足守恒律的空间一致，称之为可允许状态流形<code>permissible state manifold (PSM)</code> $\mathcal{M}$，且<strong>假设</strong>轨线数据集 $\mathcal{S}={\mathbf{x}(t)|t\geq 0}$ 都分布在这个流形 $\mathcal{M}$ 上。它定义为</p>
+<p>首先是模型的基本假设，假定是<strong>带有守恒律</strong> $H_j(\mathbf{x})=h_j$ 的方程（真的是守恒律），每条守恒律都看作是一个高维空间（在可操作意义下都是 $\mathbb{R}^{l}$）中的超平面，满足一条守恒律就意味着有一个<strong>限制条件</strong>（凸分析学的好啊）。本文把所有可行轨线所在的空间看成与满足守恒律的空间一致，称之为可允许状态流形<code>permissible state manifold (PSM)</code> $\mathcal{M}$，且<strong>假设</strong>轨线数据集 $\mathcal{S}=\{\mathbf{x}(t)|t\geq 0\}$ 都分布在这个流形 $\mathcal{M}$ 上。它定义为</p>
 <script type="math/tex; mode=display">\begin{equation} \mathcal{M} = \{\mathbf{x}\in\mathbb{R}^N|H_j(\mathbf{x})=h_j\} \tag{1}\end{equation}</script><p>那么每满足一条守恒律，此流形其实就有了一个的限制，相当于在 $\mathbb{R}^N$ 的基础上维度<strong>降低一维</strong>，如果观察到总维度（应该是提前已知）减去估计出的轨线数据集 $\mathcal{S}$ 的维度不为0，那就是找出了守恒律。</p>
 <p>那么第二点是模型怎么算的。<strong>第1步是对轨线数据预处理</strong>，标准化，这样会有一个协方差矩阵，对角元对应特征值，有特征值就说明找到了重要的维度，初始时的非0特征值个数就应该是上一段说的总维度，然后一旦<strong>有特征值在迭代的过程中变得很小</strong>，那就是守恒律被发现了，这个维度就对应守恒律。第2步是对轨线数据加噪，干扰之，得到<strong>近似的流形</strong>（我认为是这样），再蒙特卡洛采样，学习恢复流形的函数，这一步的目的应该想把干扰后的轨线投影到切空间，如果守恒律存在，那么<strong>合适的干扰对守恒律会有较大的影响</strong>。那么第3步就是把投影后的轨线数据PCA降维处理得到最后的维度，如果降维的过程中发现<strong>维度变化很大</strong>，说明合适水平的噪声影响到了守恒律。这时根据<code>explained ratio diagram (ERD)</code>（我真不懂这个图怎么对应几条守恒律，因为好像和结果描述的不一致）可<strong>看出</strong>守恒律有几条。</p>
 <p>思路就是这样，有点意思，意思在于<strong>干扰影响了守恒律</strong>，且合适水平的干扰可以最大影响守恒律；另外就是其实专门去寻找可能存在的守恒律，这一点与流形上有些概念似乎可以对应。私以为本文<strong>只有这两点可以借鉴</strong>。</p>
@@ -490,9 +490,9 @@
           
             <a href="/tags/Paper-Reading/" rel="tag"># Paper Reading</a>
           
-            <a href="/tags/Manifold/" rel="tag"># Manifold</a>
-          
             <a href="/tags/PDE/" rel="tag"># PDE</a>
+          
+            <a href="/tags/Manifold/" rel="tag"># Manifold</a>
           
         </div>
       
@@ -596,7 +596,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -744,7 +744,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">79.5k</span>
+    <span title="Site words total count">80k</span>
   
 </div>
 
@@ -1314,15 +1314,7 @@ setInterval("createtime()",250);
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
-
-
-  
-
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -1339,5 +1331,13 @@ setInterval("createtime()",250);
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end --></body>
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
 </html>

@@ -424,14 +424,14 @@
 <p>另一个结论是，如果只有ReLU作为非线性单元，则loss曲线的情况与noise label的情况无关！这个似乎有点恐怖？！</p>
 <h2 id="模型setup"><a href="#模型setup" class="headerlink" title="模型setup"></a>模型setup</h2><p>基本记号：</p>
 <ul>
-<li>c是正整数，定义$[c] = {1, \cdots, c}$</li>
+<li>c是正整数，定义$[c] = \{1, \cdots, c\}$</li>
 <li>粗体表示列向量或者矩阵</li>
 <li>c维的单纯形$\Delta^{c-1}\subset [0, 1]^c$</li>
 </ul>
 <p>数据生成模型setup，c类监督学习，</p>
 <ul>
 <li>特征空间$\mathcal{X}\subseteq \mathbb{R}^d$，d维数据</li>
-<li>label空间$\mathcal{Y} = {e^i:i\in [c]}$，$e^i$是c维向量，元素值为0或1，只有第i维是1，其它都是0，这个维度就对应了label值</li>
+<li>label空间$\mathcal{Y} = \{e^i:i\in [c]\}$，$e^i$是c维向量，元素值为0或1，只有第i维是1，其它都是0，这个维度就对应了label值</li>
 </ul>
 <p>一个数据$(\boldsymbol{x}, \boldsymbol{y})$生成的方式是未知的分布$p(\boldsymbol{x},\boldsymbol{y}) = p(\boldsymbol{y}|\boldsymbol{x})p(\boldsymbol{x})$。</p>
 <p>神经网络模型，n层layers，其实就是一模一样的全连接网络做分类，只是这里它说的数学很详细，可以作为不错的介绍材料。（下面可看可不看）</p>
@@ -439,7 +439,7 @@
 <script type="math/tex; mode=display">l(\boldsymbol{e}^i, \hat{p}(\boldsymbol{y}|\boldsymbol{x})) =  - (\boldsymbol{e}^i)^Tlog\ \hat{p}(\boldsymbol{y}|\boldsymbol{x}) = - log\ \hat{p}(\boldsymbol{y} = \boldsymbol{e}^i|\boldsymbol{x})</script><p>把每个label对应的结果组合起来成为loss向量$\boldsymbol{l} \in \mathbb{R}^c$</p>
 <p>后面将证明一些温和条件下loss的结论$\sim$</p>
 <h2 id="带噪标签和loss的稳健性"><a href="#带噪标签和loss的稳健性" class="headerlink" title="带噪标签和loss的稳健性"></a>带噪标签和loss的稳健性</h2><p>标签的噪声是不对称或者是不均匀asymmetric的，概率转移是指每个标签$\boldsymbol{y}$都可能以一定概率$p(\tilde{\boldsymbol{y}}|\boldsymbol{y})$变成一个别的标签$\tilde{\boldsymbol{y}}$。</p>
-<p>注意这里真实标签是$\boldsymbol{y}$但是观测到的样本标签是$\tilde{\boldsymbol{y}}$。所以我们在拟合的其实是分布$p(\boldsymbol{x}, \tilde{\boldsymbol{y}}) = \sum<em>{\boldsymbol{y}}p(\tilde{\boldsymbol{y}}|\boldsymbol{y})p(\boldsymbol{y}|\boldsymbol{x})p(\boldsymbol{x})$。其中标签转移的概率表示为noise转移矩阵$T\in [0, 1]^{c\times c}$的元素$T</em>{ij} = p(\tilde{\boldsymbol{y}} = e^j|\boldsymbol{y} = e^i)$。T只需要满足行和为1。</p>
+<p>注意这里真实标签是$\boldsymbol{y}$但是观测到的样本标签是$\tilde{\boldsymbol{y}}$。所以我们在拟合的其实是分布$p(\boldsymbol{x}, \tilde{\boldsymbol{y}}) = \sum_{\boldsymbol{y}}p(\tilde{\boldsymbol{y}}|\boldsymbol{y})p(\boldsymbol{y}|\boldsymbol{x})p(\boldsymbol{x})$。其中标签转移的概率表示为noise转移矩阵$T\in [0, 1]^{c\times c}$的元素$T_{ij} = p(\tilde{\boldsymbol{y}} = e^j|\boldsymbol{y} = e^i)$。T只需要满足行和为1。</p>
 <p>一般来说实际数据中可能有些类别本身很接近，人也不太能精确识别，因此容易出现标签出错的情况。</p>
 <p>我们通过两种修正loss函数的方法达到loss稳健性。</p>
 <h2 id="修正1：向后修正"><a href="#修正1：向后修正" class="headerlink" title="修正1：向后修正"></a>修正1：向后修正</h2><p>向后修正loss仍然是原loss的无偏估计，即</p>
@@ -459,10 +459,10 @@
 <script type="math/tex; mode=display">\begin{align} \boldsymbol{\ell}(e^i, \hat{p}(\boldsymbol{\tilde{y}}|\boldsymbol{x})) &= - (\boldsymbol{e}^i)^Tlog\ \hat{p}(\boldsymbol{\tilde{y}}|\boldsymbol{x})\\ &= - log\ \hat{p}(\boldsymbol{\tilde{y}} = \boldsymbol{e}^i|\boldsymbol{x})\\ &= -\log \sum_{j=1}^{c} p\left(\tilde{\boldsymbol{y}}=e^{i} | \boldsymbol{y}=e^{j}\right) \hat{p}\left(\boldsymbol{y}=e^{j} | \boldsymbol{x}\right)\\ &= -\log \sum_{j=1}^{c} T_{j i} \hat{p}\left(\boldsymbol{y}=e^{j} | \boldsymbol{x}\right)\end{align}</script><p>用矩阵的形式就是</p>
 <script type="math/tex; mode=display">\ell(\hat{p}(\boldsymbol{y} | \boldsymbol{x}))=-\log T^{\top} \hat{p}(\boldsymbol{y} | \boldsymbol{x})</script><p>这样的话，<strong>loss被T处理了，就叫做向前</strong></p>
 <p>在定理中，loss是proper composite，带来一个性质：</p>
-<p>给定可逆的link函数$\psi: \Delta^{c-1} \rightarrow \mathbb{R}^{c}$，则复合loss定义为$\ell<em>{\psi}$，$\ell</em>{\boldsymbol{\psi}}(\boldsymbol{y}, \boldsymbol{h}(\boldsymbol{x}))=\ell\left(\boldsymbol{y}, \boldsymbol{\psi}^{-1}(\boldsymbol{h}(\boldsymbol{x}))\right)$，这里softmax就是$\boldsymbol{\psi}^{-1}$。它对应minimizer的性质$\underset{h}{\operatorname{argmin}} \mathbb{E}<em>{\boldsymbol{x}, \boldsymbol{y}} \ell</em>{\boldsymbol{\psi}}(\boldsymbol{y}, \boldsymbol{h}(\boldsymbol{x}))=\psi(p(\boldsymbol{y} | \boldsymbol{x}))$。</p>
+<p>给定可逆的link函数$\psi: \Delta^{c-1} \rightarrow \mathbb{R}^{c}$，则复合loss定义为$\ell_{\psi}$，$\ell_{\boldsymbol{\psi}}(\boldsymbol{y}, \boldsymbol{h}(\boldsymbol{x}))=\ell\left(\boldsymbol{y}, \boldsymbol{\psi}^{-1}(\boldsymbol{h}(\boldsymbol{x}))\right)$，这里softmax就是$\boldsymbol{\psi}^{-1}$。它对应minimizer的性质$\underset{h}{\operatorname{argmin}} \mathbb{E}_{\boldsymbol{x}, \boldsymbol{y}} \ell_{\boldsymbol{\psi}}(\boldsymbol{y}, \boldsymbol{h}(\boldsymbol{x}))=\psi(p(\boldsymbol{y} | \boldsymbol{x}))$。</p>
 <p>$\therefore$由link函数的定义，向前loss表示为</p>
-<script type="math/tex; mode=display">\ell \vec{\psi}(\boldsymbol{y}, \boldsymbol{h}(\boldsymbol{x}))=\ell\left(\boldsymbol{y}, T^{\top} \boldsymbol{\psi}^{-1}(\boldsymbol{h}(\boldsymbol{x}))\right)=\ell_{\boldsymbol{\phi}}(\boldsymbol{y}, \boldsymbol{h}(\boldsymbol{x}))</script><p>新的符号$\phi^{-1}=\psi^{-1} \circ T^{\top}$，$\therefore \mathbb{E}<em>{\boldsymbol{x}, \tilde{\boldsymbol{y}}} \boldsymbol{\ell}^{\rightarrow}</em>{\boldsymbol{\psi}}(\boldsymbol{y}, \boldsymbol{h}(\boldsymbol{x})) =  \mathbb{E}<em>{\boldsymbol{x}, \tilde{\boldsymbol{y}}} \ell</em>{\boldsymbol{\phi}}(\boldsymbol{y}, \boldsymbol{h}(\boldsymbol{x})) $</p>
-<p>得到$\underset{\boldsymbol{h}}{\operatorname{argmin}} \mathbb{E}<em>{\boldsymbol{x}, \tilde{\boldsymbol{y}}} \ell</em>{\boldsymbol{\phi}}(\boldsymbol{y}, \boldsymbol{h}(\boldsymbol{x}))=\phi(p(\tilde{\boldsymbol{y}} | \boldsymbol{x}))$<br>$=\psi\left(\left(T^{-1}\right)^{\top} p(\tilde{\boldsymbol{y}} | \boldsymbol{x})\right)=\psi(p(\boldsymbol{y} | \boldsymbol{x}))$</p>
+<script type="math/tex; mode=display">\ell \vec{\psi}(\boldsymbol{y}, \boldsymbol{h}(\boldsymbol{x}))=\ell\left(\boldsymbol{y}, T^{\top} \boldsymbol{\psi}^{-1}(\boldsymbol{h}(\boldsymbol{x}))\right)=\ell_{\boldsymbol{\phi}}(\boldsymbol{y}, \boldsymbol{h}(\boldsymbol{x}))</script><p>新的符号$\phi^{-1}=\psi^{-1} \circ T^{\top}$，$\therefore \mathbb{E}_{\boldsymbol{x}, \tilde{\boldsymbol{y}}} \boldsymbol{\ell}^{\rightarrow}_{\boldsymbol{\psi}}(\boldsymbol{y}, \boldsymbol{h}(\boldsymbol{x})) =  \mathbb{E}_{\boldsymbol{x}, \tilde{\boldsymbol{y}}} \ell_{\boldsymbol{\phi}}(\boldsymbol{y}, \boldsymbol{h}(\boldsymbol{x})) $</p>
+<p>得到$\underset{\boldsymbol{h}}{\operatorname{argmin}} \mathbb{E}_{\boldsymbol{x}, \tilde{\boldsymbol{y}}} \ell_{\boldsymbol{\phi}}(\boldsymbol{y}, \boldsymbol{h}(\boldsymbol{x}))=\phi(p(\tilde{\boldsymbol{y}} | \boldsymbol{x}))$<br>$=\psi\left(\left(T^{-1}\right)^{\top} p(\tilde{\boldsymbol{y}} | \boldsymbol{x})\right)=\psi(p(\boldsymbol{y} | \boldsymbol{x}))$</p>
 <p>$\blacksquare$</p>
 <p>结论是向前修正的loss得到的minimizer与是干净数据上的一样。link函数起到了此作用，不用关心noise的水平。</p>
 <h2 id="整个算法"><a href="#整个算法" class="headerlink" title="整个算法"></a>整个算法</h2><p>哎呀懒得写了，大概的意思就是说假设每一类都至少有一个正确标签的观测样本，且softmax的确近似了T中的元素。</p>
@@ -609,7 +609,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -757,7 +757,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">79.5k</span>
+    <span title="Site words total count">80k</span>
   
 </div>
 
@@ -1327,15 +1327,7 @@ setInterval("createtime()",250);
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
-
-
-  
-
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -1352,5 +1344,13 @@ setInterval("createtime()",250);
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end --></body>
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
 </html>

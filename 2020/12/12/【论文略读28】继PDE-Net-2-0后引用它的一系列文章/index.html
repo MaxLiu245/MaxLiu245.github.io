@@ -554,7 +554,7 @@
 
 
 <h3 id="部分细节"><a href="#部分细节" class="headerlink" title="部分细节"></a>部分细节</h3><h4 id="模型基本设置"><a href="#模型基本设置" class="headerlink" title="模型基本设置"></a>模型基本设置</h4><p>先讲讲所谓有守恒律的方程指什么吧，其实就是指这个方程有守恒律，形式如下：</p>
-<script type="math/tex; mode=display">\displaystyle u_x(x,t)+(f(u(x,t)))_x = 0,\ where\ a\leq x\leq b,\ t\in [0,T],\ u(x,0)=u_0(x) \tag{1}</script><p>这个形式就叫守恒律。由参数 ${x,t}$ 取值在区间上可知，ob数据的形式是把时空间分别分割，得到网格式数据，分割一般均匀，设分割长度和总数分别为 $\Delta x, \Delta t$ 和 $J, N$，详见原文公式 $(2.2)$。</p>
+<script type="math/tex; mode=display">\displaystyle u_x(x,t)+(f(u(x,t)))_x = 0,\ where\ a\leq x\leq b,\ t\in [0,T],\ u(x,0)=u_0(x) \tag{1}</script><p>这个形式就叫守恒律。由参数 $\{x,t\}$ 取值在区间上可知，ob数据的形式是把时空间分别分割，得到网格式数据，分割一般均匀，设分割长度和总数分别为 $\Delta x, \Delta t$ 和 $J, N$，详见原文公式 $(2.2)$。</p>
 <p>然后有几个概念要说一下，真实解 $u(x,t)$ 在网格上的取值为 $u(x_j,t_n)$，它的近似记为 $\mathcal{U}_j^n$；另外，$(1)$ 式中间的 $f$ 称为flux，可以理解为守恒律中的流，真实的flux记为 $f_j^n=f(u(x_j,t_n))$。</p>
 <p>最后有个空间中的插值，记号为 $\displaystyle x_{j\pm\frac{1}{2}}=x_j\pm\frac{\Delta x}{2}$，感觉就是更细一点的插值。</p>
 <h4 id="WENO数值方法"><a href="#WENO数值方法" class="headerlink" title="WENO数值方法"></a>WENO数值方法</h4><p>从名字上看这个方法，Weighted Essentially Non-Oscillatory Schemes，推测就是<strong>插值更细</strong>因此可能拟合结果波动更小，插值的时候还有重要性（插值准确性）加权。</p>
@@ -795,7 +795,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -943,7 +943,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">79.5k</span>
+    <span title="Site words total count">80k</span>
   
 </div>
 

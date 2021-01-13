@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Paper Reading,Machine Learning,ODE,Flow Model,">
+  <meta name="keywords" content="Hexo,">
 
 
 
@@ -88,21 +88,20 @@
 
 
 
-<meta name="description" content="本文笔记主要是我对19年NIPS的文章ODE2VAE： ODE2VAE: Deep generative second order ODEs with Bayesian neural networks 其模型的生成方式和模型结构的理解，具体概率公式的推导和实验的细节都略掉了，如果需要的话以后再看">
-<meta name="keywords" content="Paper Reading,Machine Learning,ODE,Flow Model">
+<meta name="description" content="记录一下长久以来困扰我的公式渲染问题">
+<meta name="keywords" content="Hexo">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【论文阅读22】ODE2VAE——2阶ODE模拟+BNN引入不确定性">
-<meta property="og:url" content="http://maxliu245.github.io/2020/09/25/【论文阅读22】ODE2VAE——2阶ODE模拟-BNN引入不确定性/index.html">
+<meta property="og:title" content="【Hexo4】公式渲染出错更正——渲染位置失效问题">
+<meta property="og:url" content="http://maxliu245.github.io/2021/01/13/【Hexo4】公式渲染出错更正——渲染位置失效问题/index.html">
 <meta property="og:site_name" content="Max Liu&#39;s Blog">
-<meta property="og:description" content="本文笔记主要是我对19年NIPS的文章ODE2VAE： ODE2VAE: Deep generative second order ODEs with Bayesian neural networks 其模型的生成方式和模型结构的理解，具体概率公式的推导和实验的细节都略掉了，如果需要的话以后再看">
+<meta property="og:description" content="记录一下长久以来困扰我的公式渲染问题">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://maxliu245.github.io/2020/09/25/【论文阅读22】ODE2VAE——2阶ODE模拟-BNN引入不确定性/ODE2VAE-1.png">
-<meta property="og:image" content="http://maxliu245.github.io/2020/09/25/【论文阅读22】ODE2VAE——2阶ODE模拟-BNN引入不确定性/ODE2VAE-2.png">
-<meta property="og:updated_time" content="2020-09-26T08:43:43.272Z">
+<meta property="og:image" content="http://maxliu245.github.io/2021/01/13/【Hexo4】公式渲染出错更正——渲染位置失效问题/error.jpg">
+<meta property="og:updated_time" content="2021-01-13T06:39:20.755Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【论文阅读22】ODE2VAE——2阶ODE模拟+BNN引入不确定性">
-<meta name="twitter:description" content="本文笔记主要是我对19年NIPS的文章ODE2VAE： ODE2VAE: Deep generative second order ODEs with Bayesian neural networks 其模型的生成方式和模型结构的理解，具体概率公式的推导和实验的细节都略掉了，如果需要的话以后再看">
-<meta name="twitter:image" content="http://maxliu245.github.io/2020/09/25/【论文阅读22】ODE2VAE——2阶ODE模拟-BNN引入不确定性/ODE2VAE-1.png">
+<meta name="twitter:title" content="【Hexo4】公式渲染出错更正——渲染位置失效问题">
+<meta name="twitter:description" content="记录一下长久以来困扰我的公式渲染问题">
+<meta name="twitter:image" content="http://maxliu245.github.io/2021/01/13/【Hexo4】公式渲染出错更正——渲染位置失效问题/error.jpg">
 
 
 
@@ -132,13 +131,13 @@
 
 
 
-  <link rel="canonical" href="http://maxliu245.github.io/2020/09/25/【论文阅读22】ODE2VAE——2阶ODE模拟-BNN引入不确定性/">
+  <link rel="canonical" href="http://maxliu245.github.io/2021/01/13/【Hexo4】公式渲染出错更正——渲染位置失效问题/">
 
 
 
 
 
-  <title>【论文阅读22】ODE2VAE——2阶ODE模拟+BNN引入不确定性 | Max Liu's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>【Hexo4】公式渲染出错更正——渲染位置失效问题 | Max Liu's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -299,7 +298,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://maxliu245.github.io/2020/09/25/【论文阅读22】ODE2VAE——2阶ODE模拟-BNN引入不确定性/">
+    <link itemprop="mainEntityOfPage" href="http://maxliu245.github.io/2021/01/13/【Hexo4】公式渲染出错更正——渲染位置失效问题/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Max Liu">
@@ -316,7 +315,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">【论文阅读22】ODE2VAE——2阶ODE模拟+BNN引入不确定性</h1>
+          <h1 class="post-title" itemprop="name headline">【Hexo4】公式渲染出错更正——渲染位置失效问题</h1>
         
 
         <div class="post-meta">
@@ -331,8 +330,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-09-25T21:44:02+08:00">
-                2020-09-25
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-13T14:12:41+08:00">
+                2021-01-13
               </time>
             
 
@@ -347,8 +346,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2020-09-26T16:43:43+08:00">
-                2020-09-26
+              <time title="Post modified" itemprop="dateModified" datetime="2021-01-13T14:39:20+08:00">
+                2021-01-13
               </time>
             
           </span>
@@ -380,7 +379,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.7k
+                  476
                 </span>
               
 
@@ -396,7 +395,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  6
+                  1
                 </span>
               
             </div>
@@ -418,58 +417,32 @@
 
       
         <blockquote>
-<p>本文笔记主要是我对19年NIPS的文章ODE2VAE：</p>
-<p><code>ODE2VAE: Deep generative second order ODEs with Bayesian neural networks</code></p>
-<p>其模型的生成方式和模型结构的理解，具体概率公式的推导和实验的细节都略掉了，如果需要的话以后再看</p>
+<p>记录一下长久以来困扰我的公式渲染问题</p>
 </blockquote>
 <a id="more"></a>
-<img src="/2020/09/25/【论文阅读22】ODE2VAE——2阶ODE模拟-BNN引入不确定性/ODE2VAE-1.png" title="文献预览">
-<h1 id="开门见山——文献总结"><a href="#开门见山——文献总结" class="headerlink" title="开门见山——文献总结"></a>开门见山——文献总结</h1><p>这篇文章是19年的NIPS文章，与ANODE是同一次会议产出的。而在我看来，这两篇文章很多<strong>内容是有类似的地方</strong>的，但是在<strong>思想上又大不相同</strong>：</p>
-<ul>
-<li>前者的目标主要是做生成模型，希望设计学习更好的连续流数据（模型）的建模，方式是在NODE基础上考虑了二阶导的模拟和不确定性的引入，这两个是用一个模块同时完成的，即采用BNN学习二阶导，同时就可以引入不确定性。最后考虑到生成的效果需要保障，因此用VAE的形式进行了对抗</li>
-<li>后者的目标主要是对NODE直接做改进，从NODE的一个缺点入手，利用手动添加增广维度，在高维空间中克服了对低维空间中不连续情形的模拟，从而完成了NODE的增广，据说提高了表达能力、稳定性、泛化性，降低了计算消耗。这个缺点即有一大类函数是NODE学习不了的，但是目前对这个我真的还不是很理解，因此后续再进行阅读</li>
-</ul>
-<p>上面的介绍已经表明了目前我对ODE2VAE模型的认识（<strong>当我自己写到这里的时候，我认为这个ODE2VAE中对二阶导的建模本质上可以看成ANODE在维度上进行增广的一个特例~</strong>）。下面我们回顾一下该模型的前因后果吧。</p>
-<h1 id="前因后果——ODE2VAE的前生今世"><a href="#前因后果——ODE2VAE的前生今世" class="headerlink" title="前因后果——ODE2VAE的前生今世"></a>前因后果——ODE2VAE的前生今世</h1><p>故事要从流模型开始讲，流模型在干什么？一个简单的解释是流模型本身是ODE领域的延伸概念，把ODE初值问题中不同时刻的状态变化过程称为一个流。这个概念其实很有意思，后面我会<font color="#0000FF">单开一文</font>来介绍它。</p>
-<p>流模型由于其本身脱胎于ODE系统的性质，对很多实际情况的模拟应该是比较适合的，但是与神经网络结合的话，此前只有NODE简单地以ResNet中残差的形式对应到了差分，因此完成了一阶导的模拟。举个应用的例子，连续视频流文件的每一帧都可以看成一个中间状态，其背后是很可能有隐含的流模型的，这时如果能学习出其流模型，那么就可以完成视频补帧，甚至短期预测等重要任务。</p>
-<h1 id="模型机理——ODE-amp-VAE"><a href="#模型机理——ODE-amp-VAE" class="headerlink" title="模型机理——ODE&amp;VAE"></a>模型机理——ODE&amp;VAE</h1><p>回顾一下，ODE2VAE的一个目标是学习生成模型，突破NODE1阶导的限制，进行更细的二阶导建模。那么它对二阶导的做法是用BNN来学习一个对应的函数，同时BNN可以引入不确定性。另外，既然是生成模型，那么既要编码也要解码，因此其中又使用了VAE的对抗模式保证数据恢复的质量。下面先上图，再康康这个生成模型是怎么假设的：</p>
-<img src="/2020/09/25/【论文阅读22】ODE2VAE——2阶ODE模拟-BNN引入不确定性/ODE2VAE-2.png" title="模型结构">
-<p>流模型的生成结构为：</p>
-<script type="math/tex; mode=display">\displaystyle \begin{align} s_0 & \sim p(s_0) \tag{1}\\  v_0 &\sim p(v_0) \tag{2}\\  s_t &= s_0 + \int_{0}^{t} v_{\tau} d\tau \tag{3}\\  v_t &= v_0 + \int_{0}^{t} f_{true} (s_{\tau}, v_{\tau})d\tau \tag{4} \\  x_i &\sim p(x_i | s_i), i\in [0, N] \tag{5}\end{align}</script><p><strong>注意</strong>，这里的变量 $s$ 是把原始的流数据经过编码器转换到隐空间中的变量！即在隐空间中假设存在了流模型！</p>
-<p>这里前两个式子 $(1, 2)$ 表示流的初始状态：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>符号</th>
-<th>流上的意义</th>
-<th>形象的意义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>$s_0$</td>
-<td>初始状态（state）的值</td>
-<td>初始时刻0时，点的位置</td>
-</tr>
-<tr>
-<td>$v_0$</td>
-<td>初始状态（state）的一阶导</td>
-<td>初始时刻0时，点的速度</td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>接下来的 $(3, 4)$ 式则是流的变化过程，一阶导 $v$ 的积分可以描述状态 $s$ 的变化，即 $(3)$ 式；而二阶导 $v^\prime$ 的积分可以描述一阶导 $v$ 的变化，即 $(4)$ 式。其中二阶导就用贝叶斯神经网络BNN来暴力模拟，记这个BNN的整体函数表达式为 $f_{true}$，$(4)$ 式表明它的输入是先前所有状态和一阶导，不过模型结构图表示输入是当前状态的值和一阶导。由于目前我没有研究代码，我<font color="#0000FF">个人认为</font>这两种输入都可以，但我猜在当前的架构下，<span style="border-bottom:1px solid black;">采用前一段时间内的流数据建模</span>比较好，这个想法是比较合理的。前者输入太多，虽然利用的信息多，但是计算的消耗也会很大，而且可能需要用到RNN等处理序列数据的方法作为子模型；后者输入比较少，指利用当前状态的信息，这其实也不太稳，毕竟二阶导自身的变化也应当被正确建模。</p>
-<p>最后的 $(5)$ 式就是图中的解码器了，把学习到的流的变化特征重构成流数据。不过这个 $p(x_i | s_i)$ 具体是怎么解码回去的我就不清楚了，我猜是参数共享，直接把编码器给倒过来，从隐空间恢复原始的流数据。</p>
-<hr>
-<p>以上，本文的出发点，以生成模型建模流数据的过程就弄得差不多了。这里再补充一个小细节，一阶导 $s$ 的生成，是利用原始流数据 $x$ 的前 $m$ 维完成的，举个例子，这个前 $m$ 维就是视频流数据的前 $m$ 帧，这种近似的思想也与前面我所提到的“<span style="border-bottom:1px solid black;">采用前一段时间内的流数据建模</span>”一致~</p>
-<h1 id="优缺点——扶摇直上亿万里"><a href="#优缺点——扶摇直上亿万里" class="headerlink" title="优缺点——扶摇直上亿万里"></a>优缺点——扶摇直上亿万里</h1><p>最后回到总结吧~</p>
-<p>前面提到ODE2VAE的目标主要是做生成模型，对流数据建模，引入BNN暴力学习二阶导，顺便引入了不确定性。这些都是文章出彩的思想，也是卖点所在。</p>
-<p>而这些<strong>应当</strong>是增广NODE模型的一个维度增广特例，只不过是增广了二阶导。那么ANODE又能增广到什么程度呢？我还需要继续阅读，如果能直接暴力增广学习高阶导，那也不错，在此基础上一定有更加有意思的地方。</p>
-<p>Can u get me?</p>
-<h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p>不太好整，这<code>markdown</code>上不能整<code>bibtex</code>实在是太难受，给个文献链接直接了事~</p>
-<p><a href="http://papers.nips.cc/paper/9497-ode2vae-deep-generative-second-order-odes-with-bayesian-neural-networks" target="_blank" rel="noopener">ODE2VAE: Deep generative second order ODEs with Bayesian neural networks</a></p>
+<h2 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h2><p>很早就有这个问题了，<code>hexo</code>对公式的渲染莫名其妙会出现问题，自己在本地<code>Typora</code>编辑器中渲染得都非常漂亮，但是一旦发布或者在本地服务器上预览就会出问题，本来的<strong>应该被渲染的公式可能没有被渲染或者被渲染到了别的地方</strong>。这次好好写的笔记又炸了，如下图所示：</p>
+<img src="/2021/01/13/【Hexo4】公式渲染出错更正——渲染位置失效问题/error.jpg" title="MathJax Error">
+<p>主要的问题在于：</p>
+<ol>
+<li><p>用来生成$\{\}$的代码</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">\&#123;\&#125;</span><br></pre></td></tr></table></figure>
+<p>中花括号的转义字符<code>\</code>会消失导致渲染失败</p>
+</li>
+<li><p>下标转义字符<code>_</code>会偶尔消失，主要是行内公式</p>
+</li>
+<li><p>由以上问题导致非公式文本会被渲染</p>
+</li>
+</ol>
+<p>太难看了，这次从网上找了解决方案，聊记于此，原因是<strong>原来的渲染包<code>hexo-renderer-marked</code>不太行</strong>。。。我先自己更新了一下，发现问题没有改观，然后卸载之并安装<code>hexo-renderer-kramed</code>，问题仍未改观。最后按照解决方案修改<code>js</code>规则，总算🆗啦！</p>
+<h2 id="试错顺序"><a href="#试错顺序" class="headerlink" title="试错顺序"></a>试错顺序</h2><p>第一步观察是不是工具包未升级的问题：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install -g npm</span><br></pre></td></tr></table></figure>
+<p>第二步观察是不是新的工具包就好了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked --save</span><br><span class="line">npm install hexo-renderer-kramed --save</span><br></pre></td></tr></table></figure>
+<p>第三步按链接找到<code>../node_modules/kramed/lib/rules/inline.js</code>中第11行和第20行并修改转义规则：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//escape: /^\\([\\`*&#123;&#125;\[\]()#$+\-.!_&gt;])/,</span></span><br><span class="line"><span class="built_in">escape</span>: <span class="regexp">/^\\([`*\[\]()#$+\-.!_&gt;])/</span>,</span><br><span class="line"></span><br><span class="line"><span class="comment">//em: /^\b_((?:__|[\s\S])+?)_\b|^\*((?:\*\*|[\s\S])+?)\*(?!\*)/,</span></span><br><span class="line">em: <span class="regexp">/^\*((?:\*\*|[\s\S])+?)\*(?!\*)/</span>,</span><br></pre></td></tr></table></figure>
+<p>再重新渲染就🆗啦！</p>
+<h2 id="参考链接："><a href="#参考链接：" class="headerlink" title="参考链接："></a>参考链接：</h2><p><a href="https://home.cnblogs.com/u/Ai-heng/" target="_blank" rel="noopener">VitaHeng</a>的博客<a href="https://www.cnblogs.com/Ai-heng/p/7282110.html" target="_blank" rel="noopener">hexo博客MathJax公式渲染问题</a>，顺便发现这位大兄弟的主页了，前两年还有两篇文章，加油！</p>
+<p>自己确实试了错，加了自己的探索过程，除了代码，我觉得不算转载。如果的确需要授权，请联系我商议解决~</p>
 
       
     </div>
@@ -490,7 +463,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="http://maxliu245.github.io/2020/09/25/【论文阅读22】ODE2VAE——2阶ODE模拟-BNN引入不确定性/" title="【论文阅读22】ODE2VAE——2阶ODE模拟+BNN引入不确定性">http://maxliu245.github.io/2020/09/25/【论文阅读22】ODE2VAE——2阶ODE模拟-BNN引入不确定性/</a>
+    <a href="http://maxliu245.github.io/2021/01/13/【Hexo4】公式渲染出错更正——渲染位置失效问题/" title="【Hexo4】公式渲染出错更正——渲染位置失效问题">http://maxliu245.github.io/2021/01/13/【Hexo4】公式渲染出错更正——渲染位置失效问题/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -505,13 +478,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Paper-Reading/" rel="tag"># Paper Reading</a>
-          
-            <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
-          
-            <a href="/tags/ODE/" rel="tag"># ODE</a>
-          
-            <a href="/tags/Flow-Model/" rel="tag"># Flow Model</a>
+            <a href="/tags/Hexo/" rel="tag"># Hexo</a>
           
         </div>
       
@@ -524,8 +491,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/09/25/【Jupyter-Notebook-1】创建不了文件以及保存文件失败的问题/" rel="next" title="【Jupyter Notebook 1】创建不了文件以及保存文件失败的问题">
-                <i class="fa fa-chevron-left"></i> 【Jupyter Notebook 1】创建不了文件以及保存文件失败的问题
+              <a href="/2021/01/13/【论文阅读31】DDNF——深度微分同胚的Normalizing-Flow/" rel="next" title="【论文阅读31】DDNF——深度微分同胚的Normalizing Flow">
+                <i class="fa fa-chevron-left"></i> 【论文阅读31】DDNF——深度微分同胚的Normalizing Flow
               </a>
             
           </div>
@@ -533,10 +500,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/09/30/【论文略读1】/" rel="prev" title="【论文略读1】">
-                【论文略读1】 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -718,7 +681,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#开门见山——文献总结"><span class="nav-number">1.</span> <span class="nav-text">开门见山——文献总结</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#前因后果——ODE2VAE的前生今世"><span class="nav-number">2.</span> <span class="nav-text">前因后果——ODE2VAE的前生今世</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#模型机理——ODE-amp-VAE"><span class="nav-number">3.</span> <span class="nav-text">模型机理——ODE&amp;VAE</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#优缺点——扶摇直上亿万里"><span class="nav-number">4.</span> <span class="nav-text">优缺点——扶摇直上亿万里</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考链接"><span class="nav-number">5.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#试错顺序"><span class="nav-number">2.</span> <span class="nav-text">试错顺序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接："><span class="nav-number">3.</span> <span class="nav-text">参考链接：</span></a></li></ol></div>
             
 
           </div>
@@ -1298,42 +1261,7 @@ setInterval("createtime()",250);
         onPopupClose();
       }
     });
-  </script>
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -1351,6 +1279,21 @@ setInterval("createtime()",250);
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
   
 
 

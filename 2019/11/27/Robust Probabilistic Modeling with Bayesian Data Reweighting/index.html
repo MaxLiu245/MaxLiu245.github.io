@@ -377,7 +377,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  599
+                  598
                 </span>
               
 
@@ -421,8 +421,8 @@
 <h1 id="Robust-Probabilistic-Modeling-with-Bayesian-Data-Reweighting"><a href="#Robust-Probabilistic-Modeling-with-Bayesian-Data-Reweighting" class="headerlink" title="Robust Probabilistic Modeling with Bayesian Data Reweighting"></a>Robust Probabilistic Modeling with Bayesian Data Reweighting</h1><h2 id="这篇文章大致讲了什么？"><a href="#这篇文章大致讲了什么？" class="headerlink" title="这篇文章大致讲了什么？"></a>这篇文章大致讲了什么？</h2><p>在概率模型PM（这里含隐变量$\beta$）的框架下，现实中很多数据data往往与假设的分布不符或者有些许偏差，导致概率模型做出的推断或者预测效果不太好。因此我们希望能够检测出这种不匹配mismatch的性质，并由此给每个观测observation样本加一个权重，这样模型会对不好的数据有更好的稳健性。权重和隐变量将一起由推断得到（类似meta weight net那样的）。</p>
 <h2 id="大概的算法是什么？"><a href="#大概的算法是什么？" class="headerlink" title="大概的算法是什么？"></a>大概的算法是什么？</h2><p>首先提供的数据是有N个独立观测的样本的数据集$y = (y_1, \cdots, y_n)$。</p>
 <ul>
-<li>首先给定基本的概率模型PM，其对应的联合分布是$p<em>\beta(\beta)\prod</em>{n=1}^{N}l(y<em>n|\beta)$，$l(y_n)$是数据$y_n$的可能性likelihood，由此PM给定，$\beta$是隐变量，它有一个先验$p</em>\beta(\beta)$。</li>
-<li>加权后的模型定义成reweighted probabilistic model，即RPM，权重$w<em>n$的先验是$p_w(w)$。新的RPM是$$p(y,\beta, w) = \frac{1}{Z}p_w(w)p</em>\beta(\beta)\prod_{n=1}^{N}l(y_n|\beta)^{w_n}$$，其中$Z$是对应的归一化常数。</li>
+<li>首先给定基本的概率模型PM，其对应的联合分布是$p_\beta(\beta)\prod_{n=1}^{N}l(y_n|\beta)$，$l(y_n)$是数据$y_n$的可能性likelihood，由此PM给定，$\beta$是隐变量，它有一个先验$p_\beta(\beta)$。</li>
+<li>加权后的模型定义成reweighted probabilistic model，即RPM，权重$w_n$的先验是$p_w(w)$。新的RPM是<script type="math/tex">p(y,\beta, w) = \frac{1}{Z}p_w(w)p_\beta(\beta)\prod_{n=1}^{N}l(y_n|\beta)^{w_n}</script>，其中$Z$是对应的归一化常数。</li>
 <li>最后同时推断隐变量和权重参数$\beta$和$w$，对应的后验是$p(\beta, w|y)$。</li>
 </ul>
 <p>为什么加权加在可能性似然的次幂上？我们考虑对联合分布取对数：</p>
@@ -568,7 +568,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -716,7 +716,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">79.5k</span>
+    <span title="Site words total count">80k</span>
   
 </div>
 
@@ -1251,30 +1251,7 @@ setInterval("createtime()",250);
         onPopupClose();
       }
     });
-  </script>
-
-
-
-
-
-  
-
-  
-
-  
-
-  
-  
-
-  
-  
-
-
-  
-
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+  </script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -1291,5 +1268,28 @@ setInterval("createtime()",250);
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end --></body>
+<!-- hexo-inject:end -->
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
 </html>

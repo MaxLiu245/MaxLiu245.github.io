@@ -434,7 +434,7 @@
 <p>另外如果能有办法用网络模拟ODE系统，那一定是应用超级友好的！</p>
 <h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>好像没啥背景，我理解的背景就是这个思想的来源，就够了。文章里的related work我暂时不感兴趣。</p>
 <h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>这要从ODE与神经网络的一个共性讲起：</p>
-<p>神经网络的嵌套隐层结构可以表示为$h<em>{t+1} = f(h_t, \theta_t)$，每一层都由前一层前向传播得到，现在用ResNet的结构则有意思起来了：$h</em>{t+1} = h_t + f(h_t, \theta_t)$，这种残差的形式与ODE的差分形式很“相似”：</p>
+<p>神经网络的嵌套隐层结构可以表示为$h_{t+1} = f(h_t, \theta_t)$，每一层都由前一层前向传播得到，现在用ResNet的结构则有意思起来了：$h_{t+1} = h_t + f(h_t, \theta_t)$，这种残差的形式与ODE的差分形式很“相似”：</p>
 <script type="math/tex; mode=display">\Delta h(t) = h_{t+1} - h_t = f(h(t), t, \theta) \approx \dfrac{dh(t)}{dt}</script><p>这样ResNet的每一层$f$都相当于当前时刻$t$的一个差分，如果这个$t$不再离散，而是连续化，那么就可以近似为导数，残差神经网络也可以近似为ODE了。当然<strong>前提</strong>是（1）连续化可行；（2）连续化后能保持ODE的基本衍化性质；（3）不知道能不能证明其它性质诸如求解等等。</p>
 <p>那么现在基本的模型其实已经构思好了，下面是实现的技术细节。要使得ResNet成为ODE的近似，首先要考虑可训练的性质，其监督信息由已知的ODEsolver求解，这些solver目前一般都是精度可控的，网络本身作为一个黑箱ODEsolver来训练；前向传播应该比较容易，关键是反向传播会比较麻烦，因为损失的回传需要对参数求导，这些势必要涉及大量参数，会引起高昂的计算代价。</p>
 <p>那么该文怎么进行反向传播的呢，直接算？不是，它绕过去了。</p>
@@ -444,7 +444,7 @@
 <p>这种近似考虑的方式称为<strong>adjoint sensitivity method</strong>（1962老文章🐂🍺+🐂🐸！），如下的原文图2所示，这里为了表示方便，记号与上文不同，图中的$z(t_N)$相当于上文的$z(t_1)$，意思大家一定能明白，就是多考虑上文中的中间时刻状态。</p>
 <img src="/2020/08/21/【论文阅读17】ODE-Net——从离散化的ResNet到连续化ODE的模拟/ODE-Net2.png" title="Adjoint Sensitivity Method">
 <p>感觉是这样推导的，我们想要的目标是损失$L$对网络参数$\theta$的导数：</p>
-<script type="math/tex; mode=display">\dfrac{dL}{d\theta} = \dfrac{dL}{dz(t_i)}\dfrac{dz(t_i)}{d\theta} = \dfrac{dL}{dz(t_i)}\dfrac{df(z(t_i), t_i, \theta)}{d\theta} \triangleq a(t_i)\dfrac{df(z(t_i), t_i, \theta)}{d\theta}</script><p>其中第一个等号用链式法则和爱因斯坦求和约定表示；第二个等号是因为$z(t<em>i) \approx z(t_0) + \int</em>{t_0}^{t_i} f(z(t), t, \theta)dt$，然后直接求导就得了，其中积分从哪里开始都可以，不一定要$t_0$；第三个等号搞了新定义，把$a(t)$叫做伴随adjoint，它怎么求呢，文章给了$\dfrac{da(t)}{dt} = -a(t)^T\dfrac{\partial f(z(t), t, \theta)}{\partial z}$，但我没看懂，我猜是1962那篇文章的结论。</p>
+<script type="math/tex; mode=display">\dfrac{dL}{d\theta} = \dfrac{dL}{dz(t_i)}\dfrac{dz(t_i)}{d\theta} = \dfrac{dL}{dz(t_i)}\dfrac{df(z(t_i), t_i, \theta)}{d\theta} \triangleq a(t_i)\dfrac{df(z(t_i), t_i, \theta)}{d\theta}</script><p>其中第一个等号用链式法则和爱因斯坦求和约定表示；第二个等号是因为$z(t_i) \approx z(t_0) + \int_{t_0}^{t_i} f(z(t), t, \theta)dt$，然后直接求导就得了，其中积分从哪里开始都可以，不一定要$t_0$；第三个等号搞了新定义，把$a(t)$叫做伴随adjoint，它怎么求呢，文章给了$\dfrac{da(t)}{dt} = -a(t)^T\dfrac{\partial f(z(t), t, \theta)}{\partial z}$，但我没看懂，我猜是1962那篇文章的结论。</p>
 <p>上面分析了主要的思路，应该还可以了，下面开始水😂，日常写烂尾文章/(ㄒoㄒ)/~~</p>
 <p>上面的推导就是原文的(5)式，具体计算不是直接BP，因为考虑连续性，和中间状态都有关系了，中间层现在是可以很多的，BP压力很大。现在直接看完整版的算法2，直接想办法计一个积分算梯度（参考了机器之心的文章加深理解），不过很可惜我<strong>没太看明白</strong>具体计算的过程，可能是直接自动求导，只是不再一层一层计算梯度了？这样真的能减少计算量么？</p>
 <p>后面的流模型和生成式模型没有看了，留着看苏剑林的博客吧，感觉和那个关系比较大。</p>
@@ -620,7 +620,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -768,7 +768,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">79.5k</span>
+    <span title="Site words total count">80k</span>
   
 </div>
 
@@ -1338,15 +1338,7 @@ setInterval("createtime()",250);
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
-
-
-  
-
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -1363,5 +1355,13 @@ setInterval("createtime()",250);
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end --></body>
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
 </html>

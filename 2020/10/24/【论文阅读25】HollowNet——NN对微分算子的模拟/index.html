@@ -440,10 +440,10 @@
 <hr>
 <p>至于具体怎么用网络实现，话不多说，日常上图：</p>
 <img src="/2020/10/24/【论文阅读25】HollowNet——NN对微分算子的模拟/HollowNet-2.png" title="HollowNet结构">
-<p><strong>左图是完整的前向计算过程</strong>，这里为了求 $f<em>k$ 对 $x_k$ 的偏导数，先由除了 $x_k$ 之外的所有分量 $\mathbf{x}</em>{-k} \triangleq {x<em>1, x_2, \cdots, x_d}/ {x_k}$ ，计算一个 $h_k = c_k(\mathbf{x}</em>{-k})$ ，其中 $h_k$ 不一定是标量，因为标量的信息一般不够描述高阶导数，一般是向量，这里先假定为 $d_h(\forall k)$ 维，然后这个 $h_k$ 和 $x_k$ 再作为输入得到函数值分量 $f_k=\tau_k(h_k,x_k)$ 。这样设计的目的是为了方便后面挖空网络之后，函数值分量 $f_k$ 只保留对输入分量 $x_k$ 的偏导数。</p>
+<p><strong>左图是完整的前向计算过程</strong>，这里为了求 $f_k$ 对 $x_k$ 的偏导数，先由除了 $x_k$ 之外的所有分量 $\mathbf{x}_{-k} \triangleq \{x_1, x_2, \cdots, x_d\}/ \{x_k\}$ ，计算一个 $h_k = c_k(\mathbf{x}_{-k})$ ，其中 $h_k$ 不一定是标量，因为标量的信息一般不够描述高阶导数，一般是向量，这里先假定为 $d_h(\forall k)$ 维，然后这个 $h_k$ 和 $x_k$ 再作为输入得到函数值分量 $f_k=\tau_k(h_k,x_k)$ 。这样设计的目的是为了方便后面挖空网络之后，函数值分量 $f_k$ 只保留对输入分量 $x_k$ 的偏导数。</p>
 <p>那么<strong>右图就是挖空计算图的操作</strong>了。由左图的设计，只要在编程中通过<code>detach</code>一类的操作断掉 $f_k$ 和 $h_k$ 之间的联系，那么在计算图中就只保留了 $\dfrac{\partial f_k}{\partial x_k}$ ，对其它分量的偏导数一律为0。</p>
 <p>在左图中，从输入变量的分量 $\mathbf{x}_{-k}$ 到中间变量 $h_k$ 的过程叫做<code>conditioner</code>，表示这种特殊设计的条件关系；从中间变量 $h_k$ 到最终函数分量 $f_k$ 的过程则叫做<code>transformer</code>，这个不太好解释，反正是这么个说法。</p>
-<p>有了这个挖空计算图的操作还不够，因为显然我们会注意到 $f<em>k$ 本身还是由所有分量计算得到的，单独切掉 $\mathbf{x}</em>{-i}$ 对应的计算图，那么如果有对 $f_k$ 的后续计算，比如计算损失函数 $c$ ，那么就有 $\displaystyle \dfrac{\partial c}{x_k} = \sum_j \dfrac{\partial c}{\partial f_j}\dfrac{\partial f_j}{\partial x_k}$ ，而这样的话相当于在计算图中，右边只能保留一项梯度 $\dfrac{\partial c}{\partial f_k}\dfrac{\partial f_k}{\partial x_k}$ ，这和我们的认知不符，我认为文章<strong>基于这个考虑对挖空的计算图做了一个补全</strong>，即文章的 $(6)$ 式，我自己学了点计算图想推一下，但是<strong>应该是推错了</strong>，过程记录如下：</p>
+<p>有了这个挖空计算图的操作还不够，因为显然我们会注意到 $f_k$ 本身还是由所有分量计算得到的，单独切掉 $\mathbf{x}_{-i}$ 对应的计算图，那么如果有对 $f_k$ 的后续计算，比如计算损失函数 $c$ ，那么就有 $\displaystyle \dfrac{\partial c}{x_k} = \sum_j \dfrac{\partial c}{\partial f_j}\dfrac{\partial f_j}{\partial x_k}$ ，而这样的话相当于在计算图中，右边只能保留一项梯度 $\dfrac{\partial c}{\partial f_k}\dfrac{\partial f_k}{\partial x_k}$ ，这和我们的认知不符，我认为文章<strong>基于这个考虑对挖空的计算图做了一个补全</strong>，即文章的 $(6)$ 式，我自己学了点计算图想推一下，但是<strong>应该是推错了</strong>，过程记录如下：</p>
 <script type="math/tex; mode=display">\displaystyle \begin{aligned} \dfrac{\partial \mathcal{D}_{dim}(\mathbb{f})}{\partial w} &= \sum_j\dfrac{\partial \mathcal{D}_{dim}^k(\mathbb{f})}{\partial h_j} \dfrac{\partial h_j}{\partial w} = \sum_j\left(\dfrac{\partial \mathcal{D}_{dim}^k(\mathbb{f})}{\partial \mathcal{D}_{dim}^k(\hat{\mathbb{f}})}\dfrac{\partial \mathcal{D}_{dim}^k(\hat{\mathbb{f}})}{\partial h_j}\right) \dfrac{\partial h_j}{\partial w}\\ &= \sum_j\left(\dfrac{\partial \mathcal{D}_{dim}^k(\mathbb{f})}{\partial \mathcal{D}_{dim}^k(\hat{\mathbb{f}})} \left(\dfrac{\partial \mathcal{D}_{dim}^k(\hat{\mathbb{f}}_j)}{\partial h_j} \bigoplus \dfrac{\partial \mathcal{D}_{dim}^k(\hat{\mathbb{f}}_{-j})}{\partial h_j}\right)\right) \dfrac{\partial h_j}{\partial w}\\ &?= \sum_j\left(\dfrac{\partial \mathcal{D}_{dim}^k(\mathbb{f})}{\partial \mathcal{D}_{dim}^k(\hat{\mathbb{f}})} \left(\dfrac{\partial \mathcal{D}_{dim}^k(\hat{\mathbb{f}})}{\partial \hat{h}} \bigoplus \dfrac{\partial \mathcal{D}_{dim}^k(\hat{\mathbb{f}}_{-j})}{\partial h_j}\right)\right) \dfrac{\partial h_j}{\partial w}\\ &?= \dfrac{\partial \mathcal{D}_{dim}^k(\hat{\mathbb{f}})}{\partial \hat{h}}\dfrac{\partial h}{\partial w} + \dfrac{\partial \mathcal{D}_{dim}^k(\hat{\mathbb{f}})}{\partial w}\end{aligned}</script><font color="#FF0000"> 最后两行我是懵了，看了点计算图还是不懂，先放在这里了</font>
 
 <h1 id="Pros-amp-Cons"><a href="#Pros-amp-Cons" class="headerlink" title="Pros &amp; Cons"></a>Pros &amp; Cons</h1><p>讲方法优劣之前，其实看了一点点实验，为文章的 $(5.2)$ 节，大概就是说对于一个随机微分方程，这个HollowNet模拟得不错</p>
@@ -638,7 +638,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">52</span>
+                  <span class="site-state-item-count">53</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -786,7 +786,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">79.5k</span>
+    <span title="Site words total count">80k</span>
   
 </div>
 
@@ -1356,15 +1356,7 @@ setInterval("createtime()",250);
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
-
-
-  
-
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -1381,5 +1373,13 @@ setInterval("createtime()",250);
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end --></body>
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
 </html>
