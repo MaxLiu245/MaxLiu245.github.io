@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Paper Reading,ODE,Flow Model,">
 
 
 
@@ -88,16 +88,23 @@
 
 
 
-<meta name="description" content="Max Liu&apos;s Blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Max Liu&#39;s Blog">
-<meta property="og:url" content="http://maxliu245.github.io/tags/Abnormality-Detection/index.html">
+<meta name="description" content="阅读文章Deep Diffeomorphic Normalizing Flows 感觉写得不错，但是引用量很少，我觉得是代码没有开源的缘故">
+<meta name="keywords" content="Paper Reading,ODE,Flow Model">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【论文阅读31】DDNF——深度微分同胚的Normalizing Flow">
+<meta property="og:url" content="http://maxliu245.github.io/2021/01/13/【论文阅读31】DDNF——深度微分同胚的Normalizing-Flow/index.html">
 <meta property="og:site_name" content="Max Liu&#39;s Blog">
-<meta property="og:description" content="Max Liu&apos;s Blog">
+<meta property="og:description" content="阅读文章Deep Diffeomorphic Normalizing Flows 感觉写得不错，但是引用量很少，我觉得是代码没有开源的缘故">
 <meta property="og:locale" content="en">
+<meta property="og:image" content="http://maxliu245.github.io/2021/01/13/【论文阅读31】DDNF——深度微分同胚的Normalizing-Flow/DDNF-1.png">
+<meta property="og:image" content="http://maxliu245.github.io/2021/01/13/【论文阅读31】DDNF——深度微分同胚的Normalizing-Flow/DDNF-2.png">
+<meta property="og:image" content="http://maxliu245.github.io/2021/01/13/【论文阅读31】DDNF——深度微分同胚的Normalizing-Flow/DDNF-2.png">
+<meta property="og:image" content="http://maxliu245.github.io/2021/01/13/【论文阅读31】DDNF——深度微分同胚的Normalizing-Flow/DDNF-3.png">
+<meta property="og:updated_time" content="2021-01-13T03:58:21.384Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Max Liu&#39;s Blog">
-<meta name="twitter:description" content="Max Liu&apos;s Blog">
+<meta name="twitter:title" content="【论文阅读31】DDNF——深度微分同胚的Normalizing Flow">
+<meta name="twitter:description" content="阅读文章Deep Diffeomorphic Normalizing Flows 感觉写得不错，但是引用量很少，我觉得是代码没有开源的缘故">
+<meta name="twitter:image" content="http://maxliu245.github.io/2021/01/13/【论文阅读31】DDNF——深度微分同胚的Normalizing-Flow/DDNF-1.png">
 
 
 
@@ -127,13 +134,13 @@
 
 
 
-  <link rel="canonical" href="http://maxliu245.github.io/tags/Abnormality-Detection/">
+  <link rel="canonical" href="http://maxliu245.github.io/2021/01/13/【论文阅读31】DDNF——深度微分同胚的Normalizing-Flow/">
 
 
 
 
 
-  <title>Tag: Abnormality Detection | Max Liu's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>【论文阅读31】DDNF——深度微分同胚的Normalizing Flow | Max Liu's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -152,7 +159,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left ">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
 <a href="https://github.com/MaxLiu245" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
@@ -280,52 +287,316 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block tag">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Abnormality Detection<small>Tag</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://maxliu245.github.io/2021/01/13/【论文阅读31】DDNF——深度微分同胚的Normalizing-Flow/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Max Liu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/icon_max.png#avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Max Liu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2020/08/19/【论文阅读16】Isolation-Forest——孤立的异常检测方式/" itemprop="url">
-              
-                <span itemprop="name">【论文阅读16】Isolation Forest——孤立的异常检测方式</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">【论文阅读31】DDNF——深度微分同胚的Normalizing Flow</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2020-08-19T09:55:26+08:00" content="2020-08-19">
-          08-19
-        </time>
-      </div>
+        <div class="post-meta">
 
-    </header>
-  </article>
+          
 
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-01-13T11:45:18+08:00">
+                2021-01-13
+              </time>
+            
+
+            
+              <span class="post-meta-divider">|</span>
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2021-01-13T11:58:21+08:00">
+                2021-01-13
+              </time>
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
+              
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  3.2k
+                </span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  12
+                </span>
+              
+            </div>
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>阅读文章<em>Deep Diffeomorphic Normalizing Flows</em></p>
+<p>感觉写得不错，但是引用量很少，我觉得是代码没有开源的缘故</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="Deep-Diffeomorphic-Normalizing-Flows"><a href="#Deep-Diffeomorphic-Normalizing-Flows" class="headerlink" title="Deep Diffeomorphic Normalizing Flows"></a>Deep Diffeomorphic Normalizing Flows</h2><h2 id="心路历程"><a href="#心路历程" class="headerlink" title="心路历程"></a>心路历程</h2><p>很长时间没有看过流模型了，这次也看到了许多之前没有接触过的概念，包括很多细节，本来打算这些细节将在文末实验部分单独一一列出，但是太累了不写了，需要的时候自己看看吧</p>
+<p>另外文章中介绍了不少以往的模型，这些也不介绍了，以后见到慢慢补充</p>
+<h2 id="文献简介"><a href="#文献简介" class="headerlink" title="文献简介"></a>文献简介</h2><img src="/2021/01/13/【论文阅读31】DDNF——深度微分同胚的Normalizing-Flow/DDNF-1.png" title="DDNF">
+<ul>
+<li><p>作者信息</p>
+<p>一作是微软的工程师Hadi Salman，看了看他的<a href="https://www.microsoft.com/en-us/research/people/hasalman/" target="_blank" rel="noopener">个人主页</a>和<a href="https://scholar.google.com/citations?user=Kr8JjF0AAAAJ&amp;hl=en&amp;oi=sra" target="_blank" rel="noopener">学术主页</a>，这个人主要是做对抗攻防的，带一点稳健动力系统。其余作者来自弗吉尼亚大学和匹兹堡大学</p>
+</li>
+<li><p>文献信息</p>
+<p>文献链接：<a href="https://arxiv.org/abs/1810.03256" target="_blank" rel="noopener">https://arxiv.org/abs/1810.03256</a></p>
+<p>这篇文章18年挂出来，截至2021/01/12谷歌学术上的引用量是11</p>
+</li>
+<li><p>文献简述</p>
+<p>这个文章有些意思，它提出了一种新的对流模型的建模<strong><em>DDNF</em></strong>，主要的思想是借用ODE中每个state可以看成流模型中隐变量的多次映射过程，即 $z_0\rightarrow z_1\rightarrow\cdots\rightarrow z_n$，那么隐变量的每一步更新看成ODE的积分过程，这个过程可以进一步反应在抽象出来的流形上，如下图所示：</p>
+<img src="/2021/01/13/【论文阅读31】DDNF——深度微分同胚的Normalizing-Flow/DDNF-2.png" title="隐变量如何多次映射">
+</li>
+</ul>
+<p>我想把它对于流模型的建模步骤归纳为：</p>
+<pre class="mermaid">graph LR
+A(DDNF<br>Deep Diffeomorphic Normalizing Flows) -->B(Idea<br>介绍微分同胚和ODE之间的关联)
+A -->C(DDNF的结构<br>主要是建模过程,模型设置)
+A -->D(Jacobi计算<br>泰勒展开以及行列式的迹估计)
+A -->E(正则引入<br>有两种方法改善模型效果,分别是测地正则和逆一致正则)</pre>
+
+<h2 id="基本任务——对归纳偏执建模"><a href="#基本任务——对归纳偏执建模" class="headerlink" title="基本任务——对归纳偏执建模"></a>基本任务——对归纳偏执建模</h2><p>写总结的时候发现还是要写像target一样的东西放在前面</p>
+<p>对流的建模基本不变，即数据 $X={x_1,\cdots,x_N}$，引入生成模型及其隐变量 $z$，目标是最大似然</p>
+<script type="math/tex; mode=display">\begin{align} \displaystyle \log p_{\theta}(X)&=\sum_{i=1}^N \log p_{\theta}x_i \tag{1}\\ &\overset{p_{\theta}(x)=\int p_{\theta}(z,x)dz}{\geq} \mathbb{E}_{q_{\lambda}(z|x)}[\log p_{\theta}(x|z)-KL(q_{\lambda}(z|x)|p(z))]. \tag{2}\end{align}</script><p>现在给出归纳偏置，由于主要是<strong>建模隐变量</strong> $z$，试图近似它的后验分布，那么本文假设的是<strong>最终的隐变量 $z$ 由一系列可逆变换 $\phi_k$ 作用在初始分布 $q_0$ 上得到</strong>，即</p>
+<script type="math/tex; mode=display">\displaystyle final\ latent\ variable\ z_K = \phi_K\circ\cdots\circ\phi_2\circ\phi_1(z_0) \tag{3}</script><p>之后要写出对应的变分目标，具体的过程就是 $(3)$ 式<strong>概率密度函数分解</strong>，由</p>
+<script type="math/tex; mode=display">\begin{align} \displaystyle q_{k+1}(z_{k+1})&=q_k(z_k)\bigg|det\dfrac{\partial \phi_{k+1}(z_k)}{\partial z_k}\bigg|^{-1} \tag{4}\\ &=q_k(\phi_{k+1}^{-1}(z_{k+1}))\bigg|det\dfrac{\partial \phi_{k+1}^{-1}(z_{k+1})}{\partial z_{k+1}}\bigg| \tag{5}\end{align}</script><p>可得分解后的变分目标（其实不难，就是要写半天。。。）为</p>
+<script type="math/tex; mode=display">\begin{align} \displaystyle \mathcal{F}(\theta,\lambda)&=\mathbb{E}_{q_{\lambda}}[\log q_{\lambda}(z|x)-\log p_{\theta}(x,z)] \tag{6}\\ &=\mathbb{E}_{q_0}[\log q_0(z_0|x)-\log p_{\theta}(x,z_K)] - \mathbb{E}_{q_0}\left[\sum_{k=1}^K \log  \bigg|det\dfrac{\partial \phi_{k}(z_{k-1})}{\partial z_{k-1}}\bigg|\right] \tag{7}\end{align}</script><p>因此，DDNF的目标其实就是<strong>针对这一系列的可逆变换设计流模型</strong>，进一步引入微分同胚保持可逆和光滑性，而这恰好引入了ODE-Net的思想</p>
+<h2 id="Idea——微分同胚如何引入"><a href="#Idea——微分同胚如何引入" class="headerlink" title="Idea——微分同胚如何引入"></a>Idea——微分同胚如何引入</h2><p>这要联系ODE中<strong>连续流</strong>的概念，并结合美妙的<strong>黎曼几何</strong>。如文首所述：</p>
+<blockquote>
+<p>主要的思想是借用ODE中每个state可以看成流模型中隐变量的<strong>多次映射</strong>过程，即 $z_0\rightarrow z_1\rightarrow\cdots\rightarrow z_n$，那么<strong>隐变量的每一步更新看成ODE的积分过程</strong>，这个过程可以进一步反应在抽象出来的流形上</p>
+<img src="/2021/01/13/【论文阅读31】DDNF——深度微分同胚的Normalizing-Flow/DDNF-2.png" title="隐变量如何多次映射">
+</blockquote>
+<p>具体设置为（细节拜拜，反之就是Hilbert空间假设，然后随便推导），每个可逆变换 $\phi_k:\Omega\rightarrow\Omega$，其中 $\Omega\subset\mathbb{R}^d$，就是切向量之间的映射，设 $\Omega$ 的切丛（从这里看出它把 $\Omega$ 直接看成带有内积的流形了，不妨当成黎曼流形就好）的完备化空间为 $V\overset{def}{=}H^s(\mathcal{T}\Omega)$，$s$ 代表切向量的几阶导存在，且都默认二次可积。总之，完备化+黎曼流形就瞎推了</p>
+<p>那么<strong>关键</strong>来了，之前说隐变量的前进过程看成ODE上的积分过程，这需要<strong>切向量在流形上的平行移动（其实就是积分）</strong>，所以先要模拟切向量，这里设其形式为一般的可随时间变化的切向量 $v(t,\cdot):[0,1]\rightarrow V$，应该是指流形上每一点处可以得到与时间相关的切向量。那么<strong>隐变量的每一步更新看成ODE的积分过程</strong>：</p>
+<script type="math/tex; mode=display">\displaystyle \dfrac{d}{dt}\phi_k(t,z)=v(t,\phi_k(t,z)). \tag{8}</script><p>这样，如果能用像ResNet之类的网络模拟一阶导 $v$，那么ResNet输出的就相当于积分后的方程，输出的是 $\phi_k$；那么再配合上RNN之类的结构把这一系列变换 $\phi_k$ 串起来，那就是整个流的建模过程了</p>
+<p>最后再声明，上述建模过程说得很轻巧，看起来也比较合理，那有没有理论保证，你这个就一定行呢？有的，参考原文第3页左下角部分，大概就是</p>
+<ul>
+<li>前人结论：<ul>
+<li>若 $v$ 充分光滑，那 $\phi$ 就相当于微分同胚</li>
+<li>这样的flow中的Jacobi行列式总是非负的（<strong>为0不就gg，估计有trick处理，阈值截断什么的</strong>）</li>
+</ul>
+</li>
+<li>原作者总结的性质：<ul>
+<li>一系列微分同胚 $\phi_k$ 保持代数运算，它们在代数群上✅</li>
+<li>假定空间存在合适的内积，那就成为黎曼流形，进一步可以引入测地线概念，引入测地正则✅</li>
+</ul>
+</li>
+</ul>
+<h2 id="网络结构——RNN-ResNet-ODE-Net"><a href="#网络结构——RNN-ResNet-ODE-Net" class="headerlink" title="网络结构——RNN+ResNet(ODE-Net)"></a>网络结构——RNN+ResNet(ODE-Net)</h2><p>这个部分本来以为挺难，但是读完了发现文章中图2真是<strong>一图胜千言</strong>。我解读了三次此网络，前两次应该都错了！后一次就是总结出来的┭┮﹏┭┮</p>
+<img src="/2021/01/13/【论文阅读31】DDNF——深度微分同胚的Normalizing-Flow/DDNF-3.png" title="网络设置">
+<p>首先，观察<strong>最下面的图</strong>，这就是<strong>整个流的建模过程</strong>，即通过 $K$ <strong>个可逆微分同胚变换</strong>，${\phi<em>{k}}_k$ ，它把初始化的隐变量 $z_0$，逐步映射到最终目标隐变量 $z_K$。因此，最下面的图中每个block都是在流形上某点$z_k$处切空间中进行积分的过程。且注意到在每个切空间  $T</em>{z_k}\Omega$中，切向量都是不同的，因此每步变换中的切向量或者说速率不同！</p>
+<p>其次，如上图<strong>中间的图</strong>表示，中间的图整个是<strong>一个积分过程，表示一步可逆变换</strong> $z<em>{k+1}=\phi</em>{k+1}(z<em>k)$。<strong>整体是RNN</strong>模型，其中有 $T$ 个block，指的是 $T$ 个ResNet block，$T$ 指的是从 $z_k$ 到 $z</em>{k+1}$ 的积分过程中离散近似的小区间数目，RNN就是把这离散的过程叠加循环起来。且为了方便，建模时考虑<strong>使用不随时间变化的stationary向量场</strong>，即每个block使用相同的向量场，图中记为 $v^k$ 是很合理的。此时，整个一步积分是自治方程 $(8)$ 的求解过程，，解出来其实是指映射 $\phi^{v_k}=exp(v^k(t,\cdot))=exp(v^k(\cdot))$，如果考虑实验中的近似手段 $T$ 个block的结果叠加，那就是 $\phi^{v_k}=exp(v^k(\cdot)/T)^T$</p>
+<p>最后是<strong>最上面的模型</strong>，即具体<strong>一步积分中一个小区间的近似</strong>过程，为<strong>一个ResNet block</strong>，其中使用多少层，每层宽度多少是可以调整的。我记的没错的话，本文实验多使用的结构只有两层，每层只有两个神经元，目的是验证即使结构简单，其表达能力也很强，这将会验证基于ODE的微分同胚流的模型是优异的</p>
+<hr>
+<p>这样模型就讲完了，下面介绍为什么使用ResNet的结构，计算Jacobi会用到，但是这<strong>和以前我看的不一样</strong>，我记得以前看过哪篇文章，<strong>用ResNet的结构会使Jacobi呈现行列式为1的形式</strong>，进一步微调使之变化（好像是这样，忘了）。这里计算Jacobi不太一样</p>
+<p>本文的思路是借用ResNet中恒等映射的存在<strong>作泰勒展开</strong>近似估计Jacobi行列式：</p>
+<script type="math/tex; mode=display">\begin{align} \displaystyle \log det(\mathcal{J}\phi^v(\Delta t,\cdot))&\overset{RestNet}{=}\log det(I+\Delta t\mathcal{J}v(\cdot)) \tag{9}\\ &\overset{A\overset{def}{=}I+\Delta t\mathcal{J}v(\cdot)}{=}\log det(A) \tag{10}\\ &=\log \left(det(A^2)\right)^\frac{1}{2} \tag{11}\\ &= \dfrac{1}{2}\log \left(det(A^TA)\right) \tag{12}\\ &= \dfrac{1}{2}\log \left(det(I+\Delta t(\mathcal{J}v(\cdot)+\mathcal{J}v(\cdot)^T+\Delta t\mathcal{J}v(\cdot)^T\mathcal{J}v(\cdot)))\right) \tag{13}\\ &\overset{def}{=} \dfrac{1}{2}\log \left(det(I+\Delta tB)\right) \tag{14}\\ &\approx \dfrac{1}{2}\Delta tTr(\mathcal{J}v(\cdot)+\mathcal{J}v(\cdot)^T)-\dfrac{1}{2}(\Delta t)^2Tr(\mathcal{J}v(\cdot)^T\mathcal{J}v(\cdot)). \tag{15}\end{align}</script><p>其中最后一步我<strong>没有推出来</strong>，现在不推了，日后需要再搞。只知道是在 $B=0$ 处二阶泰勒展开，三次及三次以上都近似忽略掉，然后用迹估计的方法即可</p>
+<p>所以使用ResNet的结构并引入泰勒展开，<strong>目的是降低Jacobi计算的复杂度</strong>，一般来说根据模型结构，有 $T$ 个Jacobi的行列式需要计算，所以计算复杂度可看成 $\mathcal{O}(Td^3)$，而转化为 $(15)$ 式后，除了矩阵 $\mathcal{J}v$ 的存储外，迹的计算复杂度只有 $\mathcal{O}(d)$，而近似方法中需要 $M$ 常数次采样，因此最终复杂度由 $\mathcal{O}(Td^3)$ 降低到 $\mathcal{O}(Md)$，的确是比较大的进步！</p>
+<h2 id="微分同胚流的其它亮点"><a href="#微分同胚流的其它亮点" class="headerlink" title="微分同胚流的其它亮点"></a>微分同胚流的其它亮点</h2><h3 id="流的逆简易计算"><a href="#流的逆简易计算" class="headerlink" title="流的逆简易计算"></a>流的逆简易计算</h3><p>流的逆一般需要好求，这往往需要对网络的结构进行限制，本文表示，由于限定每一个可逆映射中的切向量是stationary的，所以求解出来直接就是指数映射，所以逆回去的时候也指数逆回去就好了，即 $\phi^{v_k}=exp(v^k(\cdot)/T)^T$ 逆为 $(\phi^{v_k})^{-1}=exp(-v^k(\cdot)/T)^T$</p>
+<h3 id="两种正则有效"><a href="#两种正则有效" class="headerlink" title="两种正则有效"></a>两种正则有效</h3><p>在最后，本文指出可以引入正则增强模型的性能，有两种：</p>
+<ul>
+<li><p>测地正则，即 $v_0$ 和 $v_K$ 的测地距离尽可能小，原理大概就是测地线喵喵咪</p>
+<script type="math/tex; mode=display">\mathcal{R}(v)=\langle v_0,v_K\rangle_V=\mathbb{E}_{q_0}[v_0^TGv_K] \tag{16}</script><p>其中 $G$ 是黎曼流形的度规矩阵，实际操作的时候用欧氏空间的单位阵即可</p>
+</li>
+<li><p>逆正则，即逆回去得到的 $\phi^{-1}(z_K)$ 与初始的变量 $z_0$ 要恢复好</p>
+<script type="math/tex; mode=display">\mathcal{R}(v)=||z_0-\phi^{-1}(z_K)||_2 \tag{17}</script></li>
+</ul>
+<h2 id="实验简介"><a href="#实验简介" class="headerlink" title="实验简介"></a>实验简介</h2><p>文章的一个不错的地方是实验很充足，我都看了，但是不想写细节了，细节也忘了，需要的时候再回顾吧，写累死了。。。</p>
+<p>有哪些有意思的实验：</p>
+<ul>
+<li>文中图7，模拟数据验证性能可以逼近分布</li>
+<li>文中图4和图6，分别是toy和真实数据中变量分布的逼近，与其它几个模型对比，优势体现在不需要ResNet太多层等</li>
+<li>文中图5和图8，两种正则的效果，看起来不错</li>
+<li>文中表1，MNIST和Omniglot数据上的实验，大模型套的VAE，DDNF用来建模隐变量，似乎效果不错，只是说的好少？</li>
+</ul>
+<h2 id="优缺点简析"><a href="#优缺点简析" class="headerlink" title="优缺点简析"></a>优缺点简析</h2><p>模型优点（根据原文所述）：</p>
+<ul>
+<li>所提的微分同胚流 $f$ 保持了微分同胚的性质，$f$ 可逆，且 $f$ 与 $f^{-1}$ 都光滑</li>
+<li>流的建模引入ODE的概念，流的部分变化过程由可与时间相关的向量场 $v(t,\cdot)$ 完成，此向量场由ResNet模拟</li>
+<li>流的建模还引入了RNN来近似整个流的变化，结构使得似然推断还行，流的逆易求，隐变量的概率密度也好算</li>
+<li>流的建模没有对网络结构有特殊设计</li>
+<li>实验充足，据文章说competitive with SOTA</li>
+<li>黎曼几何有更多的认识么？</li>
+</ul>
+<p>模型缺点：</p>
+<ul>
+<li>文章说代码将会开源，这都2021了我搜不到，迷惑</li>
+<li>其实还是有很多估计，现在还能记起来的有，ODE积分的离散估计；stationary切向量的使用（但是不用这个就没有指数性质）；泰勒展开中只近似到2阶项；Jacobi计算时迹的估计</li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] Hadi Salman, Payman Yadollahpour, Tom Fletcher, and Kayhan Batmanghelich. Deep diffeomorphic normalizing flows. arXiv e-prints, page arXiv:1810.03256, 2018.</p>
 
       
     </div>
+    
+    
+    
 
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    Max Liu
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="http://maxliu245.github.io/2021/01/13/【论文阅读31】DDNF——深度微分同胚的Normalizing-Flow/" title="【论文阅读31】DDNF——深度微分同胚的Normalizing Flow">http://maxliu245.github.io/2021/01/13/【论文阅读31】DDNF——深度微分同胚的Normalizing-Flow/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Paper-Reading/" rel="tag"># Paper Reading</a>
+          
+            <a href="/tags/ODE/" rel="tag"># ODE</a>
+          
+            <a href="/tags/Flow-Model/" rel="tag"># Flow Model</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/01/11/【论文略读30】AI-Poincare/" rel="next" title="【论文略读30】AI Poincare">
+                <i class="fa fa-chevron-left"></i> 【论文略读30】AI Poincare
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -333,6 +604,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -353,8 +628,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -464,6 +748,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Deep-Diffeomorphic-Normalizing-Flows"><span class="nav-number">1.</span> <span class="nav-text">Deep Diffeomorphic Normalizing Flows</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#心路历程"><span class="nav-number">2.</span> <span class="nav-text">心路历程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#文献简介"><span class="nav-number">3.</span> <span class="nav-text">文献简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本任务——对归纳偏执建模"><span class="nav-number">4.</span> <span class="nav-text">基本任务——对归纳偏执建模</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Idea——微分同胚如何引入"><span class="nav-number">5.</span> <span class="nav-text">Idea——微分同胚如何引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络结构——RNN-ResNet-ODE-Net"><span class="nav-number">6.</span> <span class="nav-text">网络结构——RNN+ResNet(ODE-Net)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#微分同胚流的其它亮点"><span class="nav-number">7.</span> <span class="nav-text">微分同胚流的其它亮点</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#流的逆简易计算"><span class="nav-number">7.1.</span> <span class="nav-text">流的逆简易计算</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#两种正则有效"><span class="nav-number">7.2.</span> <span class="nav-text">两种正则有效</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#实验简介"><span class="nav-number">8.</span> <span class="nav-text">实验简介</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#优缺点简析"><span class="nav-number">9.</span> <span class="nav-text">优缺点简析</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">10.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -676,6 +976,10 @@ setInterval("createtime()",250);
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
