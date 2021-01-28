@@ -1,6 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>【论文阅读32】NF小综述</title>
+    <url>/2021/01/28/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB32%E3%80%91NF%E5%B0%8F%E7%BB%BC%E8%BF%B0/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>阅读归一化流小综述</p>
+<p><em>Normalizing Flows: An Introduction and Review of Current Methods</em></p>
+</blockquote>
+<a id="more"></a>
+ <img src="/2021/01/28/【论文阅读32】NF小综述/lzgnyq.jpg" title="小拳拳出击">
+<p>他喵的读文章读了好几天，日常很烦躁。</p>
+<p>这篇文章是关于流模型的一个小综述，发在TPAMI(Early Access)上我是想不到的，截至2021/01/28影响因子17.8。去年5月刊出，现在有2次被引</p>
+<p><a href="https://ieeexplore.ieee.org/document/9089305" target="_blank" rel="noopener">https://ieeexplore.ieee.org/document/9089305</a></p>
+<h2 id="NF概述"><a href="#NF概述" class="headerlink" title="NF概述"></a>NF概述</h2><p>总结就是流这个东西属于生成模型建模的一部分，现在的<code>Normalizing流</code>在保证<strong>生成效果</strong>的同时要求<strong>生成过程可逆</strong>，也就是可以来回变。这个变来变去的过程一般包括采样，所以还需保证<strong>采样效率</strong>良好，这三个其实就是目前主要的<strong>模型改进方向</strong></p>
+<p> <code>Normalizing流</code>没有正式翻译，我姑且称为归一化流。本来是<strong>从简单初始分布一步步到复杂数据分布的过程</strong>嘛，要求<strong>可逆可微</strong>（后者应该可以退化成连续）。那么<strong>流有两个方向</strong>，简单到复杂就是<strong>生成方向</strong>；反之称为<strong>normalizing方向</strong>，意思是复杂分布统统归一化为简单分布，就是这个意思</p>
+<p>它的应用方向似乎不少，但是比较专，和生成模型相关的都可以，数据生成什么的也沾边</p>
+<h2 id="NF基础理解"><a href="#NF基础理解" class="headerlink" title="NF基础理解"></a>NF基础理解</h2><p>基础的流理论，主要是概率分布之间的变化，那么自然有Jacobi的引入，后续针对它的结构、行列式计算也有很多改进。另外是基础理论，这个真的觉得难度一下子就上去了，涉及测度论</p>
+<p>注意一个区别，微分同胚和双射不同！微分同胚是更强的，双射比较弱，原文是这么说的。自己感觉的话，微分同胚连续可微，双射不一定连续</p>
+<p>流理论的两种主要应用，密度估计和变分推断，涉及流的两个方向的使用。正向即生成方向是直接计算复杂分布的概率密度的，因此这个过程要计算Jacobi。所以在密度估计问题中，由于这个密度指的是已知数据条件下，从复杂分布推导前面简单分布的概率密度，如果建模生成方向的话，则要计算其Jacobi的逆，这样复杂了，所以对密度估计一般建模归一化方向可能方便一点。</p>
+<p>至于变分推断，就是一般的推断过程，需要重参数化技巧。不过我自己还没有见过有关这方面的流模型文章</p>
+<h2 id="NF方法分类"><a href="#NF方法分类" class="headerlink" title="NF方法分类"></a>NF方法分类</h2><p>一图胜千言系列，文章也是按这个顺序介绍的，而且对应的方法相对前一种多有针对性的改进</p>
+<img src="/2021/01/28/【论文阅读32】NF小综述/NF-1.png" title="方法分类">
+<ul>
+<li><p>逐点流，其实是逐维度的流，维度分开。显然表达能力比较欠缺，维度之间没有相关性</p>
+</li>
+<li><p>线性流，线性指线性变换。在逐点流的基础上维度之间线性组合，即进行线性变换，不妨设形式$Ax+b$。具体又分<strong>$A$对角，上下三角，置换，正交，$A$矩阵分解，$A$取卷积阵</strong>等，这些都算线性流！</p>
+<p>其中的<strong>Periodic Convolutions可能和XQ师兄提到的变换基的卷积有所关系</strong>！</p>
+<p>线性流的缺点还是表达能力，毕竟是线性（如果直接引入非线性特征变换，线性套非线性变换的话会很奇怪，为什么不直接非线性变换）</p>
+</li>
+<li><p>平面流&amp;径向流，试图突破线性流，取非线性变换</p>
+<ul>
+<li>平面流加了方向，见文中$(10)$式$x+uh(w^Tx+b)$，观察知，有一点残差的味道，前面弄出来个$x$好像是有利于Jacobi行列式估计的；另外，后面的$h$非线性，先线性再非线性，前面还有个所谓的方向$u$，这大概是平面流名称的由来</li>
+<li>径向流用的是那种中心点的形式，有点像核函数的那种形式，见文中$(14)$式</li>
+</ul>
+</li>
+<li><p>耦合（coupling）流，<strong>有技巧的非线性变换</strong>，<strong>耦合函数也叫conditioner</strong>。一般的操作是维度拆开，一部分id，一部分用耦合函数作用，以前看的NICE就是这个套路，还取了名字叫加性耦合函数。</p>
+<ul>
+<li>问题一：哪一部分变量取耦合作用，这些可能涉及到顺序的问题。常用的套路是每次非线性变换一部分变量，到后面，<strong>还能id的变量维度是减少的</strong>，因为先前非线性变换的信息已经够多</li>
+<li>问题二：回去即归一化的方向，在问题一的假设中，此方向id的维度依次增多，语义信息保留，指的是高阶信息逐渐变成id，且还能<strong>在归一化的过程中保留</strong></li>
+</ul>
+<p>针对问题一，耦合往往使用分割维度的方式，其顺序可以随机置换，也有mask方式和选择Jacobi对角值更高的维度（信息更多吧）</p>
+</li>
+</ul>
+<p>中间插一段<strong>各种耦合函数</strong>的介绍：</p>
+<ol>
+<li>直接仿射变换</li>
+<li>非线性的二次变换</li>
+<li>连续的混合密度</li>
+<li>样条（插值？），又包括分段线性，分段二次，三次样条，etc</li>
+<li>神经网络建模的自回归耦合方式，应该是依次套层</li>
+<li>多项式平方和</li>
+<li>分段双射耦合</li>
+</ol>
+<ul>
+<li><p>自回归流，其实就是上述耦合函数<strong>作用对象变化</strong>，依次作用在先前所有的输入上</p>
+<p>这样做的一个缺点是逆不好算；且由于是顺序的，难以并行计算</p>
+<img src="/2021/01/28/【论文阅读32】NF小综述/NF-2.png" title="自回归流的一般结构">
+</li>
+<li><p>以残差网络为代表的流，正逆向建模的都有</p>
+<ul>
+<li><p>正向是自然理解，用了耦合coupling的手段，维度分开，用残差加性处理加性和前面说的还不是太一样，对每次的输出也有耦合作用，见$(30)$式</p>
+</li>
+<li><p>逆向需要所谓re-arrange，这个记不清了，暂时不太明白</p>
+</li>
+</ul>
+<p>缺点是Jacobi难算，一个方案是采用det估计，由Lipschitz控制把det转换为计算迹，其中还有采样近似估计的trick。估计的方式不少，有偏无偏都有</p>
+<p>对于这一类流，一个理解是ODE系统，这类网络可设计为可逆，有文中命题7保证，要求残差block被常数1，Lipschitz控制。但不好控制，一般需要控制网络的结构，由此又衍生出一些模型</p>
+</li>
+<li><p>连续流，字面上指离散得足够精细，也可依据上面ODE理解，中间状态足够精细就逼近连续系统。但是直接加深ResNet深度太SB了。基于此，这个分两类，ODE-based和SDE-based</p>
+<ul>
+<li><p>前者即熟知的NODE+adjoint方法</p>
+<p>相关改进有陈天琦参与的FFJORD，估计迹，降低计算和存储（连续流）复杂度，还有个思路是正则限制</p>
+<p>ODE方法类也有缺点，<strong>一条path上Jacobi行列式不变号</strong>，解决方式是维度增广ANODE，以前读ANODE的时候一直对这个path不交叉有点迷惑，现在又多了一个解释！</p>
+<p>我看的DDNF他们也介绍了，路径由许多微分同胚构成</p>
+</li>
+<li><p>SDE-based没怎么看过（Langevin flows）：大概就是ODE与时间相关了，有随机项，也有固定的偏移项之类的东西</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="NF常用数据"><a href="#NF常用数据" class="headerlink" title="NF常用数据"></a>NF常用数据</h2><p>实验数据方面比较固定。除了人工数据，参考文中表2、4即可。分别是UCI和常用实际数据</p>
+<p>似乎UCI的数据都连续化了de-quantized，方式是对离散数据加均匀噪声，看成连续数据</p>
+<h2 id="NF挑战"><a href="#NF挑战" class="headerlink" title="NF挑战"></a>NF挑战</h2><p>这个文章提的挑战不多，感觉很多核心的东西没有明说，我也没看出来太多</p>
+<ol>
+<li><p>从基础理论开始，自然是测度论太难做了，基测度，即初始分布的选取可以看成一种先验，也就是大家说取简单的好采样的就完事了。有生成的复杂度和效果之间的权衡？</p>
+</li>
+<li><p>另外，微分同胚的建模也很重要，上一篇看的<a href="https://maxliu245.github.io/2021/01/13/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB31%E3%80%91DDNF%E2%80%94%E2%80%94%E6%B7%B1%E5%BA%A6%E5%BE%AE%E5%88%86%E5%90%8C%E8%83%9A%E7%9A%84Normalizing-Flow/">DNNF</a>就是</p>
+</li>
+<li><p>还有一点是损失函数的选取，现在普遍KL，也有其它距离介导的损失</p>
+</li>
+<li><p>再提一个理论上的东西，从欧氏空间到非欧空间哈哈。黎曼来袭，怎么把欧式转为黎曼。计算上必然复杂。这其中涉及到黎曼几何课上学习的东西，哈哈什么测地完备则测地线可以无限延伸，即空间中处处可以转换，也有切空间近似方式，亦或是考虑特定的黎曼空间，李群结构什么的😄</p>
+</li>
+<li><p>最后至于不连续流，个人觉得是特定应用场景下再使用就算了，而且一般也就是离散流de-quantized近似为连续流</p>
+</li>
+</ol>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] Kobyzev, I., Prince, S., &amp; Brubaker, M. (2020). Normalizing Flows: An Introduction and Review of Current Methods. IEEE Transactions on Pattern Analysis and Machine Intelligence, 1-1. <a href="https://doi.org/10.1109/TPAMI.2020.2992934" target="_blank" rel="noopener">https://doi.org/10.1109/TPAMI.2020.2992934</a> </p>
+]]></content>
+      <tags>
+        <tag>Paper Reading</tag>
+        <tag>Flow Model</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【Windows技巧3】奇怪的网页广告统统走开</title>
+    <url>/2021/01/26/%E3%80%90Windows%E6%8A%80%E5%B7%A73%E3%80%91%E5%A5%87%E6%80%AA%E7%9A%84%E7%BD%91%E9%A1%B5%E5%B9%BF%E5%91%8A%E7%BB%9F%E7%BB%9F%E8%B5%B0%E5%BC%80/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>大家吼！给大家安利去网页广告神器ADBlock！</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>凡安利必有因，本来打算用学校的vpn下波文献，研究研究《傅雷家书》的版权问题。毕竟傅雷早已过世，为什么傅雷家书还不算公版书呢？</p>
+<p>以下文献讲得还可以，我感觉我明白了，《傅雷家书》是傅聪整理的，而且有所创新，其<strong>著作权现在归属傅聪</strong>。get</p>
+<blockquote>
+<p><a href="https://kns.cnki.net/kcms/detail/detail.aspx?dbcode=CJFD&amp;dbname=CJFDLAST2017&amp;filename=FBZX201726164&amp;v=xscXH%25mmd2F5%25mmd2BzQVsz6bvAycyaGFAlQY3yZkHtJAdqbO7AuEXwv3Jgdg0xh2Bec06j25V" target="_blank" rel="noopener">浅论公版图书的版权问题——以《傅雷家书》版权案为例</a></p>
+<p>许姗. (2017). 浅论公版图书的版权问题——以《傅雷家书》版权案为例. 法制博览(26), 252. </p>
+</blockquote>
+<h2 id="哈哈哈哪里都有奇怪的广告"><a href="#哈哈哈哪里都有奇怪的广告" class="headerlink" title="哈哈哈哪里都有奇怪的广告"></a>哈哈哈哪里都有奇怪的广告</h2><p>但是这波上了学校vpn之后出现的奇怪的广告，导致我<strong>点击不了文献</strong>，包括大半个网页屏幕区域</p>
+<img src="/2021/01/26/【Windows技巧3】奇怪的网页广告统统走开/Webvpn-1.png" title="请问是Webvpn的锅么">
+<p>刚开始尝试开发者工具删除element，但是直接找看不出来哪个是这个广告</p>
+<p>突然惊醒，👴有<strong>去广告神器ADBlock</strong>嘻嘻🤭</p>
+<img src="/2021/01/26/【Windows技巧3】奇怪的网页广告统统走开/Webvpn-2.png" title="懂我意思吧hxd">
+<p>🆗</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>最后<strong>怒喷</strong>一波，学校这个服务还带广告的？？？这波是算合理外快还是又什么操作？？？搜文献的时候点击不了很毁人心情的</p>
+]]></content>
+      <tags>
+        <tag>Windows</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【Hexo4】公式渲染出错更正——渲染位置失效问题</title>
     <url>/2021/01/13/%E3%80%90Hexo4%E3%80%91%E5%85%AC%E5%BC%8F%E6%B8%B2%E6%9F%93%E5%87%BA%E9%94%99%E6%9B%B4%E6%AD%A3%E2%80%94%E2%80%94%E6%B8%B2%E6%9F%93%E4%BD%8D%E7%BD%AE%E5%A4%B1%E6%95%88%E9%97%AE%E9%A2%98/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
@@ -258,8 +384,8 @@ A -->E(正则引入<br>有两种方法改善模型效果,分别是测地正则�
 ]]></content>
       <tags>
         <tag>Paper Reading</tag>
-        <tag>Manifold</tag>
         <tag>GAN</tag>
+        <tag>Manifold</tag>
       </tags>
   </entry>
   <entry>
@@ -3279,8 +3405,8 @@ E --> H(需要环境中用户的交互)</pre>
 <h2 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h2><p>[1] Sung Ha Kang, Wenjing Liao, and Yingjie Liu. Ident: Identifying differential equations with numerical time evolution, 2019.</p>
 ]]></content>
       <tags>
-        <tag>CNN</tag>
         <tag>paper reading</tag>
+        <tag>CNN</tag>
       </tags>
   </entry>
   <entry>
@@ -3375,8 +3501,8 @@ E --> H(需要环境中用户的交互)</pre>
 <p><strong>所以，我这里上述两个bug出现是因为当前文件路径过长…</strong></p>
 ]]></content>
       <tags>
-        <tag>Programming</tag>
         <tag>Bug</tag>
+        <tag>Programming</tag>
       </tags>
   </entry>
   <entry>

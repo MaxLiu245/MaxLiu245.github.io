@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://maxliu245.github.io/"/>
-  <updated>2021-01-13T06:39:20.755Z</updated>
+  <updated>2021-01-28T15:13:05.276Z</updated>
   <id>http://maxliu245.github.io/</id>
   
   <author>
@@ -15,6 +15,55 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【论文阅读32】NF小综述</title>
+    <link href="http://maxliu245.github.io/2021/01/28/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB32%E3%80%91NF%E5%B0%8F%E7%BB%BC%E8%BF%B0/"/>
+    <id>http://maxliu245.github.io/2021/01/28/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB32%E3%80%91NF%E5%B0%8F%E7%BB%BC%E8%BF%B0/</id>
+    <published>2021-01-28T15:09:17.000Z</published>
+    <updated>2021-01-28T15:13:05.276Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote><p>阅读归一化流小综述</p><p><em>Normalizing Flows: An Introduction and Review of Current Methods</em></p></blockquote><a id="more"></a> <img src="/2021/01/28/【论文阅读32】NF小综述/lzgnyq.jpg" title="小拳拳出击"><p>他喵的读文章读了好几天，日常很烦躁。</p><p>这篇文章是关于流模型的一个小综述，发在TPAMI(Early Access)上我是想不到的，截至2021/01/28影响因子17.8。去年5月刊出，现在有2次被引</p><p><a href="https://ieeexplore.ieee.org/document/9089305" target="_blank" rel="noopener">https://ieeexplore.ieee.org/document/9089305</a></p><h2 id="NF概述"><a href="#NF概述" class="headerlink" title="NF概述"></a>NF概述</h2><p>总结就是流这个东西属于生成模型建模的一部分，现在的<code>Normalizing流</code>在保证<strong>生成效果</strong>的同时要求<strong>生成过程可逆</strong>，也就是可以来回变。这个变来变去的过程一般包括采样，所以还需保证<strong>采样效率</strong>良好，这三个其实就是目前主要的<strong>模型改进方向</strong></p><p> <code>Normalizing流</code>没有正式翻译，我姑且称为归一化流。本来是<strong>从简单初始分布一步步到复杂数据分布的过程</strong>嘛，要求<strong>可逆可微</strong>（后者应该可以退化成连续）。那么<strong>流有两个方向</strong>，简单到复杂就是<strong>生成方向</strong>；反之称为<strong>normalizing方向</strong>，意思是复杂分布统统归一化为简单分布，就是这个意思</p><p>它的应用方向似乎不少，但是比较专，和生成模型相关的都可以，数据生成什么的也沾边</p><h2 id="NF基础理解"><a href="#NF基础理解" class="headerlink" title="NF基础理解"></a>NF基础理解</h2><p>基础的流理论，主要是概率分布之间的变化，那么自然有Jacobi的引入，后续针对它的结构、行列式计算也有很多改进。另外是基础理论，这个真的觉得难度一下子就上去了，涉及测度论</p><p>注意一个区别，微分同胚和双射不同！微分同胚是更强的，双射比较弱，原文是这么说的。自己感觉的话，微分同胚连续可微，双射不一定连续</p><p>流理论的两种主要应用，密度估计和变分推断，涉及流的两个方向的使用。正向即生成方向是直接计算复杂分布的概率密度的，因此这个过程要计算Jacobi。所以在密度估计问题中，由于这个密度指的是已知数据条件下，从复杂分布推导前面简单分布的概率密度，如果建模生成方向的话，则要计算其Jacobi的逆，这样复杂了，所以对密度估计一般建模归一化方向可能方便一点。</p><p>至于变分推断，就是一般的推断过程，需要重参数化技巧。不过我自己还没有见过有关这方面的流模型文章</p><h2 id="NF方法分类"><a href="#NF方法分类" class="headerlink" title="NF方法分类"></a>NF方法分类</h2><p>一图胜千言系列，文章也是按这个顺序介绍的，而且对应的方法相对前一种多有针对性的改进</p><img src="/2021/01/28/【论文阅读32】NF小综述/NF-1.png" title="方法分类"><ul><li><p>逐点流，其实是逐维度的流，维度分开。显然表达能力比较欠缺，维度之间没有相关性</p></li><li><p>线性流，线性指线性变换。在逐点流的基础上维度之间线性组合，即进行线性变换，不妨设形式$Ax+b$。具体又分<strong>$A$对角，上下三角，置换，正交，$A$矩阵分解，$A$取卷积阵</strong>等，这些都算线性流！</p><p>其中的<strong>Periodic Convolutions可能和XQ师兄提到的变换基的卷积有所关系</strong>！</p><p>线性流的缺点还是表达能力，毕竟是线性（如果直接引入非线性特征变换，线性套非线性变换的话会很奇怪，为什么不直接非线性变换）</p></li><li><p>平面流&amp;径向流，试图突破线性流，取非线性变换</p><ul><li>平面流加了方向，见文中$(10)$式$x+uh(w^Tx+b)$，观察知，有一点残差的味道，前面弄出来个$x$好像是有利于Jacobi行列式估计的；另外，后面的$h$非线性，先线性再非线性，前面还有个所谓的方向$u$，这大概是平面流名称的由来</li><li>径向流用的是那种中心点的形式，有点像核函数的那种形式，见文中$(14)$式</li></ul></li><li><p>耦合（coupling）流，<strong>有技巧的非线性变换</strong>，<strong>耦合函数也叫conditioner</strong>。一般的操作是维度拆开，一部分id，一部分用耦合函数作用，以前看的NICE就是这个套路，还取了名字叫加性耦合函数。</p><ul><li>问题一：哪一部分变量取耦合作用，这些可能涉及到顺序的问题。常用的套路是每次非线性变换一部分变量，到后面，<strong>还能id的变量维度是减少的</strong>，因为先前非线性变换的信息已经够多</li><li>问题二：回去即归一化的方向，在问题一的假设中，此方向id的维度依次增多，语义信息保留，指的是高阶信息逐渐变成id，且还能<strong>在归一化的过程中保留</strong></li></ul><p>针对问题一，耦合往往使用分割维度的方式，其顺序可以随机置换，也有mask方式和选择Jacobi对角值更高的维度（信息更多吧）</p></li></ul><p>中间插一段<strong>各种耦合函数</strong>的介绍：</p><ol><li>直接仿射变换</li><li>非线性的二次变换</li><li>连续的混合密度</li><li>样条（插值？），又包括分段线性，分段二次，三次样条，etc</li><li>神经网络建模的自回归耦合方式，应该是依次套层</li><li>多项式平方和</li><li>分段双射耦合</li></ol><ul><li><p>自回归流，其实就是上述耦合函数<strong>作用对象变化</strong>，依次作用在先前所有的输入上</p><p>这样做的一个缺点是逆不好算；且由于是顺序的，难以并行计算</p><img src="/2021/01/28/【论文阅读32】NF小综述/NF-2.png" title="自回归流的一般结构"></li><li><p>以残差网络为代表的流，正逆向建模的都有</p><ul><li><p>正向是自然理解，用了耦合coupling的手段，维度分开，用残差加性处理加性和前面说的还不是太一样，对每次的输出也有耦合作用，见$(30)$式</p></li><li><p>逆向需要所谓re-arrange，这个记不清了，暂时不太明白</p></li></ul><p>缺点是Jacobi难算，一个方案是采用det估计，由Lipschitz控制把det转换为计算迹，其中还有采样近似估计的trick。估计的方式不少，有偏无偏都有</p><p>对于这一类流，一个理解是ODE系统，这类网络可设计为可逆，有文中命题7保证，要求残差block被常数1，Lipschitz控制。但不好控制，一般需要控制网络的结构，由此又衍生出一些模型</p></li><li><p>连续流，字面上指离散得足够精细，也可依据上面ODE理解，中间状态足够精细就逼近连续系统。但是直接加深ResNet深度太SB了。基于此，这个分两类，ODE-based和SDE-based</p><ul><li><p>前者即熟知的NODE+adjoint方法</p><p>相关改进有陈天琦参与的FFJORD，估计迹，降低计算和存储（连续流）复杂度，还有个思路是正则限制</p><p>ODE方法类也有缺点，<strong>一条path上Jacobi行列式不变号</strong>，解决方式是维度增广ANODE，以前读ANODE的时候一直对这个path不交叉有点迷惑，现在又多了一个解释！</p><p>我看的DDNF他们也介绍了，路径由许多微分同胚构成</p></li><li><p>SDE-based没怎么看过（Langevin flows）：大概就是ODE与时间相关了，有随机项，也有固定的偏移项之类的东西</p></li></ul></li></ul><h2 id="NF常用数据"><a href="#NF常用数据" class="headerlink" title="NF常用数据"></a>NF常用数据</h2><p>实验数据方面比较固定。除了人工数据，参考文中表2、4即可。分别是UCI和常用实际数据</p><p>似乎UCI的数据都连续化了de-quantized，方式是对离散数据加均匀噪声，看成连续数据</p><h2 id="NF挑战"><a href="#NF挑战" class="headerlink" title="NF挑战"></a>NF挑战</h2><p>这个文章提的挑战不多，感觉很多核心的东西没有明说，我也没看出来太多</p><ol><li><p>从基础理论开始，自然是测度论太难做了，基测度，即初始分布的选取可以看成一种先验，也就是大家说取简单的好采样的就完事了。有生成的复杂度和效果之间的权衡？</p></li><li><p>另外，微分同胚的建模也很重要，上一篇看的<a href="https://maxliu245.github.io/2021/01/13/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB31%E3%80%91DDNF%E2%80%94%E2%80%94%E6%B7%B1%E5%BA%A6%E5%BE%AE%E5%88%86%E5%90%8C%E8%83%9A%E7%9A%84Normalizing-Flow/">DNNF</a>就是</p></li><li><p>还有一点是损失函数的选取，现在普遍KL，也有其它距离介导的损失</p></li><li><p>再提一个理论上的东西，从欧氏空间到非欧空间哈哈。黎曼来袭，怎么把欧式转为黎曼。计算上必然复杂。这其中涉及到黎曼几何课上学习的东西，哈哈什么测地完备则测地线可以无限延伸，即空间中处处可以转换，也有切空间近似方式，亦或是考虑特定的黎曼空间，李群结构什么的😄</p></li><li><p>最后至于不连续流，个人觉得是特定应用场景下再使用就算了，而且一般也就是离散流de-quantized近似为连续流</p></li></ol><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] Kobyzev, I., Prince, S., &amp; Brubaker, M. (2020). Normalizing Flows: An Introduction and Review of Current Methods. IEEE Transactions on Pattern Analysis and Machine Intelligence, 1-1. <a href="https://doi.org/10.1109/TPAMI.2020.2992934" target="_blank" rel="noopener">https://doi.org/10.1109/TPAMI.2020.2992934</a> </p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;阅读归一化流小综述&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;Normalizing Flows: An Introduction and Review of Current Methods&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="Paper Reading" scheme="http://maxliu245.github.io/tags/Paper-Reading/"/>
+    
+      <category term="Flow Model" scheme="http://maxliu245.github.io/tags/Flow-Model/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【Windows技巧3】奇怪的网页广告统统走开</title>
+    <link href="http://maxliu245.github.io/2021/01/26/%E3%80%90Windows%E6%8A%80%E5%B7%A73%E3%80%91%E5%A5%87%E6%80%AA%E7%9A%84%E7%BD%91%E9%A1%B5%E5%B9%BF%E5%91%8A%E7%BB%9F%E7%BB%9F%E8%B5%B0%E5%BC%80/"/>
+    <id>http://maxliu245.github.io/2021/01/26/%E3%80%90Windows%E6%8A%80%E5%B7%A73%E3%80%91%E5%A5%87%E6%80%AA%E7%9A%84%E7%BD%91%E9%A1%B5%E5%B9%BF%E5%91%8A%E7%BB%9F%E7%BB%9F%E8%B5%B0%E5%BC%80/</id>
+    <published>2021-01-26T08:58:53.000Z</published>
+    <updated>2021-01-26T09:14:19.632Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote><p>大家吼！给大家安利去网页广告神器ADBlock！</p></blockquote><a id="more"></a><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>凡安利必有因，本来打算用学校的vpn下波文献，研究研究《傅雷家书》的版权问题。毕竟傅雷早已过世，为什么傅雷家书还不算公版书呢？</p><p>以下文献讲得还可以，我感觉我明白了，《傅雷家书》是傅聪整理的，而且有所创新，其<strong>著作权现在归属傅聪</strong>。get</p><blockquote><p><a href="https://kns.cnki.net/kcms/detail/detail.aspx?dbcode=CJFD&amp;dbname=CJFDLAST2017&amp;filename=FBZX201726164&amp;v=xscXH%25mmd2F5%25mmd2BzQVsz6bvAycyaGFAlQY3yZkHtJAdqbO7AuEXwv3Jgdg0xh2Bec06j25V" target="_blank" rel="noopener">浅论公版图书的版权问题——以《傅雷家书》版权案为例</a></p><p>许姗. (2017). 浅论公版图书的版权问题——以《傅雷家书》版权案为例. 法制博览(26), 252. </p></blockquote><h2 id="哈哈哈哪里都有奇怪的广告"><a href="#哈哈哈哪里都有奇怪的广告" class="headerlink" title="哈哈哈哪里都有奇怪的广告"></a>哈哈哈哪里都有奇怪的广告</h2><p>但是这波上了学校vpn之后出现的奇怪的广告，导致我<strong>点击不了文献</strong>，包括大半个网页屏幕区域</p><img src="/2021/01/26/【Windows技巧3】奇怪的网页广告统统走开/Webvpn-1.png" title="请问是Webvpn的锅么"><p>刚开始尝试开发者工具删除element，但是直接找看不出来哪个是这个广告</p><p>突然惊醒，👴有<strong>去广告神器ADBlock</strong>嘻嘻🤭</p><img src="/2021/01/26/【Windows技巧3】奇怪的网页广告统统走开/Webvpn-2.png" title="懂我意思吧hxd"><p>🆗</p><h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>最后<strong>怒喷</strong>一波，学校这个服务还带广告的？？？这波是算合理外快还是又什么操作？？？搜文献的时候点击不了很毁人心情的</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;大家吼！给大家安利去网页广告神器ADBlock！&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="Windows" scheme="http://maxliu245.github.io/tags/Windows/"/>
+    
+  </entry>
   
   <entry>
     <title>【Hexo4】公式渲染出错更正——渲染位置失效问题</title>
@@ -117,9 +166,9 @@
     
       <category term="Paper Reading" scheme="http://maxliu245.github.io/tags/Paper-Reading/"/>
     
-      <category term="Manifold" scheme="http://maxliu245.github.io/tags/Manifold/"/>
-    
       <category term="GAN" scheme="http://maxliu245.github.io/tags/GAN/"/>
+    
+      <category term="Manifold" scheme="http://maxliu245.github.io/tags/Manifold/"/>
     
   </entry>
   
@@ -415,9 +464,9 @@
     
     
     
-      <category term="CNN" scheme="http://maxliu245.github.io/tags/CNN/"/>
-    
       <category term="paper reading" scheme="http://maxliu245.github.io/tags/paper-reading/"/>
+    
+      <category term="CNN" scheme="http://maxliu245.github.io/tags/CNN/"/>
     
   </entry>
   
@@ -479,9 +528,9 @@
     
     
     
-      <category term="Programming" scheme="http://maxliu245.github.io/tags/Programming/"/>
-    
       <category term="Bug" scheme="http://maxliu245.github.io/tags/Bug/"/>
+    
+      <category term="Programming" scheme="http://maxliu245.github.io/tags/Programming/"/>
     
   </entry>
   
@@ -539,59 +588,6 @@
       <category term="Machine Learning" scheme="http://maxliu245.github.io/tags/Machine-Learning/"/>
     
       <category term="Domain Adaptation" scheme="http://maxliu245.github.io/tags/Domain-Adaptation/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【论文阅读19】Do We Need Zero Training Loss After Achieving Zero Training Error</title>
-    <link href="http://maxliu245.github.io/2020/09/16/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB19%E3%80%91Do-We-Need-Zero-Training-Loss-After-Achieving-Zero-Training-Error/"/>
-    <id>http://maxliu245.github.io/2020/09/16/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB19%E3%80%91Do-We-Need-Zero-Training-Loss-After-Achieving-Zero-Training-Error/</id>
-    <published>2020-09-16T11:05:40.000Z</published>
-    <updated>2020-09-16T11:28:45.888Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote><p>一种新的正则方法flooding，相比以往直接考虑控制模型复杂度，flooding考虑的是控制训练loss的水平</p></blockquote><a id="more"></a><img src="/2020/09/16/【论文阅读19】Do-We-Need-Zero-Training-Loss-After-Achieving-Zero-Training-Error/Zero_Training_Loss_No_1.png" title="Title"><h2 id="为什么读"><a href="#为什么读" class="headerlink" title="为什么读"></a>为什么读</h2><p>文献及相关介绍的链接：</p><ol><li><p><a href="https://arxiv.org/abs/2002.08709" target="_blank" rel="noopener">https://arxiv.org/abs/2002.08709</a></p></li><li><p><a href="https://blog.csdn.net/oYeZhou" target="_blank" rel="noopener">叶舟</a>的CSDN博客<a href="https://blog.csdn.net/oYeZhou/article/details/107667317" target="_blank" rel="noopener">一种新的正则化方法——flooding，只需一行代码即可使用</a></p></li><li><p>新智元的知乎文章<a href="https://zhuanlan.zhihu.com/p/203417649" target="_blank" rel="noopener">【论文】一行代码发一篇ICML？</a></p></li></ol><p>至于为什么读这篇文章？🤭，因为看起来简单啊，一行代码写出来的，思想上一定是很有意思的，事实也是如此。只是这个有关训练loss和训练error的讨论让我有点迷糊，放在这里，若干纪元以后再来探访~</p><h2 id="从标题到文章主题"><a href="#从标题到文章主题" class="headerlink" title="从标题到文章主题"></a>从标题到文章主题</h2><p>标题点明了文章讨论的两个概念：<strong>训练loss</strong>和<strong>训练error</strong>之间的关系</p><p>为什么会注意到这两个概念呢？从我个人的观点，<strong>前者有一点泛化</strong>的意思在里面，因为loss大了可能欠拟合，小了可能过拟合，合适的loss水平确实对各种训练方法有点影响（个人经验）；后者其实也有一点泛化的味道，但我更喜欢说它<strong>代表拟合</strong>，理由差不多，error太小了，说明模型把训练数据给背下来了，是大概率过拟合的，毕竟极其强大的网络可以拟合数据，甚至“记住”所有训练数据，达到<strong>训练error=0</strong>，但这显然有点问题，大概率会过拟合。</p><blockquote><p>文章里有一句是别人工作的结论，我觉得不太对劲：</p><p>“learning until zero training error is meaningful to achieve a lower generalization error”</p><p>对此我保留意见，文章略过了这一点，直接开始思考🤔…</p></blockquote><p>这就引出了文章标题的思考：</p><blockquote><p>Q: Do we need zero training loss after achieving zero training error?</p></blockquote><h2 id="从传统正则到针对loss水平"><a href="#从传统正则到针对loss水平" class="headerlink" title="从传统正则到针对loss水平"></a>从传统正则到针对loss水平</h2><p>一般我们会用正则控制模型复杂度（但不是完全控制loss，只是加了一项），但它的出发点不是避免0<strong>训练loss</strong>，所以它其实也控制不了<strong>训练loss</strong>的水平，即往往最后的<strong>训练loss</strong>也会有偏大或偏小的现象，达不到合适的水平。</p><p>另外，一般来说<strong>训练error</strong> $\rightarrow$ 0是可以的，但是当前者达到时，<strong>训练loss</strong>还需要继续下降么，还需要继续训练模型么？</p><blockquote><p>even if we add fooding, we can still memorize the training data</p><p>flooding剑指当<strong>训练error</strong>-&gt;0时，<strong>训练loss</strong>维持在比较小的值而不是0</p><p>假设之前希望<strong>训练error</strong>-&gt;0的那句结论的说法是对的，那么控制<strong>训练loss</strong>的水平确实有点意思，但还要确定这个水平是多少</p></blockquote><h2 id="Flooding正则"><a href="#Flooding正则" class="headerlink" title="Flooding正则"></a>Flooding正则</h2><img src="/2020/09/16/【论文阅读19】Do-We-Need-Zero-Training-Loss-After-Achieving-Zero-Training-Error/Zero_Training_Loss_No_2.png" title="形象的模型描述"><p>针对这一点，提出flooding的方法，如上图很直观啦，这个洪水的水面高度就相当于最终<strong>训练loss</strong>的水平，称为fooding level。思想很简单，就是控制<strong>训练loss</strong>的水平，当loss较高就正常SGD，loss偏低就<strong>反向进行梯度上升</strong>。思路简单的结果是实现极其简单，如下式，变量flood就是新的loss，变量b就是fooding level。一行代码即可且可应用于<strong>一切</strong>以往基于loss梯度下降的方法。</p><script type="math/tex; mode=display">flood = (loss-b).abs()+b</script><p>这样就有个麻烦，这个fooding level<strong>到底是多少</strong>？我们把<strong>训练loss</strong>控制到这个level<strong>为什么能有效</strong>？</p><blockquote><p>In Appendix F, we show that during this period of random walk, there is an increase in fatness of the loss function</p><p>附录F并没有提及理论上为何有效，似乎在附录A有定理证明</p><p>附录F的图看了几遍也没有看明白，可能需要阅读flatness的相关知识吧</p><p>附录A的证明很清晰，表明这种操作是有效的√</p></blockquote><p>那么现在只差fooding level<strong>到底是多少</strong>这个问题了。文章里表示这个可以手动设置，也可以设置验证（文中的实验就是这么做的），或者当作超参数进行超参优化；个人以为还是最后的舒服。</p><h2 id="注"><a href="#注" class="headerlink" title="注"></a>注</h2><p>这篇文章有个<strong>有意思的知识点</strong>表一，是许多正则方法的比较，以后需要的话可以看看 √</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;一种新的正则方法flooding，相比以往直接考虑控制模型复杂度，flooding考虑的是控制训练loss的水平&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="Paper Reading" scheme="http://maxliu245.github.io/tags/Paper-Reading/"/>
-    
-      <category term="Machine Learning" scheme="http://maxliu245.github.io/tags/Machine-Learning/"/>
-    
-      <category term="Regularization" scheme="http://maxliu245.github.io/tags/Regularization/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【论文阅读18】Meta-Learning Symmetries by Reparameterization——利用元学习学习保持运算等变性的结构</title>
-    <link href="http://maxliu245.github.io/2020/08/31/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB18%E3%80%91Meta-Learning-Symmetries-by-Reparameterization%E2%80%94%E2%80%94%E5%88%A9%E7%94%A8%E5%85%83%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E4%BF%9D%E6%8C%81%E8%BF%90%E7%AE%97%E7%AD%89%E5%8F%98%E6%80%A7%E7%9A%84%E7%BB%93%E6%9E%84/"/>
-    <id>http://maxliu245.github.io/2020/08/31/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB18%E3%80%91Meta-Learning-Symmetries-by-Reparameterization%E2%80%94%E2%80%94%E5%88%A9%E7%94%A8%E5%85%83%E5%AD%A6%E4%B9%A0%E5%AD%A6%E4%B9%A0%E4%BF%9D%E6%8C%81%E8%BF%90%E7%AE%97%E7%AD%89%E5%8F%98%E6%80%A7%E7%9A%84%E7%BB%93%E6%9E%84/</id>
-    <published>2020-08-31T15:25:27.000Z</published>
-    <updated>2020-08-31T16:28:29.773Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote><p>这个文章可是难到我了，谁让年轻的时候抽🐘代数学得菜呢？</p><p>好在可以举例子明白其中的道理┭┮﹏┭┮</p></blockquote><a id="more"></a><img src="/2020/08/31/【论文阅读18】Meta-Learning-Symmetries-by-Reparameterization——利用元学习学习保持运算等变性的结构/MSR.png" title="MSR"><h1 id="为什么读"><a href="#为什么读" class="headerlink" title="为什么读"></a>为什么读</h1><ul><li>元学习新作</li><li>作者之一是Finn啊doge</li></ul><p>文献链接：<a href="https://arxiv.org/abs/2007.02933" target="_blank" rel="noopener">Meta-Learning Symmetries by Reparameterization</a>，原作者提交于2020/07，挂出来了。</p><h1 id="文献总结"><a href="#文献总结" class="headerlink" title="文献总结"></a>文献总结</h1><p>用强大的神经网络去学习一些参数，它们表示某种变换（如卷积），能对特定的任务（如图像相关）满足某种等变性。</p><p>其实就是<font color="#0000FF">重参数化网络的隐层，学习像卷积这样的运算的模式pattern，可以满足像对图像平移变换的等变性，并利用元学习进一步学习此pattern</font></p><h1 id="文献内容"><a href="#文献内容" class="headerlink" title="文献内容"></a>文献内容</h1><h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>和文献总结一致！</p><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>背景一方面是CNN，可以认为卷积满足对图像平移变换的等变性，如果像卷积这样的运算可以推广，并满足各种特定运算的等变性，那一定是很🐂🍺。</p><p>另一方面是文章里的related work，不过我暂时不感兴趣没看。</p><h2 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h2><p>说实话我感觉不好总结，姑且分两个部分，一部分讲等变性对应的代数基础，另一部分讲网络参数设置的形式（以使用元学习训练）。</p><h3 id="等变性的代数理论"><a href="#等变性的代数理论" class="headerlink" title="等变性的代数理论"></a>等变性的代数理论</h3><p>3.2节提到了群卷积是什么，我不（代）太（数）明（太）白（差），举个例子吧。</p><p>网络隐层的输入输出都是空间 $X$ 的函数。比如是 $R^n$ 中一个向量，它相当于一个映射，从指标集 $X={1, \cdots, n}$ 映射到对应的 $n$ 个实数。</p><p>$X$ 上的实值函数集合定义为 $F_X$ ，群 $G$ 作用在 $F_X$ 上，通过 $\pi:G\rightarrow GL(F_X)$，这个 $\pi$ 称为representation，把群 $G$ 中的元素 $g$ 映为 $F_X$ 中的一个可逆线性变换。</p><p>注意 $G$ 对 $X$ 的作用是一个 $g\rightarrow F_X$ 的映射，</p><p>即 $F_X$ 中的可逆线性变换 $f$，当然 $f$ 作用的元素是 $X$ 中的元素 $x$ ，因为 $f$ 是 $X$ 上的实值函数嘛，现在 $\pi(g)$ 是一个可逆线性变换，假设就是 $f$ 的逆变换，所以 $\pi(g)$ 复合 $f$ 是一个函数且是恒等映射，即 $(\pi(g)f)(x) = I(x) = x$</p><p>文章写的符号我没看懂，但是看例子懂了， $G=X$ 时，定义作用为 $R^2$ 上的加法平移，则 $g^{-1}x$ 是 $x-g$ ， $gx$ 是 $x+g$ ，</p><img src="/2020/08/31/【论文阅读18】Meta-Learning-Symmetries-by-Reparameterization——利用元学习学习保持运算等变性的结构/MSR2.png" title="举个例子我就懂啦！"><p>3.3节表示，定义网络隐层为一个函数 $\phi:F_X\rightarrow F_Y$， $G$ 有等变性，举个简单例子， $X$ ， $Y$ 是输入图片网格和输出特征图的网格，所以， $F_X$ 中的元素就是网格大小的图片， $F_Y$ 中的元素就是特征图大小的图片；3式左边就是先对隐层输入做一个平移变换，再输出特征图，右边相当于先输出特征图，再做输出空间上对应的平移变换。</p><p>一个特例是，如果 $\pi$ 是id恒等映射，即 $X$ 、 $Y$ 空间上平移是一致，一样的，那么就叫不变性，先平移再映射和先映射再平移是一样的；注意这里的两个平移现在是数值上相等，但空间是其实分别是 $X$ 和 $Y$ 。</p><p>由于等变性对于函数复合可以保持，那么如果所有隐层都有等变性，那么整个网络也有。</p><p>线性层是基本的层，希望用它学习参数的共同pattern，达到使之有等变性（像群卷积）。</p><p>最后重述一下MSR方法吧，即学习和编码等变性，这个学习就是学习隐层参数的共享pattern，编码是指在代数上找到上文所述的一个灵活的representation。</p><h3 id="网络参数形式"><a href="#网络参数形式" class="headerlink" title="网络参数形式"></a>网络参数形式</h3><p>其实具体的例子参考文中的图1即可。</p><p>4.1节表示，隐层权重矩阵是图1那样形式叠加的矩阵，这就是一种constraint，就是一种pattern，结果是对平移有等变性。现在希望推广到其它的变换，旋转，镜像什么的，但是咱们没有思路怎么去做，所以就用简单的FC层模拟，设置 $y=\phi(x)=Wx, W\in \mathbb{R}^{m\times n}$ ，然后学习 $W$ 就是在学习这个pattern了。</p><p>接着阐释了这个pattern不是直接去学习 $W$ ，这样也看不出有什么pattern。我猜是参考了矩阵分解的概念， $vec(W)=Uv, v\in\mathbb{R}^k, U\in\mathbb{R}^{mn\times k}$ ， $W$ 分解为伪对称矩阵 $U$ 和滤波参数向量 $v$ 的积， $U$ 的维度就是 $W$ 完全展开，再复制个 $k$ 份， $k$ 就是参量 $v$ 的维度，应该可以自行设置。所以pattern实际上就是 $U$ ， $U$ 可以限制最后 $W$ 的形式，滤波参数 $v$也要根据实际任务训练。</p><blockquote><p>For example, the sharing pattern of standard convolution guarantees that the weight matrix is constant along any diagonal, reducing the number of per-task parameters</p></blockquote><p>显然 $U$ 的维度会很高，怎么办？Kronecker factorization，就是参数化的方式，和我之前看的文章和做的实验都是<strong>一致</strong>的想法！</p><p>4.2节继续，那么 $U$ 具体怎么设置呢？和输入的形式有一些关系…举例子吧，从基本的网格空间 $X$ 上选位置，得到输入 $f$ ，即 $f:X\rightarrow R^c$ ，这个输入是向量（矩阵或者矩阵展开应该也行）。假定 $f$ 是 $s$ 维的， $\bar{f}\in\mathbb{R}^s$ ，其中 $\bar{f}_i=f(x_i)$  。引理就是保证了可以由这个 $U$ 保持群的作用，即保持某种运算的等变性；引理分两部分，一部分是给定群后，群的作用就定了，即运算定了，该运算的等变性存在 $U$ 来保持；第二部分是此 $U$ 存在时，任何 $G$ 卷积都可以由 $vec(W)$ 表示出来。所以 $U$ 就设置成一个固定长度的参数向量，把它参数化为矩阵或者向量本身都可以，进一步得到pattern的形式，这样就是能训练的。证明估计我也看不懂了…</p><h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><p>优点：</p><ul><li>优点：学习保持等变量性质的参数pattern—&gt;泛化，减少参数用量，适用小样本</li><li>从卷积的应用开始，等变性很重要—&gt;是未来发展的方向之一</li><li>未来自动寻找潜在的特殊结构的算子？像卷积这样的带有等变性的</li><li>quickly discovering symmetries的应用</li></ul><p>缺点：</p><ul><li>我也不知道，可能要根据等变性做监督，训练得到 $U$ 具体的形式，这算不算一种手动设置呢。好吧我其实在杠，还是暂时挑不出毛病</li></ul><h1 id="附录——“快乐”的阅读体验"><a href="#附录——“快乐”的阅读体验" class="headerlink" title="附录——“快乐”的阅读体验"></a>附录——“快乐”的阅读体验</h1><p>我的阅读历程😭😥😪😵，仅个人记录于此，不建议看官阅读…应该看不懂的，只是一些个人阅读思路。<strong>和上文基（是）本（水）重（字）叠（数）</strong>。</p><ul><li><p>标题中什么叫元学习的对称性？</p><p>这里应该<strong>不是</strong>指“元学习有对称性”，而是一个广泛的概念，是要学习<strong>某种</strong>对称性，包括数据本身性质、任务之间关联性，以及某些对数据运算的性质（如旋转镜像这样的运算算子）</p></li><li><p>摘要中：</p><ul><li><p>等变量equivariances是什么意思？</p><p>参考链接<a href="https://zhuanlan.zhihu.com/p/34288976" target="_blank" rel="noopener">CNN 中等变性（equivariant）与不变性（invariant）的关系</a>即可，确实是，经过某些特定运算，特定的输入<strong>模式</strong>能够保持不变</p></li><li><p>感觉文章的<strong>卖点</strong>是从数据（含某种对称性）中（元）学习这个所谓的等变量，学习的方式是用网络<strong>学习等变量对应的parameter sharing patterns</strong>，用参数化形式学习表达出这种模式！</p></li></ul></li><li><p>引言中：</p><ul><li><strong>等变量的起源——CNN</strong>，利用等变量做了某种对称变换，来保护参数，提高泛化能力。什么意思？大概就是卷积（层）这个操作，这个变换允许输入输出的对应变化（平移）有不变性，叫做translation equivariant，即输入（图像）经过特定的平移变换后输出也会经过类似的变换。</li><li>第一段提到了translation equivariant，这是个名词，专指<strong>平移不变性</strong>，不是混淆为广泛的变化！知乎<a href="https://zhuanlan.zhihu.com/p/34288976" target="_blank" rel="noopener">CNN 中等变性（equivariant）与不变性（invariant）的关系</a>讲得很好！</li><li>上面的指CNN利用的卷积，其本身有这种平移不变性，因此在特定任务上（图像相关）表现很好。现在本文试图找其它的内在的等变量。</li><li><strong>目的</strong>出现！引言第3段，在神经网络中<strong>自动学习等变量</strong>。有利于迁移，不需手动设计像卷积这样有平移等变性的算子，直接去寻找等变量。怎么自动学习？<font color="#0000FF">重参数化网络的隐层，以学习表示共享的pattern，并利用元学习进一步学习共同的pattern</font>。</li><li>引言最后一段讲的什么？网络怎么等价于有限对称群？这对称性和拓扑怎么关系上了？抽🐘代数🐕表示很淦…</li></ul></li><li><p>相关工作看不懂，现在懒得看</p></li><li><p>先修知识章节表示3.2、3.3节会给出等变量和群卷积的定义…<strong>早说啊</strong></p><ul><li><p>3.1回顾MAML，这是典型的元学习，MAML也是这样么，和我记的不太一样啊？我要回去重看MAML了，我就记得它是学一个好的初始参数，具体怎么学的忘了</p></li><li><p>3.2，对称性和等变性是群对集合作用的性质…复习一堆拓扑代数知识hahaha…群的定义，加法群…同态，从群 $G$ 映到 $X$ 的自同构群…自同构群，是群 $X$ 到自己的同构变换，且双射…</p></li><li><p>3.2，群卷积是什么，隐层的输入输出都是空间 $X$ 的函数。比如说 $R^n$ 中一个向量相当于一个映射，从指标集 $X={1, \cdots, n}$ 映射到对应的 $n$ 个实数。</p><img src="/2020/08/31/【论文阅读18】Meta-Learning-Symmetries-by-Reparameterization——利用元学习学习保持运算等变性的结构/MSR2.png" title="举个例子我就懂啦！"><p>$X$ 上的实值函数集合定义为 $F_X$ ，群 $G$ 作用在 $F_X$ 上，通过 $\pi:G\rightarrow GL(F_X)$，这个 $\pi$ 称为representation，把群 $G$ 中的元素 $g$ 映为 $F_X$ 中的一个可逆线性变换。</p><p>注意 $G$ 对 $X$ 的作用是一个 $g\rightarrow F_X$ 的映射，</p><p>即 $F_X$ 中的可逆线性变换 $f$，当然 $f$ 作用的元素是 $X$ 中的元素 $x$ ，因为 $f$ 是 $X$ 上的实值函数嘛，现在 $\pi(g)$ 是一个可逆线性变换，假设就是 $f$ 的逆变换，所以 $\pi(g)$ 复合 $f$ 是一个函数且是恒等映射，即 $(\pi(g)f)(x) = I(x) = x$</p><p>文章写的符号我没看懂，但是看例子懂了， $G=X$ 时，定义作用为 $R^2$ 上的加法平移，则 $g^{-1}x$ 是 $x-g$ ， $gx$ 是 $x+g$ ，</p></li><li><p>3.3，定义网络隐层为一个函数 $\phi:F_X\rightarrow F_Y$， $G$ 等变性，举个简单例子， $X$ ， $Y$ 是输入图片网格和输出特征图的网格，所以， $F_X$ 中的元素就是网格大小的图片， $F_Y$ 中的元素就是特征图大小的图片；3式左边就是先对隐层输入做一个平移变换，再输出特征图，右边相当于先输出特征图，再做输出空间上对应的平移变换。</p><p>如果pi_2是id恒等映射，即 $X$ 、 $Y$ 空间上平移是一致一样的，那么就叫不变性，先平移再映射和先映射再平移是一样的；注意这里的两个平移现在是数值上相等，但空间是其实分别是 $X$ 和 $Y$ 。</p></li><li><p>3.3，等变性对于函数复合可以保持，所以如果所有隐层都有等变性，那么整个网络也有。</p></li><li><p>3.3，线性层，研究基本的层，怎么学习参数的共同pattern，达到使之有等变性（群卷积）。</p></li><li><p>3.3，4式什么意思？没细看了，和之前写的3.2的式子应该是一致的</p></li><li><p>MSR方法干什么的：学习和编码等变性，这个学习就是学习隐层参数的共享pattern，编码是指在代数上找到一个灵活的representation</p></li></ul></li><li><p>讲方法了：</p><ul><li><p>4.1，FC层，权重矩阵是那样叠加的矩阵，这就是一种constraint，就是一种pattern，结果是对平移有等变性。现在希望推广到其它的变换，旋转，镜像什么的，但是咱们没有思路怎么去做，所以就用FC层模拟，设置 $y=\phi(x)=Wx, W\in \mathbb{R}^{m\times n}$ ，然后学习 $W$ 就是在学习这个pattern了。</p></li><li><p>接着阐释了这个pattern不是直接去学习 $W$ ，这样也看不出有什么pattern，我猜是参考矩阵分解的概念， $vec(W)=Uv, v\in\mathbb{R}^k, U\in\mathbb{R}^{mn\times k}$ ， $W$ 分解为伪对称矩阵 $U$ 和滤波参数向量 $v$ 的积， $U$ 的维度就是 $W$ 完全展开，再复制个 $k$ 份， $k$ 就是参量 $v$ 的维度，应该可以自行设置。所以pattern实际上就是 $U$ ， $U$ 可以限制最后 $W$ 的形式，滤波参数 $v$也要根据实际任务训练。</p><blockquote><p>For example, the sharing pattern of standard convolution guarantees that the weight matrix is constant along any diagonal, reducing the number of per-task parameters</p></blockquote></li><li><p>显然 $U$ 的维度会很高，怎么办？Kronecker factorization，就是参数化的方式，和之前看的文章和做的实验都是<strong>一致</strong>的想法！</p></li><li><p>4.2，那么 $U$ 具体怎么设置呢？输入的形式…举例子吧，从基本的网格空间 $X$ 上选位置，得到输入 $f$ ，即 $f:X\rightarrow R^c$ ，这个输入是向量（矩阵或者矩阵展开应该也行）。假定 $f$ 是 $s$ 维的， $\bar{f}\in\mathbb{R}^s$ ，其中 $\bar{f}_i=f(x_i)$  。引理就是保证了可以由这个 $U$ 保持群的作用，即保持某种运算的等变性；引理分两部分，一部分是给定群后，群的作用就定了，即运算定了，该运算的等变性存在 $U$ 来保持；第二部分是此 $U$ 存在时，任何 $G$ 卷积都可以由 $vec(W)$ 表示出来。反正就是能训练的。证明估计我也看不懂</p></li></ul></li><li><p>实验日常不想看，但是说实话还是得康康代码的</p></li><li><p>结论：</p><ul><li>优点：学习保持等变量性质的参数pattern—&gt;泛化，减少参数用量，适用小样本</li><li>从卷积的应用开始，等变性很重要—&gt;是未来发展的方向之一</li><li>未来自动寻找潜在的特殊结构的算子？像卷积这样的带有等变性的</li><li>quickly discovering symmetries的应用</li></ul></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;这个文章可是难到我了，谁让年轻的时候抽🐘代数学得菜呢？&lt;/p&gt;
-&lt;p&gt;好在可以举例子明白其中的道理┭┮﹏┭┮&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="Paper Reading" scheme="http://maxliu245.github.io/tags/Paper-Reading/"/>
-    
-      <category term="Meta Learning" scheme="http://maxliu245.github.io/tags/Meta-Learning/"/>
     
   </entry>
   
