@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://maxliu245.github.io/"/>
-  <updated>2021-01-28T15:13:05.276Z</updated>
+  <updated>2021-02-22T15:47:17.225Z</updated>
   <id>http://maxliu245.github.io/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【论文略读33-35】染色体分割相关</title>
+    <link href="http://maxliu245.github.io/2021/02/22/%E3%80%90%E8%AE%BA%E6%96%87%E7%95%A5%E8%AF%BB33-35%E3%80%91%E6%9F%93%E8%89%B2%E4%BD%93%E5%88%86%E5%89%B2%E7%9B%B8%E5%85%B3/"/>
+    <id>http://maxliu245.github.io/2021/02/22/%E3%80%90%E8%AE%BA%E6%96%87%E7%95%A5%E8%AF%BB33-35%E3%80%91%E6%9F%93%E8%89%B2%E4%BD%93%E5%88%86%E5%89%B2%E7%9B%B8%E5%85%B3/</id>
+    <published>2021-02-22T15:20:54.000Z</published>
+    <updated>2021-02-22T15:47:17.225Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote><p>读了点染色体分割的小文章，有点平衡不好暴力美学和解释性方法了</p></blockquote><a id="more"></a><h2 id="第一篇"><a href="#第一篇" class="headerlink" title="第一篇"></a>第一篇</h2><p>第一篇文章是专利：<a href="https://www.zhangqiaokeyan.com/patent-detail/06120101534115.html" target="_blank" rel="noopener">一种染色体核型图像切割方法</a></p><p>申请公布日19/12/03，公司写的专利</p><p>粗看了一遍流程，方法是<strong>基础，合理，工程</strong>的</p><p>好多方法都用了，形态学算子、MaskRCNN等等，大概思路就是</p><ol><li>不知道有没有预处理，好像不需要</li><li>连通域提取染色体区域</li><li>重叠染色体进一步提取，方式是阈值判断与置信选择</li><li>进一步提取骨架，找中心点，骨架其实就是染色体条像素宽度1</li><li>后面就是无趣的深度学习工程式套模型，数据增强等等，有多少方法套多少方法</li></ol><h2 id="第二篇"><a href="#第二篇" class="headerlink" title="第二篇"></a>第二篇</h2><p>第二篇文章<a href="https://ieeexplore.ieee.org/document/7163174" target="_blank" rel="noopener">A Geometric Approach To Fully Automatic Chromosome Segmentation</a></p><p>这个文章是2014 IEEE Signal Processing in Medicine and Biology Symposium (SPMB)的</p><p>感觉讲得很结实实在，就是讲染色体图像自动分割，方法就是<code>a geometric method for segmentation of the touching and partially overlapping chromosomes</code></p><p>基本方法：</p><ol><li>去噪（预处理）</li><li>分离重叠或者touching的染色体（key）</li><li>正式分离</li></ol><p>本文的出发点（idea）是基于几何进行自动分割，主要贡献在于检测分离2中的情形。本文强调几何方法的优点（section I最后有三条优点）是不用考虑图片类型，通用。本文的数据也不多，database containing 62 touching and  partially overlapping chromosomes，要考虑减小过拟合。</p><p>上述的2有两大步骤</p><ol><li>第1是把所有染色体簇识别出来，方式是三种几何方法适当组合，虽然每个方法都有偏颇，但组合之后确实可能更有效分别是计算凸包像素比例、外接椭圆长短轴比、骨架端点数</li><li>第2就是把染色体簇分成单个的，方式是找出分割点，有VAMD和SDTP两个准则，都是几何判断，细节不考虑了</li><li>ps：如果有多条染色体成簇，就重复算法，每次分出来一条</li></ol><h2 id="第三篇"><a href="#第三篇" class="headerlink" title="第三篇"></a>第三篇</h2><p>第三篇文章很早之前看过，这次整理一下</p><p><a href="https://ieeexplore.ieee.org/document/8014843" target="_blank" rel="noopener">Crowdsourcing for Chromosome Segmentation and Deep Classification</a>是<a href="https://ieeexplore.ieee.org/xpl/conhome/8014302/proceeding" target="_blank" rel="noopener">2017 IEEE Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)</a>的</p><p>原来是个workshop，怪不得觉得差味道</p><p>这个讲一整套流程，中期（ metaphase ）染色体分析，分割与分类，众包流程。</p><p>众包是人工注释边界。。然后伸直矫正+长度归一化。。再网络分类。。</p><p>哈哈这个文章也提到了染色体分割的难处，叽里呱啦介绍了一堆别人方法，然后表示我们还是深度吧。。</p><p>扫了一遍内容没啥，我觉得就是强调了一遍染色体分类应用落地的流程。整个流程十分工程：</p><ol><li>众包分割单个染色体图像</li><li>众包过程中有细节提高分割效率</li><li>单个染色体有诸如剪切、拼接、扭直、归一化长度的操作</li><li>普通的网络进行分类</li><li>交互式应用界面</li></ol><p>最后，它的数据集不大，准确率泛化性存疑</p><h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>平衡不好暴力美学和解释性方法了</p><p>要是一点点地设计模型，效果是存疑的，但是可解释性会比较优美，所以希望分类的方法能直观，能看出来实际意义，同时保持准确性（安全性）</p><p>要是暴力工程处理，实在不美，效果泛化未必就好，这样来看还是处理general图像的方法好，预处理尽可能忽略图像类型的影响</p><p>大晚上的迷糊了，ヾ(•ω•`)o</p><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] 宋宁, 池浩塬, 秦玉磊, 韩云鹏, 马伟旗, 沈晓明, 晏青, 吴朝玉, and 杨洁. “一种染色体核型图像切割方法.” 2019.</p><p>[2] Minaee, S., M. Fotouhi, and B. H. Khalaj. “A Geometric Approach to Fully Automatic Chromosome Segmentation.” Paper presented at the 2014 IEEE Signal Processing in Medicine and Biology Symposium (SPMB), 13-13 Dec. 2014 2014.</p><p>[3] Sharma, M., O. Saha, A. Sriraman, R. Hebbalaguppe, L. Vig, and S. Karande. “Crowdsourcing for Chromosome Segmentation and Deep Classification.” Paper presented at the 2017 IEEE Conference on Computer Vision and Pattern Recognition Workshops (CVPRW), 21-26 July 2017 2017.</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;读了点染色体分割的小文章，有点平衡不好暴力美学和解释性方法了&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="Paper Reading" scheme="http://maxliu245.github.io/tags/Paper-Reading/"/>
+    
+      <category term="Medical Images" scheme="http://maxliu245.github.io/tags/Medical-Images/"/>
+    
+  </entry>
   
   <entry>
     <title>【论文阅读32】NF小综述</title>
@@ -166,9 +191,9 @@
     
       <category term="Paper Reading" scheme="http://maxliu245.github.io/tags/Paper-Reading/"/>
     
-      <category term="GAN" scheme="http://maxliu245.github.io/tags/GAN/"/>
-    
       <category term="Manifold" scheme="http://maxliu245.github.io/tags/Manifold/"/>
+    
+      <category term="GAN" scheme="http://maxliu245.github.io/tags/GAN/"/>
     
   </entry>
   
@@ -464,9 +489,9 @@
     
     
     
-      <category term="paper reading" scheme="http://maxliu245.github.io/tags/paper-reading/"/>
-    
       <category term="CNN" scheme="http://maxliu245.github.io/tags/CNN/"/>
+    
+      <category term="paper reading" scheme="http://maxliu245.github.io/tags/paper-reading/"/>
     
   </entry>
   
@@ -528,9 +553,9 @@
     
     
     
-      <category term="Bug" scheme="http://maxliu245.github.io/tags/Bug/"/>
-    
       <category term="Programming" scheme="http://maxliu245.github.io/tags/Programming/"/>
+    
+      <category term="Bug" scheme="http://maxliu245.github.io/tags/Bug/"/>
     
   </entry>
   
@@ -555,35 +580,6 @@
     
     
       <category term="Paper Reading" scheme="http://maxliu245.github.io/tags/Paper-Reading/"/>
-    
-      <category term="Machine Learning" scheme="http://maxliu245.github.io/tags/Machine-Learning/"/>
-    
-      <category term="Domain Adaptation" scheme="http://maxliu245.github.io/tags/Domain-Adaptation/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【论文阅读20】DANN——利用域对抗进行简单的域迁移</title>
-    <link href="http://maxliu245.github.io/2020/09/17/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB20%E3%80%91DANN%E2%80%94%E2%80%94%E5%88%A9%E7%94%A8%E5%9F%9F%E5%AF%B9%E6%8A%97%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E7%9A%84%E5%9F%9F%E8%BF%81%E7%A7%BB/"/>
-    <id>http://maxliu245.github.io/2020/09/17/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB20%E3%80%91DANN%E2%80%94%E2%80%94%E5%88%A9%E7%94%A8%E5%9F%9F%E5%AF%B9%E6%8A%97%E8%BF%9B%E8%A1%8C%E7%AE%80%E5%8D%95%E7%9A%84%E5%9F%9F%E8%BF%81%E7%A7%BB/</id>
-    <published>2020-09-17T14:05:42.000Z</published>
-    <updated>2020-09-17T14:25:52.921Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote><p>第一次看领域迁移的文章~</p></blockquote><a id="more"></a><img src="/2020/09/17/【论文阅读20】DANN——利用域对抗进行简单的域迁移/DANN-1.png" title="文献预览"><h1 id="为什么读"><a href="#为什么读" class="headerlink" title="为什么读"></a>为什么读</h1><ul><li>IID组会上听来的，好像很炫酷</li><li>人家是JMLR啊，而且似乎是相关工作的开山作？好像是，日后再证</li><li>下面的参考博客中把该文章的模型结构都说的很清楚，但是感觉对loss的描述不够精确细节，我第一遍看没法get到模型的实现机理，因此单独细看了loss，并记录于此博客</li></ul><p>文献及相关参考链接：</p><ol><li><p><a href="https://www.jmlr.org/papers/volume17/15-239/15-239.pdf" target="_blank" rel="noopener">https://www.jmlr.org/papers/volume17/15-239/15-239.pdf</a> 或者 <a href="https://arxiv.org/abs/1505.07818" target="_blank" rel="noopener">https://arxiv.org/abs/1505.07818</a></p></li><li><p><a href="https://blog.csdn.net/weixin_37993251" target="_blank" rel="noopener">gdtop818</a>的CSDN博客<a href="https://blog.csdn.net/weixin_37993251/article/details/89398433" target="_blank" rel="noopener">Domain-Adversarial Training of Neural Networks</a></p></li><li><p><a href="https://www.zhihu.com/people/sabrina-65-94" target="_blank" rel="noopener">我的猫爱睡觉</a>的知乎文章<a href="https://zhuanlan.zhihu.com/p/199514982" target="_blank" rel="noopener">Domain-Adversarial Training of NN(DANNs)</a>，包括了几个有用的链接</p></li></ol><h1 id="DANN及其loss构造"><a href="#DANN及其loss构造" class="headerlink" title="DANN及其loss构造"></a>DANN及其loss构造</h1><p>首先还是介绍一下<strong>DANN——Domain-Adversarial Training of Neural Networks</strong>，在我理解是一篇利用了对抗网络来进行简单的领域迁移的文章。这篇文章除了迁移、对抗，还有表示学习的内容，因为具体操作是通过特征的转换完成的。文章思想<strong>核心</strong>是通过让源域和目标域的样本特征不能被很好地辨识，同时源域上的分类效果很好，达到<strong>混淆样本的特征表示</strong>，使分类器在此特征表示上能够完成域迁移的效果。</p><p>话不多说，直接开干原文中第4章的模型结构图，如下图所示：</p><img src="/2020/09/17/【论文阅读20】DANN——利用域对抗进行简单的域迁移/DANN-2.png" title="DANN"><p>那么DANN分3个部分：</p><ol><li><p>左上角是特征提取器 $G_f$，feature的提取器。输入 $x$ 包括源域和目标域的样本，输出转化后的特征。其目的一方面是特征提取，另一方面是在特征空间中混淆源域和目标域的样本，即两个域的样本对齐，以便迁移；</p></li><li><p>右上角是分类器 $G_y$，对标签 $y$ 分类没得说。输入 $f$ 只有源域的样本特征了，因为目标域没有标签，监督不了的。只要保证源域上的分类效果良好，由于两类特征被特征提取器  $G_f$ 混淆，所以源域上效果好，目标域上也便于迁移（不知道有没有证明，应该是实验验证）</p></li><li><p>右下角是域分类器 $G_d$，domain的分类器，这个要做对抗的。输入则是源域和目标域的特征，目标是在特征空间上分离两个域的样本，这一点可以和特征提取器 $G_f$ 形成对抗。注意 $G_d$ 和 $G_f$ 中甲有个<strong>梯度反传层（GRL）</strong>，它的结构是</p><blockquote><p>leaves the input unchanged during forward propagation and reverses the gradient by multiplying it by a negative scalar during the backpropagation</p></blockquote></li></ol><p>现在对抗就在这里，因为 $G_f$ 要求两类样本在特征空间中分不开，而 $G_d$ 则反之，所以两部分的loss符号是相反的（可以再加个系数），即 $G_d$ 正常训练，loss符号不变，但是反传梯度的时候，希望 $G_f$ 分离不了样本，梯度是反过来的。</p><p>反应在BP的过程中就是，梯度从最后 $G_d$ 的输出 $L_d$ 开始计算，先正常反传 $G_d$ 上的梯度 $\dfrac{\partial L_d}{\partial \theta_d}$，经过GRL时加个负号（与正系数 $\lambda$），所以在 $G_f$ 上的梯度就是 $\dfrac{\partial L_d}{\partial \theta_f}$。</p><p>进一步地，反应在损失函数中，让我们康康原文 $(18)$ 式：</p><script type="math/tex; mode=display">\displaystyle E = \dfrac{1}{n}\sum_{i=1}^n \mathcal{L}_y (G_y (G_f (x_i; \theta_f); \theta_y), y_i) - \lambda \left(\dfrac{1}{n}\sum_{i=1}^n \mathcal{L}_d (G_d (GRL(G_f (x_i; \theta_f)); \theta_d), d_i) + \dfrac{1}{n^\prime}\sum_{i=n+1}^N \mathcal{L}_d (G_d (GRL(G_f (x_i; \theta_f)); \theta_d), d_i)\right).</script><p>这样 $E$ 就和上面的DANN的三部分分析对上了，$E$ 右端第一项就是分类器 $G_y$ 的分类误差，梯度是正常反传的，所以loss也是正常的形式。$E$ 右端第二项是域分类器的分类误差，但是分为了两部分，括号里第一项中index为从 $1$ 到 $n$ 的求和是源域的样本分类误差，第二项中index为从 $n+1$ 到 $N$ 的求和是目标域的样本分类误差，其中都经过了GRL的作用，此时要求特征提取器 $G_f$性能不行，因此该误差反传时前面是负数。</p><p>现在loss的组成分析完了，但是<strong>对抗体现在loss的哪里</strong>呢？我想了好一会儿…哎呀还是我菜了，对抗体现在 $E$ 的左右两项啊，第一项是正常的，第二项的反过来的嘛，<strong>对抗就是体现在中间那个负号</strong>上~</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;第一次看领域迁移的文章~&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="Paper Reading" scheme="http://maxliu245.github.io/tags/Paper-Reading/"/>
-    
-      <category term="Meta Learning" scheme="http://maxliu245.github.io/tags/Meta-Learning/"/>
     
       <category term="Machine Learning" scheme="http://maxliu245.github.io/tags/Machine-Learning/"/>
     

@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="Paper Reading,Medical Images,">
 
 
 
@@ -88,16 +88,18 @@
 
 
 
-<meta name="description" content="Max Liu&apos;s Blog">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Max Liu&#39;s Blog">
-<meta property="og:url" content="http://maxliu245.github.io/archives/2020/index.html">
+<meta name="description" content="读了点染色体分割的小文章，有点平衡不好暴力美学和解释性方法了">
+<meta name="keywords" content="Paper Reading,Medical Images">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【论文略读33-35】染色体分割相关">
+<meta property="og:url" content="http://maxliu245.github.io/2021/02/22/【论文略读33-35】染色体分割相关/index.html">
 <meta property="og:site_name" content="Max Liu&#39;s Blog">
-<meta property="og:description" content="Max Liu&apos;s Blog">
+<meta property="og:description" content="读了点染色体分割的小文章，有点平衡不好暴力美学和解释性方法了">
 <meta property="og:locale" content="en">
+<meta property="og:updated_time" content="2021-02-22T15:47:17.225Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Max Liu&#39;s Blog">
-<meta name="twitter:description" content="Max Liu&apos;s Blog">
+<meta name="twitter:title" content="【论文略读33-35】染色体分割相关">
+<meta name="twitter:description" content="读了点染色体分割的小文章，有点平衡不好暴力美学和解释性方法了">
 
 
 
@@ -127,13 +129,13 @@
 
 
 
-  <link rel="canonical" href="http://maxliu245.github.io/archives/2020/">
+  <link rel="canonical" href="http://maxliu245.github.io/2021/02/22/【论文略读33-35】染色体分割相关/">
 
 
 
 
 
-  <title>Archive | Max Liu's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>【论文略读33-35】染色体分割相关 | Max Liu's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -152,7 +154,7 @@
     
   
 
-  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-archive">
+  <!-- hexo-inject:begin --><!-- hexo-inject:end --><div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
 <a href="https://github.com/MaxLiu245" class="github-corner" aria-label="View source on GitHub"><svg width="80" height="80" viewbox="0 0 250 250" style="fill:#70B7FD; color:#fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a><style>.github-corner:hover .octo-arm{animation:octocat-wave 560ms ease-in-out}@keyframes octocat-wave{0%,100%{transform:rotate(0)}20%,60%{transform:rotate(-25deg)}40%,80%{transform:rotate(10deg)}}@media (max-width:500px){.github-corner:hover .octo-arm{animation:none}.github-corner .octo-arm{animation:octocat-wave 560ms ease-in-out}}</style>
@@ -280,390 +282,270 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://maxliu245.github.io/2021/02/22/【论文略读33-35】染色体分割相关/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Max Liu">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/icon_max.png#avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Max Liu's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
-         
+          <h1 class="post-title" itemprop="name headline">【论文略读33-35】染色体分割相关</h1>
+        
+
+        <div class="post-meta">
+
           
-        Nice! 56 posts in total. Keep on posting.
-      </span>
 
-      
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-02-22T23:20:54+08:00">
+                2021-02-22
+              </time>
+            
 
-        
-        
-        
+            
+              <span class="post-meta-divider">|</span>
+            
 
-        
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-check-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Post modified&#58;</span>
+              
+              <time title="Post modified" itemprop="dateModified" datetime="2021-02-22T23:47:17+08:00">
+                2021-02-22
+              </time>
+            
+          </span>
+
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2020">2020</h1>
-          </div>
-        
-        
 
-        
+          
+            
+          
 
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+          
+          
 
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/12/19/【论文略读29】深度生成模型的黎曼几何理论/" itemprop="url">
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i> 阅读数
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+            <div class="post-wordcount">
               
-                <span itemprop="name">【论文略读29】深度生成模型的黎曼几何理论</span>
+                
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Words count in article&#58;</span>
+                
+                <span title="Words count in article">
+                  1.1k
+                </span>
               
-            </a>
-        
-      </h2>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2020-12-19T08:10:08+08:00" content="2020-12-19">
-          12-19
-        </time>
-      </div>
+              
+                <span class="post-meta-divider">|</span>
+              
 
-    </header>
-  </article>
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Reading time &asymp;</span>
+                
+                <span title="Reading time">
+                  3
+                </span>
+              
+            </div>
+          
 
+          
 
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/12/12/【论文略读28】继PDE-Net-2-0后引用它的一系列文章/" itemprop="url">
-              
-                <span itemprop="name">【论文略读28】继PDE-Net 2.0后引用它的一系列文章</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2020-12-12T15:08:07+08:00" content="2020-12-12">
-          12-12
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
       
 
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/11/21/【论文阅读27】RODE-Net——不确定性引入与GAN的精妙引入/" itemprop="url">
-              
-                <span itemprop="name">【论文阅读27】RODE-Net——不确定性引入与GAN的精妙引入</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2020-11-21T20:52:01+08:00" content="2020-11-21">
-          11-21
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+      
+        <blockquote>
+<p>读了点染色体分割的小文章，有点平衡不好暴力美学和解释性方法了</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="第一篇"><a href="#第一篇" class="headerlink" title="第一篇"></a>第一篇</h2><p>第一篇文章是专利：<a href="https://www.zhangqiaokeyan.com/patent-detail/06120101534115.html" target="_blank" rel="noopener">一种染色体核型图像切割方法</a></p>
+<p>申请公布日19/12/03，公司写的专利</p>
+<p>粗看了一遍流程，方法是<strong>基础，合理，工程</strong>的</p>
+<p>好多方法都用了，形态学算子、MaskRCNN等等，大概思路就是</p>
+<ol>
+<li>不知道有没有预处理，好像不需要</li>
+<li>连通域提取染色体区域</li>
+<li>重叠染色体进一步提取，方式是阈值判断与置信选择</li>
+<li>进一步提取骨架，找中心点，骨架其实就是染色体条像素宽度1</li>
+<li>后面就是无趣的深度学习工程式套模型，数据增强等等，有多少方法套多少方法</li>
+</ol>
+<h2 id="第二篇"><a href="#第二篇" class="headerlink" title="第二篇"></a>第二篇</h2><p>第二篇文章<a href="https://ieeexplore.ieee.org/document/7163174" target="_blank" rel="noopener">A Geometric Approach To Fully Automatic Chromosome Segmentation</a></p>
+<p>这个文章是2014 IEEE Signal Processing in Medicine and Biology Symposium (SPMB)的</p>
+<p>感觉讲得很结实实在，就是讲染色体图像自动分割，方法就是<code>a geometric method for segmentation of the touching and partially overlapping chromosomes</code></p>
+<p>基本方法：</p>
+<ol>
+<li>去噪（预处理）</li>
+<li>分离重叠或者touching的染色体（key）</li>
+<li>正式分离</li>
+</ol>
+<p>本文的出发点（idea）是基于几何进行自动分割，主要贡献在于检测分离2中的情形。本文强调几何方法的优点（section I最后有三条优点）是不用考虑图片类型，通用。本文的数据也不多，database containing 62 touching and  partially overlapping chromosomes，要考虑减小过拟合。</p>
+<p>上述的2有两大步骤</p>
+<ol>
+<li>第1是把所有染色体簇识别出来，方式是三种几何方法适当组合，虽然每个方法都有偏颇，但组合之后确实可能更有效分别是计算凸包像素比例、外接椭圆长短轴比、骨架端点数</li>
+<li>第2就是把染色体簇分成单个的，方式是找出分割点，有VAMD和SDTP两个准则，都是几何判断，细节不考虑了</li>
+<li>ps：如果有多条染色体成簇，就重复算法，每次分出来一条</li>
+</ol>
+<h2 id="第三篇"><a href="#第三篇" class="headerlink" title="第三篇"></a>第三篇</h2><p>第三篇文章很早之前看过，这次整理一下</p>
+<p><a href="https://ieeexplore.ieee.org/document/8014843" target="_blank" rel="noopener">Crowdsourcing for Chromosome Segmentation and Deep Classification</a>是<a href="https://ieeexplore.ieee.org/xpl/conhome/8014302/proceeding" target="_blank" rel="noopener">2017 IEEE Conference on Computer Vision and Pattern Recognition Workshops (CVPRW)</a>的</p>
+<p>原来是个workshop，怪不得觉得差味道</p>
+<p>这个讲一整套流程，中期（ metaphase ）染色体分析，分割与分类，众包流程。</p>
+<p>众包是人工注释边界。。然后伸直矫正+长度归一化。。再网络分类。。</p>
+<p>哈哈这个文章也提到了染色体分割的难处，叽里呱啦介绍了一堆别人方法，然后表示我们还是深度吧。。</p>
+<p>扫了一遍内容没啥，我觉得就是强调了一遍染色体分类应用落地的流程。整个流程十分工程：</p>
+<ol>
+<li>众包分割单个染色体图像</li>
+<li>众包过程中有细节提高分割效率</li>
+<li>单个染色体有诸如剪切、拼接、扭直、归一化长度的操作</li>
+<li>普通的网络进行分类</li>
+<li>交互式应用界面</li>
+</ol>
+<p>最后，它的数据集不大，准确率泛化性存疑</p>
+<h2 id="小结"><a href="#小结" class="headerlink" title="小结"></a>小结</h2><p>平衡不好暴力美学和解释性方法了</p>
+<p>要是一点点地设计模型，效果是存疑的，但是可解释性会比较优美，所以希望分类的方法能直观，能看出来实际意义，同时保持准确性（安全性）</p>
+<p>要是暴力工程处理，实在不美，效果泛化未必就好，这样来看还是处理general图像的方法好，预处理尽可能忽略图像类型的影响</p>
+<p>大晚上的迷糊了，ヾ(•ω•`)o</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] 宋宁, 池浩塬, 秦玉磊, 韩云鹏, 马伟旗, 沈晓明, 晏青, 吴朝玉, and 杨洁. “一种染色体核型图像切割方法.” 2019.</p>
+<p>[2] Minaee, S., M. Fotouhi, and B. H. Khalaj. “A Geometric Approach to Fully Automatic Chromosome Segmentation.” Paper presented at the 2014 IEEE Signal Processing in Medicine and Biology Symposium (SPMB), 13-13 Dec. 2014 2014.</p>
+<p>[3] Sharma, M., O. Saha, A. Sriraman, R. Hebbalaguppe, L. Vig, and S. Karande. “Crowdsourcing for Chromosome Segmentation and Deep Classification.” Paper presented at the 2017 IEEE Conference on Computer Vision and Pattern Recognition Workshops (CVPRW), 21-26 July 2017 2017.</p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/11/10/MLA‘20见闻/" itemprop="url">
-              
-                <span itemprop="name">MLA‘20见闻</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2020-11-10T00:24:40+08:00" content="2020-11-10">
-          11-10
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/11/03/【文献阅读26】YoloV4/" itemprop="url">
-              
-                <span itemprop="name">【文献阅读26】YoloV4</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2020-11-03T10:25:45+08:00" content="2020-11-03">
-          11-03
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/10/24/【论文阅读25】HollowNet——NN对微分算子的模拟/" itemprop="url">
-              
-                <span itemprop="name">【论文阅读25】HollowNet——NN对微分算子的模拟</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2020-10-24T15:43:45+08:00" content="2020-10-24">
-          10-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/10/19/【论文阅读24】On-Second-Order-Behaviour-in-ANODE——真二阶NODE/" itemprop="url">
-              
-                <span itemprop="name">【论文阅读24】On Second Order Behaviour in ANODE——真二阶NODE</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2020-10-19T19:11:29+08:00" content="2020-10-19">
-          10-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/10/19/【论文阅读23】CLNN——用于图像分类的跨层神经元-CNN/" itemprop="url">
-              
-                <span itemprop="name">【论文阅读23】CLNN——用于图像分类的跨层神经元+CNN</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2020-10-19T09:52:25+08:00" content="2020-10-19">
-          10-19
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/10/01/【NBA2K13】掘金重新制作/" itemprop="url">
-              
-                <span itemprop="name">【NBA2K13】掘金重新制作</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2020-10-01T11:02:41+08:00" content="2020-10-01">
-          10-01
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-            <a class="post-title-link" href="/2020/09/30/【Hexo3】博客置顶与搜索功能/" itemprop="url">
-              
-                <span itemprop="name">【Hexo3】博客置顶与搜索功能</span>
-              
-            </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2020-09-30T09:30:34+08:00" content="2020-09-30">
-          09-30
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+    
+    
+    
+
+    
+
+    
+
+    
+      <div>
+        <ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>Post author:</strong>
+    Max Liu
+  </li>
+  <li class="post-copyright-link">
+    <strong>Post link:</strong>
+    <a href="http://maxliu245.github.io/2021/02/22/【论文略读33-35】染色体分割相关/" title="【论文略读33-35】染色体分割相关">http://maxliu245.github.io/2021/02/22/【论文略读33-35】染色体分割相关/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>Copyright Notice: </strong>
+    All articles in this blog are licensed under <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a> unless stating additionally.
+  </li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Paper-Reading/" rel="tag"># Paper Reading</a>
+          
+            <a href="/tags/Medical-Images/" rel="tag"># Medical Images</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/01/28/【论文阅读32】NF小综述/" rel="next" title="【论文阅读32】NF小综述">
+                <i class="fa fa-chevron-left"></i> 【论文阅读32】NF小综述
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
-
-  
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2020/page/2/">2</a><span class="space">&hellip;</span><a class="page-number" href="/archives/2020/page/4/">4</a><a class="extend next" rel="next" href="/archives/2020/page/2/"><i class="fa fa-angle-right"></i></a>
-  </nav>
+  </article>
 
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -671,6 +553,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -691,8 +577,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -802,6 +697,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#第一篇"><span class="nav-number">1.</span> <span class="nav-text">第一篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第二篇"><span class="nav-number">2.</span> <span class="nav-text">第二篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#第三篇"><span class="nav-number">3.</span> <span class="nav-text">第三篇</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#小结"><span class="nav-number">4.</span> <span class="nav-text">小结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">5.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -1014,6 +925,10 @@ setInterval("createtime()",250);
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
@@ -1388,26 +1303,6 @@ setInterval("createtime()",250);
   
 
   
-  
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({
-        tex2jax: {
-          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
-          processEscapes: true,
-          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
-        }
-      });
-    </script>
-
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Queue(function() {
-        var all = MathJax.Hub.getAllJax(), i;
-        for (i=0; i < all.length; i += 1) {
-          all[i].SourceElement().parentNode.className += ' has-jax';
-        }
-      });
-    </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
   
 
 
