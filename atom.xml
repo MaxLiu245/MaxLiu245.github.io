@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://maxliu245.github.io/"/>
-  <updated>2021-03-02T07:19:09.516Z</updated>
+  <updated>2021-03-03T01:14:35.797Z</updated>
   <id>http://maxliu245.github.io/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【论文阅读37】Very Deep VAEs Generalize Autoregressive Models and Can Outperform Them on Images</title>
+    <link href="http://maxliu245.github.io/2021/03/03/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB37%E3%80%91Very-Deep-VAEs-Generalize-Autoregressive-Models-and-Can-Outperform-Them-on-Images/"/>
+    <id>http://maxliu245.github.io/2021/03/03/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB37%E3%80%91Very-Deep-VAEs-Generalize-Autoregressive-Models-and-Can-Outperform-Them-on-Images/</id>
+    <published>2021-03-03T01:04:03.000Z</published>
+    <updated>2021-03-03T01:14:35.797Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>阅读文献<em>Very Deep VAEs Generalize Autoregressive Models and Can Outperform Them on Images</em></p><a id="more"></a><h2 id="文献信息"><a href="#文献信息" class="headerlink" title="文献信息"></a>文献信息</h2><p>标题<em>Very Deep VAEs Generalize Autoregressive Models and Can Outperform Them on Images</em>，发表于ICLR2021的<strong>spotlight</strong></p><p>文献链接</p><ul><li><a href="https://openreview.net/forum?id=RLRXCV6DbEJ" target="_blank" rel="noopener">https://openreview.net/forum?id=RLRXCV6DbEJ</a> （审稿意见先不看了）</li><li><a href="https://arxiv.org/abs/2011.10650" target="_blank" rel="noopener">https://arxiv.org/abs/2011.10650</a></li><li><a href="https://github.com/yaminibansal/vdvae" target="_blank" rel="noopener">https://github.com/yaminibansal/vdvae</a></li><li><p><a href="https://github.com/openai/vdvae" target="_blank" rel="noopener">https://github.com/openai/vdvae</a></p><h2 id="文献总结"><a href="#文献总结" class="headerlink" title="文献总结"></a>文献总结</h2></li></ul><p>本文基于下列动机/idea：</p><ol><li><p>自回归的归纳偏置不好，暴力找变量相关性；而VAE生成过程更明朗，二者关联性存在</p></li><li><p>由1，VAE可以弄成自回归模型，深度的可进一步完成其它生成模型</p><p>这里面有个idea是自回归模型约等于分层VAE+强先验，由此VAE弄成自回归</p></li><li><p>背景是一系列生成模型，如自回归、VAE、可逆流，这些模型都很好</p></li></ol><p>针对VAE、流模型相关的表示学习改进问题，通过设计深度VAE，调整其结构和优化技巧，成功把VAE拓展为有效的生成模型，效果绝佳</p><blockquote><p>PS：这里自回归忘了是啥了，大概是生成过程的强先验，所以此拓展合</p></blockquote><p>本文使用的深度VAE其实就是加深VAE，但是通过网络的设计和优化技巧使之能有效地加深</p><p>网络的设计大概就是使用top-down假设；只用高斯随机层、卷积层和非线性层；有不太明白为什么work的scaling和nearest-neighbor upsampling技巧。优化技巧就是解决VAE优化难的方式，本文用的是高梯度略掉（阈值），称为GRADIENT SKIPPING，但是我很好奇不管它越来越大咋办，估计本文的理论附录有什么证明吧</p><h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><p>本文的优点：</p><ol><li>写作清晰，摘要一看就nb，性能优异吸引人，深度VAE干了什么也介绍了七七八八；后续模型来龙去脉也很清楚，层层推进</li><li>动机合理</li><li>后续对深度VAE有分析，对生成过程可视化</li><li>文章第6节末尾给了大量模型的对比</li><li>在CIFAR-10、ImageNe、FFHQ上实验的结果（对数似然、参数量、生成速度1000倍）优于PixelCNN</li><li>深度VAE可进一步完成其它生成模型</li><li>藉VAE可生成高分辨图像，原因应该是VAE有效的分层表示学习</li><li>文章第1节末尾前两个优点</li></ol><p>缺点想不出来。。大概是top-down的结构有无操作空间？好像没有。。</p><h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>一些实验的细节显示</p><ul><li>总层数相同，深度增加时，参数量不变，泛化误差减小</li><li>网络结构不变时，初始图像分辨率（大小）增加时，泛化误差减小</li><li>实验过程中先生成全局特征，再学习局部特征，图像变为高分辨</li><li><p>实验主要是验证生成过程的有效性，合理性，并且检验了哪些因素（如分辨率）对模型的影响</p><h2 id="部分感悟"><a href="#部分感悟" class="headerlink" title="部分感悟"></a>部分感悟</h2></li></ul><p>我参考的地方</p><ul><li><p>对大量模型的比较方式</p></li><li><p>文章第2节开头对VAE的表述</p></li><li><p>文章第2节先修知识表示，VAE相关方法本身效率相对有些问题，可能有两个原因：</p><ul><li>观测之间要相互独立✔</li></ul></li><li><ul><li>不要完全分解分布，可以假定生成过程，本文用的是分层VAE，就是隐变量是top-down的模式，方式应该是使用随机层。这是合理的，有这样的明确意义，从底层特征过渡到高层特征，且隐变量的生成有随机性，带来自由性</li></ul></li></ul><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] Rewon Child. Very deep VAEs generalize autoregressive models and can outperform them on images. In International Conference on Learning Representations, 2021.</p><p>- </p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;阅读文献&lt;em&gt;Very Deep VAEs Generalize Autoregressive Models and Can Outperform Them on Images&lt;/em&gt;&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="Paper Reading" scheme="http://maxliu245.github.io/tags/Paper-Reading/"/>
+    
+      <category term="Flow Model" scheme="http://maxliu245.github.io/tags/Flow-Model/"/>
+    
+  </entry>
   
   <entry>
     <title>【论文阅读36】Dissecting NODEs</title>
@@ -191,9 +214,9 @@
     
       <category term="Paper Reading" scheme="http://maxliu245.github.io/tags/Paper-Reading/"/>
     
-      <category term="Manifold" scheme="http://maxliu245.github.io/tags/Manifold/"/>
-    
       <category term="PDE" scheme="http://maxliu245.github.io/tags/PDE/"/>
+    
+      <category term="Manifold" scheme="http://maxliu245.github.io/tags/Manifold/"/>
     
   </entry>
   
@@ -219,9 +242,9 @@
     
       <category term="Paper Reading" scheme="http://maxliu245.github.io/tags/Paper-Reading/"/>
     
-      <category term="GAN" scheme="http://maxliu245.github.io/tags/GAN/"/>
-    
       <category term="Manifold" scheme="http://maxliu245.github.io/tags/Manifold/"/>
+    
+      <category term="GAN" scheme="http://maxliu245.github.io/tags/GAN/"/>
     
   </entry>
   
@@ -551,39 +574,6 @@
       <category term="ODE" scheme="http://maxliu245.github.io/tags/ODE/"/>
     
       <category term="Flow Model" scheme="http://maxliu245.github.io/tags/Flow-Model/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【Jupyter Notebook 1】创建不了文件以及保存文件失败的问题</title>
-    <link href="http://maxliu245.github.io/2020/09/25/%E3%80%90Jupyter-Notebook-1%E3%80%91%E5%88%9B%E5%BB%BA%E4%B8%8D%E4%BA%86%E6%96%87%E4%BB%B6%E4%BB%A5%E5%8F%8A%E4%BF%9D%E5%AD%98%E6%96%87%E4%BB%B6%E5%A4%B1%E8%B4%A5%E7%9A%84%E9%97%AE%E9%A2%98/"/>
-    <id>http://maxliu245.github.io/2020/09/25/%E3%80%90Jupyter-Notebook-1%E3%80%91%E5%88%9B%E5%BB%BA%E4%B8%8D%E4%BA%86%E6%96%87%E4%BB%B6%E4%BB%A5%E5%8F%8A%E4%BF%9D%E5%AD%98%E6%96%87%E4%BB%B6%E5%A4%B1%E8%B4%A5%E7%9A%84%E9%97%AE%E9%A2%98/</id>
-    <published>2020-09-25T12:38:51.000Z</published>
-    <updated>2020-09-25T13:25:24.429Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote><p>具体的错误包括：</p><ol><li><p>在notebook交互界面一点击保存按钮就会报错</p><p><code>[Error 2] No such file or directory: C:\\...\\...\\....ipynb</code></p></li><li><p>在文件目录界面一创建新文件就会报错</p><p><code>An error occurred while creating a new notebook. No such directory: ...</code></p></li></ol></blockquote><a id="more"></a><h1 id="Bug产生背景"><a href="#Bug产生背景" class="headerlink" title="Bug产生背景"></a>Bug产生背景</h1><p>这次bug的出现是莫名其妙的，白天的时候都好好的，晚上一开电脑就遇到了这个简介中提到cai的两个问题。下面是我的<strong>美丽</strong>截图🤭</p><img src="/2020/09/25/【Jupyter-Notebook-1】创建不了文件以及保存文件失败的问题/JN-1.png" title="保存文件失败——美丽的静香打码"><img src="/2020/09/25/【Jupyter-Notebook-1】创建不了文件以及保存文件失败的问题/JN-2.png" title="创建新文件失败——美丽的静香再打码"><blockquote><p>ps: 本人打码实属打🐎👻才，静香图来源于B站撸大师木源，嗯，好像是这个奇妙的名字…</p></blockquote><h1 id="探索解决方法"><a href="#探索解决方法" class="headerlink" title="探索解决方法"></a>探索解决方法</h1><p>起初我以为是以往遇到的一个问题，就是notebook的容量太大了，超过5M可能读取起来就会出错，所以我先手动清除了其中的大部分输出，但是点击保存仍然是这个情况。</p><p>然后在网上搜了一通也没有找到适合我这种情况的解决方法。</p><p>最后注意到一个相关性比较高的回答，它表示路径名称中有特殊字符，好像是中文，不过我忘了具体怎么说的了。虽然以前我都用的中文，但是这次确实是出毛病了啊。我看着一大串的报错信息，觉得这个路径实在是太长了，毕竟我嵌套了很多文件夹…</p><p>于是！我在靠近根目录的地方复制了原来的文件，🆗</p><p><strong>所以，我这里上述两个bug出现是因为当前文件路径过长…</strong></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;具体的错误包括：&lt;/p&gt;
-&lt;ol&gt;
-&lt;li&gt;&lt;p&gt;在notebook交互界面一点击保存按钮就会报错&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;[Error 2] No such file or directory: C:\\...\\...\\....ipynb&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;&lt;p&gt;在文件目录界面一创建新文件就会报错&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;An error occurred while creating a new notebook. No such directory: ...&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ol&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="Programming" scheme="http://maxliu245.github.io/tags/Programming/"/>
-    
-      <category term="Bug" scheme="http://maxliu245.github.io/tags/Bug/"/>
     
   </entry>
   
