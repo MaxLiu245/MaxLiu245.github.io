@@ -80,8 +80,6 @@
 
 
 
-  
-
 
   <link rel="alternate" href="/atom.xml" title="Max Liu's Blog" type="application/atom+xml">
 
@@ -98,7 +96,7 @@
 <meta property="og:site_name" content="Max Liu&#39;s Blog">
 <meta property="og:description" content="阅读文献Very Deep VAEs Generalize Autoregressive Models and Can Outperform Them on Images">
 <meta property="og:locale" content="en">
-<meta property="og:updated_time" content="2021-03-03T01:14:35.797Z">
+<meta property="og:updated_time" content="2021-03-03T01:19:44.533Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【论文阅读37】Very Deep VAEs Generalize Autoregressive Models and Can Outperform Them on Images">
 <meta name="twitter:description" content="阅读文献Very Deep VAEs Generalize Autoregressive Models and Can Outperform Them on Images">
@@ -346,7 +344,7 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2021-03-03T09:14:35+08:00">
+              <time title="Post modified" itemprop="dateModified" datetime="2021-03-03T09:19:44+08:00">
                 2021-03-03
               </time>
             
@@ -424,10 +422,9 @@
 <li><a href="https://openreview.net/forum?id=RLRXCV6DbEJ" target="_blank" rel="noopener">https://openreview.net/forum?id=RLRXCV6DbEJ</a> （审稿意见先不看了）</li>
 <li><a href="https://arxiv.org/abs/2011.10650" target="_blank" rel="noopener">https://arxiv.org/abs/2011.10650</a></li>
 <li><a href="https://github.com/yaminibansal/vdvae" target="_blank" rel="noopener">https://github.com/yaminibansal/vdvae</a></li>
-<li><p><a href="https://github.com/openai/vdvae" target="_blank" rel="noopener">https://github.com/openai/vdvae</a></p>
-<h2 id="文献总结"><a href="#文献总结" class="headerlink" title="文献总结"></a>文献总结</h2></li>
+<li><a href="https://github.com/openai/vdvae" target="_blank" rel="noopener">https://github.com/openai/vdvae</a></li>
 </ul>
-<p>本文基于下列动机/idea：</p>
+<h2 id="文献总结"><a href="#文献总结" class="headerlink" title="文献总结"></a>文献总结</h2><p>本文基于下列动机/idea：</p>
 <ol>
 <li><p>自回归的归纳偏置不好，暴力找变量相关性；而VAE生成过程更明朗，二者关联性存在</p>
 </li>
@@ -460,10 +457,9 @@
 <li>总层数相同，深度增加时，参数量不变，泛化误差减小</li>
 <li>网络结构不变时，初始图像分辨率（大小）增加时，泛化误差减小</li>
 <li>实验过程中先生成全局特征，再学习局部特征，图像变为高分辨</li>
-<li><p>实验主要是验证生成过程的有效性，合理性，并且检验了哪些因素（如分辨率）对模型的影响</p>
-<h2 id="部分感悟"><a href="#部分感悟" class="headerlink" title="部分感悟"></a>部分感悟</h2></li>
+<li>实验主要是验证生成过程的有效性，合理性，并且检验了哪些因素（如分辨率）对模型的影响</li>
 </ul>
-<p>我参考的地方</p>
+<h2 id="部分感悟"><a href="#部分感悟" class="headerlink" title="部分感悟"></a>部分感悟</h2><p>我参考的地方</p>
 <ul>
 <li><p>对大量模型的比较方式</p>
 </li>
@@ -472,15 +468,11 @@
 <li><p>文章第2节先修知识表示，VAE相关方法本身效率相对有些问题，可能有两个原因：</p>
 <ul>
 <li>观测之间要相互独立✔</li>
-</ul>
-</li>
-<li><ul>
 <li>不要完全分解分布，可以假定生成过程，本文用的是分层VAE，就是隐变量是top-down的模式，方式应该是使用随机层。这是合理的，有这样的明确意义，从底层特征过渡到高层特征，且隐变量的生成有随机性，带来自由性</li>
 </ul>
 </li>
 </ul>
 <h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] Rewon Child. Very deep VAEs generalize autoregressive models and can outperform them on images. In International Conference on Learning Representations, 2021.</p>
-<p>- </p>
 
       
     </div>
@@ -540,6 +532,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2021/03/07/【论文阅读38】重读Learning-PDEs-for-Image-Restoration-via-Optimal-Control/" rel="prev" title="【论文阅读38】重读Learning PDEs for Image Restoration via Optimal Control">
+                【论文阅读38】重读Learning PDEs for Image Restoration via Optimal Control <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -618,7 +614,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">58</span>
+                  <span class="site-state-item-count">59</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -766,7 +762,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">86.5k</span>
+    <span title="Site words total count">87.2k</span>
   
 </div>
 
@@ -1336,15 +1332,7 @@ setInterval("createtime()",250);
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-  
-
-
-  
-
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -1361,5 +1349,13 @@ setInterval("createtime()",250);
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end --></body>
+<!-- hexo-inject:end -->
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
 </html>

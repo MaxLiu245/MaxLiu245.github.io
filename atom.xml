@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://maxliu245.github.io/"/>
-  <updated>2021-03-03T01:14:35.797Z</updated>
+  <updated>2021-03-07T15:36:44.569Z</updated>
   <id>http://maxliu245.github.io/</id>
   
   <author>
@@ -17,13 +17,38 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>【论文阅读38】重读Learning PDEs for Image Restoration via Optimal Control</title>
+    <link href="http://maxliu245.github.io/2021/03/07/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB38%E3%80%91%E9%87%8D%E8%AF%BBLearning-PDEs-for-Image-Restoration-via-Optimal-Control/"/>
+    <id>http://maxliu245.github.io/2021/03/07/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB38%E3%80%91%E9%87%8D%E8%AF%BBLearning-PDEs-for-Image-Restoration-via-Optimal-Control/</id>
+    <published>2021-03-07T14:44:12.000Z</published>
+    <updated>2021-03-07T15:36:44.569Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>近日重读<em>Learning PDEs for Image Restoration via Optimal Control</em>，确认下本文的目标和做法</p><a id="more"></a><h2 id="文献信息"><a href="#文献信息" class="headerlink" title="文献信息"></a>文献信息</h2> <img src="/2021/03/07/【论文阅读38】重读Learning-PDEs-for-Image-Restoration-via-Optimal-Control/1.png" title="林老师的文章"><p>本文<em>Learning PDEs for Image Restoration via Optimal Control</em>是林宙辰老师等人在ECCV2010的文章，引用量没有查，应该不低，毕竟很经典</p><p>文献参考链接地址：</p><ul><li><p><a href="http://www.cvpapers.com/eccv2010.html" target="_blank" rel="noopener">http://www.cvpapers.com/eccv2010.html</a></p></li><li><p>官方博客：<a href="https://zero-lab-pku.github.io/publication/limingjie/eccv10_learning_pdes_for_imge_restoration_via_optimal_control/" target="_blank" rel="noopener">https://zero-lab-pku.github.io/publication/limingjie/eccv10_learning_pdes_for_imge_restoration_via_optimal_control/</a></p></li><li>陆一平的推荐：<a href="https://zhuanlan.zhihu.com/p/51514687" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/51514687</a></li></ul><h2 id="文献内容"><a href="#文献内容" class="headerlink" title="文献内容"></a>文献内容</h2><p>本文学习PDE的基本目标（和我想得差不多），为图像相关任务自动设计合理的PDE</p><p>背景方法有2类，<strong>变分方法</strong>和<strong>直接设计</strong>PDE。变分方法的思路是用能量泛函学习图像的先验知识，一般是正则或其它先验模型；直接设计很暴力麻烦，对PDE中算子类型有所要求。两者应该（我的解读）都要保证图像的<strong>全局几何性质</strong>，对应PDE中的<strong>正则先验模型</strong>；然后保持一些变换下的<strong>不变性</strong>，对应各种<strong>微分不变量</strong>的线性组合</p><p>由此，本文的模型，称为<strong>可学习PDE</strong>（L-PDE），基本的形式如文中$(1)$式：</p><script type="math/tex; mode=display">\displaystyle \left\{ \begin{aligned} \dfrac{\partial u}{\partial t} &= L(u,a) = \kappa(u)+F(u,a),\ (x,y,t)\in Q \\ u &= 0,\ (x,y,t)\in \Gamma \\ u|_{t=0} &= f,\ (x,y)\in \Omega \end{aligned} \right. \tag{1}</script><p><strong>本文要学习的目标</strong>和我想的是一样的，是正常PDE<strong>右边的方程</strong>，本文把它的形式设置为如上所示的正则先验项和数据驱动的几何不变量项。PDE的边界条件就是图像边界像素（假定填充为0）。式子中前者用的似乎是（我没看过）经典的TV-正则；后者其实很简单，如文中表$(2)$，几何不变量设置了5个，原始图像、输出图像、光滑程度等等。知道是这样做的即可，表格列在这里，细节不多</p> <img src="/2021/03/07/【论文阅读38】重读Learning-PDEs-for-Image-Restoration-via-Optimal-Control/2.png" title="图像在简单变换下的不变量"><p>学习过程就是学习几何不变量的系数，有个目标函数，优化方法是<strong>伴随方法+对能量泛函求G导数</strong>。。。当场🈚了，这部分<strong>还没研究透</strong>。。。</p><h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><p>优点：</p><ul><li><p>L-PDE的形式可以概括本文之前的很多PDE模型</p></li><li><p>框架不错，模型假设和思路清晰</p></li></ul><p>缺点：</p><ul><li><p>个人疑问这几个几何不变量够么？？</p></li><li><p>代码当时未公布，<a href="https://zero-lab-pku.github.io/publication/limingjie/eccv10_learning_pdes_for_imge_restoration_via_optimal_control/" target="_blank" rel="noopener">官方博客</a>没给，现在似乎也搜不到。。</p></li></ul><h2 id="和PDE-Net共通之处"><a href="#和PDE-Net共通之处" class="headerlink" title="和PDE-Net共通之处"></a>和PDE-Net共通之处</h2><p>本来想和PDE-Net，结果发现以前的博客没有更。。。所以草草记录一下，手头上只有这个笔记：</p><p>PDE-Net 的motivation是pde轨线的拟合预测以及微分算子的估计，为此先估计导数再拟合轨线；2.0 的改进是修改了拟合轨线的网络，使用的是各阶导数组成的多项式的形式</p><p>这样看应该都是在学习PDE右边的式子</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;近日重读&lt;em&gt;Learning PDEs for Image Restoration via Optimal Control&lt;/em&gt;，确认下本文的目标和做法&lt;/p&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="Paper Reading" scheme="http://maxliu245.github.io/tags/Paper-Reading/"/>
+    
+      <category term="PDE" scheme="http://maxliu245.github.io/tags/PDE/"/>
+    
+      <category term="Computer Vision" scheme="http://maxliu245.github.io/tags/Computer-Vision/"/>
+    
+  </entry>
+  
+  <entry>
     <title>【论文阅读37】Very Deep VAEs Generalize Autoregressive Models and Can Outperform Them on Images</title>
     <link href="http://maxliu245.github.io/2021/03/03/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB37%E3%80%91Very-Deep-VAEs-Generalize-Autoregressive-Models-and-Can-Outperform-Them-on-Images/"/>
     <id>http://maxliu245.github.io/2021/03/03/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB37%E3%80%91Very-Deep-VAEs-Generalize-Autoregressive-Models-and-Can-Outperform-Them-on-Images/</id>
     <published>2021-03-03T01:04:03.000Z</published>
-    <updated>2021-03-03T01:14:35.797Z</updated>
+    <updated>2021-03-03T01:19:44.533Z</updated>
     
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>阅读文献<em>Very Deep VAEs Generalize Autoregressive Models and Can Outperform Them on Images</em></p><a id="more"></a><h2 id="文献信息"><a href="#文献信息" class="headerlink" title="文献信息"></a>文献信息</h2><p>标题<em>Very Deep VAEs Generalize Autoregressive Models and Can Outperform Them on Images</em>，发表于ICLR2021的<strong>spotlight</strong></p><p>文献链接</p><ul><li><a href="https://openreview.net/forum?id=RLRXCV6DbEJ" target="_blank" rel="noopener">https://openreview.net/forum?id=RLRXCV6DbEJ</a> （审稿意见先不看了）</li><li><a href="https://arxiv.org/abs/2011.10650" target="_blank" rel="noopener">https://arxiv.org/abs/2011.10650</a></li><li><a href="https://github.com/yaminibansal/vdvae" target="_blank" rel="noopener">https://github.com/yaminibansal/vdvae</a></li><li><p><a href="https://github.com/openai/vdvae" target="_blank" rel="noopener">https://github.com/openai/vdvae</a></p><h2 id="文献总结"><a href="#文献总结" class="headerlink" title="文献总结"></a>文献总结</h2></li></ul><p>本文基于下列动机/idea：</p><ol><li><p>自回归的归纳偏置不好，暴力找变量相关性；而VAE生成过程更明朗，二者关联性存在</p></li><li><p>由1，VAE可以弄成自回归模型，深度的可进一步完成其它生成模型</p><p>这里面有个idea是自回归模型约等于分层VAE+强先验，由此VAE弄成自回归</p></li><li><p>背景是一系列生成模型，如自回归、VAE、可逆流，这些模型都很好</p></li></ol><p>针对VAE、流模型相关的表示学习改进问题，通过设计深度VAE，调整其结构和优化技巧，成功把VAE拓展为有效的生成模型，效果绝佳</p><blockquote><p>PS：这里自回归忘了是啥了，大概是生成过程的强先验，所以此拓展合</p></blockquote><p>本文使用的深度VAE其实就是加深VAE，但是通过网络的设计和优化技巧使之能有效地加深</p><p>网络的设计大概就是使用top-down假设；只用高斯随机层、卷积层和非线性层；有不太明白为什么work的scaling和nearest-neighbor upsampling技巧。优化技巧就是解决VAE优化难的方式，本文用的是高梯度略掉（阈值），称为GRADIENT SKIPPING，但是我很好奇不管它越来越大咋办，估计本文的理论附录有什么证明吧</p><h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><p>本文的优点：</p><ol><li>写作清晰，摘要一看就nb，性能优异吸引人，深度VAE干了什么也介绍了七七八八；后续模型来龙去脉也很清楚，层层推进</li><li>动机合理</li><li>后续对深度VAE有分析，对生成过程可视化</li><li>文章第6节末尾给了大量模型的对比</li><li>在CIFAR-10、ImageNe、FFHQ上实验的结果（对数似然、参数量、生成速度1000倍）优于PixelCNN</li><li>深度VAE可进一步完成其它生成模型</li><li>藉VAE可生成高分辨图像，原因应该是VAE有效的分层表示学习</li><li>文章第1节末尾前两个优点</li></ol><p>缺点想不出来。。大概是top-down的结构有无操作空间？好像没有。。</p><h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>一些实验的细节显示</p><ul><li>总层数相同，深度增加时，参数量不变，泛化误差减小</li><li>网络结构不变时，初始图像分辨率（大小）增加时，泛化误差减小</li><li>实验过程中先生成全局特征，再学习局部特征，图像变为高分辨</li><li><p>实验主要是验证生成过程的有效性，合理性，并且检验了哪些因素（如分辨率）对模型的影响</p><h2 id="部分感悟"><a href="#部分感悟" class="headerlink" title="部分感悟"></a>部分感悟</h2></li></ul><p>我参考的地方</p><ul><li><p>对大量模型的比较方式</p></li><li><p>文章第2节开头对VAE的表述</p></li><li><p>文章第2节先修知识表示，VAE相关方法本身效率相对有些问题，可能有两个原因：</p><ul><li>观测之间要相互独立✔</li></ul></li><li><ul><li>不要完全分解分布，可以假定生成过程，本文用的是分层VAE，就是隐变量是top-down的模式，方式应该是使用随机层。这是合理的，有这样的明确意义，从底层特征过渡到高层特征，且隐变量的生成有随机性，带来自由性</li></ul></li></ul><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] Rewon Child. Very deep VAEs generalize autoregressive models and can outperform them on images. In International Conference on Learning Representations, 2021.</p><p>- </p>]]></content>
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><p>阅读文献<em>Very Deep VAEs Generalize Autoregressive Models and Can Outperform Them on Images</em></p><a id="more"></a><h2 id="文献信息"><a href="#文献信息" class="headerlink" title="文献信息"></a>文献信息</h2><p>标题<em>Very Deep VAEs Generalize Autoregressive Models and Can Outperform Them on Images</em>，发表于ICLR2021的<strong>spotlight</strong></p><p>文献链接</p><ul><li><a href="https://openreview.net/forum?id=RLRXCV6DbEJ" target="_blank" rel="noopener">https://openreview.net/forum?id=RLRXCV6DbEJ</a> （审稿意见先不看了）</li><li><a href="https://arxiv.org/abs/2011.10650" target="_blank" rel="noopener">https://arxiv.org/abs/2011.10650</a></li><li><a href="https://github.com/yaminibansal/vdvae" target="_blank" rel="noopener">https://github.com/yaminibansal/vdvae</a></li><li><a href="https://github.com/openai/vdvae" target="_blank" rel="noopener">https://github.com/openai/vdvae</a></li></ul><h2 id="文献总结"><a href="#文献总结" class="headerlink" title="文献总结"></a>文献总结</h2><p>本文基于下列动机/idea：</p><ol><li><p>自回归的归纳偏置不好，暴力找变量相关性；而VAE生成过程更明朗，二者关联性存在</p></li><li><p>由1，VAE可以弄成自回归模型，深度的可进一步完成其它生成模型</p><p>这里面有个idea是自回归模型约等于分层VAE+强先验，由此VAE弄成自回归</p></li><li><p>背景是一系列生成模型，如自回归、VAE、可逆流，这些模型都很好</p></li></ol><p>针对VAE、流模型相关的表示学习改进问题，通过设计深度VAE，调整其结构和优化技巧，成功把VAE拓展为有效的生成模型，效果绝佳</p><blockquote><p>PS：这里自回归忘了是啥了，大概是生成过程的强先验，所以此拓展合</p></blockquote><p>本文使用的深度VAE其实就是加深VAE，但是通过网络的设计和优化技巧使之能有效地加深</p><p>网络的设计大概就是使用top-down假设；只用高斯随机层、卷积层和非线性层；有不太明白为什么work的scaling和nearest-neighbor upsampling技巧。优化技巧就是解决VAE优化难的方式，本文用的是高梯度略掉（阈值），称为GRADIENT SKIPPING，但是我很好奇不管它越来越大咋办，估计本文的理论附录有什么证明吧</p><h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><p>本文的优点：</p><ol><li>写作清晰，摘要一看就nb，性能优异吸引人，深度VAE干了什么也介绍了七七八八；后续模型来龙去脉也很清楚，层层推进</li><li>动机合理</li><li>后续对深度VAE有分析，对生成过程可视化</li><li>文章第6节末尾给了大量模型的对比</li><li>在CIFAR-10、ImageNe、FFHQ上实验的结果（对数似然、参数量、生成速度1000倍）优于PixelCNN</li><li>深度VAE可进一步完成其它生成模型</li><li>藉VAE可生成高分辨图像，原因应该是VAE有效的分层表示学习</li><li>文章第1节末尾前两个优点</li></ol><p>缺点想不出来。。大概是top-down的结构有无操作空间？好像没有。。</p><h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>一些实验的细节显示</p><ul><li>总层数相同，深度增加时，参数量不变，泛化误差减小</li><li>网络结构不变时，初始图像分辨率（大小）增加时，泛化误差减小</li><li>实验过程中先生成全局特征，再学习局部特征，图像变为高分辨</li><li>实验主要是验证生成过程的有效性，合理性，并且检验了哪些因素（如分辨率）对模型的影响</li></ul><h2 id="部分感悟"><a href="#部分感悟" class="headerlink" title="部分感悟"></a>部分感悟</h2><p>我参考的地方</p><ul><li><p>对大量模型的比较方式</p></li><li><p>文章第2节开头对VAE的表述</p></li><li><p>文章第2节先修知识表示，VAE相关方法本身效率相对有些问题，可能有两个原因：</p><ul><li>观测之间要相互独立✔</li><li>不要完全分解分布，可以假定生成过程，本文用的是分层VAE，就是隐变量是top-down的模式，方式应该是使用随机层。这是合理的，有这样的明确意义，从底层特征过渡到高层特征，且隐变量的生成有随机性，带来自由性</li></ul></li></ul><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] Rewon Child. Very deep VAEs generalize autoregressive models and can outperform them on images. In International Conference on Learning Representations, 2021.</p>]]></content>
     
     <summary type="html">
     
@@ -214,9 +239,9 @@
     
       <category term="Paper Reading" scheme="http://maxliu245.github.io/tags/Paper-Reading/"/>
     
-      <category term="PDE" scheme="http://maxliu245.github.io/tags/PDE/"/>
-    
       <category term="Manifold" scheme="http://maxliu245.github.io/tags/Manifold/"/>
+    
+      <category term="PDE" scheme="http://maxliu245.github.io/tags/PDE/"/>
     
   </entry>
   
@@ -242,9 +267,9 @@
     
       <category term="Paper Reading" scheme="http://maxliu245.github.io/tags/Paper-Reading/"/>
     
-      <category term="Manifold" scheme="http://maxliu245.github.io/tags/Manifold/"/>
-    
       <category term="GAN" scheme="http://maxliu245.github.io/tags/GAN/"/>
+    
+      <category term="Manifold" scheme="http://maxliu245.github.io/tags/Manifold/"/>
     
   </entry>
   
@@ -540,40 +565,9 @@
     
     
     
-      <category term="CNN" scheme="http://maxliu245.github.io/tags/CNN/"/>
-    
       <category term="paper reading" scheme="http://maxliu245.github.io/tags/paper-reading/"/>
     
-  </entry>
-  
-  <entry>
-    <title>【论文阅读22】ODE2VAE——2阶ODE模拟+BNN引入不确定性</title>
-    <link href="http://maxliu245.github.io/2020/09/25/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB22%E3%80%91ODE2VAE%E2%80%94%E2%80%942%E9%98%B6ODE%E6%A8%A1%E6%8B%9F-BNN%E5%BC%95%E5%85%A5%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7/"/>
-    <id>http://maxliu245.github.io/2020/09/25/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB22%E3%80%91ODE2VAE%E2%80%94%E2%80%942%E9%98%B6ODE%E6%A8%A1%E6%8B%9F-BNN%E5%BC%95%E5%85%A5%E4%B8%8D%E7%A1%AE%E5%AE%9A%E6%80%A7/</id>
-    <published>2020-09-25T13:44:02.000Z</published>
-    <updated>2020-09-26T08:43:43.272Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote><p>本文笔记主要是我对19年NIPS的文章ODE2VAE：</p><p><code>ODE2VAE: Deep generative second order ODEs with Bayesian neural networks</code></p><p>其模型的生成方式和模型结构的理解，具体概率公式的推导和实验的细节都略掉了，如果需要的话以后再看</p></blockquote><a id="more"></a><img src="/2020/09/25/【论文阅读22】ODE2VAE——2阶ODE模拟-BNN引入不确定性/ODE2VAE-1.png" title="文献预览"><h1 id="开门见山——文献总结"><a href="#开门见山——文献总结" class="headerlink" title="开门见山——文献总结"></a>开门见山——文献总结</h1><p>这篇文章是19年的NIPS文章，与ANODE是同一次会议产出的。而在我看来，这两篇文章很多<strong>内容是有类似的地方</strong>的，但是在<strong>思想上又大不相同</strong>：</p><ul><li>前者的目标主要是做生成模型，希望设计学习更好的连续流数据（模型）的建模，方式是在NODE基础上考虑了二阶导的模拟和不确定性的引入，这两个是用一个模块同时完成的，即采用BNN学习二阶导，同时就可以引入不确定性。最后考虑到生成的效果需要保障，因此用VAE的形式进行了对抗</li><li>后者的目标主要是对NODE直接做改进，从NODE的一个缺点入手，利用手动添加增广维度，在高维空间中克服了对低维空间中不连续情形的模拟，从而完成了NODE的增广，据说提高了表达能力、稳定性、泛化性，降低了计算消耗。这个缺点即有一大类函数是NODE学习不了的，但是目前对这个我真的还不是很理解，因此后续再进行阅读</li></ul><p>上面的介绍已经表明了目前我对ODE2VAE模型的认识（<strong>当我自己写到这里的时候，我认为这个ODE2VAE中对二阶导的建模本质上可以看成ANODE在维度上进行增广的一个特例~</strong>）。下面我们回顾一下该模型的前因后果吧。</p><h1 id="前因后果——ODE2VAE的前生今世"><a href="#前因后果——ODE2VAE的前生今世" class="headerlink" title="前因后果——ODE2VAE的前生今世"></a>前因后果——ODE2VAE的前生今世</h1><p>故事要从流模型开始讲，流模型在干什么？一个简单的解释是流模型本身是ODE领域的延伸概念，把ODE初值问题中不同时刻的状态变化过程称为一个流。这个概念其实很有意思，后面我会<font color="#0000FF">单开一文</font>来介绍它。</p><p>流模型由于其本身脱胎于ODE系统的性质，对很多实际情况的模拟应该是比较适合的，但是与神经网络结合的话，此前只有NODE简单地以ResNet中残差的形式对应到了差分，因此完成了一阶导的模拟。举个应用的例子，连续视频流文件的每一帧都可以看成一个中间状态，其背后是很可能有隐含的流模型的，这时如果能学习出其流模型，那么就可以完成视频补帧，甚至短期预测等重要任务。</p><h1 id="模型机理——ODE-amp-VAE"><a href="#模型机理——ODE-amp-VAE" class="headerlink" title="模型机理——ODE&amp;VAE"></a>模型机理——ODE&amp;VAE</h1><p>回顾一下，ODE2VAE的一个目标是学习生成模型，突破NODE1阶导的限制，进行更细的二阶导建模。那么它对二阶导的做法是用BNN来学习一个对应的函数，同时BNN可以引入不确定性。另外，既然是生成模型，那么既要编码也要解码，因此其中又使用了VAE的对抗模式保证数据恢复的质量。下面先上图，再康康这个生成模型是怎么假设的：</p><img src="/2020/09/25/【论文阅读22】ODE2VAE——2阶ODE模拟-BNN引入不确定性/ODE2VAE-2.png" title="模型结构"><p>流模型的生成结构为：</p><script type="math/tex; mode=display">\displaystyle \begin{align} s_0 & \sim p(s_0) \tag{1}\\  v_0 &\sim p(v_0) \tag{2}\\  s_t &= s_0 + \int_{0}^{t} v_{\tau} d\tau \tag{3}\\  v_t &= v_0 + \int_{0}^{t} f_{true} (s_{\tau}, v_{\tau})d\tau \tag{4} \\  x_i &\sim p(x_i | s_i), i\in [0, N] \tag{5}\end{align}</script><p><strong>注意</strong>，这里的变量 $s$ 是把原始的流数据经过编码器转换到隐空间中的变量！即在隐空间中假设存在了流模型！</p><p>这里前两个式子 $(1, 2)$ 表示流的初始状态：</p><div class="table-container"><table><thead><tr><th>符号</th><th>流上的意义</th><th>形象的意义</th></tr></thead><tbody><tr><td>$s_0$</td><td>初始状态（state）的值</td><td>初始时刻0时，点的位置</td></tr><tr><td>$v_0$</td><td>初始状态（state）的一阶导</td><td>初始时刻0时，点的速度</td></tr></tbody></table></div><p>接下来的 $(3, 4)$ 式则是流的变化过程，一阶导 $v$ 的积分可以描述状态 $s$ 的变化，即 $(3)$ 式；而二阶导 $v^\prime$ 的积分可以描述一阶导 $v$ 的变化，即 $(4)$ 式。其中二阶导就用贝叶斯神经网络BNN来暴力模拟，记这个BNN的整体函数表达式为 $f_{true}$，$(4)$ 式表明它的输入是先前所有状态和一阶导，不过模型结构图表示输入是当前状态的值和一阶导。由于目前我没有研究代码，我<font color="#0000FF">个人认为</font>这两种输入都可以，但我猜在当前的架构下，<span style="border-bottom:1px solid black;">采用前一段时间内的流数据建模</span>比较好，这个想法是比较合理的。前者输入太多，虽然利用的信息多，但是计算的消耗也会很大，而且可能需要用到RNN等处理序列数据的方法作为子模型；后者输入比较少，指利用当前状态的信息，这其实也不太稳，毕竟二阶导自身的变化也应当被正确建模。</p><p>最后的 $(5)$ 式就是图中的解码器了，把学习到的流的变化特征重构成流数据。不过这个 $p(x_i | s_i)$ 具体是怎么解码回去的我就不清楚了，我猜是参数共享，直接把编码器给倒过来，从隐空间恢复原始的流数据。</p><hr><p>以上，本文的出发点，以生成模型建模流数据的过程就弄得差不多了。这里再补充一个小细节，一阶导 $s$ 的生成，是利用原始流数据 $x$ 的前 $m$ 维完成的，举个例子，这个前 $m$ 维就是视频流数据的前 $m$ 帧，这种近似的思想也与前面我所提到的“<span style="border-bottom:1px solid black;">采用前一段时间内的流数据建模</span>”一致~</p><h1 id="优缺点——扶摇直上亿万里"><a href="#优缺点——扶摇直上亿万里" class="headerlink" title="优缺点——扶摇直上亿万里"></a>优缺点——扶摇直上亿万里</h1><p>最后回到总结吧~</p><p>前面提到ODE2VAE的目标主要是做生成模型，对流数据建模，引入BNN暴力学习二阶导，顺便引入了不确定性。这些都是文章出彩的思想，也是卖点所在。</p><p>而这些<strong>应当</strong>是增广NODE模型的一个维度增广特例，只不过是增广了二阶导。那么ANODE又能增广到什么程度呢？我还需要继续阅读，如果能直接暴力增广学习高阶导，那也不错，在此基础上一定有更加有意思的地方。</p><p>Can u get me?</p><h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p>不太好整，这<code>markdown</code>上不能整<code>bibtex</code>实在是太难受，给个文献链接直接了事~</p><p><a href="http://papers.nips.cc/paper/9497-ode2vae-deep-generative-second-order-odes-with-bayesian-neural-networks" target="_blank" rel="noopener">ODE2VAE: Deep generative second order ODEs with Bayesian neural networks</a></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;本文笔记主要是我对19年NIPS的文章ODE2VAE：&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;ODE2VAE: Deep generative second order ODEs with Bayesian neural networks&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;其模型的生成方式和模型结构的理解，具体概率公式的推导和实验的细节都略掉了，如果需要的话以后再看&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="Paper Reading" scheme="http://maxliu245.github.io/tags/Paper-Reading/"/>
-    
-      <category term="Machine Learning" scheme="http://maxliu245.github.io/tags/Machine-Learning/"/>
-    
-      <category term="ODE" scheme="http://maxliu245.github.io/tags/ODE/"/>
-    
-      <category term="Flow Model" scheme="http://maxliu245.github.io/tags/Flow-Model/"/>
+      <category term="CNN" scheme="http://maxliu245.github.io/tags/CNN/"/>
     
   </entry>
   
