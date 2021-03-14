@@ -75,7 +75,7 @@
 
 
 
-  <meta name="keywords" content="Paper Reading,CNN,Computer Vision,Yolo,">
+  <meta name="keywords" content="Paper Reading,Machine Learning,PDE,">
 
 
 
@@ -88,21 +88,22 @@
 
 
 
-<meta name="description" content="头一次正式看目标检测方面的文章，有些功利，直接从YoloV4开始！ YOLOv4: Optimal Speed and Accuracy of Object Detection">
-<meta name="keywords" content="Paper Reading,CNN,Computer Vision,Yolo">
+<meta name="description" content="截至2021/03/08，谷歌学术上引用林老师Learning PDEs for Image Restoration via Optimal Control的有46篇，打算抽上几篇看看，目前只看了3篇（有笔记的） ps1：发现林老师此文引用量不高可能是因为没复现代码？ ps2：这次写作的时候发现，如果断网，本地localhost预览博客可能会出现公式无法渲染的问题">
+<meta name="keywords" content="Paper Reading,Machine Learning,PDE">
 <meta property="og:type" content="article">
-<meta property="og:title" content="【文献阅读26】YoloV4">
-<meta property="og:url" content="http://maxliu245.github.io/2020/11/03/【文献阅读26】YoloV4/index.html">
+<meta property="og:title" content="【论文略读39】与38相关文章">
+<meta property="og:url" content="http://maxliu245.github.io/2021/03/09/【论文略读39】与38相关文章/index.html">
 <meta property="og:site_name" content="Max Liu&#39;s Blog">
-<meta property="og:description" content="头一次正式看目标检测方面的文章，有些功利，直接从YoloV4开始！ YOLOv4: Optimal Speed and Accuracy of Object Detection">
+<meta property="og:description" content="截至2021/03/08，谷歌学术上引用林老师Learning PDEs for Image Restoration via Optimal Control的有46篇，打算抽上几篇看看，目前只看了3篇（有笔记的） ps1：发现林老师此文引用量不高可能是因为没复现代码？ ps2：这次写作的时候发现，如果断网，本地localhost预览博客可能会出现公式无法渲染的问题">
 <meta property="og:locale" content="en">
-<meta property="og:image" content="http://maxliu245.github.io/2020/11/03/【文献阅读26】YoloV4/YoloV4-1.png">
-<meta property="og:image" content="http://maxliu245.github.io/2020/11/03/【文献阅读26】YoloV4/YoloV4-2.png">
-<meta property="og:updated_time" content="2020-11-03T15:01:54.821Z">
+<meta property="og:image" content="http://maxliu245.github.io/2021/03/09/【论文略读39】与38相关文章/1-1.png">
+<meta property="og:image" content="http://maxliu245.github.io/2021/03/09/【论文略读39】与38相关文章/2-1.png">
+<meta property="og:image" content="http://maxliu245.github.io/2021/03/09/【论文略读39】与38相关文章/3-1.png">
+<meta property="og:updated_time" content="2021-03-14T15:58:02.156Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="【文献阅读26】YoloV4">
-<meta name="twitter:description" content="头一次正式看目标检测方面的文章，有些功利，直接从YoloV4开始！ YOLOv4: Optimal Speed and Accuracy of Object Detection">
-<meta name="twitter:image" content="http://maxliu245.github.io/2020/11/03/【文献阅读26】YoloV4/YoloV4-1.png">
+<meta name="twitter:title" content="【论文略读39】与38相关文章">
+<meta name="twitter:description" content="截至2021/03/08，谷歌学术上引用林老师Learning PDEs for Image Restoration via Optimal Control的有46篇，打算抽上几篇看看，目前只看了3篇（有笔记的） ps1：发现林老师此文引用量不高可能是因为没复现代码？ ps2：这次写作的时候发现，如果断网，本地localhost预览博客可能会出现公式无法渲染的问题">
+<meta name="twitter:image" content="http://maxliu245.github.io/2021/03/09/【论文略读39】与38相关文章/1-1.png">
 
 
 
@@ -132,13 +133,13 @@
 
 
 
-  <link rel="canonical" href="http://maxliu245.github.io/2020/11/03/【文献阅读26】YoloV4/">
+  <link rel="canonical" href="http://maxliu245.github.io/2021/03/09/【论文略读39】与38相关文章/">
 
 
 
 
 
-  <title>【文献阅读26】YoloV4 | Max Liu's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+  <title>【论文略读39】与38相关文章 | Max Liu's Blog</title><!-- hexo-inject:begin --><!-- hexo-inject:end -->
   
 
 
@@ -299,7 +300,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://maxliu245.github.io/2020/11/03/【文献阅读26】YoloV4/">
+    <link itemprop="mainEntityOfPage" href="http://maxliu245.github.io/2021/03/09/【论文略读39】与38相关文章/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Max Liu">
@@ -316,7 +317,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">【文献阅读26】YoloV4</h1>
+          <h1 class="post-title" itemprop="name headline">【论文略读39】与38相关文章</h1>
         
 
         <div class="post-meta">
@@ -331,8 +332,8 @@
               
                 <span class="post-meta-item-text">Posted on</span>
               
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-11-03T10:25:45+08:00">
-                2020-11-03
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2021-03-09T10:04:19+08:00">
+                2021-03-09
               </time>
             
 
@@ -347,8 +348,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2020-11-03T23:01:54+08:00">
-                2020-11-03
+              <time title="Post modified" itemprop="dateModified" datetime="2021-03-14T23:58:02+08:00">
+                2021-03-14
               </time>
             
           </span>
@@ -380,7 +381,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  1.7k
+                  5.2k
                 </span>
               
 
@@ -396,7 +397,7 @@
                   <span class="post-meta-item-text">Reading time &asymp;</span>
                 
                 <span title="Reading time">
-                  6
+                  20
                 </span>
               
             </div>
@@ -418,68 +419,140 @@
 
       
         <blockquote>
-<p>头一次正式看目标检测方面的文章，有些功利，直接从YoloV4开始！</p>
-<p><code>YOLOv4: Optimal Speed and Accuracy of Object Detection</code></p>
+<p>截至2021/03/08，谷歌学术上引用林老师<em>Learning PDEs for Image Restoration via Optimal Control</em>的有46篇，打算抽上几篇看看，目前只看了3篇（有笔记的）</p>
+<p>ps1：发现林老师此文引用量不高可能是因为没复现代码？</p>
+<p>ps2：这次写作的时候发现，如果断网，本地localhost预览博客可能会出现公式无法渲染的问题</p>
 </blockquote>
-<a id="more"></a>
-<img src="/2020/11/03/【文献阅读26】YoloV4/YoloV4-1.png" title="YoloV4文献简介">
-<h1 id="文献简介"><a href="#文献简介" class="headerlink" title="文献简介"></a>文献简介</h1><p>先放文献地址： <a href="https://arxiv.org/abs/2004.10934" target="_blank" rel="noopener">https://arxiv.org/abs/2004.10934</a></p>
-<p>YoloV4于2020/04挂在Arxiv上，作者之一是之前Yolo代码的维护者之一，<a href="https://github.com/AlexeyAB" target="_blank" rel="noopener">Alexey Bochkovskiy</a>，暂时没有找到他的更多资料，另外两个作者是台湾中央研究院的，不认识。</p>
-<h1 id="先修知识"><a href="#先修知识" class="headerlink" title="先修知识"></a>先修知识</h1><p>直接上手这篇目标检测领域的文章稍有困难，因为以前没咋接触过目标检测，现在直接来一手业界极强的文章，很多名词概念都不清楚。</p>
-<p>本来打算补一补，但是发现YoloV4用的模型方法实在是有（多）些（炸）多（了），所以其实只补了文章刚开始的一些概念，码在这里：</p>
+<a id="more"></a>  
+<h2 id="Adaptive-Partial-Differential-Equation-Learning-for-Visual-Saliency-Detection"><a href="#Adaptive-Partial-Differential-Equation-Learning-for-Visual-Saliency-Detection" class="headerlink" title="Adaptive Partial Differential Equation Learning for Visual Saliency Detection"></a>Adaptive Partial Differential Equation Learning for Visual Saliency Detection</h2><h3 id="文献信息"><a href="#文献信息" class="headerlink" title="文献信息"></a>文献信息</h3><p>这篇文章是刘日升林宙辰老师的CVPR2014的文章，百度显示至2021/03/09引用量131。标题表明本文提出的<strong>模型是自适应学习PDE</strong>，模型叫做Linear Elliptic System with Dirichlet boundary （<strong>LESD</strong>），<strong>目标是视觉显著性检测</strong></p>
+<blockquote>
+<p>注1：这个视觉显著性指的是图像中的重要区域，参考这个<a href="https://max.book118.com/html/2017/0607/112170172.shtm" target="_blank" rel="noopener">PPT</a>，比较清楚</p>
+<p>注2：显著性后续似乎有别人的很顺眼的工作：参考<a href="http://dpfan.net/SOCBenchmark/" target="_blank" rel="noopener">Salient Objects in Clutter: Bringing Salient Object Detection to the Foreground</a></p>
+<p>注3：读了本文之后觉得它似乎是尝试<strong>用传统CV方法解决近年来CV问题</strong>。。。好像<strong>没用神经网络</strong>耶</p>
+</blockquote>
+<p>文献地址参考：<a href="https://openaccess.thecvf.com/content_cvpr_2014/html/Liu_Adaptive_Partial_Differential_2014_CVPR_paper.html" target="_blank" rel="noopener">https://openaccess.thecvf.com/content_cvpr_2014/html/Liu_Adaptive_Partial_Differential_2014_CVPR_paper.html</a></p>
+<h3 id="背景方法与动机"><a href="#背景方法与动机" class="headerlink" title="背景方法与动机"></a>背景方法与动机</h3><p>本文的target是显著性检测，分为<strong>bottom-up和top-down</strong>方法，前者是<strong>数据驱动</strong>，具体又有纹理特征判断、对比度判断等；后者是<strong>模型驱动</strong>，直接监督或者通过显著图（map）监督，等</p>
+<p>本文的动机：</p>
 <ul>
-<li><p>Pareto optimality curve，中文名帕累托最优曲线，以本文图 $(1,8)$ 为例，都是2维曲线，这是因为本文选取的评价指标（目标）有两个。我联想到了宏观经济学中的供求曲线、价格需求曲线，感觉道理有一点点像（瞎想的）。</p>
-<blockquote>
-<p>具体可参考知乎用户<a href="https://www.zhihu.com/people/li-lin-song-85" target="_blank" rel="noopener">木木松</a>的专栏文章<a href="https://zhuanlan.zhihu.com/p/54691447" target="_blank" rel="noopener">多目标优化之帕累托最优</a></p>
-</blockquote>
+<li><p>这个target的问题不简单，要把人的感知（显著区域）和高级（复杂）的先验弄进PDE</p>
 </li>
-<li><p>Anchor-based和Anchor-free方法，都是目标检测中的方法。前者参考下面的链接，讲得很清楚了，依次设计锚点的位置、锚框的个数大小，我猜最后是根据ground truth去判断标记框的优劣；后者似乎是没有具体设置所谓的锚点，只是先识别目标的中心，然后根据中心进行回归得到标记框（未求证）</p>
+<li><p>林宙辰老师之前ECCV2010的工作有个缺点，对图像的刻画适合传统CV（参考GT的CV课程），对近年来的CV高级任务不合适</p>
 <blockquote>
-<p>具体可参考知乎用户<a href="https://www.zhihu.com/people/emiya-98" target="_blank" rel="noopener">emiya</a>的专栏文章<a href="https://zhuanlan.zhihu.com/p/86741707" target="_blank" rel="noopener">Anchor-Based-01 目标检测算法设计思想一：anchor是什么</a></p>
+<p>ps：读了本文之后觉得它似乎是尝试用传统CV方法解决近年来CV问题。。。</p>
 </blockquote>
 </li>
 </ul>
-<h1 id="YoloV4"><a href="#YoloV4" class="headerlink" title="YoloV4"></a>YoloV4</h1><h2 id="文献总结"><a href="#文献总结" class="headerlink" title="文献总结"></a>文献总结</h2><p>其实刚开始看觉得很舒服，讲的东西都非常合理有道理（后面也是），但是后面讲的名词知识太多了，让我觉得这模型不会就是<strong>各种已有的优秀方法组合拼接</strong>出来的吧！不会吧不会吧，它还<strong>真的就是这样搞的</strong>！</p>
-<p>经过多篇博客总结查证，我基本上确定这文章就是这样做的，不过人家做的确实猛，优点总结如下：</p>
+<h3 id="模型LESD与实验"><a href="#模型LESD与实验" class="headerlink" title="模型LESD与实验"></a>模型LESD与实验</h3><p>本文提出的模型叫Linear Elliptic System with Dirichlet boundary （LESD），是自适应学习PDE，此PDE的特点是<strong>假设</strong>了<strong>显著性扩散</strong>，<strong>学习的目标</strong>是LESD的<strong>公式形式和边界条件</strong>。具体扩散的<strong>假设是核心</strong>！</p>
+<p>模拟了人的注意力机制，先注意到图像的一个极其显著的区域，即人注意到的初始区域，记为$\mathcal{S}$，称为<strong>显著性种子</strong>，然后用PDE模拟注意力转移（扩散）的过程。</p>
+<p>下面开始建模，向量或者位置用粗体字母表示。设整个图片区域为$V$，可以由像素点$\mathbf{p}$或者像素块$\mathbf{p}$（超像素）组成；定义实值的<strong>注意力score函数</strong>，记为$f(\mathbf{p})\overset{def}{=}s_\mathbf{p}$，支集定义在$\mathcal{S}$上。那么在Dirichelet边界条件（$V$内$\mathcal{S}$外$f=0$）下，显著性（注意力）扩散的PDE方程为</p>
+<script type="math/tex; mode=display">\displaystyle \dfrac{\partial f(\mathbb{p},t)}{\partial t}=F(f,\nabla f),\ f(\mathbf{g})=0,\ f(\mathbf{p})=s_{\mathbf{p}},\ \mathbf{p}\in \mathcal{S}. \tag{1}</script><p>其中$\mathbf{g}$是$V$之外的点，分数为0。$F$就是一个待定函数</p>
+<p>这个score函数$f$对时间的偏导$F$定义为线性扩散项，$div(K_{\mathbf{p}}\nabla  f(\mathbf{p}))$，$K_{\mathbf{p}}$是一个非均匀度量张量，用于控制$\mathbf{p}$处的局部扩散率。人的感知怎么导入方程？用正则项，用$\mathbf{p}$的得分和引导图$g(\mathbf{p})$（此$g$是实值函数，非彼$\mathbf{g}$）的差异度量。。。即</p>
+<script type="math/tex; mode=display">F(f,\nabla f)=div(K_{\mathbf{p}}\nabla  f(\mathbf{p}))+\lambda (f(\mathbf{p})-g(\mathbf{p})). \tag{2}</script><p>其中度量$K_{\mathbf{p}}$和引导图$g$是干什么的？前者和$f$的形式参考原文$(2.3)$节，后者参考原文$(3.2)$节。。。看的有点累，到处找概念。<strong>大概就是</strong>本文把图像看成超像素集合，构建了点集意义（即没有概率意义）上的<strong>无向图</strong>，在注意力区域内$\mathbf{p}$和其多个邻域内的点有连接，连接之间的度量代表扩散的程度，因此$K_{\mathbf{p}}$真的是个度量矩阵，矩阵则有高斯核决定；然后由$K_{\mathbf{p}}$和$g(\mathbf{p})$联合定义了$f(\mathbf{p})$，形式我觉得不重要不写了；最后引导图$g$比较麻烦，本文自己定义出了一个点属于前景的概率$f_f(\mathbf{p})$，乘上本文的参考文献$[34]$中提出的color prior map$f_c$和center prior map$f_l$，最后归一化得到所谓的引导图。我对它的意义不是很理解，只知道是把先验信息弄成像文中图$(3,4)$底部那样的图（取值为$[0,1]$），然后在PDE的约束下去优化得到注意力（显著性）区域</p>
+<p>上面所述就是本文的LESD框架，接着假定注意力<strong>得分函数随时间不变</strong>！为什么？因为我们需要就是给定一张图片后，显著性固定，不随时间$t$变化🆗。由此令$(1)$式中的$F=0$，就是LESD的final形式。现在看这个方程的话，显著性信息就体现在$g$所在区域和$\mathcal{S}$区域的划分上，它们体现了人的感知先验和初始注意力区域的选择</p>
+<p>最最后再说一下LESD模型的可行性：文章给出了定理$1$，它保证，在LESD的假设下，score函数$f$是单调次模函数，次模的概念可参考<a href="https://www.zhihu.com/question/34720027" target="_blank" rel="noopener">知乎问题</a>，但是具体定义为什么保证可行性我先<strong>不管了</strong>。。。</p>
+<p>实验的话，实验部分不管了，我喜欢的是它展示了一些更改先验感知信息$g$，更改初始区域$\mathcal{S}$的例子，分别见图$(3,4)$。另外展示了实际数据实验的预测准确率等</p>
+ <img src="/2021/03/09/【论文略读39】与38相关文章/1-1.png" title="先验信息引入、更改初始注意区域的实例">
+<h3 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h3><p>优点</p>
 <ul>
-<li>文章提出的YoloV4达到了文章目标（预期）：保证准确率大前提下，设计出一个<strong>快速实时轻量准确</strong>的目标识别模型。确实，本文表示<strong>只需要1张</strong>优秀的显卡就可以完成快速训练（又向应用前进一步！），并且的确是轻量实时准确的</li>
-<li>在contributions部分提出可以用YoloV4的想法修饰SOTA模型使之有效轻量，应该是这个意思</li>
-<li>集成了<strong>大量已有tricks</strong>，据参考文献表示至少有20多种；这篇文章的工作量十分之大，值得肯定</li>
-<li>文章开头提出了一个说法：CNN任务的一个完整框架需要理论保证+实验验证。本文的tricks可以说是验证了的东西，然后在多个数据集上也显示出帕累托最优的效果</li>
+<li><p>动机不错，考虑更复杂的任务，ECCV2010的PDE形式不太合适了</p>
+</li>
+<li><p>模型LESD新颖，又是<strong>图</strong>的建立又是传统CV，还是很interesting的</p>
+</li>
+<li><p>文章表示LESD的公式中包含了bottom-up和top-down的先验信息。yysy确实既有模型驱动也有数据驱动</p>
+</li>
+<li><p>文章表示对LESD既有数值，也<strong>有理论</strong>分析</p>
+</li>
+<li>和之前ECCV2010小小<strong>对比</strong>了下，Discussion部分提了几句，二者target任务不同，本文的任务难一些；二者都是PDE学习，PDE的形式不同；训练的方式不同，10年的是稀疏回归，本文更像是<strong>古典CV</strong>，从文中算法$1$可以看出来，构造点的连接，然后优化也是离散的，<strong>没有涉及网络结构</strong>（应该没有）</li>
 </ul>
-<h2 id="主要tricks"><a href="#主要tricks" class="headerlink" title="主要tricks"></a>主要tricks</h2><p>说tricks之前忘了提一嘴YoloV4的整体网络框架了，和经典的目标识别检测框架一致，有一个</p>
-<script type="math/tex; mode=display">input \rightarrow backbone \rightarrow neck \rightarrow head(dense\ prediction \rightarrow sparse\ prediction)</script><p>的整体框架，其中某些部分不知道有没有跨连接的操作。下面放一张原文的图 $(2)$ ：</p>
-<img src="/2020/11/03/【文献阅读26】YoloV4/YoloV4-2.png" title="目标检测框架">
-<p>那么YoloV4其实就说各种tricks，或者说是<strong>各种模型插件</strong>套进这个框架。</p>
-<p>这个我其实没有细看文章了，毕竟陌生名词太多，搞不清哪些是重点，这里根据他人博客自己总结其中有用的tricks：</p>
+<p>缺点的话，看不出来啥缺点，可以自圆其说（虽然我不太懂），无情的刷文机器。。</p>
+<h3 id="自己的问题（待解决）"><a href="#自己的问题（待解决）" class="headerlink" title="自己的问题（待解决）"></a>自己的问题（待解决）</h3><p>文中提了一句PDE处理图像问题的<strong>合理性</strong>：the multiscale representation of images are indeed solutions of heat equation with different time parameters，我喵喵喵？迷迷糊糊明白一点，但是这个理论需要专门去了解么？</p>
+<h2 id="Trainable-Nonlinear-Reaction-Diffusion-A-Flexible-Framework-for-Fast-and-Effective-Image-Restoration"><a href="#Trainable-Nonlinear-Reaction-Diffusion-A-Flexible-Framework-for-Fast-and-Effective-Image-Restoration" class="headerlink" title="Trainable Nonlinear Reaction Diffusion: A Flexible Framework for Fast and Effective Image Restoration"></a>Trainable Nonlinear Reaction Diffusion: A Flexible Framework for Fast and Effective Image Restoration</h2><p>这文章吓到我了，被干吐了。。</p>
+<h3 id="文献信息-1"><a href="#文献信息-1" class="headerlink" title="文献信息"></a>文献信息</h3><p>本文是16年的TPAMI，一作<a href="https://www.zhihu.com/people/chen-yun-jin-5" target="_blank" rel="noopener">陈运锦</a>老师，从各方面的资料这个文章还是很猛的</p>
 <ul>
-<li><p>首先有个idea起源于Yolo系列的任务是目标识别检测。目标检测方法往往是任务special的，特定任务要特定设计，在通用模型没有发展起来并大规模应用之前我是站这个东西的。本文希望能做到通用的general目标检测模型，那么一个idea就是special特征和general特征，YoloV4在网络模块的使用上<strong>主动选择了很多general特征</strong>（我认为是特征图）</p>
-</li>
-<li><p>为了轻量实时，<strong>选择Yolo系列</strong>的模型是当前合适的做法，本文在head区域使用了YoloV3</p>
-</li>
-<li><p><strong>各种数据增强技术</strong>的使用</p>
-</li>
-<li><p><strong>自对抗方法增强图像风格</strong>，我觉得可以算数据增强了</p>
-</li>
-<li><p>大佬们还总结了“跨最小批的归一化（Cross mini-batch Normal）、修改的SAM（逐点attention）、修改的PAN（通道合并方式改变）”，不过我现在不太懂，先码在这里。这里最后三条参考：</p>
+<li>文献地址：<a href="https://ieeexplore.ieee.org/abstract/document/7527621" target="_blank" rel="noopener">https://ieeexplore.ieee.org/abstract/document/7527621</a></li>
+<li>一作自己的评论：<a href="https://www.zhihu.com/question/62599196/answer/233376903" target="_blank" rel="noopener">https://www.zhihu.com/question/62599196/answer/233376903</a></li>
+<li><a href="https://blog.csdn.net/qq_25196865" target="_blank" rel="noopener">_JoeZoe</a>关于<strong>TNRD</strong>模型的博客：<a href="https://blog.csdn.net/qq_25196865/article/details/78894051" target="_blank" rel="noopener">https://blog.csdn.net/qq_25196865/article/details/78894051</a></li>
+<li>引用了此文的一个专利：<a href="http://www.xjishu.com/zhuanli/55/201810750492.html" target="_blank" rel="noopener">一种基于深度学习的自适应图像去噪方法与流程</a></li>
+<li>代码实在是找不着，可能在<a href="https://github.com/leolee5633/Part-III-project" target="_blank" rel="noopener">这里</a>。。</li>
+<li>TNRD的一个拓展<a href="https://epubs.siam.org/doi/abs/10.1137/16M1093707" target="_blank" rel="noopener">Image Denoising via Multiscale Nonlinear Diffusion Models</a>，大概就是在下面网络结构图里，第一次卷积前和第二次卷积后分别加一次下、上采样</li>
+</ul>
+<h3 id="背景知识"><a href="#背景知识" class="headerlink" title="背景知识"></a>背景知识</h3><blockquote>
+<p>这部分写得细但是乱，<strong>不利</strong>于展示！</p>
+</blockquote>
+<p>背景是图像恢复/修复问题，图像恢复方法的两个评价对象，修复质量和计算效率。本文在其中的PDE方法上进行改进，下面回顾一下本文主要参考的PDE方法：</p>
+<p>刚开始的PM扩散方程</p>
+<script type="math/tex; mode=display">\displaystyle \left\{ \begin{aligned} \dfrac{\partial u}{\partial t} &= div(g(|\nabla u|)\nabla u) \\ u|_{t=0} &= f \end{aligned} \right., \tag{3}</script><p>其中$f$是初始待恢复图像，$g$称为边缘停止（edge-stopping）函数或<strong>扩散函数</strong>，经典的是$\displaystyle g(z)=\dfrac{1}{1+z^2}$。PM扩散方程的特点是非线性各向异性扩散，可以保持和增强图像边缘，我也不知道为什么，但必和这个$div$的形式有关</p>
+<p>从PDE的角度去改进，可以改进/选择的有扩散函数、方程的最优停止时间和合适的反作用力（反应扩散方程中的概念），由此，一般的形式如下，即加了正则$\kappa (u)$、系数$a$和各种不变量或者算子$\mathcal{O}(u)$，这个形式和先前林宙辰老师的文章一致：</p>
+<script type="math/tex; mode=display">\displaystyle \left\{ \begin{aligned} \dfrac{\partial u}{\partial t} &= \kappa (u) + a(t)^T\mathcal{O}(u) \\ u|_{t=0} &= f \end{aligned} \right.. \tag{4}</script><p>从传统CV处理图像的方式看，把图像展成列向量$u\in\mathbb{R}^N$，那么</p>
+<script type="math/tex; mode=display">\displaystyle \nabla u\approx \dfrac{u_{t+1}-u_t}{\Delta t}=-\sum_{i=\{x,y\}}\nabla_i^T\Lambda(u_t)\nabla_iu_t\overset{\cdot}{=}-\sum_{i=\{x,y\}}\nabla_i^T\phi(\nabla_iu_t). \tag{5}</script><p>其中$\Lambda(u_t)=diag\left(g\left(\sqrt{(\nabla_xu_t)_p^2+(\nabla_yu_t)_p^2}\right)\right)_{p=1,\cdots,N}$是$N\times N$的对角阵，$g$是扩散函数，$\nabla_x$和$\nabla_y\in \mathbb{R}^{N\times N}$是$x,y$两个方向上的梯度的差分近似，这里算子为$N\times N$维，作用在$u_t\in\mathbb{R}^N$上很奇怪，<strong><font color="#FF0000">这一点我没看懂</font></strong>（<strong>懂了</strong>，见下一段），先跳过。另外定义的$\phi(z)=zg(z)$就是影响函数，也成为flux函数，似乎这个对角阵$\Lambda(u_t)$的元素是和$\nabla u_t$的分量一一对应的，<strong><font color="#FF0000">这一点我也没看懂</font></strong>，先跳过</p>
+<p>上面是基本的反应扩散方程模型，扩散的过程对应求能量泛函（也可以说是惩罚项）$\displaystyle \mathcal{R}=\sum_{i\in\{x,y\}}\sum_{p=1}^N\rho((k_i<em>u)_p)$的极小，但是<strong><font color="#FF0000">为什么是惩罚项是这样的呢</font></strong>？其中函数$\rho$就是惩罚项，如$\rho(z)=\log(1+z^2)$，不知道这里$\rho^\prime (z)=\phi (z)$有没有什么意义。另外注意这里$\nabla_xu$是<em>*矩阵和向量的积</em></em>，对应线性滤波$k_x=[-1,1]$的作用，确实，从差分的角度看这样是合理的，同理$\nabla_y$对应线性滤波$k_y=[-1,1]^T$的作用</p>
+<h3 id="TNRD小结"><a href="#TNRD小结" class="headerlink" title="TNRD小结"></a>TNRD小结</h3><p>本文针对图像恢复问题，提出<strong>模型</strong>TNRD，即标题里的Trainable Nonlinear Reaction Diffusion。它的模型<strong>核心/idea</strong>是在反应扩散方程中使用了时变的线性滤波器和影响函数（influence function）；<strong>动机</strong>是尽管最近（16年前）的PDE方法在许多图像处理任务中表现出良好的性能，但它们仍然不能为经典的图像恢复任务产生最先进的质量；<strong>优化</strong>方法是数据驱动，直接最小化损失函数。进行的<strong>实验</strong>有三个， 高斯图像去噪、单图超分辨、和JPEG deblocking，具体实验很多先不看了</p>
+<p>TNRD模型的细节还是比较多的，所以还是决定小结一下</p>
+<p>整体的general TNRD模型如<a href="https://blog.csdn.net/qq_25196865/article/details/78894051" target="_blank" rel="noopener">博客</a>所述，其实就是：</p>
+<script type="math/tex; mode=display">\displaystyle \left\{ \begin{aligned} \min_{\Theta} &= \sum_{s=1}^S \frac{1}{2}||u_T^s-u_{gt}^s||_2^2 \\ s.t. &\left\{ \begin{aligned} u_0^s &= I_0^s\\ u_t^s &= Prox_{\mathcal{G}}\left(u_{t-1}^s-\left(\sum_{i=1}^{N_k}(K_i^t)^T\phi_i^t(K_i^tu_{t-1}^s)+\psi^t(u_{t-1}^s,f^s)\right)\right) \\ t &= 1,\cdots,T\end{aligned} \right. \end{aligned} \right.. \tag{5}</script> <img src="/2021/03/09/【论文略读39】与38相关文章/2-1.png" title="TNRD的网络结构解释">
+<p>优化目标中的$u_{gt}$指ground truth图像，$u_{T}$是方程最后一个stage（第$T$个，一共也是$T$个stage）的输出，$s$指有这么多样本，训练集一共$S$张图像，目标也可以使用其它的loss，应该是的🤔；$(5)$式中的条件是general的TNRD，$I_0^s$指第$s$个样本对应的初始带噪图像，是输入的初值</p>
+<p>然后要分析最长的那个式子，它也是最复杂的，还是建议参考文章的图$(1)$来理解，如上图。对第$t-1$个stage的第$s$个样本$u_{t-1}^s$的操作如上图蓝色方框所示，对应关系直接给出来，也省得我写一堆字了。其中要<strong>注意</strong>，网络结构中，第二个卷积（即对应线性滤波）和第一个卷积有关联，注意看第二个卷积头上有一$\bar{}$，表示是把第一个卷积<strong>旋转</strong>了$180^\circ$！最后最外层的$Prox_{\mathcal{G}}$叫proximal mapping operation，具体公式参考原文图$(1)$下面的公式，它套在最外面是为了让里面的式子可求导，所以用这个所谓的近似映射，怎么近似的就不管啦</p>
+<font color="#0000FF">最后提一下设置这样形式的反应扩散方程的道理，首先要强调的一点是**这种结构是从传统算法推导出来的**，思路就是从上文的背景模型一步步推出方程，然后里面的反应项（force项）和扩散项就这样设计了。。。我觉得还是从$\nabla u$的离散近似出发，设置成线性滤波的形式，后面的force项则引入影响函数，这样设计出来的，真是的思路还是要参考以前的文献了，此处估计日后不怎么看了</font>
+
 <blockquote>
-<p>知乎用户<a href="https://www.zhihu.com/people/william.hyin" target="_blank" rel="noopener">william</a>的专栏文章<a href="https://zhuanlan.zhihu.com/p/161083602" target="_blank" rel="noopener">一文读懂YOLO V5 与 YOLO V4</a></p>
-<p>知乎用户<a href="https://www.zhihu.com/people/jianghongliang" target="_blank" rel="noopener">元峰</a>的回答<a href="https://www.zhihu.com/question/390191723/answer/1177584901" target="_blank" rel="noopener">如何评价新出的YOLO v4 ？</a>不错，从创新性的角度分析了YoloV4使用的主要tricks</p>
+<p>作者原话，来自知乎：</p>
+<p>这种网络结构是从传统算法推导出来的，不是刻意设计的，然后恰好就和<em>EDSR</em>的<em>residual block</em>的结构相似啦。那是不是意味着<em>EDSR</em>的<em>residual block</em>的结构选择成目前这个样子，效果就好，有一些深层次的原因呢？需要paper的筒子们刻意挖一挖嘛。</p>
+</blockquote>
+<p>另外有个trick是网络中的非线性激活函数由基函数拟合出，文中是63个高斯径向基函数线性组合，这样组合出来的非线性函数的形状可以比较任意，我<font color="#0000FF">寻思着这会增加计算复杂度</font>（不像是提前决定好的啊）啊</p>
+<p>至于训练方法什么的，再见，叭看！</p>
+<h3 id="优缺点-1"><a href="#优缺点-1" class="headerlink" title="优缺点"></a>优缺点</h3><p>它的优点有：</p>
+<ul>
+<li>是个灵活的可学习框架，是有线性滤波和影响函数的非线性反应扩散模型</li>
+<li>调整结构可以适用于多种图像恢复中的任务（如提到的3个实验）</li>
+<li>模型保持了非线性扩散模型的结构简单性，并且只需要少量的扩散步骤，因此高效</li>
+<li>似乎是因为结构简单性，可在GPU上高速训练</li>
+<li>文章表示较好地平衡了计算效率和去噪质量的关系（难道是实验的观察结论）</li>
+</ul>
+<p>缺点：</p>
+<ul>
+<li><p>是基于先验知识的分析模型，在获取图像全部特征结构时受到限制，以及在整个训练阶段需要手动的微调参数，此外这些方法训练出的模型都是针对已知具体的噪声级，无法实现未知噪声级图像的盲去噪</p>
+<blockquote>
+<p>这些话是引自一个专利的，参考<a href="http://www.xjishu.com/zhuanli/55/201810750492.html" target="_blank" rel="noopener">一种基于深度学习的自适应图像去噪方法与流程</a></p>
 </blockquote>
 </li>
+<li><p>文章自己表示，本文TNRD只适合监督，这似乎不算什么缺点。。</p>
+</li>
+<li><p>另外我有不少问题，不见得是缺点吧，<strong>见上文的彩色字体部分</strong></p>
+</li>
 </ul>
-<h2 id="个人感想（bb）"><a href="#个人感想（bb）" class="headerlink" title="个人感想（bb）"></a>个人感想（bb）</h2><p>本来头一遍翻完这篇文章觉得还挺ysk（😁）的，但是抱着这个怀疑我去读了他人的总结，包括：</p>
-<blockquote>
-<p>知乎用户<a href="https://www.zhihu.com/people/amusi1994" target="_blank" rel="noopener">Amusi</a>的回答<a href="https://www.zhihu.com/question/390191723/answer/1176986665" target="_blank" rel="noopener">如何评价新出的YOLO v4 ？</a>很好，我很赞同。人家工作量在这里，确实很良心</p>
-<p>知乎用户<a href="https://www.zhihu.com/people/david-12-84-45" target="_blank" rel="noopener">David</a>的专栏文章<a href="https://zhuanlan.zhihu.com/p/136172670" target="_blank" rel="noopener">YOLO-V4解读：速度与精度的完美结合[已开源]</a>是一篇简洁的翻译，可以速读参考</p>
-<p>补充资料：知乎用户<a href="https://www.zhihu.com/people/magic-frog-sjtu" target="_blank" rel="noopener">996黄金一代</a>的回答<a href="https://www.zhihu.com/question/399884529/answer/1374024055" target="_blank" rel="noopener">如何评价YOLOv5？</a></p>
-</blockquote>
-<p>我这才有些缓过来，人家毕竟是总结了大量方法，有充足的工作量，而且效果也上去了，那的确是不错的。大家反驳之的意见是似乎大家应用还是不用它，用YoloV3，大概是觉得它这样相当于调参？不过人家做了很多实验，在不少数据集上也足够优秀了，那我是没话说了。</p>
-<p>这种套方法的方式，可取，但是得有充足的调研，充足的实验经验。加油吧骚年！</p>
-<h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>[1] Alexey Bochkovskiy, Chien-Yao Wang, and Hong-Yuan Mark Liao. Yolov4: Optimal speed and accuracy of object detection, 2020.</p>
-<p>[2] emiya. Anchor-Based-01 目标检测算法设计思想一：anchor是什么[EB/OL]. <a href="https://zhuanlan.zhihu.com/p/86741707" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/86741707</a>, 2019-10-26.</p>
-<p>[3] 木木松. 多目标优化之帕累托最优[EB/OL]. <a href="https://zhuanlan.zhihu.com/p/54691447" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/54691447</a>, 2020-10-07.</p>
-<p>[4] william. 一文读懂YOLO V5 与 YOLO V4[EB/OL]. <a href="https://zhuanlan.zhihu.com/p/161083602" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/161083602</a>, 2020-07-28.<br>[5] 元峰. 如何评价新出的YOLO v4 ？[EB/OL]. <a href="https://www.zhihu.com/question/390191723/answer/1177584901" target="_blank" rel="noopener">https://www.zhihu.com/question/390191723/answer/1177584901</a>, 2020-04-25.<br>[6] Amusi. 如何评价新出的YOLO v4 ？[EB/OL]. <a href="https://www.zhihu.com/question/390191723/answer/1176986665" target="_blank" rel="noopener">https://www.zhihu.com/question/390191723/answer/1176986665</a>, 2020-04-24.<br>[7] David. YOLO-V4解读：速度与精度的完美结合[已开源][EB/OL]. <a href="https://zhuanlan.zhihu.com/p/136172670" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/136172670</a>, 2020-05-20.<br>[8] 996黄金一代. 如何评价YOLOv5？[EB/OL]. <a href="https://www.zhihu.com/question/399884529/answer/1374024055" target="_blank" rel="noopener">https://www.zhihu.com/question/399884529/answer/1374024055</a>, 2020-07-31.</p>
+<h2 id="Toward-designing-intelligent-PDEs-for-computer-vision-An-optimal-control-approach"><a href="#Toward-designing-intelligent-PDEs-for-computer-vision-An-optimal-control-approach" class="headerlink" title="Toward designing intelligent PDEs for computer vision: An optimal control approach"></a>Toward designing intelligent PDEs for computer vision: An optimal control approach</h2><h3 id="文献信息-2"><a href="#文献信息-2" class="headerlink" title="文献信息"></a>文献信息</h3><p>这篇文章是刘日升、林宙辰老师等于11年提交，12年接收，发在Image and Vision Computing这个刊上的</p>
+<p>文献地址：<a href="https://www.sciencedirect.com/science/article/abs/pii/S0262885612001746" target="_blank" rel="noopener">https://www.sciencedirect.com/science/article/abs/pii/S0262885612001746</a></p>
+<p> 观标题，是用PDE解图像处理问题，这次准备了一个自己去找的框架，不知道是不是又是字典稀疏回归，且待分解~是的，要学习的<strong>与时间$t$相关</strong>的系数，而且字典大得一批。。</p>
+<img src="/2021/03/09/【论文略读39】与38相关文章/3-1.png" title="本文稀疏回归使用的字典">
+<h3 id="文献小结"><a href="#文献小结" class="headerlink" title="文献小结"></a>文献小结</h3><p>这个文章年限摆在那里，<strong>方法</strong>还是一个以PDE为条件的优化问题。考虑自动从数据中学习限制条件PDE，<strong>动机</strong>是视觉任务的intuition和手动设计PDE不优美，另外考虑把适合多数视觉任务的不变性当成基本的不变量扔进方程。PDE仍然是要学习<strong>不变量</strong>的<strong>系数</strong>，其中最高考虑的是2阶的不变量，这个阶指的是导数的阶，主要包括<strong>平移和旋转不变性</strong>。优化的目标是正常的loss，输出用ground truth监督</p>
+<h3 id="模型细节"><a href="#模型细节" class="headerlink" title="模型细节"></a>模型细节</h3><p>这个自动学习PDE的框架有个特点，考虑了<strong>两组</strong>PDE方程，一个方程用来控制输出图像$u$的变化（evolution）过程；另一个作为所谓的indicator函数$v$，它学习图像的全局特征，<strong>辅助监督</strong>第一个方程。它的形式如下所示：</p>
+<script type="math/tex; mode=display">\displaystyle \left\{ \begin{aligned} &\dfrac{\partial u}{\partial t} = F_u(u,v,\mathbf{a}),\ (x,y,t)\in Q, \\ &u(x,y,t) = 0,\ (x,y,t)\in \Gamma, \\ &u|_{t=0} = f_u,\ (x,y)\in \Omega. \\ &\dfrac{\partial v}{\partial t} = F_v(v,u,\mathbf{b}),\ (x,y,t)\in Q, \\ &v(x,y,t) = 0,\ (x,y,t)\in \Gamma, \\ &v|_{t=0} = f_v,\ (x,y)\in \Omega.\end{aligned} \right.. \tag{6}</script><p>如上，直接的观察结论是$u$和$v$的演化都用$F$表示，但是内容可能不同。不过本文中，都还是各种不变量的线性组合</p>
+<p>由动机，手动设计PDE，不仅可能只适用少数问题，还很麻烦。因此只说，<strong>平移不变性和旋转不变性</strong>是大多数vision task的<strong>共性</strong>，若要保持这些性质，PDE方程的形式需要是平移、旋转这样的算子下不变的（有点像群在集合上作用那味儿），也是这些不变量的函数，依据是文章引用的<em>微分不变量理论</em>。。。</p>
+<p>文章声明最高考虑的是2阶的不变量，其理由主要在于更高阶的不变量会有数值问题，以及字典太大导致计算复杂，还有当模型<strong>拓展为针对三通道图像</strong>时字典更是加大</p>
+<p>PDE方程就是这样，没啥。对于优化，优化的目标函数（能量泛函）也很正常，是gt的监督以及两组系数$\mathbf{a,b}$的正则。优化的方法仍然是伴随方法，推导G导数，然后近似迭代</p>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><p>优点：</p>
+<ol>
+<li>相比原始的10年文章，这个框架引入的不变量更多，还包括一些耦合的不变量，因此框架适用于更多vision task，包括边缘检测、去噪、修复，etc</li>
+<li>这个证了不变量具有的平移和旋转不变性（没看）</li>
+</ol>
+<p>所以说这个文章算是10年那个文章的<strong>直接推广</strong>，PDE在形式上增广了，加了些不变性理论，加了些实验</p>
+<p>最后，注意下几个小知识点：</p>
+<ol>
+<li>文中提到一个有意思的思路叫<em>Multi-layer PDE systems</em>，每层PDE的形式相同，即最多二阶的不变量的线性组合。但每一层的参数值和初值不同，具体采用贪婪策略学习多层结构，即每一层确定后，用上一层的输出作为下一层的输入。每一层的预期输出都是gt！那么由于每一层都在逼近gt，这样做可能能<strong>连续地提高近似的精度</strong></li>
+<li>突然意识到，这些基于PDE的方法和<strong>水平集</strong>拓展方法的设计思想没什么区别啊！</li>
+</ol>
+<h2 id="其它暂未阅读的文献"><a href="#其它暂未阅读的文献" class="headerlink" title="其它暂未阅读的文献"></a>其它暂未阅读的文献</h2><ul>
+<li>董彬老师组18年PMLR的<a href="http://proceedings.mlr.press/v80/lu18d.html" target="_blank" rel="noopener">Beyond Finite Layer Neural Networks: Bridging Deep Architectures and Numerical Differential Equations</a></li>
+<li>剑桥的奇怪杂志Acta Numerica上的<a href="https://www.cambridge.org/core/journals/acta-numerica/article/solving-inverse-problems-using-datadriven-models/CE5B3725869AEAF46E04874115B0AB15?__cf_chl_jschl_tk__=58c78f0b80836ffecb5c616c191f72229855d968-1615168268-0-AbGsCfjDCGWPcOgqc6G8cxdlSM63cp31QBNUZo6CojNnGl9t9bVPq7a7Go3_OCjrA7kNQW4KlxVvgcy4y3QBD1VGcBltZpX1hyW_goa8Ttr4ckII-npANh-NDlEbTnJXHurph-0Sqvinh3WLs9k0fGVP7pdp6IOIMJg1c-5m9nHwSkwPtjcd4-7gFB7qTBUwZl-LyIHYip6-5bhNE4FOFeus1eZ50MZVoJZslP3Wgx9pm_-uXaGRJqtsZr37cEpjKD9riKLSl9VJI-HeTWrJ0gtfMKdrwoJwA233iklZ_KGsmkJDpY71Ud3ngVIlwoVdFlFIxX6DtX6t9_-vRNhxbyZF-KU5FpOIsknLlVw_rZ52u7j9BBA4AVatjl3KFD_IYrjJ2ij5iL3cRk-ILUWKAF7CXwY_p2_6bgPXIfnFt0NqGemTbND91TildOhUg6YVvCkhhFItAhYZyLOYVeobbbwHpxOapeRM85OMYRPeE9agati9v2VN8zHF_lBSdFTjKc3LxBZPhW3uBID7qmmPRTolcbubz0XVL6CnFzIqs-R-" target="_blank" rel="noopener">Solving inverse problems using data-driven models</a>，不打算看了，174页，像是综述+写书</li>
+<li>老师一作在CVPR2015上的<a href="https://openaccess.thecvf.com/content_cvpr_2015/html/Chen_On_Learning_Optimized_2015_CVPR_paper.html" target="_blank" rel="noopener">On Learning Optimized Reaction Diffusion Processes for Effective Image Restoration</a></li>
+<li>Neural Computing and Applications 2018上的<a href="https://link.springer.com/article/10.1007/s00521-016-2623-y" target="_blank" rel="noopener">Learning sparse partial differential equations for vector-valued images</a></li>
+<li>ICASSP 2019上的<a href="https://ieeexplore.ieee.org/abstract/document/8682944" target="_blank" rel="noopener">Learning Compact Partial Differential Equations for Color Images with Efficiency</a></li>
+<li>刘日升老师的Valse课件<a href="http://valser.org/webinar/slide/slides/20141022/LPDE_RishengLiu.pdf" target="_blank" rel="noopener">Learning-Based PDE: A New Perspective for PDE Methods in Computer Vision</a></li>
+<li>西交孙剑老师的Review，中国工业与应用数学学会，received on 22 April 2020；accepted on 16 June 2020，<a href="https://doc.global-sci.org/uploads/Issue/CSIAM-AM/v1n3/13_365.pdf?1603081030" target="_blank" rel="noopener">Model Meets Deep Learning in Image Inverse Problems</a></li>
+</ul>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] Risheng Liu, Junjie Cao, Zhouchen Lin, and Shiguang Shan. Adaptive partial differential equation learning for visual saliency detection. In Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition (CVPR), June 2014.</p>
+<p>[2] Y. Chen and T. Pock. Trainable nonlinear reaction diffusion: A flexible framework for fast and effective image restoration. IEEE Transactions on Pattern Analysis and Machine Intelligence, 39(6):1256–1272, 2017.</p>
+<p>[] Yiping Lu, Aoxiao Zhong, Quanzheng Li, Bin Dong. Proceedings of the 35th International Conference on Machine Learning, PMLR 80:3276-3285, 2018.</p>
 
       
     </div>
@@ -500,7 +573,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>Post link:</strong>
-    <a href="http://maxliu245.github.io/2020/11/03/【文献阅读26】YoloV4/" title="【文献阅读26】YoloV4">http://maxliu245.github.io/2020/11/03/【文献阅读26】YoloV4/</a>
+    <a href="http://maxliu245.github.io/2021/03/09/【论文略读39】与38相关文章/" title="【论文略读39】与38相关文章">http://maxliu245.github.io/2021/03/09/【论文略读39】与38相关文章/</a>
   </li>
   <li class="post-copyright-license">
     <strong>Copyright Notice: </strong>
@@ -517,11 +590,9 @@
           
             <a href="/tags/Paper-Reading/" rel="tag"># Paper Reading</a>
           
-            <a href="/tags/CNN/" rel="tag"># CNN</a>
+            <a href="/tags/Machine-Learning/" rel="tag"># Machine Learning</a>
           
-            <a href="/tags/Computer-Vision/" rel="tag"># Computer Vision</a>
-          
-            <a href="/tags/Yolo/" rel="tag"># Yolo</a>
+            <a href="/tags/PDE/" rel="tag"># PDE</a>
           
         </div>
       
@@ -534,8 +605,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2020/10/24/【论文阅读25】HollowNet——NN对微分算子的模拟/" rel="next" title="【论文阅读25】HollowNet——NN对微分算子的模拟">
-                <i class="fa fa-chevron-left"></i> 【论文阅读25】HollowNet——NN对微分算子的模拟
+              <a href="/2021/03/07/【论文阅读38】重读Learning-PDEs-for-Image-Restoration-via-Optimal-Control/" rel="next" title="【论文阅读38】重读Learning PDEs for Image Restoration via Optimal Control">
+                <i class="fa fa-chevron-left"></i> 【论文阅读38】重读Learning PDEs for Image Restoration via Optimal Control
               </a>
             
           </div>
@@ -543,10 +614,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2020/11/10/MLA‘20见闻/" rel="prev" title="MLA‘20见闻">
-                MLA‘20见闻 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -728,7 +795,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#文献简介"><span class="nav-number">1.</span> <span class="nav-text">文献简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#先修知识"><span class="nav-number">2.</span> <span class="nav-text">先修知识</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#YoloV4"><span class="nav-number">3.</span> <span class="nav-text">YoloV4</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#文献总结"><span class="nav-number">3.1.</span> <span class="nav-text">文献总结</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#主要tricks"><span class="nav-number">3.2.</span> <span class="nav-text">主要tricks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#个人感想（bb）"><span class="nav-number">3.3.</span> <span class="nav-text">个人感想（bb）</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#参考文献"><span class="nav-number">4.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Adaptive-Partial-Differential-Equation-Learning-for-Visual-Saliency-Detection"><span class="nav-number">1.</span> <span class="nav-text">Adaptive Partial Differential Equation Learning for Visual Saliency Detection</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文献信息"><span class="nav-number">1.1.</span> <span class="nav-text">文献信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#背景方法与动机"><span class="nav-number">1.2.</span> <span class="nav-text">背景方法与动机</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型LESD与实验"><span class="nav-number">1.3.</span> <span class="nav-text">模型LESD与实验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优缺点"><span class="nav-number">1.4.</span> <span class="nav-text">优缺点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#自己的问题（待解决）"><span class="nav-number">1.5.</span> <span class="nav-text">自己的问题（待解决）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Trainable-Nonlinear-Reaction-Diffusion-A-Flexible-Framework-for-Fast-and-Effective-Image-Restoration"><span class="nav-number">2.</span> <span class="nav-text">Trainable Nonlinear Reaction Diffusion: A Flexible Framework for Fast and Effective Image Restoration</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文献信息-1"><span class="nav-number">2.1.</span> <span class="nav-text">文献信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#背景知识"><span class="nav-number">2.2.</span> <span class="nav-text">背景知识</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#TNRD小结"><span class="nav-number">2.3.</span> <span class="nav-text">TNRD小结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优缺点-1"><span class="nav-number">2.4.</span> <span class="nav-text">优缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Toward-designing-intelligent-PDEs-for-computer-vision-An-optimal-control-approach"><span class="nav-number">3.</span> <span class="nav-text">Toward designing intelligent PDEs for computer vision: An optimal control approach</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#文献信息-2"><span class="nav-number">3.1.</span> <span class="nav-text">文献信息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#文献小结"><span class="nav-number">3.2.</span> <span class="nav-text">文献小结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#模型细节"><span class="nav-number">3.3.</span> <span class="nav-text">模型细节</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优点"><span class="nav-number">3.4.</span> <span class="nav-text">优点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#其它暂未阅读的文献"><span class="nav-number">4.</span> <span class="nav-text">其它暂未阅读的文献</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考文献"><span class="nav-number">5.</span> <span class="nav-text">参考文献</span></a></li></ol></div>
             
 
           </div>
