@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://maxliu245.github.io/"/>
-  <updated>2021-03-21T02:36:54.573Z</updated>
+  <updated>2021-03-21T06:34:00.810Z</updated>
   <id>http://maxliu245.github.io/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【Hexo5】在博客主页侧边栏添加网易云音乐外链&amp;访问者地图</title>
+    <link href="http://maxliu245.github.io/2021/03/21/%E3%80%90Hexo5%E3%80%91%E5%9C%A8%E5%8D%9A%E5%AE%A2%E4%B8%BB%E9%A1%B5%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%B7%BB%E5%8A%A0%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90%E5%A4%96%E9%93%BE-%E8%AE%BF%E9%97%AE%E8%80%85%E5%9C%B0%E5%9B%BE/"/>
+    <id>http://maxliu245.github.io/2021/03/21/%E3%80%90Hexo5%E3%80%91%E5%9C%A8%E5%8D%9A%E5%AE%A2%E4%B8%BB%E9%A1%B5%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%B7%BB%E5%8A%A0%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90%E5%A4%96%E9%93%BE-%E8%AE%BF%E9%97%AE%E8%80%85%E5%9C%B0%E5%9B%BE/</id>
+    <published>2021-03-21T06:08:02.000Z</published>
+    <updated>2021-03-21T06:34:00.810Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote><p>今天心血来潮，给博客加了网易云音乐，以及基于<u><a href="https://www.revolvermaps.com/?target=gallery" target="_blank" rel="noopener">RevolverMaps</a></u>的访客地图</p><p>这两个操作都放在博客主页侧边栏，不影响正文</p></blockquote><a id="more"></a><h2 id="侧边栏调整"><a href="#侧边栏调整" class="headerlink" title="侧边栏调整"></a>侧边栏调整</h2><p>很长时间没有修改过页面的结构了，都忘了侧边栏在哪里调整了</p><p>在<u>Next</u>主题下，自定义主页侧边栏的路径在</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">.\themes\next\layout\_macro\sidebar.swig</span><br></pre></td></tr></table></figure><p>在里面判断一下可以插入新东西的位置即可，我选择的是友链下面的区域，如下所示：</p><div style="width:90%;margin:auto"><img src="/2021/03/21/【Hexo5】在博客主页侧边栏添加网易云音乐外链-访问者地图/1.png" title="我选择的插入位置"></div><h2 id="添加网易云音乐"><a href="#添加网易云音乐" class="headerlink" title="添加网易云音乐"></a>添加网易云音乐</h2><p>和在博客正文加入外链是一样的，直接加即可</p><h2 id="添加访问者地图"><a href="#添加访问者地图" class="headerlink" title="添加访问者地图"></a>添加访问者地图</h2><p>我选择的是<a href="https://www.revolvermaps.com/?target=gallery" target="_blank" rel="noopener">RevolverMaps</a>的外链，因为不用注册。在它的网站上自己选择版式，生成外链即可</p><div style="width:90%;margin:auto"><img src="/2021/03/21/【Hexo5】在博客主页侧边栏添加网易云音乐外链-访问者地图/2.png" title="效果预览"></div><h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ol><li><a href="https://blog.csdn.net/qq_40871466/article/details/96276151" target="_blank" rel="noopener">HexoNext添加网易云音乐</a></li><li><a href="https://music.163.com/#/outchain/2/1400256289/" target="_blank" rel="noopener">网易云音乐插件</a></li><li>访问者地图站：<a href="https://www.revolvermaps.com/?target=gallery" target="_blank" rel="noopener">Widget Gallery</a></li><li>地图站介绍：<a href="https://www.jianshu.com/p/e883329f1b99" target="_blank" rel="noopener">RevolverMaps——网站访问统计小工具</a></li></ol>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;今天心血来潮，给博客加了网易云音乐，以及基于&lt;u&gt;&lt;a href=&quot;https://www.revolvermaps.com/?target=gallery&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;RevolverMaps&lt;/a&gt;&lt;/u&gt;的访客地图&lt;/p&gt;
+&lt;p&gt;这两个操作都放在博客主页侧边栏，不影响正文&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="Hexo" scheme="http://maxliu245.github.io/tags/Hexo/"/>
+    
+  </entry>
   
   <entry>
     <title>【论文阅读42】神经流形ODE——进一步可构建CNF的流形版本MCNF</title>
@@ -40,9 +64,9 @@
     
       <category term="Paper Reading" scheme="http://maxliu245.github.io/tags/Paper-Reading/"/>
     
-      <category term="ODE" scheme="http://maxliu245.github.io/tags/ODE/"/>
-    
       <category term="Manifold" scheme="http://maxliu245.github.io/tags/Manifold/"/>
+    
+      <category term="ODE" scheme="http://maxliu245.github.io/tags/ODE/"/>
     
       <category term="Flow Model" scheme="http://maxliu245.github.io/tags/Flow-Model/"/>
     
@@ -516,35 +540,6 @@
       &lt;blockquote&gt;
 &lt;p&gt;这篇文章标题并没有提到HollowNet，标题为&lt;em&gt;Neural Networks with Cheap Differential Operators&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;是去年（19）NIPS，由著名的&lt;a href=&quot;http://www.cs.toronto.edu/~rtqichen/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;陈天琦&lt;/a&gt;写的文章&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="Paper Reading" scheme="http://maxliu245.github.io/tags/Paper-Reading/"/>
-    
-      <category term="Machine Learning" scheme="http://maxliu245.github.io/tags/Machine-Learning/"/>
-    
-      <category term="ODE" scheme="http://maxliu245.github.io/tags/ODE/"/>
-    
-      <category term="Flow Model" scheme="http://maxliu245.github.io/tags/Flow-Model/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【论文阅读24】On Second Order Behaviour in ANODE——真二阶NODE</title>
-    <link href="http://maxliu245.github.io/2020/10/19/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB24%E3%80%91On-Second-Order-Behaviour-in-ANODE%E2%80%94%E2%80%94%E7%9C%9F%E4%BA%8C%E9%98%B6NODE/"/>
-    <id>http://maxliu245.github.io/2020/10/19/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB24%E3%80%91On-Second-Order-Behaviour-in-ANODE%E2%80%94%E2%80%94%E7%9C%9F%E4%BA%8C%E9%98%B6NODE/</id>
-    <published>2020-10-19T11:11:29.000Z</published>
-    <updated>2020-10-31T14:02:39.949Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote><p><code>On Second Order Behaviour in Augmented Neural ODEs</code>，简称<strong>SONODE</strong>，似乎是2020ICML的文章但是我没有搜到…</p></blockquote><a id="more"></a><img src="/2020/10/19/【论文阅读24】On-Second-Order-Behaviour-in-ANODE——真二阶NODE/2nd-NODE-1.png" title="文献预览"><p>文献链接：<a href="https://arxiv.org/abs/2006.07220" target="_blank" rel="noopener">https://arxiv.org/abs/2006.07220</a></p><p><code>SONODE</code>是非常新的一篇文章，发布于2020/06，是剑桥的人写的。该文是一个非常理论的东西，基本上是基于ANODE、NODE，附录有好多证明，现在还是啃不动，只能啃一些浅层的东西，记录于此</p><h1 id="Hook——a-simple-comparison"><a href="#Hook——a-simple-comparison" class="headerlink" title="Hook——a simple comparison"></a>Hook——a simple comparison</h1><p>之前写过一篇比较ODE2VAE和ANODE文章的比较，大概意思是说ODE2VAE中对二阶导的建模本质上可以看成ANODE在维度上进行增广的一个特例。而本文<code>SONODE</code>是我读的一篇关于ANODE<strong>对2阶导处理</strong>的文章，可以看成是两个NODE在ANODE的框架下套娃，而且比较理论了，基于原始NODE的理论进行了拓展，不过更多地和ANODE进行比较</p><p>笔记写得差不多了，这里再补上一些比较，原文认为SONODE不错的一个原因是它更多地考虑了实际ODE，模型的动力性质，对物理过程的描述更好一些。不过我觉得也就是多建模了一个二阶导啊，只是结合了增广维度的思想，建模的过程也没有那么物理…</p><h1 id="Why-SONODE？——背景"><a href="#Why-SONODE？——背景" class="headerlink" title="Why SONODE？——背景"></a>Why SONODE？——背景</h1><p>话不多说，直接上背景</p><p>背景之一是基于NODE、ANODE，这类模型非常不错，就是奔着描述连续动力系统去的，未来应用一定大好👍；背景之二是之前这些模型只讨论了一阶的性质，缺乏对ODE二阶导的讨论，这也是我在关注的</p><p>所以本文的idea很朴素，就是<font color="#0000FF">顺着ANODE推广到2阶导</font>的情形，就成为SONODE模型。不过idea朴素，方法却比较复杂，本文顺着NODE推广了它的<code>adjoint sensitivity</code>方法，这个尤其复杂，都在附录里我就不看了嘻嘻。另外，本文在得到SONODE之后做了大量实验，<font color="#0000FF">探究了许多对ANODE和SONODE的理解与比较</font>，这些东西内容满满啊！</p><h1 id="What’s-SONODE——实现方法"><a href="#What’s-SONODE——实现方法" class="headerlink" title="What’s SONODE——实现方法"></a>What’s SONODE——实现方法</h1><p>先回顾一下在NODE上做了维度增广的ANODE：</p><script type="math/tex; mode=display">\displaystyle \dfrac{d}{dt}\begin{bmatrix} \textbf{h}(t) \\ \textbf{a}(t) \end{bmatrix} = f(\begin{bmatrix} \textbf{h}(t) \\ \textbf{a}(t) \end{bmatrix}, t),\ \begin{bmatrix} \textbf{h}(t_0) \\ \textbf{a}(t_0) \end{bmatrix} = \begin{bmatrix} \textbf{h}(0) \\ \textbf{a}(0) \end{bmatrix} \triangleq \begin{bmatrix} \textbf{x} \\ \textbf{0} \end{bmatrix}</script><p>2阶NODE的建模考虑到了要拟合二阶导，SONODE就是这样一个非常暴力直观的想法，直接对二阶导建模（联想之前ODE2VAE利用贝叶斯神经网络来学习之），如下所示：</p><script type="math/tex; mode=display">\mathbf{h}^{\prime\prime} = \mathbf{f}^{(a)}(\mathbf{h}, \mathbf{h}^{\prime}, t, \theta_\mathbf{f}),\ where\ \mathbf{h}(t_0) = \mathbf{H}_0,\ \mathbf{h}^{\prime}(t_0) = \mathbf{g}(\mathbf{h}(t_0), \theta_\mathbf{g}) \tag{1}</script><p>其中上标 $(a)$ 表示这个网络函数 $\mathbf{f}$ 相当于是拟合加速度的函数。原始函数初值 $\mathbf{h}(t_0)$ 和一阶导初值 $\mathbf{h}^{\prime}(t_0)$ 都给定了</p><p>而这个暴力的建模方式相当于把ANODE的增广维度设置成一阶导 $\mathbf{h}^\prime(t)$ ：</p><script type="math/tex; mode=display">\displaystyle \mathbf{z} = \begin{bmatrix} \textbf{h}(t) \\ \textbf{h}^\prime(t) \end{bmatrix},\ \mathbf{z}^\prime = \dfrac{d}{dt}\begin{bmatrix} \textbf{h}(t) \\ \textbf{h}^\prime(t) \end{bmatrix} = \mathbf{f}^{(v)}(\begin{bmatrix} \textbf{h}(t) \\ \textbf{h}^\prime(t) \end{bmatrix}, t, \theta_\mathbf{f}) = \begin{bmatrix} \textbf{h}^\prime(t) \\ \mathbf{f}^{(a)}(\mathbf{h}, \mathbf{h}^{\prime}, t, \theta_\mathbf{f}) \end{bmatrix},\ where\ IV\ is\ \mathbf{z}(t_0) = \begin{bmatrix} \mathbf{H}_0 \\ \mathbf{g}(\mathbf{h}(t_0), \theta_\mathbf{g}) \end{bmatrix}\tag{2}</script><p>如上所示， $(1)$ 式和 $(2)$ 式形式上其实是一样的，即<font color="#0000FF">对二阶导的暴力建模 $\Leftrightarrow$ 两个NODE以ANODE的方式嵌套</font>！</p><h1 id="Theory-of-SONODE——NODE理论延拓"><a href="#Theory-of-SONODE——NODE理论延拓" class="headerlink" title="Theory of SONODE——NODE理论延拓"></a>Theory of SONODE——NODE理论延拓</h1><p>这个主要是NODE中<code>adjoint method</code>的延拓了。由于SONODE可以看作两个NODE在ANODE的框架下套娃，那么作者就考虑了一阶<code>adjoint method</code>延拓成二阶，进而辅助网络的训练</p><p>式子为原文命题 $(3.1)$ 但是我真心不想看证明估计也看不太明白…</p><p>进一步，原文给出了这个<code>adjoint method</code>的计算性质比较，即原文命题 $(3.2)$ ，说的是计算复杂度的问题，只用两组一阶<code>adjoint method</code>计算要优于用二阶的<code>adjoint method</code>，后者应该是需要更多的矩阵乘法运算。因此，文中的实验都是准备用两组一阶<code>adjoint method</code>来计算的</p><h1 id="How-to-Use-SONODE——Experiments"><a href="#How-to-Use-SONODE——Experiments" class="headerlink" title="How to Use SONODE——Experiments"></a>How to Use SONODE——Experiments</h1><p>这篇文章做了很多实验，我稍微整理了一下，前三个主要是为了说明SONODE的基本性质；第4个是为了说明SONODE和ANODE二阶性质的比较；后面的是为了进一步以困难数据说明二者二阶性质的比较：</p><div class="table-container"><table><thead><tr><th>实验名称</th><th>实验简介</th><th>实验结果</th></tr></thead><tbody><tr><td>Generalised Parity Problems</td><td>是原来NODE提到的相图不交问题的高维推广——高维初值问题</td><td>ANODE没能学到最一般的轨迹；SONODE学到了（结果如此但我不太明白）</td></tr><tr><td>Nested N-Spheres</td><td>似乎是两个N维球面嵌套的分离问题，并在流（轨）形（迹）意义下讨论</td><td>NODE不能在<strong>原来</strong>的实空间中分离轨迹；ANODE在增广的维度上分离了轨迹；SONODE在实空间中就做到了轨迹分（相）离（交）（不太明白原理），并提出了命题 $(3.3)$ ，SONODE不被限制在实空间上的同胚变换，毕竟实空间上就成功做到相图相交了</td></tr><tr><td>2 Damped Harmonic Oscillators</td><td>即2个衰减简谐振动轨迹的学习</td><td>只是说明了，ANODE扩充维度不用超过原来实空间维度，也能学到一定的二阶性质</td></tr><tr><td>Interpretability of ANODES</td><td>对一些较不规则螺旋线进行学习</td><td>SONODE和ANODE在该问题上的表现为：ANODE在不同初始化条件下结果不同，其实空间上轨迹一致，但增广维度上轨迹不同（有点迷）；SONODE轨迹始终一致。这说明ANODE的二阶导学习得还是可能有问题，<strong>可能</strong>不适合实际问题的应用。更进一步的结果是，原文提出命题 $(5.2, 5.3)$ ，表示ANODE可学习的非平凡二阶导形式是无限的，SONODE的则是唯一的（这么强的么？👍）</td></tr><tr><td>Noise Robustness</td><td>对 $\sin$ 函数加不同水平高斯噪声</td><td>图7的结果表示SONODE更稳健</td></tr><tr><td>Real-world Dynamic Systems</td><td>实际数据</td><td>不太明白，反正看图猛就完了</td></tr></tbody></table></div><h1 id="Pros-amp-Cons"><a href="#Pros-amp-Cons" class="headerlink" title="Pros &amp; Cons"></a>Pros &amp; Cons</h1><p>写到这里总觉得文章哪里不太对劲，先这样吧，说不定用到的时候就明白了。</p><div class="table-container"><table><thead><tr><th>Pros</th><th>Cons</th></tr></thead><tbody><tr><td>本文的idea很正统，基于ANODE研究2阶性质，不仅给出了adjoint方法的延拓，还与双ANODE联系在一起</td><td>此类方法由于应用非常直接，确实很容易用于不好的用途。。这个问题挺人文的，我还是希望人类能和平发展技术。。</td></tr><tr><td>理论的保证还是比较足了，主要是adjoint方法、以及确实是在对<strong>真正</strong>的二阶导建模</td><td>文中提到了一手ANODE增广的维度可能发生混乱，是指学到的东西没有可解释性么，这个只提了几句没讲清楚</td></tr><tr><td>对比ANODE的实验做得很多，确实让我们看到了建模二阶导带来的优势</td><td>二阶导adjoint方法推导似乎就比较复杂，那高阶推导难道要一直嵌套么？这不是我们想要的</td></tr><tr><td>此一类方法的潜力都很好，应用场景必然很多，且已经出现！本文二阶方法则尤其适合存在加速度的场景</td><td>TBD</td></tr></tbody></table></div><h1 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h1><p>[1] Alexander Norcliffe, Cristian Bodnar, Ben Day, Nikola Simidjievski, and Pietro Liò. On second order behaviour in augmented neural odes. arXiv preprint arXiv:2006.07220, 2020.</p><p>[2] Emilien Dupont, Arnaud Doucet, and Yee Whye Teh. Augmented neural odes. In H. Wallach, H. Larochelle, A. Beygelzimer, F. d’Alché-Buc, E. Fox, and R. Garnett, editors, Advances in Neural Information Processing Systems 32, pages 3140–3150. Curran Associates, Inc., 2019.</p><p>[3] Cagatay Yildiz, Markus Heinonen, and Harri Lahdesmaki. Ode2vae: Deep generative second order odes with bayesian neural networks. In H. Wallach, H. Larochelle, A. Beygelzimer, F. d’Alché-Buc, E. Fox, and R. Garnett, editors, Advances in Neural Information Processing Systems 32, pages 13412–13421. Curran Associates, Inc., 2019.</p><p>[4] Tian Qi Chen, Yulia Rubanova, Jesse Bettencourt and David Duvenaud. Neural Ordinary Differential Equations[EB/OL]. <a href="https://arxiv.org/abs/1806.07366" target="_blank" rel="noopener">https://arxiv.org/abs/1806.07366</a>, 2018.</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;On Second Order Behaviour in Augmented Neural ODEs&lt;/code&gt;，简称&lt;strong&gt;SONODE&lt;/strong&gt;，似乎是2020ICML的文章但是我没有搜到…&lt;/p&gt;
 &lt;/blockquote&gt;
     
     </summary>

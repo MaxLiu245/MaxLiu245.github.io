@@ -1,6 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>【Hexo5】在博客主页侧边栏添加网易云音乐外链&amp;访问者地图</title>
+    <url>/2021/03/21/%E3%80%90Hexo5%E3%80%91%E5%9C%A8%E5%8D%9A%E5%AE%A2%E4%B8%BB%E9%A1%B5%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%B7%BB%E5%8A%A0%E7%BD%91%E6%98%93%E4%BA%91%E9%9F%B3%E4%B9%90%E5%A4%96%E9%93%BE-%E8%AE%BF%E9%97%AE%E8%80%85%E5%9C%B0%E5%9B%BE/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>今天心血来潮，给博客加了网易云音乐，以及基于<u><a href="https://www.revolvermaps.com/?target=gallery" target="_blank" rel="noopener">RevolverMaps</a></u>的访客地图</p>
+<p>这两个操作都放在博客主页侧边栏，不影响正文</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="侧边栏调整"><a href="#侧边栏调整" class="headerlink" title="侧边栏调整"></a>侧边栏调整</h2><p>很长时间没有修改过页面的结构了，都忘了侧边栏在哪里调整了</p>
+<p>在<u>Next</u>主题下，自定义主页侧边栏的路径在</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">.\themes\next\layout\_macro\sidebar.swig</span><br></pre></td></tr></table></figure>
+<p>在里面判断一下可以插入新东西的位置即可，我选择的是友链下面的区域，如下所示：</p>
+<div style="width:90%;margin:auto"><img src="/2021/03/21/【Hexo5】在博客主页侧边栏添加网易云音乐外链-访问者地图/1.png" title="我选择的插入位置"></div>
+
+<h2 id="添加网易云音乐"><a href="#添加网易云音乐" class="headerlink" title="添加网易云音乐"></a>添加网易云音乐</h2><p>和在博客正文加入外链是一样的，直接加即可</p>
+<h2 id="添加访问者地图"><a href="#添加访问者地图" class="headerlink" title="添加访问者地图"></a>添加访问者地图</h2><p>我选择的是<a href="https://www.revolvermaps.com/?target=gallery" target="_blank" rel="noopener">RevolverMaps</a>的外链，因为不用注册。在它的网站上自己选择版式，生成外链即可</p>
+<div style="width:90%;margin:auto"><img src="/2021/03/21/【Hexo5】在博客主页侧边栏添加网易云音乐外链-访问者地图/2.png" title="效果预览"></div>
+
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ol>
+<li><a href="https://blog.csdn.net/qq_40871466/article/details/96276151" target="_blank" rel="noopener">HexoNext添加网易云音乐</a></li>
+<li><a href="https://music.163.com/#/outchain/2/1400256289/" target="_blank" rel="noopener">网易云音乐插件</a></li>
+<li>访问者地图站：<a href="https://www.revolvermaps.com/?target=gallery" target="_blank" rel="noopener">Widget Gallery</a></li>
+<li>地图站介绍：<a href="https://www.jianshu.com/p/e883329f1b99" target="_blank" rel="noopener">RevolverMaps——网站访问统计小工具</a></li>
+</ol>
+]]></content>
+      <tags>
+        <tag>Hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【论文阅读42】神经流形ODE——进一步可构建CNF的流形版本MCNF</title>
     <url>/2021/03/19/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB42%E3%80%91%E7%A5%9E%E7%BB%8F%E6%B5%81%E5%BD%A2ODE%E2%80%94%E2%80%94%E8%BF%9B%E4%B8%80%E6%AD%A5%E5%8F%AF%E6%9E%84%E5%BB%BACNF%E7%9A%84%E6%B5%81%E5%BD%A2%E7%89%88%E6%9C%ACMCNF/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
@@ -78,8 +107,8 @@
 ]]></content>
       <tags>
         <tag>Paper Reading</tag>
-        <tag>ODE</tag>
         <tag>Manifold</tag>
+        <tag>ODE</tag>
         <tag>Flow Model</tag>
       </tags>
   </entry>
