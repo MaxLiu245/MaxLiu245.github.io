@@ -98,7 +98,7 @@
 <meta property="og:locale" content="en">
 <meta property="og:image" content="http://maxliu245.github.io/2021/03/18/【论文略读41】动态神经网络综述/1.png">
 <meta property="og:image" content="http://maxliu245.github.io/2021/03/18/【论文略读41】动态神经网络综述/2.png">
-<meta property="og:updated_time" content="2021-03-19T00:35:00.852Z">
+<meta property="og:updated_time" content="2021-03-22T00:53:33.714Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="【论文略读41】动态神经网络综述">
 <meta name="twitter:description" content="这次略读了综述Dynamic Neural Networks: A Survey 阅读的动机是觉得这个和动力系统有关系，不过读完了没什么感觉，大的感悟是玄学，小的感悟是和元学习、NAS、ODE、流什么的其实都有点关系，觉得框架不太优美，多而杂 ps：其实没有读完，正文只读了前四大章，到优化训练前面。后面参考他人的博客了解了概览 ps2：这次写作引入了缩放图片的方法，且兼容中文图片标题">
@@ -347,8 +347,8 @@
               
                 <span class="post-meta-item-text">Post modified&#58;</span>
               
-              <time title="Post modified" itemprop="dateModified" datetime="2021-03-19T08:35:00+08:00">
-                2021-03-19
+              <time title="Post modified" itemprop="dateModified" datetime="2021-03-22T08:53:33+08:00">
+                2021-03-22
               </time>
             
           </span>
@@ -380,7 +380,7 @@
                   <span class="post-meta-item-text">Words count in article&#58;</span>
                 
                 <span title="Words count in article">
-                  3k
+                  3.1k
                 </span>
               
 
@@ -433,6 +433,8 @@
 <li><p><a href="https://www.zhihu.com/org/bei-jing-zhi-yuan-ren-gong-zhi-neng-yan-jiu-yuan" target="_blank" rel="noopener">北京智源人工智能研究院</a>(<a href="https://www.zhihu.com/question/48510028)的文章[【深度】动态神经网络综述](https://zhuanlan.zhihu.com/p/354507714)，这个和第一个差不多" target="_blank" rel="noopener">https://www.zhihu.com/question/48510028)的文章[【深度】动态神经网络综述](https://zhuanlan.zhihu.com/p/354507714)，这个和第一个差不多</a></p>
 </li>
 <li><p><a href="https://zhuanlan.zhihu.com/p/149303296" target="_blank" rel="noopener">Dynamic Neural Networks（上）</a>，这个供参考，其实我没读</p>
+</li>
+<li><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@ARTICLE&#123;2021arXiv210204906H,</span><br><span class="line">       author = &#123;&#123;Han&#125;, Yizeng and &#123;Huang&#125;, Gao and &#123;Song&#125;, Shiji and &#123;Yang&#125;, Le and &#123;Wang&#125;, Honghui and &#123;Wang&#125;, Yulin&#125;,</span><br><span class="line">        title = &quot;&#123;Dynamic Neural Networks: A Survey&#125;&quot;,</span><br><span class="line">      journal = &#123;arXiv e-prints&#125;,</span><br><span class="line">     keywords = &#123;Computer Science - Computer Vision and Pattern Recognition&#125;,</span><br><span class="line">         year = 2021,</span><br><span class="line">        month = feb,</span><br><span class="line">          eid = &#123;arXiv:2102.04906&#125;,</span><br><span class="line">        pages = &#123;arXiv:2102.04906&#125;,</span><br><span class="line">archivePrefix = &#123;arXiv&#125;,</span><br><span class="line">       eprint = &#123;2102.04906&#125;,</span><br><span class="line"> primaryClass = &#123;cs.CV&#125;,</span><br><span class="line">       adsurl = &#123;https://ui.adsabs.harvard.edu/abs/2021arXiv210204906H&#125;,</span><br><span class="line">      adsnote = &#123;Provided by the SAO/NASA Astrophysics Data System&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 <h2 id="文献小结"><a href="#文献小结" class="headerlink" title="文献小结"></a>文献小结</h2><p>动态网络的<font color="#000FFF">背景</font>方法是静态网络，后者有固定的权重、计算图和网络结构；</p>
@@ -694,7 +696,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">64</span>
+                  <span class="site-state-item-count">65</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
@@ -847,7 +849,7 @@
     
       <span class="post-meta-item-text">Site words total count&#58;</span>
     
-    <span title="Site words total count">98.5k</span>
+    <span title="Site words total count">101.1k</span>
   
 </div>
 
@@ -1417,7 +1419,15 @@ setInterval("createtime()",250);
         }
       });
     </script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -1434,13 +1444,5 @@ setInterval("createtime()",250);
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js">
 </script>
 <!-- End: Injected MathJax -->
-<!-- hexo-inject:end -->
-  
-
-
-  
-
-  
-
-<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"log":false,"model":{"jsonPath":"/live2dw/assets/koharu.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":true}});</script></body>
+<!-- hexo-inject:end --></body>
 </html>
