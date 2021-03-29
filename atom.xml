@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://maxliu245.github.io/"/>
-  <updated>2021-03-24T12:56:52.189Z</updated>
+  <updated>2021-03-29T06:05:51.352Z</updated>
   <id>http://maxliu245.github.io/</id>
   
   <author>
@@ -15,6 +15,59 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>【论文阅读44】DPIR——利用深度去噪先验的图像恢复方法</title>
+    <link href="http://maxliu245.github.io/2021/03/28/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB44%E3%80%91DPIR%E2%80%94%E2%80%94%E5%88%A9%E7%94%A8%E6%B7%B1%E5%BA%A6%E5%8E%BB%E5%99%AA%E5%85%88%E9%AA%8C%E7%9A%84%E5%9B%BE%E5%83%8F%E6%81%A2%E5%A4%8D%E6%96%B9%E6%B3%95/"/>
+    <id>http://maxliu245.github.io/2021/03/28/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB44%E3%80%91DPIR%E2%80%94%E2%80%94%E5%88%A9%E7%94%A8%E6%B7%B1%E5%BA%A6%E5%8E%BB%E5%99%AA%E5%85%88%E9%AA%8C%E7%9A%84%E5%9B%BE%E5%83%8F%E6%81%A2%E5%A4%8D%E6%96%B9%E6%B3%95/</id>
+    <published>2021-03-28T00:58:54.000Z</published>
+    <updated>2021-03-29T06:05:51.352Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote><p>阅读文献DPIR：<a href="https://arxiv.org/abs/2008.13751" target="_blank" rel="noopener"><em>Plug-and-Play Image Restoration with Deep Denoiser Prior</em></a></p><p>利用的深度去噪先验（DP）的图像恢复（IR）方法，至于即插即用，是指？且待分解（见背景部分）</p></blockquote><a id="more"></a><h2 id="文献简介"><a href="#文献简介" class="headerlink" title="文献简介"></a>文献简介</h2><div style="width:80%;margin:auto"><img src="/2021/03/28/【论文阅读44】DPIR——利用深度去噪先验的图像恢复方法/DPIR_1.png" title="DPIR文献"></div><p>ArXiv上表示本文是IRCNN (CVPR17)的拓展，目前本文似乎只发在20年ArXiv上</p><blockquote><p>张凯一作，还有张磊和左旺孟老师：<a href="https://arxiv.org/abs/2008.13751" target="_blank" rel="noopener">https://arxiv.org/abs/2008.13751</a></p><p>代码：<a href="https://github.com/cszn/DPIR" target="_blank" rel="noopener">https://github.com/cszn/DPIR</a></p></blockquote><h2 id="图像恢复（IR）与去噪的关系"><a href="#图像恢复（IR）与去噪的关系" class="headerlink" title="图像恢复（IR）与去噪的关系"></a>图像恢复（IR）与去噪的关系</h2><p>这个问题挺困扰像我这样的初学者，但是又没有专门去了解它们的关系。这次本文在引言中给出了一个介绍！总的来说，图像恢复的范围很大，包括了去噪</p><p>图像恢复问题的数学表达是：</p><script type="math/tex; mode=display">\displaystyle y=\mathcal{T}(x)+n \tag{1}</script><p>指的是利用退化算子$\mathcal{T}$从带有噪声$n$的退化观测（即带噪图）$y$中恢复出干净图$x$</p><p>由此定义，<font color="#0000CD">不同的退化算子$\mathcal{T}$就对应了不同的IR任务</font>：</p><div class="table-container"><table><thead><tr><th style="text-align:center">IR任务</th><th style="text-align:center">退化算子$\mathcal{T}$</th></tr></thead><tbody><tr><td style="text-align:center">传统IR（去噪？）</td><td style="text-align:center">恒等映射</td></tr><tr><td style="text-align:center">去模糊</td><td style="text-align:center">2-d卷积</td></tr><tr><td style="text-align:center">超分辨</td><td style="text-align:center">卷积和下采样的复合</td></tr><tr><td style="text-align:center">去马赛克</td><td style="text-align:center">色彩滤波阵列（CFA）masking</td></tr></tbody></table></div><h2 id="基于模型与基于学习方法的关系"><a href="#基于模型与基于学习方法的关系" class="headerlink" title="基于模型与基于学习方法的关系"></a>基于模型与基于学习方法的关系</h2><p>model-based大概就是为了最小化目标函数，采用巧妙地优化方法，其中可能有精巧的优化机制，也可能是算法unfolding的方式</p><p>learning-based就是用数据对去学习，逼近最优解，可以直接看成是原文第1页式$(3)$的双边优化</p><h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>从标题知，本文的<font color="#0000CD">目标</font>是图像恢复。另外，本文的方法关注的点是<font color="#0000CD">即插即用</font>模块的设计，在下一部分介绍之</p><h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>本文的<font color="#0000CD">背景</font>领域是即插即用的去噪，去噪不说了，主要是这个<font color="#0000CD">即插即用</font>是什么</p><p><u>即插即用Plug-and-Play</u>指的是一种<u>处理</u>深度学习<u>目标函数</u>的方式。一般的目标函数包括数据（拟合）项和正则（先验）项，即插即用要把目标函数的这两部分<u>分离</u>，得到<u>2个子问题</u>，即<u>数据子问题&amp;先验子问题</u>。那么要优化这样的目标函数，只需用迭代的方式，交替求解2个子问题。一般这个即插即用都是指☞用现成的工具解先验子问题，这样就不用手动指定显式先验，这样其实就是隐式地用这个现成的工具定义了先验</p><h2 id="动机-Idea"><a href="#动机-Idea" class="headerlink" title="动机/Idea"></a>动机/Idea</h2><p>本文的<font color="#0000CD">动机/idea</font>是要求即插即用模块灵活且能力强。希望即插即用（在本文中就是denoiser）non-blind，且能处理大范围的噪声水平（要求灵活）</p><p>从这两个方面分别考虑的话，参照的基本模型主要是原作者17年CVPR的IRCNN去噪器，可以处理各种各样的噪声水平，但它由25个独立的7层去噪器组成，其中每个去噪器在噪声水平间隔为2的数据上训练。有两个缺点，第1是不能灵活指定特定噪声水平；第2是由于层数少，效果不够</p><p>启示是要模块灵活且强大</p><blockquote><p>ps：利用DCNN的即插即用与deep unfolding的区别：deep unfolding毕竟是对特定任务的优化单独设计的嘛，所以虽然解释性强，需要的迭代也少，但对每个特定任务都是单独训练的。相反，即插即用很容易兼容其它模型，即易部署</p></blockquote><h2 id="模型DPIR"><a href="#模型DPIR" class="headerlink" title="模型DPIR"></a>模型DPIR</h2><p>其实，以上的<font color="#0000CD">问题</font>、<font color="#0000CD">背景</font>和<font color="#0000CD">动机</font>部分都是写作时的组织方式，本文模型DPIR模型的提出其实是另一个思路！以下也将从<u>更自然的思路</u>引出此模型，即从即插即用模块如何<strong><u>由HQS优化算法导出</u></strong></p><p>首先，带噪图还是$y$，干净图还是$x$，则初始问题的概率形式和一般形式分别是：</p><script type="math/tex; mode=display">\displaystyle \hat{x}=\mathop{\arg\max}_{x}\log p(y|x)+\log p(x) \tag{1}</script><script type="math/tex; mode=display">\displaystyle \hat{x}=\mathop{\arg\min}_{x}\dfrac{1}{2\sigma^2}||y-\mathcal{T}(x)||^2+\lambda \mathcal{R}(x) \tag{2}</script><p>那么HQS算法，指Half Quadratic Splitting，要把上述数据项和先验项分离，为此<strong>引入隐变量</strong>$z$，则优化问题变为带约束的问题：</p><script type="math/tex; mode=display">\displaystyle \hat{x}=\mathop{\arg\min}_{x}\dfrac{1}{2\sigma^2}||y-\mathcal{T}(x)||^2+\lambda \mathcal{R}(z)\ s.t.\ z=x \tag{3}</script><p>所以其Lagrangian就是</p><script type="math/tex; mode=display">\displaystyle \mathcal{L}_{\mu}(x,z)=\mathop{\arg\min}_{x}\dfrac{1}{2\sigma^2}||y-\mathcal{T}(x)||^2+\lambda \mathcal{R}(z)+\dfrac{\mu}{2}||z-x||^2\tag{4}</script><p>那么式$(4)$有两个变量其实，分别是目标变量$x$和隐变量$z$，也有两个Lagrange乘子$\lambda$和$\mu$。且注意到上式包含只有$x$、只有$z$和$x,z$都有的项。式$(4)$的求解则用交替优化的方式进行：</p><script type="math/tex; mode=display">\displaystyle\left\{\begin{aligned} x_k&=\mathop{\arg\min}_x||y-\mathcal{T}(x)||^2+\mu\sigma^2||x-z_{k-1}||^2 \\ z_k&=\mathop{\arg\min}_z\dfrac{1}{2\left(\sqrt{\frac{\lambda}{\mu}}\right)^2}||z-x_k||^2+\mathcal{R}(z)\end{aligned}\right.\tag{5}</script><p>式$(5)$就是拉格朗日求导的结果，双变量的。注意到下面的式子相当于是一般的高斯去噪过程，即$z$相当于$x$的带高斯噪图，然后去恢复$x$！好家伙，这就是为什么文章说这个<u><strong>即插即用的模块是用一个深度高斯去噪网络来做</strong></u>的！</p><h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>本文的实验是一般的IR问题，具体在去模糊、单图超分辨（SISR）、彩图去马赛克3个问题上进行了实验</p><p>实验效果都挺好的</p><h2 id="优点-amp-技巧"><a href="#优点-amp-技巧" class="headerlink" title="优点&amp;技巧"></a>优点&amp;技巧</h2><p>优点的话随便写写，（1）优化问题结合算法自然推导出了先验去噪器（这个东西的泛化仅限于IR）；（2）深度去噪器先验建模能力好，提高有效性；（3）没有限定特定任务，这个意义下更灵活</p><p>本文其实有很多技巧性的东西，都算是领域知识吧，比如说（1）HQS算法的选择及其优势；（2）与双边优化问题的联系；（3）残差块结合U-Net，增强表达能力与图像变换能力；（4）实验与各种去噪器对比，如CNN-based、model-based网络；（5）为了增强泛化，把noise-level-map也作为输入，但是这样具体的做法不清楚</p><h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>本文的降噪器从原理上是从优化算法的计算过程中unfolding出来的，所以DPIR在这个HQS框架下是成立的，也只能用HQS优化，以及用高斯去噪器。这个东西总是觉得有点奇怪，即插即用也就是在它的框架下去插。不想用这个优化方法就无了</p><p>从这个角度上说和meta差距还是挺大的。如果硬是要联系的话可能是文章开头的式子$(3)$，它没有指定优化方法，还是优化能量泛函+优化约束。这是否有启发，<u>把约束优化问题做成元学习器</u>，然后再套到pde约束优化能量泛函的框架下呢？</p><h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] Kai Zhang, Yawei Li, Wangmeng Zuo, Lei Zhang, Luc Van Gool, and Radu Timofte. Plug-and-Play Image Restoration with Deep Denoiser Prior. arXiv e-prints, page arXiv:2008.13751, August 2020.</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">@ARTICLE&#123;2020arXiv200813751Z,</span><br><span class="line">       author = &#123;&#123;Zhang&#125;, Kai and &#123;Li&#125;, Yawei and &#123;Zuo&#125;, Wangmeng and &#123;Zhang&#125;, Lei and &#123;Van Gool&#125;, Luc and &#123;Timofte&#125;, Radu&#125;,</span><br><span class="line">        title = &quot;&#123;Plug-and-Play Image Restoration with Deep Denoiser Prior&#125;&quot;,</span><br><span class="line">      journal = &#123;arXiv e-prints&#125;,</span><br><span class="line">     keywords = &#123;Electrical Engineering and Systems Science - Image and Video Processing, Computer Science - Computer Vision and Pattern Recognition&#125;,</span><br><span class="line">         year = 2020,</span><br><span class="line">        month = aug,</span><br><span class="line">          eid = &#123;arXiv:2008.13751&#125;,</span><br><span class="line">        pages = &#123;arXiv:2008.13751&#125;,</span><br><span class="line">archivePrefix = &#123;arXiv&#125;,</span><br><span class="line">       eprint = &#123;2008.13751&#125;,</span><br><span class="line"> primaryClass = &#123;eess.IV&#125;,</span><br><span class="line">       adsurl = &#123;https://ui.adsabs.harvard.edu/abs/2020arXiv200813751Z&#125;,</span><br><span class="line">      adsnote = &#123;Provided by the SAO/NASA Astrophysics Data System&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>其它参考链接（感觉用处不大）：</p><ul><li><p><a href="https://blog.csdn.net/gwplovekimi/article/details/89417600" target="_blank" rel="noopener">论文阅读笔记之——《Deep Plug-and-Play Super-Resolution for Arbitrary Blur Kernels》</a></p></li><li><p><a href="https://zhuanlan.zhihu.com/p/243492602" target="_blank" rel="noopener">ETH Zurich提出DPIR：具有Denoiser先验的即插即用图像恢复</a></p></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;阅读文献DPIR：&lt;a href=&quot;https://arxiv.org/abs/2008.13751&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;em&gt;Plug-and-Play Image Restoration with Deep Denoiser Prior&lt;/em&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;利用的深度去噪先验（DP）的图像恢复（IR）方法，至于即插即用，是指？且待分解（见背景部分）&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="Paper Reading" scheme="http://maxliu245.github.io/tags/Paper-Reading/"/>
+    
+      <category term="Denoising" scheme="http://maxliu245.github.io/tags/Denoising/"/>
+    
+      <category term="Bi-Level" scheme="http://maxliu245.github.io/tags/Bi-Level/"/>
+    
+      <category term="Meta Learner" scheme="http://maxliu245.github.io/tags/Meta-Learner/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>【CV知识】PSNR&amp;SSIM指标</title>
+    <link href="http://maxliu245.github.io/2021/03/25/%E3%80%90CV%E7%9F%A5%E8%AF%86%E3%80%91PSNR-SSIM%E6%8C%87%E6%A0%87/"/>
+    <id>http://maxliu245.github.io/2021/03/25/%E3%80%90CV%E7%9F%A5%E8%AF%86%E3%80%91PSNR-SSIM%E6%8C%87%E6%A0%87/</id>
+    <published>2021-03-25T06:04:45.000Z</published>
+    <updated>2021-03-25T06:11:27.725Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote><p>学习了图像处理问题中常见的评价指标：PSNR和SSIM，并自己整理了一遍加深印象</p></blockquote><a id="more"></a><p>写在前面：这都是从网络博客重新整理的，链接均位于文末，如有不妥请联系协商~</p><h2 id="PSNR"><a href="#PSNR" class="headerlink" title="PSNR"></a>PSNR</h2><p><font color="0000CD"><strong>PSNR</strong></font>全称Peak Signal to Noise Ratio，即<font color="0000CD"><strong>峰值信噪比</strong></font>，从计算公式看相当于<u>MSE的对数形式</u>，多了<u>像素峰值</u>特征。所以也是一种通用的衡量图像失真、衡量噪声水平的指标。应该是个标量，其单位是dB，一般30dB以上比较好，以下稍微差点吧，现在做到$32^+$的还挺多的</p><p>计算公式为：</p><script type="math/tex; mode=display">\displaystyle PSNR(X,Y)=10*\log_{10}\left(\dfrac{max^2}{MSE}\right)=20*\log_{10}\left(\dfrac{max}{MSE}\right)\overset{also}{=}20*\log_{10}\left(\dfrac{2^b-1}{MSE}\right). \tag{1}</script><p>以普通的单通道图像为例，其中$X,Y$一般是输出的去噪图和gt干净图；不妨设图像的维度都是$m\times n$，则$\displaystyle MSE(X,Y)=\dfrac{1}{mn}\sum_{i=1}^m\sum_{j=1}^n\left(X_{ij}-Y_{ij}\right)^2$；$max=2^b-1$，指的是像素值的极值，与每张图像本身无关，$b$是每个像素的bit数，一般就是8，所以$max=255$</p><h2 id="SSIM"><a href="#SSIM" class="headerlink" title="SSIM"></a>SSIM</h2><p><font color="0000CD"><strong>SSIM</strong></font>全称Structural Similarity，即<font color="0000CD"><strong>结构相似性</strong></font>，从计算公式看，这个指标考虑了图像之间<u>（1）亮度（2）对比度（3）结构之间的差异</u>。它是个标量，参考了几篇文章，SSIM没有单位，取值区间是$[0,1]$，越接近1表示两张图像越相近</p><p>计算公式为：</p><script type="math/tex; mode=display">\displaystyle \begin{aligned}&SSIM\overset{def}{=}L^\alpha\times C^\beta\times S^\gamma\\ where &\left\{ \begin{aligned}&亮度差异L(X,Y)=\dfrac{2\mu_X\mu_Y+c_1}{\mu_X^2+\mu_Y^2+c_1}\\ &对比度差异C(X,Y)=\dfrac{2\sigma_X\sigma_Y+c_2}{\sigma_X^2+\sigma_Y^2+c_2}\\ &结构差异S(X,Y)=\dfrac{\sigma_{XY}+c_3}{\sigma_X\sigma_Y+c_3}\end{aligned}\right.\end{aligned} \tag{2}</script><p>其中小写字母都是数值标量，$\displaystyle \mu_X=\dfrac{1}{mn}\sum_{i=1}^m\sum_{j=1}^nX_{ij}$就是图像像素值的均值，$\displaystyle \sigma_X=\left(\dfrac{1}{mn-1}\sum_{i=1}^m\sum_{j=1}^n\left(X_{ij}-\mu_X\right)^2\right)^{\frac{1}{2}}$是方差的无偏估计，$\sigma_{XY}=\dfrac{1}{mn-1}\sum_{i=1}^m\sum_{j=1}^n\left(X_{ij}-\mu_X\right)\left(Y_{ij}-\mu_Y\right)$是两张图像协方差的无偏估计，注意仍然是数量标量。另外，$c_1,c_2,c_3$都是避免除0的常数，取$c_1=(k_1<em>max)^2,\ k_1=0.01$，$c_2=(k_2</em>max)^2,\ k_2=0.03$，$k_1,k_2,k_3,\alpha,\beta,\gamma$感觉是像控制$L,C,S$权重的。取$\displaystyle c_3=\frac{c_2}{2},\alpha=\beta=\gamma=1$，就是常见的SSIM计算式：</p><script type="math/tex; mode=display">\displaystyle SSIM=L*C*S=\dfrac{(2\mu_X\mu_Y+c_1)(2\sigma_{XY}+c_2)}{(\mu_X^2+\mu_Y^2+c_1)(\sigma_X^2+\sigma_Y^2+c_2)}. \tag{3}</script><h2 id="其它指标"><a href="#其它指标" class="headerlink" title="其它指标"></a>其它指标</h2><p>一个是MSSIM，平均结构相似性，就是给图像分块，每一块分别计算SSIM再平均。据参考链接$[3]$，不用遍历像素点而是分块的方式，<font color="FF0000"><strong>可能</strong></font>有更高的效率；而为什么用高斯函数计算均值、方差和协方差，不知道，这个没有再去学了</p><p>还有就是各种指标拓展到彩图（多通道图）、高光谱图等，大概都是各个通道，谱段分别求再平均，有没有加权的操作则不清楚了</p><h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>都是从网络博客直接学的：</p><p>[1] <a href="https://zhuanlan.zhihu.com/p/50757421" target="_blank" rel="noopener">图像质量评价指标之 PSNR 和 SSIM</a>，知乎文章，写得全，有代码</p><p>[2] <a href="https://blog.csdn.net/weixin_43478836/article/details/104159648" target="_blank" rel="noopener">图像质量评估中的PSNR和SSIM的定义，公式和含义</a>，CSDN博客，写得全</p><p>[3] <a href="https://www.jianshu.com/p/43d548ad6b5d" target="_blank" rel="noopener">图像相似度评价指标</a>，简书文章，有定义和<u>大量</u>代码。注意这里面SSIM范围写错了，而且错得离谱。。</p><p>[4] <a href="https://www.jianshu.com/p/e11539734510" target="_blank" rel="noopener">图像质量评价指标PSNR、SSIM、MSSIM介绍</a>，也比较全，有MSSIM公式</p>]]></content>
+    
+    <summary type="html">
+    
+      &lt;blockquote&gt;
+&lt;p&gt;学习了图像处理问题中常见的评价指标：PSNR和SSIM，并自己整理了一遍加深印象&lt;/p&gt;
+&lt;/blockquote&gt;
+    
+    </summary>
+    
+    
+    
+      <category term="Computer Vision" scheme="http://maxliu245.github.io/tags/Computer-Vision/"/>
+    
+  </entry>
   
   <entry>
     <title>【论文阅读43】FOCNet——网络与分数阶方程的结合</title>
@@ -96,9 +149,9 @@
     
       <category term="Paper Reading" scheme="http://maxliu245.github.io/tags/Paper-Reading/"/>
     
-      <category term="ODE" scheme="http://maxliu245.github.io/tags/ODE/"/>
-    
       <category term="Manifold" scheme="http://maxliu245.github.io/tags/Manifold/"/>
+    
+      <category term="ODE" scheme="http://maxliu245.github.io/tags/ODE/"/>
     
       <category term="Flow Model" scheme="http://maxliu245.github.io/tags/Flow-Model/"/>
     
@@ -153,9 +206,9 @@
     
       <category term="Denoising" scheme="http://maxliu245.github.io/tags/Denoising/"/>
     
-      <category term="CNN" scheme="http://maxliu245.github.io/tags/CNN/"/>
-    
       <category term="Computer Vision" scheme="http://maxliu245.github.io/tags/Computer-Vision/"/>
+    
+      <category term="CNN" scheme="http://maxliu245.github.io/tags/CNN/"/>
     
   </entry>
   
@@ -411,9 +464,9 @@
     
       <category term="Paper Reading" scheme="http://maxliu245.github.io/tags/Paper-Reading/"/>
     
-      <category term="PDE" scheme="http://maxliu245.github.io/tags/PDE/"/>
-    
       <category term="Manifold" scheme="http://maxliu245.github.io/tags/Manifold/"/>
+    
+      <category term="PDE" scheme="http://maxliu245.github.io/tags/PDE/"/>
     
   </entry>
   
@@ -439,9 +492,9 @@
     
       <category term="Paper Reading" scheme="http://maxliu245.github.io/tags/Paper-Reading/"/>
     
-      <category term="Manifold" scheme="http://maxliu245.github.io/tags/Manifold/"/>
-    
       <category term="GAN" scheme="http://maxliu245.github.io/tags/GAN/"/>
+    
+      <category term="Manifold" scheme="http://maxliu245.github.io/tags/Manifold/"/>
     
   </entry>
   
@@ -498,63 +551,6 @@
       <category term="ODE" scheme="http://maxliu245.github.io/tags/ODE/"/>
     
       <category term="Regularization" scheme="http://maxliu245.github.io/tags/Regularization/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MLA‘20见闻</title>
-    <link href="http://maxliu245.github.io/2020/11/10/MLA%E2%80%9820%E8%A7%81%E9%97%BB/"/>
-    <id>http://maxliu245.github.io/2020/11/10/MLA%E2%80%9820%E8%A7%81%E9%97%BB/</id>
-    <published>2020-11-09T16:24:40.000Z</published>
-    <updated>2020-11-10T06:38:56.887Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote><p>MLA‘20之行让我学到了很多，包括领域知识，对学习生活的前瞻，以及更多对当下学习困境的思考</p><p>故创文记之，以思故我。就当是小小随笔</p><p>不太好写啊！干脆随便总结下吧，细节留在网盘里就好</p></blockquote><a id="more"></a><img src="/2020/11/10/MLA‘20见闻/MLA-1.JPG" title="MLA" alt="20开冲！"><p>会议日程 <a href="http://www.lamda.nju.edu.cn/conf/mla20/program.html" target="_blank" rel="noopener">http://www.lamda.nju.edu.cn/conf/mla20/program.html</a></p><h1 id="流水账"><a href="#流水账" class="headerlink" title="流水账"></a>流水账</h1><h2 id="第一天上午"><a href="#第一天上午" class="headerlink" title="第一天上午"></a>第一天上午</h2><p>第一场，北大王立威教授介绍深度学习，主要提到了泛化理论的新解释。</p><p>先介绍了下深度学习的方向：</p><pre class="mermaid">graph LRA(深度学习) -->B(模型/结构)A(深度学习) -->C(训练/优化)A(深度学习) -->D(泛化/测试优化)B -->E[CNN]B -->F[RNN]B -->G[LPWHW, 2017]B -->H[Cybenko, 1998]</pre><blockquote><p>ps：画图的时候要选择mermaid而不是flow，否则报错</p><p><code>ERROR: [Flowchart] Cannot set property &#39;next&#39; of undefined</code></p><p>ps2：mermaid在hexo中需要安装包才能使用，且里面所有的操作都要加上 <a href="https://www.dazhuanlan.com/2019/11/20/5dd4ec5f4f552/" target="_blank" rel="noopener">https://www.dazhuanlan.com/2019/11/20/5dd4ec5f4f552/</a> <a href="https://tyloafer.github.io/posts/7790/" target="_blank" rel="noopener">https://tyloafer.github.io/posts/7790/</a></p></blockquote><p>重点提到了学习理论的泛化解释可能是有问题的。</p><img src="/2020/11/10/MLA‘20见闻/IMG_1996.JPG" title="过参数化而非过拟合"><p>即过拟合并不是过拟合，而是过参数化，过参数化不会导致泛化性能的大幅下降，还能保持一定的泛化能力。</p><p>然后讲了优化，一个小背景是即便是4阶多项式局部极小的优化也是NP难的问题。然后有个结论是一般的SGD方法在绝大多数方法上都work well，为什么？2019年ICML的DLLWZ证明了梯度下降GD可以以一个线性收敛速度（in a linear convergence rate）找到全局极小，但是有两个条件（没条件显然不太对头），一是网络要足够宽（即足够过参数化），然后参数的初始化选择Gauss，选择其中的协方差参数，最后选合适的step size。ResNet的确更好。</p><p>当网络无限宽时，网络会退化成kernel machine。</p><img src="/2020/11/10/MLA‘20见闻/MLA-3.JPG" title="神经网络的拟合能力"><p>方法的一个insight是，在这样的初始点附近，其邻域的性质好，存在一个所谓内在的全局极优？</p><img src="/2020/11/10/MLA‘20见闻/IMG_1998.JPG" title="DLLWZ, 2019"><p>最后有个文章列表</p><img src="/2020/11/10/MLA‘20见闻/IMG_2011.JPG" title="老师组内文章列表（仅参考）"><hr><p>第二位老师是UCLA的印卧涛，主题是Faster Learning over Networks and Opensource Framework BlueFog，介绍大规模模型。</p><p>大规模数据或者模型的处理方式是</p><pre class="mermaid">graph LRA(大规模) -->B(数据并行)A(深度学习) -->C(模型并行)A(深度学习) -->D(模型分割后并行?)</pre><p>其中一种方案是parameter server approach，但不适合大规模。方式是一张卡和多张卡之间传输数据，但是n21似乎不太好整合。</p><pre class="mermaid">graph LRA(大卡) -->B(卡1)A(大卡) -.1对多.->C(...)A(大卡) -->D(卡n)E(左到右:1对多<br>右到左:多对1)</pre><p>报告中指出一个方案是环上的整合，叫ring allreduce，缺点是同一时刻edge只有一个</p><p>然后推荐了他们自己的framework：bluefog，好像几行代码能完成相关工作。后面没听了</p><hr><p>第三场是微软亚洲研究院的秦涛讲神经语言合成。</p><pre class="mermaid">graph LRA(神经语言合成) -->B(拼接方法<br>比如concatenative TTS<br>缺点是自由度低)A -->C(参数化方法<br>parametric TTS<br>优点是灵活,缺点是可能不自然)A -->D(神经网络方法<br>更前沿就对了)%%E(左到右:1对多<br>右到左:多对1)</pre><p>然后倒是讲了不少neural方法的例子：</p><ul><li>Deep Voice 3(ICLR 2018)</li><li>Tacotron 2(LSTM)</li><li>Transformer TTS(AAAI 2019)</li><li>Fast Speech(NIPS 2019)</li></ul><hr><p>第四场是是顶会交流介绍。列表参考 <a href="http://www.lamda.nju.edu.cn/conf/mla20/poster.html#spotlight%2011_07" target="_blank" rel="noopener">http://www.lamda.nju.edu.cn/conf/mla20/poster.html#spotlight%2011_07</a> ，有需求的时候自取。</p><p>其中我自己想看的列在这里：</p><ul><li>王红师姐的模型驱动+数据驱动</li><li>清华的Understanding and Exploring the Network with Stochastic Architectures</li></ul><h2 id="第一天下午"><a href="#第一天下午" class="headerlink" title="第一天下午"></a>第一天下午</h2><p>第五场是孙剑介绍CV前沿，自己的笔记记得挺多的。太多了所以不想整理了喵。不过注意他这里面讲得非常全的，有几个我感兴趣的，比如过参数化的解释、shuffleNet特征图间操作、目标检测的一些东西，etc。</p><hr><p>第六场是南大吴建鑫介绍CNN压缩。一个背景是小设备上需要轻量网络。一般的方法是剪枝，总结如下：</p><pre class="mermaid">graph LRA(网络剪枝) -->B(剪枝基本方法<br>网络权重低于某阈值时就压缩<br>缺点是使模型非结构化,难以加速)B --> E(一篇文章作为例子 Han Song NIPS 2015)A -->C(结构化剪枝<br>即保持网络形状不变)C --> F(剪哪些<br>idea是剪一部分,后面对应的net也会受影响)C --> G(怎么剪<br>具体没听清楚,大概是数学优化的角度做reconstruction,最小化下一层的啥目标)%%E(左到右:1对多<br>右到左:多对1)</pre><p>上面是以往设计的压缩剪枝方式，总结的话就是人工剪枝三段式：确定权重/重要性，剪掉，再微调网络参数。现在呢，有人在做自动压缩的方法，咋做没记笔记，大概是auto-pruner，另外还有人做ResNet剪枝、小数据任务上的剪枝，等等。</p><hr><p>第七场是复旦黄萱菁讲中文命名实体识别，感觉是NLP方法的一些变种，具体没有咋听。</p><hr><p>第八场是孟老师操作一手，讲模型驱动与数据驱动之间的差异、联系、结合。</p><p>以图像去噪为例，模型驱动主要是生成方式的理解， $\displaystyle \arg\min_{z} L(Y-z)+R(z)$ ，其中 $Y$ 是带噪图， $z$ 是潜在的干净图，所以 $Y-z$ 其实就相当于噪声；数据驱动则直接网络拟合干净图，</p><script type="math/tex; mode=display">\displaystyle \arg\min_{w} ||z-net_w (Y)||_2</script><p>其中 $z$ 可以是提供的真实干净图，但也可以去拟合噪声啊，这样就是 </p><script type="math/tex; mode=display">\displaystyle \arg\min_{w} ||\varepsilon-ResNet_w (Y)||_2</script><p>但是数据驱动的确是黑箱操作，缺点是解释性相对较差，无生成功能，且依赖于监督标记。</p><p>孟老师操作了一手模型、数据驱动结合的理解，二者能否互补？由此孟老师来了一手外练筋骨皮、内练一口气、万法归宗的比喻，具体放在图里看一下：</p><pre class="mermaid">graph LRA(模型驱动&数据驱动) -->B(外练筋骨皮<br>需要知道/建模数据是怎么走的)A -->C(内练一口气<br>网络结构需要有可解释性)A -->D(万法归宗<br>数据驱动学习生成规律?)B -.paper1.-> E(MAP的, TPAMI 18, 讲CT的,链接放在文末)B -.paper2.-> F(王红大佬的去雨模型<br>ps:我怎么觉得这个是内练?可能笔记记错了)C -.idea.-> G(idea<br>网络由黑箱隐式函数到显示函数<br>优化算法解释为网络结构的迭加形式)C -.e.g..-> H(deep unfolding就是其中一类方法)%%E(左到右:1对多<br>右到左:多对1)</pre><hr><p>第九场也非常精彩！是朱军老师介绍贝叶斯深度学习，但是我的笔记没有记全😭。只记了以下几点：</p><ol><li><p>Bayes和NN的结合要回到Hopfield当年一个学生的博士论文</p></li><li><p>BNN可以与高斯过程联系起来！</p></li><li><p>Drop out也可以看/理解成是一种贝叶斯</p></li><li><p>NICE中的flow-based-model</p></li><li><p>VFlow没有拍到，但是好像非常有意思，回头搜一下</p><blockquote><p>搜到了：<em>VFlow: More Expressive Generative Flows with Variational Data Augmentation</em></p><p><a href="https://www.aminer.cn/pub/5e54f1813a55acae32a25d67/vflow-more-expressive-generative-flows-with-variational-data-augmentation" target="_blank" rel="noopener">https://www.aminer.cn/pub/5e54f1813a55acae32a25d67/vflow-more-expressive-generative-flows-with-variational-data-augmentation</a></p><p><a href="https://arxiv.org/abs/2002.09741" target="_blank" rel="noopener">https://arxiv.org/abs/2002.09741</a></p><p><a href="https://github.com/thu-ml/vflow" target="_blank" rel="noopener">https://github.com/thu-ml/vflow</a></p></blockquote></li></ol><hr><p>第十场是京东的易津峰老师介绍对抗攻击。基本的idea就是准确率不是唯一的度量模型好坏的标准，在某种程度上准确率上升，稳健性会下降。以图像任务为例就是抗像素扰动能力下降了。笔记没咋记，又一篇京东在ECV18上面的文章，有空的话浏览下吧。</p><blockquote><p>搜到了：<em>Is Robustness the Cost of Accuracy? — A Comprehensive Study on the Robustness of 18 Deep Image Classification Models</em></p><p><a href="https://openaccess.thecvf.com/content_ECCV_2018/html/Dong_Su_Is_Robustness_the_ECCV_2018_paper.html" target="_blank" rel="noopener">https://openaccess.thecvf.com/content_ECCV_2018/html/Dong_Su_Is_Robustness_the_ECCV_2018_paper.html</a></p></blockquote><h2 id="第一天晚上"><a href="#第一天晚上" class="headerlink" title="第一天晚上"></a>第一天晚上</h2><p>第一天晚上结束，和同学讨论了dual-SVM中QP问题转化为minmax问题的细节哈哈哈，都忘了，好在最后推出来了</p><h2 id="第二天上午"><a href="#第二天上午" class="headerlink" title="第二天上午"></a>第二天上午</h2><p>第二天，第十一场，南方科技大学的姚新讲博弈、共生演化问题。总的来说这是老问题了，但是和机器学习的联系不是非常紧密，现在做这个的人很少了。其实我也不太想弄，在这里打个广告科普一下吧qwq。</p><p>姚老师举了很多例子：囚徒困境、协同演化的有效性验证实验、学生AA（忘了具体是什么了）问题、晚自习关灯（电量浪费）问题、农场主共用草场问题，etc。老师表示这背后其实都有数学理论，只是没时间分享了，手动狗头[doge]。理论的概览提了一下，放在下图中：</p><pre class="mermaid">graph LRA(共生演化问题例子<br>老师以NIPD为例给出了许多实验结果) -->B(历史记录<br>一般问题中玩家/用户只能记住前几步的经验,记得越多结果的总体效益越好)A -->C(有个group size<br>我忘了是啥了,反正就是越小越好)A -->D(迭代次数影响最终结果)B --> E(一般共生演化问题)C --> ED --> EE --> F(无训练集,数据都是即时模拟生成的)E --> G(初始化一般是随机的)E --> H(需要环境中用户的交互)</pre><hr><p>第十二场是阿里的华先胜讲城市大规模视觉数据、交通的预测和调度。老师先广告一波，表示Ali旗下做ML的越来越多了，包括machine vision、speech、NLP、DL及其优化问题，etc。然后华老师介绍了城市大脑和交通管理安全的概念，其中需要大规模的感知认知和优化技术。一般来说城市中交通数据中的异常数据都是imbalanced data，且都有突变性，可以看作是异常检测问题，可以直接分类，方法众多，如KNN、SVR、VAR，不过这些方法有利有弊。另外，城市中红绿灯感应方面的协同调度比较复杂，也是一个重要应用。</p><p>最后有个东西我可以参考，应该算是重要的，我截了一张图好像，讲的是记忆卷积，是否在ODE中可以考虑前几步的数据+重加权成为meta方法？</p><img src="/2020/11/10/MLA‘20见闻/MLA-2.PNG" title="记忆卷积截图"><hr><p>第十三场是山世光老师讲自监督学习，主要是视觉感知计算中的标记增强。自监督学习就是一种无监督，没有标记的数据，但是还是能提取出一些标记，可以说是弱标签。</p><blockquote><p>ps：师兄表示山老师是人脸识别领域中国带🐂，绕不过去的那种</p></blockquote><p>无标记的data本身不一定就是完全没有标记的，一般会有一些弱标签；预训练的迁移也一定程度上缓解了标签较弱的问题，但是缺点是过早进行分类会丢失信息（是指预训练提取的特征不够么🤔）；而任务的迁移一般是多任务，需要上下游任务之间联系；另外，对于图像任务，自然语言中的一些常识也有机会迁移过来，比如考虑图像的词法、句法，成为视觉的常识表示。标记如何增强？增广、数据再生（包括打乱、图像擦补等手段）。</p><h2 id="第二天下午"><a href="#第二天下午" class="headerlink" title="第二天下午"></a>第二天下午</h2><p>最后一天下午的听得都不细致了，主要是企业打广告，讲的内容比较少。主要是有一些有趣的应用，比如：</p><ul><li>英特尔的陈玉荣博士讲以人为中心的视觉分析，有个视线预测的例子很有意思</li><li>南大毕业的倍漾科技冯霁博士讲了金融投资的一些idea，网上发表的相关文章几乎没有核心技术，而且往往出错众多😂。提到了金融投资分几类，瞬发的高频决策，中高频的几时内的决策（割散户韭菜❓），以及低频（数月或者季度）的决策（如公司价值的跃迁）。另外，一个idea是量化交易是团队合作！自己一个人搞模型瞎投似乎不切实际</li><li>涂威威介绍第四范式，做各个方面应用产品的公司</li></ul><hr><p>最后的最后是顶会介绍，基本上全听了，不过不方便写在这里。就只说个结论，强化学习意外地成为近期最火热的方向，其次是自监督学习、对抗、表示学习等等。</p><h1 id="感想"><a href="#感想" class="headerlink" title="感想"></a>感想</h1><p>这次南京之行，对领域的各个方向有了进一步了解，以及了解了近期火热的方向（可惜暂时我不是很感兴趣），以及各个方向基础的一些方法，有意思的一些应用。目前磕盐吃还是磕磕自己原来感兴趣的吧。</p><p>其实帮助最大的还是师兄的几番谈话，对未来的打算又有了一些思考，先走一步看一步吧，11月底正式想一想接下来该怎么走。</p><p>另外，读文章还是慢了些，最近我要试图再加快读文章的速度、把握文章的重点并重点记录，流水账式的描述就先放放吧，先达到师兄描述的境界~</p><hr><p>回来想看的文章：</p><ul><li>前面提到的大概2-3篇</li><li>TPAMI文章，好像是有关模型驱动与数据驱动的结合 Kronecker-basis-representation based tensor sparsity and its applications to tensor recovery <a href="https://ieeexplore.ieee.org/document/8000407" target="_blank" rel="noopener">https://ieeexplore.ieee.org/document/8000407</a></li><li>去之前留的一些没看完的</li><li>回来之后老师推荐的一篇NIP20文章Ode to an ODE <a href="https://proceedings.neurips.cc/paper/2020/file/228669109aa3ab1b4ec06b7722efb105-Paper.pdf" target="_blank" rel="noopener">https://proceedings.neurips.cc/paper/2020/file/228669109aa3ab1b4ec06b7722efb105-Paper.pdf</a></li></ul>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;MLA‘20之行让我学到了很多，包括领域知识，对学习生活的前瞻，以及更多对当下学习困境的思考&lt;/p&gt;
-&lt;p&gt;故创文记之，以思故我。就当是小小随笔&lt;/p&gt;
-&lt;p&gt;不太好写啊！干脆随便总结下吧，细节留在网盘里就好&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="Machine Learning" scheme="http://maxliu245.github.io/tags/Machine-Learning/"/>
-    
-      <category term="随笔" scheme="http://maxliu245.github.io/tags/%E9%9A%8F%E7%AC%94/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>【文献阅读26】YoloV4</title>
-    <link href="http://maxliu245.github.io/2020/11/03/%E3%80%90%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB26%E3%80%91YoloV4/"/>
-    <id>http://maxliu245.github.io/2020/11/03/%E3%80%90%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB26%E3%80%91YoloV4/</id>
-    <published>2020-11-03T02:25:45.000Z</published>
-    <updated>2020-11-03T15:01:54.821Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote><p>头一次正式看目标检测方面的文章，有些功利，直接从YoloV4开始！</p><p><code>YOLOv4: Optimal Speed and Accuracy of Object Detection</code></p></blockquote><a id="more"></a><img src="/2020/11/03/【文献阅读26】YoloV4/YoloV4-1.png" title="YoloV4文献简介"><h1 id="文献简介"><a href="#文献简介" class="headerlink" title="文献简介"></a>文献简介</h1><p>先放文献地址： <a href="https://arxiv.org/abs/2004.10934" target="_blank" rel="noopener">https://arxiv.org/abs/2004.10934</a></p><p>YoloV4于2020/04挂在Arxiv上，作者之一是之前Yolo代码的维护者之一，<a href="https://github.com/AlexeyAB" target="_blank" rel="noopener">Alexey Bochkovskiy</a>，暂时没有找到他的更多资料，另外两个作者是台湾中央研究院的，不认识。</p><h1 id="先修知识"><a href="#先修知识" class="headerlink" title="先修知识"></a>先修知识</h1><p>直接上手这篇目标检测领域的文章稍有困难，因为以前没咋接触过目标检测，现在直接来一手业界极强的文章，很多名词概念都不清楚。</p><p>本来打算补一补，但是发现YoloV4用的模型方法实在是有（多）些（炸）多（了），所以其实只补了文章刚开始的一些概念，码在这里：</p><ul><li><p>Pareto optimality curve，中文名帕累托最优曲线，以本文图 $(1,8)$ 为例，都是2维曲线，这是因为本文选取的评价指标（目标）有两个。我联想到了宏观经济学中的供求曲线、价格需求曲线，感觉道理有一点点像（瞎想的）。</p><blockquote><p>具体可参考知乎用户<a href="https://www.zhihu.com/people/li-lin-song-85" target="_blank" rel="noopener">木木松</a>的专栏文章<a href="https://zhuanlan.zhihu.com/p/54691447" target="_blank" rel="noopener">多目标优化之帕累托最优</a></p></blockquote></li><li><p>Anchor-based和Anchor-free方法，都是目标检测中的方法。前者参考下面的链接，讲得很清楚了，依次设计锚点的位置、锚框的个数大小，我猜最后是根据ground truth去判断标记框的优劣；后者似乎是没有具体设置所谓的锚点，只是先识别目标的中心，然后根据中心进行回归得到标记框（未求证）</p><blockquote><p>具体可参考知乎用户<a href="https://www.zhihu.com/people/emiya-98" target="_blank" rel="noopener">emiya</a>的专栏文章<a href="https://zhuanlan.zhihu.com/p/86741707" target="_blank" rel="noopener">Anchor-Based-01 目标检测算法设计思想一：anchor是什么</a></p></blockquote></li></ul><h1 id="YoloV4"><a href="#YoloV4" class="headerlink" title="YoloV4"></a>YoloV4</h1><h2 id="文献总结"><a href="#文献总结" class="headerlink" title="文献总结"></a>文献总结</h2><p>其实刚开始看觉得很舒服，讲的东西都非常合理有道理（后面也是），但是后面讲的名词知识太多了，让我觉得这模型不会就是<strong>各种已有的优秀方法组合拼接</strong>出来的吧！不会吧不会吧，它还<strong>真的就是这样搞的</strong>！</p><p>经过多篇博客总结查证，我基本上确定这文章就是这样做的，不过人家做的确实猛，优点总结如下：</p><ul><li>文章提出的YoloV4达到了文章目标（预期）：保证准确率大前提下，设计出一个<strong>快速实时轻量准确</strong>的目标识别模型。确实，本文表示<strong>只需要1张</strong>优秀的显卡就可以完成快速训练（又向应用前进一步！），并且的确是轻量实时准确的</li><li>在contributions部分提出可以用YoloV4的想法修饰SOTA模型使之有效轻量，应该是这个意思</li><li>集成了<strong>大量已有tricks</strong>，据参考文献表示至少有20多种；这篇文章的工作量十分之大，值得肯定</li><li>文章开头提出了一个说法：CNN任务的一个完整框架需要理论保证+实验验证。本文的tricks可以说是验证了的东西，然后在多个数据集上也显示出帕累托最优的效果</li></ul><h2 id="主要tricks"><a href="#主要tricks" class="headerlink" title="主要tricks"></a>主要tricks</h2><p>说tricks之前忘了提一嘴YoloV4的整体网络框架了，和经典的目标识别检测框架一致，有一个</p><script type="math/tex; mode=display">input \rightarrow backbone \rightarrow neck \rightarrow head(dense\ prediction \rightarrow sparse\ prediction)</script><p>的整体框架，其中某些部分不知道有没有跨连接的操作。下面放一张原文的图 $(2)$ ：</p><img src="/2020/11/03/【文献阅读26】YoloV4/YoloV4-2.png" title="目标检测框架"><p>那么YoloV4其实就说各种tricks，或者说是<strong>各种模型插件</strong>套进这个框架。</p><p>这个我其实没有细看文章了，毕竟陌生名词太多，搞不清哪些是重点，这里根据他人博客自己总结其中有用的tricks：</p><ul><li><p>首先有个idea起源于Yolo系列的任务是目标识别检测。目标检测方法往往是任务special的，特定任务要特定设计，在通用模型没有发展起来并大规模应用之前我是站这个东西的。本文希望能做到通用的general目标检测模型，那么一个idea就是special特征和general特征，YoloV4在网络模块的使用上<strong>主动选择了很多general特征</strong>（我认为是特征图）</p></li><li><p>为了轻量实时，<strong>选择Yolo系列</strong>的模型是当前合适的做法，本文在head区域使用了YoloV3</p></li><li><p><strong>各种数据增强技术</strong>的使用</p></li><li><p><strong>自对抗方法增强图像风格</strong>，我觉得可以算数据增强了</p></li><li><p>大佬们还总结了“跨最小批的归一化（Cross mini-batch Normal）、修改的SAM（逐点attention）、修改的PAN（通道合并方式改变）”，不过我现在不太懂，先码在这里。这里最后三条参考：</p><blockquote><p>知乎用户<a href="https://www.zhihu.com/people/william.hyin" target="_blank" rel="noopener">william</a>的专栏文章<a href="https://zhuanlan.zhihu.com/p/161083602" target="_blank" rel="noopener">一文读懂YOLO V5 与 YOLO V4</a></p><p>知乎用户<a href="https://www.zhihu.com/people/jianghongliang" target="_blank" rel="noopener">元峰</a>的回答<a href="https://www.zhihu.com/question/390191723/answer/1177584901" target="_blank" rel="noopener">如何评价新出的YOLO v4 ？</a>不错，从创新性的角度分析了YoloV4使用的主要tricks</p></blockquote></li></ul><h2 id="个人感想（bb）"><a href="#个人感想（bb）" class="headerlink" title="个人感想（bb）"></a>个人感想（bb）</h2><p>本来头一遍翻完这篇文章觉得还挺ysk（😁）的，但是抱着这个怀疑我去读了他人的总结，包括：</p><blockquote><p>知乎用户<a href="https://www.zhihu.com/people/amusi1994" target="_blank" rel="noopener">Amusi</a>的回答<a href="https://www.zhihu.com/question/390191723/answer/1176986665" target="_blank" rel="noopener">如何评价新出的YOLO v4 ？</a>很好，我很赞同。人家工作量在这里，确实很良心</p><p>知乎用户<a href="https://www.zhihu.com/people/david-12-84-45" target="_blank" rel="noopener">David</a>的专栏文章<a href="https://zhuanlan.zhihu.com/p/136172670" target="_blank" rel="noopener">YOLO-V4解读：速度与精度的完美结合[已开源]</a>是一篇简洁的翻译，可以速读参考</p><p>补充资料：知乎用户<a href="https://www.zhihu.com/people/magic-frog-sjtu" target="_blank" rel="noopener">996黄金一代</a>的回答<a href="https://www.zhihu.com/question/399884529/answer/1374024055" target="_blank" rel="noopener">如何评价YOLOv5？</a></p></blockquote><p>我这才有些缓过来，人家毕竟是总结了大量方法，有充足的工作量，而且效果也上去了，那的确是不错的。大家反驳之的意见是似乎大家应用还是不用它，用YoloV3，大概是觉得它这样相当于调参？不过人家做了很多实验，在不少数据集上也足够优秀了，那我是没话说了。</p><p>这种套方法的方式，可取，但是得有充足的调研，充足的实验经验。加油吧骚年！</p><h1 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h1><p>[1] Alexey Bochkovskiy, Chien-Yao Wang, and Hong-Yuan Mark Liao. Yolov4: Optimal speed and accuracy of object detection, 2020.</p><p>[2] emiya. Anchor-Based-01 目标检测算法设计思想一：anchor是什么[EB/OL]. <a href="https://zhuanlan.zhihu.com/p/86741707" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/86741707</a>, 2019-10-26.</p><p>[3] 木木松. 多目标优化之帕累托最优[EB/OL]. <a href="https://zhuanlan.zhihu.com/p/54691447" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/54691447</a>, 2020-10-07.</p><p>[4] william. 一文读懂YOLO V5 与 YOLO V4[EB/OL]. <a href="https://zhuanlan.zhihu.com/p/161083602" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/161083602</a>, 2020-07-28.<br>[5] 元峰. 如何评价新出的YOLO v4 ？[EB/OL]. <a href="https://www.zhihu.com/question/390191723/answer/1177584901" target="_blank" rel="noopener">https://www.zhihu.com/question/390191723/answer/1177584901</a>, 2020-04-25.<br>[6] Amusi. 如何评价新出的YOLO v4 ？[EB/OL]. <a href="https://www.zhihu.com/question/390191723/answer/1176986665" target="_blank" rel="noopener">https://www.zhihu.com/question/390191723/answer/1176986665</a>, 2020-04-24.<br>[7] David. YOLO-V4解读：速度与精度的完美结合[已开源][EB/OL]. <a href="https://zhuanlan.zhihu.com/p/136172670" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/136172670</a>, 2020-05-20.<br>[8] 996黄金一代. 如何评价YOLOv5？[EB/OL]. <a href="https://www.zhihu.com/question/399884529/answer/1374024055" target="_blank" rel="noopener">https://www.zhihu.com/question/399884529/answer/1374024055</a>, 2020-07-31.</p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;blockquote&gt;
-&lt;p&gt;头一次正式看目标检测方面的文章，有些功利，直接从YoloV4开始！&lt;/p&gt;
-&lt;p&gt;&lt;code&gt;YOLOv4: Optimal Speed and Accuracy of Object Detection&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-    
-    </summary>
-    
-    
-    
-      <category term="Paper Reading" scheme="http://maxliu245.github.io/tags/Paper-Reading/"/>
-    
-      <category term="CNN" scheme="http://maxliu245.github.io/tags/CNN/"/>
-    
-      <category term="Computer Vision" scheme="http://maxliu245.github.io/tags/Computer-Vision/"/>
-    
-      <category term="Yolo" scheme="http://maxliu245.github.io/tags/Yolo/"/>
     
   </entry>
   

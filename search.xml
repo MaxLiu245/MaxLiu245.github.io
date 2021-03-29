@@ -1,6 +1,119 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>【论文阅读44】DPIR——利用深度去噪先验的图像恢复方法</title>
+    <url>/2021/03/28/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB44%E3%80%91DPIR%E2%80%94%E2%80%94%E5%88%A9%E7%94%A8%E6%B7%B1%E5%BA%A6%E5%8E%BB%E5%99%AA%E5%85%88%E9%AA%8C%E7%9A%84%E5%9B%BE%E5%83%8F%E6%81%A2%E5%A4%8D%E6%96%B9%E6%B3%95/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>阅读文献DPIR：<a href="https://arxiv.org/abs/2008.13751" target="_blank" rel="noopener"><em>Plug-and-Play Image Restoration with Deep Denoiser Prior</em></a></p>
+<p>利用的深度去噪先验（DP）的图像恢复（IR）方法，至于即插即用，是指？且待分解（见背景部分）</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="文献简介"><a href="#文献简介" class="headerlink" title="文献简介"></a>文献简介</h2><div style="width:80%;margin:auto"><img src="/2021/03/28/【论文阅读44】DPIR——利用深度去噪先验的图像恢复方法/DPIR_1.png" title="DPIR文献"></div>
+
+<p>ArXiv上表示本文是IRCNN (CVPR17)的拓展，目前本文似乎只发在20年ArXiv上</p>
+<blockquote>
+<p>张凯一作，还有张磊和左旺孟老师：<a href="https://arxiv.org/abs/2008.13751" target="_blank" rel="noopener">https://arxiv.org/abs/2008.13751</a></p>
+<p>代码：<a href="https://github.com/cszn/DPIR" target="_blank" rel="noopener">https://github.com/cszn/DPIR</a></p>
+</blockquote>
+<h2 id="图像恢复（IR）与去噪的关系"><a href="#图像恢复（IR）与去噪的关系" class="headerlink" title="图像恢复（IR）与去噪的关系"></a>图像恢复（IR）与去噪的关系</h2><p>这个问题挺困扰像我这样的初学者，但是又没有专门去了解它们的关系。这次本文在引言中给出了一个介绍！总的来说，图像恢复的范围很大，包括了去噪</p>
+<p>图像恢复问题的数学表达是：</p>
+<script type="math/tex; mode=display">\displaystyle y=\mathcal{T}(x)+n \tag{1}</script><p>指的是利用退化算子$\mathcal{T}$从带有噪声$n$的退化观测（即带噪图）$y$中恢复出干净图$x$</p>
+<p>由此定义，<font color="#0000CD">不同的退化算子$\mathcal{T}$就对应了不同的IR任务</font>：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">IR任务</th>
+<th style="text-align:center">退化算子$\mathcal{T}$</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">传统IR（去噪？）</td>
+<td style="text-align:center">恒等映射</td>
+</tr>
+<tr>
+<td style="text-align:center">去模糊</td>
+<td style="text-align:center">2-d卷积</td>
+</tr>
+<tr>
+<td style="text-align:center">超分辨</td>
+<td style="text-align:center">卷积和下采样的复合</td>
+</tr>
+<tr>
+<td style="text-align:center">去马赛克</td>
+<td style="text-align:center">色彩滤波阵列（CFA）masking</td>
+</tr>
+</tbody>
+</table>
+</div>
+<h2 id="基于模型与基于学习方法的关系"><a href="#基于模型与基于学习方法的关系" class="headerlink" title="基于模型与基于学习方法的关系"></a>基于模型与基于学习方法的关系</h2><p>model-based大概就是为了最小化目标函数，采用巧妙地优化方法，其中可能有精巧的优化机制，也可能是算法unfolding的方式</p>
+<p>learning-based就是用数据对去学习，逼近最优解，可以直接看成是原文第1页式$(3)$的双边优化</p>
+<h2 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h2><p>从标题知，本文的<font color="#0000CD">目标</font>是图像恢复。另外，本文的方法关注的点是<font color="#0000CD">即插即用</font>模块的设计，在下一部分介绍之</p>
+<h2 id="背景"><a href="#背景" class="headerlink" title="背景"></a>背景</h2><p>本文的<font color="#0000CD">背景</font>领域是即插即用的去噪，去噪不说了，主要是这个<font color="#0000CD">即插即用</font>是什么</p>
+<p><u>即插即用Plug-and-Play</u>指的是一种<u>处理</u>深度学习<u>目标函数</u>的方式。一般的目标函数包括数据（拟合）项和正则（先验）项，即插即用要把目标函数的这两部分<u>分离</u>，得到<u>2个子问题</u>，即<u>数据子问题&amp;先验子问题</u>。那么要优化这样的目标函数，只需用迭代的方式，交替求解2个子问题。一般这个即插即用都是指☞用现成的工具解先验子问题，这样就不用手动指定显式先验，这样其实就是隐式地用这个现成的工具定义了先验</p>
+<h2 id="动机-Idea"><a href="#动机-Idea" class="headerlink" title="动机/Idea"></a>动机/Idea</h2><p>本文的<font color="#0000CD">动机/idea</font>是要求即插即用模块灵活且能力强。希望即插即用（在本文中就是denoiser）non-blind，且能处理大范围的噪声水平（要求灵活）</p>
+<p>从这两个方面分别考虑的话，参照的基本模型主要是原作者17年CVPR的IRCNN去噪器，可以处理各种各样的噪声水平，但它由25个独立的7层去噪器组成，其中每个去噪器在噪声水平间隔为2的数据上训练。有两个缺点，第1是不能灵活指定特定噪声水平；第2是由于层数少，效果不够</p>
+<p>启示是要模块灵活且强大</p>
+<blockquote>
+<p>ps：利用DCNN的即插即用与deep unfolding的区别：deep unfolding毕竟是对特定任务的优化单独设计的嘛，所以虽然解释性强，需要的迭代也少，但对每个特定任务都是单独训练的。相反，即插即用很容易兼容其它模型，即易部署</p>
+</blockquote>
+<h2 id="模型DPIR"><a href="#模型DPIR" class="headerlink" title="模型DPIR"></a>模型DPIR</h2><p>其实，以上的<font color="#0000CD">问题</font>、<font color="#0000CD">背景</font>和<font color="#0000CD">动机</font>部分都是写作时的组织方式，本文模型DPIR模型的提出其实是另一个思路！以下也将从<u>更自然的思路</u>引出此模型，即从即插即用模块如何<strong><u>由HQS优化算法导出</u></strong></p>
+<p>首先，带噪图还是$y$，干净图还是$x$，则初始问题的概率形式和一般形式分别是：</p>
+<script type="math/tex; mode=display">\displaystyle \hat{x}=\mathop{\arg\max}_{x}\log p(y|x)+\log p(x) \tag{1}</script><script type="math/tex; mode=display">\displaystyle \hat{x}=\mathop{\arg\min}_{x}\dfrac{1}{2\sigma^2}||y-\mathcal{T}(x)||^2+\lambda \mathcal{R}(x) \tag{2}</script><p>那么HQS算法，指Half Quadratic Splitting，要把上述数据项和先验项分离，为此<strong>引入隐变量</strong>$z$，则优化问题变为带约束的问题：</p>
+<script type="math/tex; mode=display">\displaystyle \hat{x}=\mathop{\arg\min}_{x}\dfrac{1}{2\sigma^2}||y-\mathcal{T}(x)||^2+\lambda \mathcal{R}(z)\ s.t.\ z=x \tag{3}</script><p>所以其Lagrangian就是</p>
+<script type="math/tex; mode=display">\displaystyle \mathcal{L}_{\mu}(x,z)=\mathop{\arg\min}_{x}\dfrac{1}{2\sigma^2}||y-\mathcal{T}(x)||^2+\lambda \mathcal{R}(z)+\dfrac{\mu}{2}||z-x||^2\tag{4}</script><p>那么式$(4)$有两个变量其实，分别是目标变量$x$和隐变量$z$，也有两个Lagrange乘子$\lambda$和$\mu$。且注意到上式包含只有$x$、只有$z$和$x,z$都有的项。式$(4)$的求解则用交替优化的方式进行：</p>
+<script type="math/tex; mode=display">\displaystyle\left\{\begin{aligned} x_k&=\mathop{\arg\min}_x||y-\mathcal{T}(x)||^2+\mu\sigma^2||x-z_{k-1}||^2 \\ z_k&=\mathop{\arg\min}_z\dfrac{1}{2\left(\sqrt{\frac{\lambda}{\mu}}\right)^2}||z-x_k||^2+\mathcal{R}(z)\end{aligned}\right.\tag{5}</script><p>式$(5)$就是拉格朗日求导的结果，双变量的。注意到下面的式子相当于是一般的高斯去噪过程，即$z$相当于$x$的带高斯噪图，然后去恢复$x$！好家伙，这就是为什么文章说这个<u><strong>即插即用的模块是用一个深度高斯去噪网络来做</strong></u>的！</p>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>本文的实验是一般的IR问题，具体在去模糊、单图超分辨（SISR）、彩图去马赛克3个问题上进行了实验</p>
+<p>实验效果都挺好的</p>
+<h2 id="优点-amp-技巧"><a href="#优点-amp-技巧" class="headerlink" title="优点&amp;技巧"></a>优点&amp;技巧</h2><p>优点的话随便写写，（1）优化问题结合算法自然推导出了先验去噪器（这个东西的泛化仅限于IR）；（2）深度去噪器先验建模能力好，提高有效性；（3）没有限定特定任务，这个意义下更灵活</p>
+<p>本文其实有很多技巧性的东西，都算是领域知识吧，比如说（1）HQS算法的选择及其优势；（2）与双边优化问题的联系；（3）残差块结合U-Net，增强表达能力与图像变换能力；（4）实验与各种去噪器对比，如CNN-based、model-based网络；（5）为了增强泛化，把noise-level-map也作为输入，但是这样具体的做法不清楚</p>
+<h2 id="思考"><a href="#思考" class="headerlink" title="思考"></a>思考</h2><p>本文的降噪器从原理上是从优化算法的计算过程中unfolding出来的，所以DPIR在这个HQS框架下是成立的，也只能用HQS优化，以及用高斯去噪器。这个东西总是觉得有点奇怪，即插即用也就是在它的框架下去插。不想用这个优化方法就无了</p>
+<p>从这个角度上说和meta差距还是挺大的。如果硬是要联系的话可能是文章开头的式子$(3)$，它没有指定优化方法，还是优化能量泛函+优化约束。这是否有启发，<u>把约束优化问题做成元学习器</u>，然后再套到pde约束优化能量泛函的框架下呢？</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] Kai Zhang, Yawei Li, Wangmeng Zuo, Lei Zhang, Luc Van Gool, and Radu Timofte. Plug-and-Play Image Restoration with Deep Denoiser Prior. arXiv e-prints, page arXiv:2008.13751, August 2020.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@ARTICLE&#123;2020arXiv200813751Z,</span><br><span class="line">       author = &#123;&#123;Zhang&#125;, Kai and &#123;Li&#125;, Yawei and &#123;Zuo&#125;, Wangmeng and &#123;Zhang&#125;, Lei and &#123;Van Gool&#125;, Luc and &#123;Timofte&#125;, Radu&#125;,</span><br><span class="line">        title = &quot;&#123;Plug-and-Play Image Restoration with Deep Denoiser Prior&#125;&quot;,</span><br><span class="line">      journal = &#123;arXiv e-prints&#125;,</span><br><span class="line">     keywords = &#123;Electrical Engineering and Systems Science - Image and Video Processing, Computer Science - Computer Vision and Pattern Recognition&#125;,</span><br><span class="line">         year = 2020,</span><br><span class="line">        month = aug,</span><br><span class="line">          eid = &#123;arXiv:2008.13751&#125;,</span><br><span class="line">        pages = &#123;arXiv:2008.13751&#125;,</span><br><span class="line">archivePrefix = &#123;arXiv&#125;,</span><br><span class="line">       eprint = &#123;2008.13751&#125;,</span><br><span class="line"> primaryClass = &#123;eess.IV&#125;,</span><br><span class="line">       adsurl = &#123;https://ui.adsabs.harvard.edu/abs/2020arXiv200813751Z&#125;,</span><br><span class="line">      adsnote = &#123;Provided by the SAO/NASA Astrophysics Data System&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其它参考链接（感觉用处不大）：</p>
+<ul>
+<li><p><a href="https://blog.csdn.net/gwplovekimi/article/details/89417600" target="_blank" rel="noopener">论文阅读笔记之——《Deep Plug-and-Play Super-Resolution for Arbitrary Blur Kernels》</a></p>
+</li>
+<li><p><a href="https://zhuanlan.zhihu.com/p/243492602" target="_blank" rel="noopener">ETH Zurich提出DPIR：具有Denoiser先验的即插即用图像恢复</a></p>
+</li>
+</ul>
+]]></content>
+      <tags>
+        <tag>Paper Reading</tag>
+        <tag>Denoising</tag>
+        <tag>Bi-Level</tag>
+        <tag>Meta Learner</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>【CV知识】PSNR&amp;SSIM指标</title>
+    <url>/2021/03/25/%E3%80%90CV%E7%9F%A5%E8%AF%86%E3%80%91PSNR-SSIM%E6%8C%87%E6%A0%87/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>学习了图像处理问题中常见的评价指标：PSNR和SSIM，并自己整理了一遍加深印象</p>
+</blockquote>
+<a id="more"></a>
+<p>写在前面：这都是从网络博客重新整理的，链接均位于文末，如有不妥请联系协商~</p>
+<h2 id="PSNR"><a href="#PSNR" class="headerlink" title="PSNR"></a>PSNR</h2><p><font color="0000CD"><strong>PSNR</strong></font>全称Peak Signal to Noise Ratio，即<font color="0000CD"><strong>峰值信噪比</strong></font>，从计算公式看相当于<u>MSE的对数形式</u>，多了<u>像素峰值</u>特征。所以也是一种通用的衡量图像失真、衡量噪声水平的指标。应该是个标量，其单位是dB，一般30dB以上比较好，以下稍微差点吧，现在做到$32^+$的还挺多的</p>
+<p>计算公式为：</p>
+<script type="math/tex; mode=display">\displaystyle PSNR(X,Y)=10*\log_{10}\left(\dfrac{max^2}{MSE}\right)=20*\log_{10}\left(\dfrac{max}{MSE}\right)\overset{also}{=}20*\log_{10}\left(\dfrac{2^b-1}{MSE}\right). \tag{1}</script><p>以普通的单通道图像为例，其中$X,Y$一般是输出的去噪图和gt干净图；不妨设图像的维度都是$m\times n$，则$\displaystyle MSE(X,Y)=\dfrac{1}{mn}\sum_{i=1}^m\sum_{j=1}^n\left(X_{ij}-Y_{ij}\right)^2$；$max=2^b-1$，指的是像素值的极值，与每张图像本身无关，$b$是每个像素的bit数，一般就是8，所以$max=255$</p>
+<h2 id="SSIM"><a href="#SSIM" class="headerlink" title="SSIM"></a>SSIM</h2><p><font color="0000CD"><strong>SSIM</strong></font>全称Structural Similarity，即<font color="0000CD"><strong>结构相似性</strong></font>，从计算公式看，这个指标考虑了图像之间<u>（1）亮度（2）对比度（3）结构之间的差异</u>。它是个标量，参考了几篇文章，SSIM没有单位，取值区间是$[0,1]$，越接近1表示两张图像越相近</p>
+<p>计算公式为：</p>
+<script type="math/tex; mode=display">\displaystyle \begin{aligned}&SSIM\overset{def}{=}L^\alpha\times C^\beta\times S^\gamma\\ where &\left\{ \begin{aligned}&亮度差异L(X,Y)=\dfrac{2\mu_X\mu_Y+c_1}{\mu_X^2+\mu_Y^2+c_1}\\ &对比度差异C(X,Y)=\dfrac{2\sigma_X\sigma_Y+c_2}{\sigma_X^2+\sigma_Y^2+c_2}\\ &结构差异S(X,Y)=\dfrac{\sigma_{XY}+c_3}{\sigma_X\sigma_Y+c_3}\end{aligned}\right.\end{aligned} \tag{2}</script><p>其中小写字母都是数值标量，$\displaystyle \mu_X=\dfrac{1}{mn}\sum_{i=1}^m\sum_{j=1}^nX_{ij}$就是图像像素值的均值，$\displaystyle \sigma_X=\left(\dfrac{1}{mn-1}\sum_{i=1}^m\sum_{j=1}^n\left(X_{ij}-\mu_X\right)^2\right)^{\frac{1}{2}}$是方差的无偏估计，$\sigma_{XY}=\dfrac{1}{mn-1}\sum_{i=1}^m\sum_{j=1}^n\left(X_{ij}-\mu_X\right)\left(Y_{ij}-\mu_Y\right)$是两张图像协方差的无偏估计，注意仍然是数量标量。另外，$c_1,c_2,c_3$都是避免除0的常数，取$c_1=(k_1<em>max)^2,\ k_1=0.01$，$c_2=(k_2</em>max)^2,\ k_2=0.03$，$k_1,k_2,k_3,\alpha,\beta,\gamma$感觉是像控制$L,C,S$权重的。取$\displaystyle c_3=\frac{c_2}{2},\alpha=\beta=\gamma=1$，就是常见的SSIM计算式：</p>
+<script type="math/tex; mode=display">\displaystyle SSIM=L*C*S=\dfrac{(2\mu_X\mu_Y+c_1)(2\sigma_{XY}+c_2)}{(\mu_X^2+\mu_Y^2+c_1)(\sigma_X^2+\sigma_Y^2+c_2)}. \tag{3}</script><h2 id="其它指标"><a href="#其它指标" class="headerlink" title="其它指标"></a>其它指标</h2><p>一个是MSSIM，平均结构相似性，就是给图像分块，每一块分别计算SSIM再平均。据参考链接$[3]$，不用遍历像素点而是分块的方式，<font color="FF0000"><strong>可能</strong></font>有更高的效率；而为什么用高斯函数计算均值、方差和协方差，不知道，这个没有再去学了</p>
+<p>还有就是各种指标拓展到彩图（多通道图）、高光谱图等，大概都是各个通道，谱段分别求再平均，有没有加权的操作则不清楚了</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p>都是从网络博客直接学的：</p>
+<p>[1] <a href="https://zhuanlan.zhihu.com/p/50757421" target="_blank" rel="noopener">图像质量评价指标之 PSNR 和 SSIM</a>，知乎文章，写得全，有代码</p>
+<p>[2] <a href="https://blog.csdn.net/weixin_43478836/article/details/104159648" target="_blank" rel="noopener">图像质量评估中的PSNR和SSIM的定义，公式和含义</a>，CSDN博客，写得全</p>
+<p>[3] <a href="https://www.jianshu.com/p/43d548ad6b5d" target="_blank" rel="noopener">图像相似度评价指标</a>，简书文章，有定义和<u>大量</u>代码。注意这里面SSIM范围写错了，而且错得离谱。。</p>
+<p>[4] <a href="https://www.jianshu.com/p/e11539734510" target="_blank" rel="noopener">图像质量评价指标PSNR、SSIM、MSSIM介绍</a>，也比较全，有MSSIM公式</p>
+]]></content>
+      <tags>
+        <tag>Computer Vision</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【论文阅读43】FOCNet——网络与分数阶方程的结合</title>
     <url>/2021/03/24/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB43%E3%80%91FOCNet%E2%80%94%E2%80%94%E7%BD%91%E7%BB%9C%E4%B8%8E%E5%88%86%E6%95%B0%E9%98%B6%E6%96%B9%E7%A8%8B%E7%9A%84%E7%BB%93%E5%90%88/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
@@ -218,8 +331,8 @@
 ]]></content>
       <tags>
         <tag>Paper Reading</tag>
-        <tag>ODE</tag>
         <tag>Manifold</tag>
+        <tag>ODE</tag>
         <tag>Flow Model</tag>
       </tags>
   </entry>
@@ -410,8 +523,8 @@
       <tags>
         <tag>Paper Reading</tag>
         <tag>Denoising</tag>
-        <tag>CNN</tag>
         <tag>Computer Vision</tag>
+        <tag>CNN</tag>
       </tags>
   </entry>
   <entry>
@@ -1122,8 +1235,8 @@ A -->E(正则引入<br>有两种方法改善模型效果,分别是测地正则�
 ]]></content>
       <tags>
         <tag>Paper Reading</tag>
-        <tag>PDE</tag>
         <tag>Manifold</tag>
+        <tag>PDE</tag>
       </tags>
   </entry>
   <entry>
@@ -1195,8 +1308,8 @@ A -->E(正则引入<br>有两种方法改善模型效果,分别是测地正则�
 ]]></content>
       <tags>
         <tag>Paper Reading</tag>
-        <tag>Manifold</tag>
         <tag>GAN</tag>
+        <tag>Manifold</tag>
       </tags>
   </entry>
   <entry>
@@ -1784,8 +1897,8 @@ E --> H(需要环境中用户的交互)</pre>
 ]]></content>
       <tags>
         <tag>Paper Reading</tag>
-        <tag>CNN</tag>
         <tag>Computer Vision</tag>
+        <tag>CNN</tag>
         <tag>Yolo</tag>
       </tags>
   </entry>
