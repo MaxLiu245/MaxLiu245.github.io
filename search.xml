@@ -1,6 +1,79 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>【论文阅读45】Fractional-DNN</title>
+    <url>/2021/03/30/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB45%E3%80%91Fractional-DNN/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>本文标题<em>Fractional deep neural network via constrained optimization</em>，就是分数阶方程介导的DNN</p>
+<p>本文单纯从历史信息的利用、方程的离散化等思路，得到此分数阶网络Fractional-DNN</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="文献信息"><a href="#文献信息" class="headerlink" title="文献信息"></a>文献信息</h2><div style="width:80%;margin:auto"><img src="/2021/03/30/【论文阅读45】Fractional-DNN/FDNN_1.png" title="Fractional-DNN文献"></div>
+
+<p>作者信息：作者来自乔治梅森大学，数学与人工智能系和计算流体力学系。</p>
+<p>文献地址：<a href="https://iopscience.iop.org/article/10.1088/2632-2153/aba8e7/meta" target="_blank" rel="noopener">https://iopscience.iop.org/article/10.1088/2632-2153/aba8e7/meta</a></p>
+<p>期刊信息：</p>
+<ol>
+<li>本文发于2020年底的<u>Machine Learning: Science and Technology (MLST)</u>，期刊信息参见<a href="https://www.researchgate.net/journal/Machine-Learning-Science-and-Technology-2632-2153" target="_blank" rel="noopener">researchgate介绍</a>或<a href="https://iopscience.iop.org/journal/2632-2153" target="_blank" rel="noopener">MLST官网</a>，至2021/03/28谷歌引用量3</li>
+<li>期刊似乎是刚刚见刊，搜不到IF，但是知道吴恩达在上面参与过用莫比乌斯变换做数据增广的<a href="https://hjian42.github.io/" target="_blank" rel="noopener">文章</a></li>
+<li>注意到它的<a href="https://publishingsupport.iopscience.iop.org/track-my-article/" target="_blank" rel="noopener">track审稿进度界面</a>有微信支持，我感觉这刊和咱们有关。。可能和<a href="https://china.ioppublishing.org/news/machine-learning-science-and-technology-qi-kan-chu-ban-zui/" target="_blank" rel="noopener">这个</a>有关？</li>
+</ol>
+<h2 id="总体个人观感"><a href="#总体个人观感" class="headerlink" title="总体个人观感"></a>总体个人观感</h2><p>这篇文章像是研究机器学习不深，和很懂方程的作者写出来的，这一点可以从作者信息上体现出来一点。注意到本文</p>
+<ul>
+<li>暂时没有开源代码</li>
+<li>没有引用NODE</li>
+<li>读完后发现文章偏重物理、方程理论，网络的优化算法以及方程离散化是参考DenseNet等得到的启发</li>
+<li>感觉本文对神经网络其实是不太熟悉的，很久没见到专门介绍ML概念和NN概念的文章了</li>
+<li>作者已经于本年年初自引了此文</li>
+</ul>
+<p>这些因素让我觉得文章写得其实不是很充分，有余地，还有搞头【手动憧憬😃】</p>
+<h2 id="文献小结"><a href="#文献小结" class="headerlink" title="文献小结"></a>文献小结</h2><p>小结不想写了，其实就是上面的个人观感吧，内容上读完了觉得正常，不差，但是也没那么猛</p>
+<h2 id="具体内容"><a href="#具体内容" class="headerlink" title="具体内容"></a>具体内容</h2><h3 id="背景领域"><a href="#背景领域" class="headerlink" title="背景领域"></a>背景领域</h3><p>这篇文章不是从NODE的思路切入的，作者关注更多的是偏方程理论的，比如Karniadakis这个人从pde/物理角度切入的NN模型：fPINN</p>
+<p>那么本文声明本文的Fractional-DNN与之完全不同，只是思路不同。。感觉说话的力度一下子就无了qwq</p>
+<h3 id="Caputo分数阶导数"><a href="#Caputo分数阶导数" class="headerlink" title="Caputo分数阶导数"></a>Caputo分数阶导数</h3><p>参考华师的<a href="http://math.ecnu.edu.cn/~jypan/Research/papers/lect_FDE.pdf" target="_blank" rel="noopener">讲义</a>可以辅助理解本文$(2.2)$节中的Caputo分数阶导。细节就不说了，放一个左导数有个印象：</p>
+<script type="math/tex; mode=display">\displaystyle d_t^{\gamma}u(t)=\dfrac{1}{\Gamma (1-\gamma)}\int_0^t\dfrac{u^\prime (t)}{(t-r)^\gamma}dr \tag{1}</script><p>主要是Caputo把左右分数阶导的定义分开了，见原文第3页的式$(3,4)$，这里要注意的是，这里的<strong>阶数必须是限制在$(0,1)$的</strong>，定义如此，区间外的没有定义，原因暂时不知，参考华师<a href="http://math.ecnu.edu.cn/~jypan/Research/papers/lect_FDE.pdf" target="_blank" rel="noopener">讲义</a></p>
+<p>当然，当阶数趋于1时，Caputo就退化为普通的整数1阶导了，左右Caputo导数经过分部积分就成为原1阶导（已会推导，把阶数看成一般的整数分部积分即可）</p>
+<p>后续的定理不管了，不过很重要，后面总问题写成优化泛函后，推导是用到了左右导数分解的性质的</p>
+<blockquote>
+<p>注：本文表示不用那个刘维尔的分数阶导是因为常数的刘维尔导非0，这样在边界处很难处理。参考华师<a href="http://math.ecnu.edu.cn/~jypan/Research/papers/lect_FDE.pdf" target="_blank" rel="noopener">讲义</a></p>
+</blockquote>
+<h3 id="动机-idea"><a href="#动机-idea" class="headerlink" title="动机/idea"></a>动机/idea</h3><p>（1）希望把历史/记忆信息引入学习模型中，由此引入网络每层直接潜在的连接</p>
+<p>（2）分数阶方程增强历史信息，与分数阶导算子是non-local的有关</p>
+<p>（3）网络和ODE/PDE之间的联系，引入分数阶方程的离散化及其算法</p>
+<p>（4）利用dense block结构缓和梯度消失问题</p>
+<p>（5）做ML的理论是基础而重要的事情，如果能把一个网络做好也不戳</p>
+<h3 id="模型Fractional-DNN"><a href="#模型Fractional-DNN" class="headerlink" title="模型Fractional-DNN"></a>模型Fractional-DNN</h3><p>本文直接把提出的模型命名为Fractional-DNN，分数阶神经网络</p>
+<p>Fractional-DNN是基于算法设计的，所以应该算是model-based；训练本身还是基于数据，但learning-based的成份很弱</p>
+<p>该分数阶网络一步一步导出的思路是</p>
+<script type="math/tex; mode=display">\displaystyle RNN\ as\ optiaml\ problem\rightarrow continuous\ Fractional\ DNN\rightarrow Fractional\ DNN\ with\ specific\ loss\rightarrow discrete\ Fractional\ DNN \tag{2}</script><p>其中第1步，RNN作为优化问题就是优化损失，条件就是RNN的结构，参考文章第4、5页式$(7,9)$，形式很简单，主要是条件作为ODE，<strong>RNN每一层的变换也作为欧拉前向法的一步</strong></p>
+<p>第2步，现在考虑连续形式下的分数阶方程，它作为网络只需要在DNN作为优化问题的基础上变形即可，我觉得也不需要是在RNN的基础上，文章重点提RNN可能是它与方程、上下文信息利用的<u>联系较多</u>。变形就是优化的目标函数可以保持loss不变，只是优化的约束改成分数阶网络，<strong>由一步（整数1）欧拉前向变成分数阶导数</strong>！</p>
+<p>第3步，优化的目标设定成特定损失，本文的实验是分类，所以设定成交叉熵（加正则）。但本文也表示回归也类似，这一点我觉得很奇怪，因为文章特地分了一个小章节介绍CE损失。。。</p>
+<p>第3步结束后，就是要采用拉格朗日乘子法求解能量泛函，然后得到迭代式了，所以先放出第3步的网络作为优化问题的表达式：</p>
+<script type="math/tex; mode=display">\displaystyle  \begin{aligned} \min_{W,K,b} &E(W,Y(T),C_{obs})+\mathcal{R}(W,K(t),b(t)) \\ s.t. &\left\{ \begin{aligned} d_t^{\gamma}Y(t) &= \sigma (K(t)Y(t),b(t)),\ t\in (0,T),\\ Y(0)&=Y_0. \end{aligned}\right. \end{aligned} \tag{3}</script><p>那么在第3步和第4步之间就是用拉格朗日乘子法解一下式$(3)$，得到连续形式的迭代格式。具体的计算不放了，挺多的，原文第6、7页的式$(13-16)$。说句实话吧，<strong>$(15)$式的伴随方程为什么是对约束方程的主变量求导</strong>，难道不是对主优化问题的参数求导么？后面的式子我也没看了</p>
+<p>再到第4步，离散化方程，这就是像NODE的思路了，只不过本文的idea和NODE的是有很大区别的。本文离散化约束ODE方程并不是NODE那样直接作为欧拉前向法中的中间层，而是<strong>采用了所谓的$L^1$机制</strong>，<strong>我没看懂</strong>，但是觉得式$(18)$<strong>像是</strong>分数阶导数的一阶泰勒展开，本质上<strong>像是</strong>给定ODE方程后，对分数阶导数的<strong>近似估计</strong>。。。后续$L^1$机制参照文中第7页及以后的$(17-26)$式</p>
+<blockquote>
+<p>注意：文章特地提到，如果指定优化迭代的算法，那么算法一般是与方程本身无关的，也就是和网络本身无关。所以，如果指定优化迭代算法，就<strong>不用限制网络的结构</strong>，包括层数等</p>
+<p>注2：文章提到了参数化卷积核。。用于减少式$(3)$中未知参数的数量，确实，是可以减少一点的。而且这样也是和PDE-Net有所结合的</p>
+</blockquote>
+<h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><p>（1）似乎是因为引入历史信息/记忆的缘故，对梯度消失问题表现较好（应该是参考DenseNet的思路）</p>
+<p>（2）拟合非光滑数据&amp;非光滑函数（别的文章好像很少提这个事情吧）</p>
+<p>（3）可能是分数阶导带来的好处，导出网络跨层连接缓和梯度消失问题、对非光滑函数的拟合、DE工具都可以整活</p>
+<p>（4）确实如文所述，本文讨论了很多原始NN的理论，不过是迭代优化算法，更是model-based了</p>
+<p>缺点，我不喜欢最后迭代机制中的$L^1$机制，对分数阶导算子还有估计；以及实验的数据太小了，也太少了</p>
+<h3 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h3><p>本文主要是在两个小数据集上做了实验，分别是二分类的CLS数据（自己生成的那种）和香水多分类数据</p>
+<h2 id="参考文献-链接"><a href="#参考文献-链接" class="headerlink" title="参考文献/链接"></a>参考文献/链接</h2><p>[1] Harbir Antil, Ratna Khatri, Rainald Lner, and Deepanshu Verma. Fractional deep neural network via constrained optimization. Machine Learning: Science and Technology, 2(1):015003, 2020.</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">@article&#123;RN47,</span><br><span class="line">   author = &#123;Antil, Harbir and Khatri, Ratna and Löhner, Rainald and Verma, Deepanshu&#125;,</span><br><span class="line">   title = &#123;Fractional deep neural network via constrained optimization&#125;,</span><br><span class="line">   journal = &#123;Machine Learning: Science and Technology&#125;,</span><br><span class="line">   volume = &#123;2&#125;,</span><br><span class="line">   number = &#123;1&#125;,</span><br><span class="line">   pages = &#123;015003&#125;,</span><br><span class="line">   ISSN = &#123;2632-2153&#125;,</span><br><span class="line">   DOI = &#123;10.1088/2632-2153/aba8e7&#125;,</span><br><span class="line">   url = &#123;http://dx.doi.org/10.1088/2632-2153/aba8e7&#125;,</span><br><span class="line">   year = &#123;2020&#125;,</span><br><span class="line">   type = &#123;Journal Article&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>[2] 华师讲义，涉及本文Caputo分数阶导数详细的定义：<a href="http://math.ecnu.edu.cn/~jypan/Research/papers/lect_FDE.pdf" target="_blank" rel="noopener">http://math.ecnu.edu.cn/~jypan/Research/papers/lect_FDE.pdf</a></p>
+<p>[3] 分数阶导数的讨论（用处不大）：<a href="http://muchong.com/html/201203/4223380.html" target="_blank" rel="noopener">http://muchong.com/html/201203/4223380.html</a></p>
+<p>[4] 搜到了另一篇像是水文的文章：<a href="https://www.hindawi.com/journals/cin/2018/7361628/" target="_blank" rel="noopener">Fractional-Order Deep Backpropagation Neural Network</a>，期刊是奇怪的<a href="https://www.hindawi.com/" target="_blank" rel="noopener">hindawi</a>的18年<a href="https://www.hindawi.com/journals/cin/" target="_blank" rel="noopener">Computational Intelligence and Neuroscience</a>，此文代码<a href="https://github.com/BaoChunhui/Deep-fractional-BP-neural-networks" target="_blank" rel="noopener">在此</a>。有空浏览一下</p>
+]]></content>
+      <tags>
+        <tag>Paper Reading</tag>
+        <tag>Optimization</tag>
+        <tag>ODE</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【论文阅读44】DPIR——利用深度去噪先验的图像恢复方法</title>
     <url>/2021/03/28/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB44%E3%80%91DPIR%E2%80%94%E2%80%94%E5%88%A9%E7%94%A8%E6%B7%B1%E5%BA%A6%E5%8E%BB%E5%99%AA%E5%85%88%E9%AA%8C%E7%9A%84%E5%9B%BE%E5%83%8F%E6%81%A2%E5%A4%8D%E6%96%B9%E6%B3%95/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
