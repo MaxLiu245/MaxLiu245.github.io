@@ -1,6 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>【论文略读46】另一篇分数阶网络</title>
+    <url>/2021/03/31/%E3%80%90%E8%AE%BA%E6%96%87%E7%95%A5%E8%AF%BB46%E3%80%91%E5%8F%A6%E4%B8%80%E7%AF%87%E5%88%86%E6%95%B0%E9%98%B6%E7%BD%91%E7%BB%9C/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>本文标题<em>Fractional-Order Deep Backpropagation Neural Network</em>，是1篇18年的文章，对上一篇文章搜代码的时候搜到的</p>
+<p>本文阐述的分数阶网络跟我想的还不一样，它就是梯度下降的时候用的是Caputo导数（我怎么觉得不对劲，见启发部分）</p>
+<p>发的地方争议似乎很大，但本文的参考文献里有些信息是有用的，所以略读一下</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="文献信息"><a href="#文献信息" class="headerlink" title="文献信息"></a>文献信息</h2><div style="width:80%;margin:auto"><img src="/2021/03/31/【论文略读46】另一篇分数阶网络/1.png" title="文献标题"></div>
+
+<p>这个文章不太水，内容有些单调，分数阶网络有点粗糙感，如标题述，就是讲分数阶网络的。但写得还行，是份<u>完整</u>的工作</p>
+<p>作者是川大的，其中<a href="https://ieeexplore.ieee.org/author/37269178400" target="_blank" rel="noopener">Yifei Pu</a>之前做过很多分数阶的东西</p>
+<p>文献链接：<a href="https://www.hindawi.com/journals/cin/2018/7361628/" target="_blank" rel="noopener">https://www.hindawi.com/journals/cin/2018/7361628/</a></p>
+<h2 id="本文小结"><a href="#本文小结" class="headerlink" title="本文小结"></a>本文小结</h2><p>本文主要<font color="#0000CD">关注</font>的是/idea：</p>
+<ol>
+<li>以往分数阶网络直接限制分数阶范围$(0,1)$没理由</li>
+<li>有的没加正则</li>
+<li>以及此类方程的收敛性条件</li>
+</ol>
+<p>那么<font color="#0000CD">基于Caputo</font>分数阶导数（理由是常数的分数阶导要是0，这点与Fractional-DNN一致），对<font color="#0000CD">分数阶网络的数学形式</font>进行推导，进一步由损失的优化给出了网络<font color="#0000CD">收敛的一些必要条件</font></p>
+<p>实验部分很完整，交代了<font color="#0000CD">网络结构</font>（注意是现在才交代），由数学形式给出了包含<font color="#0000CD">内外部神经元</font>的网络，在MNIST上进行了<u>分数阶数选择、数据集量的选择、正则的加入、训练轮数的选择</u>，主要<font color="#0000CD">说明了</font><u>分数阶导数选在$(0,2)$比较合适、正则确实稳定并增强泛化、网络是收敛的</u>。。</p>
+<div style="width:90%;margin:auto"><img src="/2021/03/31/【论文略读46】另一篇分数阶网络/2.png" title="网络结构"></div>
+
+<h2 id="本文启发"><a href="#本文启发" class="headerlink" title="本文启发"></a>本文启发</h2><p>个人最关注的其实是参考文献部分，了解到分数阶在18年之前就有很多研究了，主要是<u>方程、控制论、信号处理</u>方向。也有不少<u>图像处理、医学（CT）成像、神经网络</u>，这是个问题啊🤯</p>
+<p>启发之2是本文阐述的分数阶网络跟我想的不一样，它就是梯度下降的时候用的是Caputo导数，在这一点上，我<strong>突然觉得</strong>本文网络的效果可能是网络结构中的外部神经元的作用。。。</p>
+<p>总之就是觉得很矛盾，总觉得这个文章有点离谱。。。</p>
+<blockquote>
+<p>补充一些文章的细节：</p>
+<ol>
+<li>本文分数阶网络的结构见上图，网络的数学表达见文第3页式$(10-22)$，看过了，问题不大，就是不清楚<strong><u>外部神经元刚出现的时候是怎么出现的</u></strong>，毕竟<u>没有输入</u>。。。</li>
+<li>它这个分数阶的网络，<u>分数阶到底体现在哪里</u>？文章的网络本身不含分数！分数阶体现在使用的优化策略是梯度下降，但是<strong><u>求的导数是Caputo分数阶导</u></strong>。。所以以往的分数阶网络都是这？不至于吧</li>
+<li>网络收敛的必要条件是如何推导的？就是优化带正则的损失函数，对参数求分数阶导，令最优参数时分数阶导数为0，得到必要条件</li>
+</ol>
+</blockquote>
+]]></content>
+      <tags>
+        <tag>Paper Reading</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【论文阅读45】Fractional-DNN</title>
     <url>/2021/03/30/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB45%E3%80%91Fractional-DNN/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
@@ -404,8 +444,8 @@
 ]]></content>
       <tags>
         <tag>Paper Reading</tag>
-        <tag>Manifold</tag>
         <tag>ODE</tag>
+        <tag>Manifold</tag>
         <tag>Flow Model</tag>
       </tags>
   </entry>
@@ -596,8 +636,8 @@
       <tags>
         <tag>Paper Reading</tag>
         <tag>Denoising</tag>
-        <tag>Computer Vision</tag>
         <tag>CNN</tag>
+        <tag>Computer Vision</tag>
       </tags>
   </entry>
   <entry>
@@ -1970,8 +2010,8 @@ E --> H(需要环境中用户的交互)</pre>
 ]]></content>
       <tags>
         <tag>Paper Reading</tag>
-        <tag>Computer Vision</tag>
         <tag>CNN</tag>
+        <tag>Computer Vision</tag>
         <tag>Yolo</tag>
       </tags>
   </entry>
