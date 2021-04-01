@@ -1,6 +1,85 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>【论文阅读47】ResNet+步长控制器</title>
+    <url>/2021/03/31/%E3%80%90%E8%AE%BA%E6%96%87%E9%98%85%E8%AF%BB47%E3%80%91ResNet-%E6%AD%A5%E9%95%BF%E6%8E%A7%E5%88%B6%E5%99%A8/</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
+<p>本文名字<em>Dynamical System Inspired Adaptive Time Stepping Controller for Residual Network Families</em>，是林老师等在AAAI2020上的工作，干的啥看标题能知道个大概，这个工作就是对网络方程离散化形式的优化取了步长可变的策略，而这个步长控制器TSC正是一个元学习器！</p>
+<p>本文引了NODE、FOCNet，网络和方程结合的一部分思想可以说是从这里来的</p>
+</blockquote>
+<a id="more"></a>
+<div style="width:80%;margin:auto"><img src="/2021/03/31/【论文阅读47】ResNet-步长控制器/TSC_1.png" title="Time Stepping Controller"></div>
+
+<h2 id="文献信息"><a href="#文献信息" class="headerlink" title="文献信息"></a>文献信息</h2><p><font color="#0000CD">作者</font>有北大有山大的，包括北大的<font color="#0000CD">林宙辰</font>老师，发表在AAAI2020</p>
+<p>文献链接<a href="https://ojs.aaai.org//index.php/AAAI/article/view/6141" target="_blank" rel="noopener">AAAI</a>或者<a href="https://arxiv.org/abs/1911.10305v1" target="_blank" rel="noopener">ArXiv</a>，建议参考ArXiv，因为有附录</p>
+<h2 id="背景方法"><a href="#背景方法" class="headerlink" title="背景方法"></a>背景方法</h2><p><font color="#0000CD">背景</font>是结合神经网络和方程迭代机制的方法，历史思路有</p>
+<ul>
+<li>1个思路是基于欧拉前向法，改进方向是多步、高阶方程、分数阶方程（比如FOCNet）；</li>
+<li>另一个思路是基于ResNet/NODE的稳定性改进</li>
+</ul>
+<p>本文主要参考的<font color="#0000CD">背景方法</font>是<font color="#0000CD">ResNet的离散化</font>形式，其实和NODE应该是一致的。这个离散化形式刚开始我没看明白，是因为没搞清楚它的符号，看下图即可。里面的式$(7,8)$刚开始我不会推，看了附录1可以手推一遍了，其中式$(8)$用$\displaystyle \dfrac{\partial L}{\partial y_n}=\dfrac{\partial L}{\partial y_D}\dfrac{\partial y_D}{\partial y_n}$即可</p>
+<div style="width:70%;margin:auto"><img src="/2021/03/31/【论文阅读47】ResNet-步长控制器/TSC_2.png" title="我用这个辅助理解式子"></div>
+
+<h2 id="动机-idea"><a href="#动机-idea" class="headerlink" title="动机/idea"></a>动机/idea</h2><p>整体的大<font color="#0000CD">动机</font>是理解深度网络的行为behaviors，小动机可以从文章给的例子看出来，就是<font color="#0000CD">自适应地调节方程步长</font>以增强稳定性和表达能力</p>
+<div style="width:50%;margin:auto"><img src="/2021/03/31/【论文阅读47】ResNet-步长控制器/TSC_3.png" title="本文调节步长动机的具体例子"></div>
+
+<p>具体的动机主要是：</p>
+<ol>
+<li><p>ResNet和动力系统之间的一致性，unravel残差网络</p>
+</li>
+<li><p>由Runge-Kutta-Fehlberg自适应步长的思路，希望把此迭代机制设置到网络中，平衡稳定性和有效性</p>
+<blockquote>
+<p>RKF说明：</p>
+<ul>
+<li>这个博客是代码，留在这里自取：<a href="http://blog.sciencenet.cn/blog-398465-326487.html" target="_blank" rel="noopener">http://blog.sciencenet.cn/blog-398465-326487.html</a></li>
+<li>这个ppt介绍龙格库塔法比较全面：<a href="https://wenku.baidu.com/view/4e3b3068ddccda38376baf25.html" target="_blank" rel="noopener">https://wenku.baidu.com/view/4e3b3068ddccda38376baf25.html</a></li>
+</ul>
+</blockquote>
+</li>
+</ol>
+<h2 id="模型TSC"><a href="#模型TSC" class="headerlink" title="模型TSC"></a>模型TSC</h2><p>研究ResNet和欧拉前向法的联系，但不太同NODE，本文主要考虑时间步长的影响</p>
+<p><font color="#0000CD">模型</font>本身就简记为TSC好了，全称time stepping controller</p>
+<p>具体方案是设计<font color="#0000CD">时间步长控制器</font>，与当前状态参数无关，与先前的信息有关，它与主网络的训练是交替优化的。其实模型本身没什么，看原文第3页的式$(9)$即可：</p>
+<script type="math/tex; mode=display">\displaystyle  \begin{aligned} \min_{\mathbf{W},\theta} &\ J=\dfrac{1}{S}\sum_{s=1}^S\Phi (y_s(T),y_s^*)+\sum_{d=1}^{D-1}R(\mathbf{w}(t_d),\theta (t_d)) \\ s.t. &\left\{ \begin{aligned} y_s(t_{d+1})=y_s(t_d)+\mathcal{F}(y_s(t_d),w(t_d))\Delta t_d\\ \Delta t_d=\Theta(w(t_d);\Delta t_1,\cdots,\Delta t_{d-1};\theta (t_d)) \\ t_0=0,\ t_{d+1}=t_d+\Delta t_d,\ y_s(0)=y_s \\ T=t_D=\sum_{d=0}^{D-1}\Delta t_d,\ d=0,1,\cdots,D-1 \end{aligned}\right. \end{aligned} \tag{1}</script><p>这个式子看起来吓人，其实比较简单，就是<font color="#0000CD">带ODE约束的能量泛函优化</font>问题：</p>
+<p>（1）优化的目标$J$其实就是数据项➕正则项，$\Phi$是损失函数，两个输入是图像$y_s$经主网络演化到时刻$T$（就是算到最后）的值和监督标签$y_s^*$；正则项和每层的主网络参数$w$和TSC副网络参数$\theta$有关，其引入与观察到基本模型，ResNet的残差形式中，数值稳定性与卷积参数$w$的<a href="https://www.bilibili.com/video/av839997910/" target="_blank" rel="noopener">核范数</a>等有关，因此加了正则；</p>
+<p>（2）约束条件还是ODE，即第一行就是主网络ResNet的离散形式；</p>
+<p>（3）其中的步长$\Delta t_d$是交替优化来的，见条件第二行，即副网络TSC$\Theta$的形式，它包括自己的网络参数$\theta$，当前状态的主网络参数$w$和之前全部历史步长信息；</p>
+<p>（4）后面的就是初值条件什么的了，没啥好说的</p>
+<p>这样解读的话，这个副网络TSC$\Theta$其实就是一个<font color="#0000CD">元学习器</font>！</p>
+<h2 id="实验"><a href="#实验" class="headerlink" title="实验"></a>实验</h2><p>在三个数据集ImageNet和CIFAR-10、CIFAR-100上进行了实验</p>
+<p>在实验中，作者尝试了三种TSC元学习器，分别是LSTM、2层FC和一个只和历史步长信息有关的函数，显然LSTM是🐂🐂一点的，虽然推断的时候大家计算复杂度一样（原文表$(1)$），训练的时候LSTM计算稍有复杂，但是人家效果更好啊</p>
+<p>网络结构如下，基本上是元学习，只是其中有些操作special一点</p>
+<div style="width:60%;margin:auto"><img src="/2021/03/31/【论文阅读47】ResNet-步长控制器/TSC_4.png" title="TSC网络结构"></div>
+
+<p>训练的策略具体有：</p>
+<ol>
+<li>式$(1)$中的主网络参数$w_d$指的是每个残差block的参数，有几个卷积层，就把它们平均平均再concatenate作为$w_d$，若超过两个就只concatenate首尾的两个卷积参数</li>
+<li>实验包括了对TSC策略的有效性和稳定性验证，有效就是性能好，稳定性就是收敛得快、稳定啥的</li>
+<li>实验也包括对三种元学习器的比较</li>
+<li>实验还包括对非残差网络的实验，这说明<ol>
+<li>把约束中的离散化形式换了，这个框架也是work的</li>
+<li>元学习器其实可以<strong>泛化</strong>到不同网络对应的方程</li>
+</ol>
+</li>
+</ol>
+<h2 id="优缺点"><a href="#优缺点" class="headerlink" title="优缺点"></a>优缺点</h2><p>优点：</p>
+<ol>
+<li>结合方程的联系，研究了步长对ResNet稳定性的影响</li>
+<li>自适应步长控制器和主网络的交替优化可视为元学习器，且验证了有泛化能力</li>
+<li>元学习器的概念使推断/测试过程中没有引入额外的计算消耗（只有元学习器确定步长）</li>
+</ol>
+<h2 id="思考小结"><a href="#思考小结" class="headerlink" title="思考小结"></a>思考小结</h2><p>本文其实，总结的话就是网络用方程的离散化解释，引入迭代优化机制，且只考虑欧拉前向法。把对于步长的自适应改进方法做成了一个交替优化的网络，即元学习器</p>
+<p>思路棒棒，不过原文似乎没有意识到这个概念</p>
+<h2 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h2><p>[1] Yang, Y., Wu, J., Li, H., Li, X., Shen, T., &amp; Lin, Z. (2020). Dynamical System Inspired Adaptive Time Stepping Controller for Residual Network Families. Proceedings of the AAAI Conference on Artificial Intelligence, 34(04), 6648-6655. <a href="https://doi.org/10.1609/aaai.v34i04.6141" target="_blank" rel="noopener">https://doi.org/10.1609/aaai.v34i04.6141</a></p>
+]]></content>
+      <tags>
+        <tag>Paper Reading</tag>
+        <tag>Optimization</tag>
+        <tag>ODE</tag>
+        <tag>Meta Learner</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>【论文略读46】另一篇分数阶网络</title>
     <url>/2021/03/31/%E3%80%90%E8%AE%BA%E6%96%87%E7%95%A5%E8%AF%BB46%E3%80%91%E5%8F%A6%E4%B8%80%E7%AF%87%E5%88%86%E6%95%B0%E9%98%B6%E7%BD%91%E7%BB%9C/</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="\assets\css\APlayer.min.css"><script src="\assets\js\APlayer.min.js" class="aplayer-secondary-script-marker"></script><blockquote>
@@ -636,8 +715,8 @@
       <tags>
         <tag>Paper Reading</tag>
         <tag>Denoising</tag>
-        <tag>CNN</tag>
         <tag>Computer Vision</tag>
+        <tag>CNN</tag>
       </tags>
   </entry>
   <entry>
@@ -2010,8 +2089,8 @@ E --> H(需要环境中用户的交互)</pre>
 ]]></content>
       <tags>
         <tag>Paper Reading</tag>
-        <tag>CNN</tag>
         <tag>Computer Vision</tag>
+        <tag>CNN</tag>
         <tag>Yolo</tag>
       </tags>
   </entry>
